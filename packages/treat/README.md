@@ -1,5 +1,7 @@
 # 🍬 treat
 
+[![treat@next](https://img.shields.io/npm/v/treat/next.svg?label=treat@next&logo=npm&style=for-the-badge)](https://www.npmjs.com/package/treat)
+
 Themeable, typed CSS-in-JS with (basically) zero runtime. What a treat.
 
 ```bash

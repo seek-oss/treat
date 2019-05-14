@@ -1,5 +1,7 @@
 # 🍬 react-treat
 
+[![react-treat@next](https://img.shields.io/npm/v/react-treat/next.svg?label=react-treat@next&logo=npm&style=for-the-badge)](https://www.npmjs.com/package/react-treat)
+
 React bindings for [treat](https://github.com/seek-oss/treat).
 
 [View full documentation.](https://github.com/seek-oss/treat)

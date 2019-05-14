@@ -1,6 +1,14 @@
-# 🍬 treat
+<div align="center" >
+  <img src="./logo.png" alt="treat" width="310px" />
+  <br/>
+  <br/>
+  Themeable, typed CSS-in-JS with (basically) zero runtime. What a treat.
+  <hr />
 
-Themeable, typed CSS-in-JS with (basically) zero runtime. What a treat.
+[![Build Status](https://img.shields.io/travis/seek-oss/treat/master.svg?logo=travis&style=for-the-badge)](http://travis-ci.org/seek-oss/treat) [![treat@next](https://img.shields.io/npm/v/treat/next.svg?label=treat@next&logo=npm&style=for-the-badge)](https://www.npmjs.com/package/treat) [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg?style=for-the-badge)](https://lerna.js.org/)
+
+  <hr />
+</div>
 
 ```bash
 $ yarn add treat@next

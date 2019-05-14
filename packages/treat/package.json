@@ -1,6 +1,6 @@
 {
   "name": "treat",
-  "version": "1.0.0-beta.1",
+  "version": "1.0.0-beta.2",
   "description": "Themeable, typed CSS-in-JS with (basically) zero runtime",
   "main": "lib/commonjs",
   "module": "lib/module",

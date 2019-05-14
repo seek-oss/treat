@@ -1,0 +1,587 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Stylesheet Complex selectors - Autoprefixer (iOS 8) - should create a deterministic stylesheet 1`] = `
+"._3yryF:focus {
+    color: purple
+}
+._3yryF ._2wcfh {
+    background-color: red
+}
+._3yryF ._3vGr3_1ld8, ._3yryF ._3vGr3_1fZK {
+    background-color: blue
+}
+._3vGr3_1ld8 ._2wcfh ._3yryF, ._3vGr3_1fZK ._2wcfh ._3yryF {
+    background-color: black
+}
+html ._3yryF {
+    position: absolute
+}
+@media screen and (min-width: 300px) {
+    ._3yryF {
+        color: green
+    }
+    ._3yryF ._2wcfh {
+        color: red
+    }
+    ._3yryF ._3vGr3_1ld8, ._3yryF ._3vGr3_1fZK {
+        color: blue
+    }
+    ._3vGr3_1ld8 ._2wcfh ._3yryF, ._3vGr3_1fZK ._2wcfh ._3yryF {
+        color: black
+    }
+}
+._2Cl3x_1fZK:focus {
+    color: purple
+}
+._2Cl3x_1fZK ._2wcfh {
+    background-color: red
+}
+._2Cl3x_1fZK ._3vGr3_1fZK {
+    background-color: blue
+}
+._3vGr3_1fZK ._2wcfh ._2Cl3x_1fZK {
+    background-color: black
+}
+@media screen and (min-width: 1000px) {
+    ._2Cl3x_1fZK {
+        color: green
+    }
+    ._2Cl3x_1fZK ._2wcfh {
+        color: red
+    }
+    ._2Cl3x_1fZK ._3vGr3_1fZK {
+        color: blue
+    }
+    ._3vGr3_1fZK ._2wcfh ._2Cl3x_1fZK {
+        color: black
+    }
+}
+._2Cl3x_1ld8:focus {
+    color: purple
+}
+._2Cl3x_1ld8 ._2wcfh {
+    background-color: red
+}
+._2Cl3x_1ld8 ._3vGr3_1ld8 {
+    background-color: blue
+}
+._3vGr3_1ld8 ._2wcfh ._2Cl3x_1ld8 {
+    background-color: black
+}
+@media screen and (min-width: 700px) {
+    ._2Cl3x_1ld8 {
+        color: green
+    }
+    ._2Cl3x_1ld8 ._2wcfh {
+        color: red
+    }
+    ._2Cl3x_1ld8 ._3vGr3_1ld8 {
+        color: blue
+    }
+    ._3vGr3_1ld8 ._2wcfh ._2Cl3x_1ld8 {
+        color: black
+    }
+}
+"
+`;
+
+exports[`Stylesheet Complex selectors - Custom idents - should create a deterministic stylesheet 1`] = `
+".complexSelectors-styles_blue_3yryF:focus {
+    color: purple
+}
+.complexSelectors-styles_blue_3yryF .complexSelectors-unthemedClassStyle_2wcfh {
+    background-color: red
+}
+.complexSelectors-styles_blue_3yryF .complexSelectors-themedStyle_3vGr3-big_1l, .complexSelectors-styles_blue_3yryF .complexSelectors-themedStyle_3vGr3-small_1f {
+    background-color: blue
+}
+.complexSelectors-themedStyle_3vGr3-big_1l .complexSelectors-unthemedClassStyle_2wcfh .complexSelectors-styles_blue_3yryF, .complexSelectors-themedStyle_3vGr3-small_1f .complexSelectors-unthemedClassStyle_2wcfh .complexSelectors-styles_blue_3yryF {
+    background-color: black
+}
+html .complexSelectors-styles_blue_3yryF {
+    position: absolute
+}
+@media screen and (min-width: 300px) {
+    .complexSelectors-styles_blue_3yryF {
+        color: green
+    }
+    .complexSelectors-styles_blue_3yryF .complexSelectors-unthemedClassStyle_2wcfh {
+        color: red
+    }
+    .complexSelectors-styles_blue_3yryF .complexSelectors-themedStyle_3vGr3-big_1l, .complexSelectors-styles_blue_3yryF .complexSelectors-themedStyle_3vGr3-small_1f {
+        color: blue
+    }
+    .complexSelectors-themedStyle_3vGr3-big_1l .complexSelectors-unthemedClassStyle_2wcfh .complexSelectors-styles_blue_3yryF, .complexSelectors-themedStyle_3vGr3-small_1f .complexSelectors-unthemedClassStyle_2wcfh .complexSelectors-styles_blue_3yryF {
+        color: black
+    }
+}
+.complexSelectors-red_2Cl3x-big_1l:focus {
+    color: purple
+}
+.complexSelectors-red_2Cl3x-big_1l .complexSelectors-unthemedClassStyle_2wcfh {
+    background-color: red
+}
+.complexSelectors-red_2Cl3x-big_1l .complexSelectors-themedStyle_3vGr3-big_1l {
+    background-color: blue
+}
+.complexSelectors-themedStyle_3vGr3-big_1l .complexSelectors-unthemedClassStyle_2wcfh .complexSelectors-red_2Cl3x-big_1l {
+    background-color: black
+}
+@media screen and (min-width: 700px) {
+    .complexSelectors-red_2Cl3x-big_1l {
+        color: green
+    }
+    .complexSelectors-red_2Cl3x-big_1l .complexSelectors-unthemedClassStyle_2wcfh {
+        color: red
+    }
+    .complexSelectors-red_2Cl3x-big_1l .complexSelectors-themedStyle_3vGr3-big_1l {
+        color: blue
+    }
+    .complexSelectors-themedStyle_3vGr3-big_1l .complexSelectors-unthemedClassStyle_2wcfh .complexSelectors-red_2Cl3x-big_1l {
+        color: black
+    }
+}
+.complexSelectors-red_2Cl3x-small_1f:focus {
+    color: purple
+}
+.complexSelectors-red_2Cl3x-small_1f .complexSelectors-unthemedClassStyle_2wcfh {
+    background-color: red
+}
+.complexSelectors-red_2Cl3x-small_1f .complexSelectors-themedStyle_3vGr3-small_1f {
+    background-color: blue
+}
+.complexSelectors-themedStyle_3vGr3-small_1f .complexSelectors-unthemedClassStyle_2wcfh .complexSelectors-red_2Cl3x-small_1f {
+    background-color: black
+}
+@media screen and (min-width: 1000px) {
+    .complexSelectors-red_2Cl3x-small_1f {
+        color: green
+    }
+    .complexSelectors-red_2Cl3x-small_1f .complexSelectors-unthemedClassStyle_2wcfh {
+        color: red
+    }
+    .complexSelectors-red_2Cl3x-small_1f .complexSelectors-themedStyle_3vGr3-small_1f {
+        color: blue
+    }
+    .complexSelectors-themedStyle_3vGr3-small_1f .complexSelectors-unthemedClassStyle_2wcfh .complexSelectors-red_2Cl3x-small_1f {
+        color: black
+    }
+}
+"
+`;
+
+exports[`Stylesheet Complex selectors - Development mode - should create a deterministic stylesheet 1`] = `
+".complexSelectors-styles_blue_3yryF:focus {
+    color: purple
+}
+.complexSelectors-styles_blue_3yryF .complexSelectors-unthemedClassStyle_2wcfh {
+    background-color: red
+}
+.complexSelectors-styles_blue_3yryF .complexSelectors-themedStyle_3vGr3_complexSelectors-big_1ld8, .complexSelectors-styles_blue_3yryF .complexSelectors-themedStyle_3vGr3_complexSelectors-small_1fZK {
+    background-color: blue
+}
+.complexSelectors-themedStyle_3vGr3_complexSelectors-big_1ld8 .complexSelectors-unthemedClassStyle_2wcfh .complexSelectors-styles_blue_3yryF, .complexSelectors-themedStyle_3vGr3_complexSelectors-small_1fZK .complexSelectors-unthemedClassStyle_2wcfh .complexSelectors-styles_blue_3yryF {
+    background-color: black
+}
+html .complexSelectors-styles_blue_3yryF {
+    position: absolute
+}
+@media screen and (min-width: 300px) {
+    .complexSelectors-styles_blue_3yryF {
+        color: green
+    }
+    .complexSelectors-styles_blue_3yryF .complexSelectors-unthemedClassStyle_2wcfh {
+        color: red
+    }
+    .complexSelectors-styles_blue_3yryF .complexSelectors-themedStyle_3vGr3_complexSelectors-big_1ld8, .complexSelectors-styles_blue_3yryF .complexSelectors-themedStyle_3vGr3_complexSelectors-small_1fZK {
+        color: blue
+    }
+    .complexSelectors-themedStyle_3vGr3_complexSelectors-big_1ld8 .complexSelectors-unthemedClassStyle_2wcfh .complexSelectors-styles_blue_3yryF, .complexSelectors-themedStyle_3vGr3_complexSelectors-small_1fZK .complexSelectors-unthemedClassStyle_2wcfh .complexSelectors-styles_blue_3yryF {
+        color: black
+    }
+}
+.complexSelectors-red_2Cl3x_complexSelectors-big_1ld8:focus {
+    color: purple
+}
+.complexSelectors-red_2Cl3x_complexSelectors-big_1ld8 .complexSelectors-unthemedClassStyle_2wcfh {
+    background-color: red
+}
+.complexSelectors-red_2Cl3x_complexSelectors-big_1ld8 .complexSelectors-themedStyle_3vGr3_complexSelectors-big_1ld8 {
+    background-color: blue
+}
+.complexSelectors-themedStyle_3vGr3_complexSelectors-big_1ld8 .complexSelectors-unthemedClassStyle_2wcfh .complexSelectors-red_2Cl3x_complexSelectors-big_1ld8 {
+    background-color: black
+}
+@media screen and (min-width: 700px) {
+    .complexSelectors-red_2Cl3x_complexSelectors-big_1ld8 {
+        color: green
+    }
+    .complexSelectors-red_2Cl3x_complexSelectors-big_1ld8 .complexSelectors-unthemedClassStyle_2wcfh {
+        color: red
+    }
+    .complexSelectors-red_2Cl3x_complexSelectors-big_1ld8 .complexSelectors-themedStyle_3vGr3_complexSelectors-big_1ld8 {
+        color: blue
+    }
+    .complexSelectors-themedStyle_3vGr3_complexSelectors-big_1ld8 .complexSelectors-unthemedClassStyle_2wcfh .complexSelectors-red_2Cl3x_complexSelectors-big_1ld8 {
+        color: black
+    }
+}
+.complexSelectors-red_2Cl3x_complexSelectors-small_1fZK:focus {
+    color: purple
+}
+.complexSelectors-red_2Cl3x_complexSelectors-small_1fZK .complexSelectors-unthemedClassStyle_2wcfh {
+    background-color: red
+}
+.complexSelectors-red_2Cl3x_complexSelectors-small_1fZK .complexSelectors-themedStyle_3vGr3_complexSelectors-small_1fZK {
+    background-color: blue
+}
+.complexSelectors-themedStyle_3vGr3_complexSelectors-small_1fZK .complexSelectors-unthemedClassStyle_2wcfh .complexSelectors-red_2Cl3x_complexSelectors-small_1fZK {
+    background-color: black
+}
+@media screen and (min-width: 1000px) {
+    .complexSelectors-red_2Cl3x_complexSelectors-small_1fZK {
+        color: green
+    }
+    .complexSelectors-red_2Cl3x_complexSelectors-small_1fZK .complexSelectors-unthemedClassStyle_2wcfh {
+        color: red
+    }
+    .complexSelectors-red_2Cl3x_complexSelectors-small_1fZK .complexSelectors-themedStyle_3vGr3_complexSelectors-small_1fZK {
+        color: blue
+    }
+    .complexSelectors-themedStyle_3vGr3_complexSelectors-small_1fZK .complexSelectors-unthemedClassStyle_2wcfh .complexSelectors-red_2Cl3x_complexSelectors-small_1fZK {
+        color: black
+    }
+}
+"
+`;
+
+exports[`Stylesheet Complex selectors - Production mode - should create a deterministic stylesheet 1`] = `
+"._3yryF:focus{color:purple}._3yryF ._2wcfh{background-color:red}._3yryF ._3vGr3_1fZK,._3yryF ._3vGr3_1ld8{background-color:#00f}._3vGr3_1fZK ._2wcfh ._3yryF,._3vGr3_1ld8 ._2wcfh ._3yryF{background-color:#000}html ._3yryF{position:absolute}@media screen and (min-width:300px){._3yryF{color:green}._3yryF ._2wcfh{color:red}._3yryF ._3vGr3_1fZK,._3yryF ._3vGr3_1ld8{color:#00f}._3vGr3_1fZK ._2wcfh ._3yryF,._3vGr3_1ld8 ._2wcfh ._3yryF{color:#000}}
+._2Cl3x_1ld8:focus{color:purple}._2Cl3x_1ld8 ._2wcfh{background-color:red}._2Cl3x_1ld8 ._3vGr3_1ld8{background-color:#00f}._3vGr3_1ld8 ._2wcfh ._2Cl3x_1ld8{background-color:#000}@media screen and (min-width:700px){._2Cl3x_1ld8{color:green}._2Cl3x_1ld8 ._2wcfh{color:red}._2Cl3x_1ld8 ._3vGr3_1ld8{color:#00f}._3vGr3_1ld8 ._2wcfh ._2Cl3x_1ld8{color:#000}}
+._2Cl3x_1fZK:focus{color:purple}._2Cl3x_1fZK ._2wcfh{background-color:red}._2Cl3x_1fZK ._3vGr3_1fZK{background-color:#00f}._3vGr3_1fZK ._2wcfh ._2Cl3x_1fZK{background-color:#000}@media screen and (min-width:1000px){._2Cl3x_1fZK{color:green}._2Cl3x_1fZK ._2wcfh{color:red}._2Cl3x_1fZK ._3vGr3_1fZK{color:#00f}._3vGr3_1fZK ._2wcfh ._2Cl3x_1fZK{color:#000}}
+"
+`;
+
+exports[`Stylesheet Complex selectors - Theme function ident - should create a deterministic stylesheet 1`] = `
+"._3yryF:focus {
+    color: purple
+}
+._3yryF ._2wcfh {
+    background-color: red
+}
+._3yryF ._3vGr3_big_theme_1l, ._3yryF ._3vGr3_small_theme_1f {
+    background-color: blue
+}
+._3vGr3_big_theme_1l ._2wcfh ._3yryF, ._3vGr3_small_theme_1f ._2wcfh ._3yryF {
+    background-color: black
+}
+html ._3yryF {
+    position: absolute
+}
+@media screen and (min-width: 300px) {
+    ._3yryF {
+        color: green
+    }
+    ._3yryF ._2wcfh {
+        color: red
+    }
+    ._3yryF ._3vGr3_big_theme_1l, ._3yryF ._3vGr3_small_theme_1f {
+        color: blue
+    }
+    ._3vGr3_big_theme_1l ._2wcfh ._3yryF, ._3vGr3_small_theme_1f ._2wcfh ._3yryF {
+        color: black
+    }
+}
+._2Cl3x_small_theme_1f:focus {
+    color: purple
+}
+._2Cl3x_small_theme_1f ._2wcfh {
+    background-color: red
+}
+._2Cl3x_small_theme_1f ._3vGr3_small_theme_1f {
+    background-color: blue
+}
+._3vGr3_small_theme_1f ._2wcfh ._2Cl3x_small_theme_1f {
+    background-color: black
+}
+@media screen and (min-width: 1000px) {
+    ._2Cl3x_small_theme_1f {
+        color: green
+    }
+    ._2Cl3x_small_theme_1f ._2wcfh {
+        color: red
+    }
+    ._2Cl3x_small_theme_1f ._3vGr3_small_theme_1f {
+        color: blue
+    }
+    ._3vGr3_small_theme_1f ._2wcfh ._2Cl3x_small_theme_1f {
+        color: black
+    }
+}
+._2Cl3x_big_theme_1l:focus {
+    color: purple
+}
+._2Cl3x_big_theme_1l ._2wcfh {
+    background-color: red
+}
+._2Cl3x_big_theme_1l ._3vGr3_big_theme_1l {
+    background-color: blue
+}
+._3vGr3_big_theme_1l ._2wcfh ._2Cl3x_big_theme_1l {
+    background-color: black
+}
+@media screen and (min-width: 700px) {
+    ._2Cl3x_big_theme_1l {
+        color: green
+    }
+    ._2Cl3x_big_theme_1l ._2wcfh {
+        color: red
+    }
+    ._2Cl3x_big_theme_1l ._3vGr3_big_theme_1l {
+        color: blue
+    }
+    ._3vGr3_big_theme_1l ._2wcfh ._2Cl3x_big_theme_1l {
+        color: black
+    }
+}
+"
+`;
+
+exports[`Stylesheet Multi file - Autoprefixer (iOS 8) - should create a deterministic stylesheet 1`] = `
+".zkB3l {
+    color: blue
+}
+"
+`;
+
+exports[`Stylesheet Multi file - Custom idents - should create a deterministic stylesheet 1`] = `
+".multi-multiStyles_zkB3l {
+    color: blue
+}
+"
+`;
+
+exports[`Stylesheet Multi file - Development mode - should create a deterministic stylesheet 1`] = `
+".multi-multiStyles_zkB3l {
+    color: blue
+}
+"
+`;
+
+exports[`Stylesheet Multi file - Production mode - should create a deterministic stylesheet 1`] = `
+".zkB3l{color:#00f}
+"
+`;
+
+exports[`Stylesheet Multi file - Theme function ident - should create a deterministic stylesheet 1`] = `
+".zkB3l {
+    color: blue
+}
+"
+`;
+
+exports[`Stylesheet Simple - Autoprefixer (iOS 8) - should create a deterministic stylesheet 1`] = `
+".PxCM2 {
+    height: 100px;
+    width: 100px;
+    color: blue;
+    display: -webkit-flex;
+    display: flex
+}
+.PxCM2:hover {
+    background-color: purple
+}
+._2QKEX {
+    color: red
+}
+body ._2QKEX {
+    z-index: 2
+}
+html .PxCM2 {
+    position: absolute
+}
+@media screen and (min-width: 700px) {
+    ._2QKEX {
+        color: green
+    }
+}
+"
+`;
+
+exports[`Stylesheet Simple - Custom idents - should create a deterministic stylesheet 1`] = `
+".simple-mainStyles_blue_PxCM2 {
+    height: 100px;
+    width: 100px;
+    color: blue;
+    display: flex
+}
+.simple-mainStyles_blue_PxCM2:hover {
+    background-color: purple
+}
+.simple-mainStyles_red_2QKEX {
+    color: red
+}
+body .simple-mainStyles_red_2QKEX {
+    z-index: 2
+}
+html .simple-mainStyles_blue_PxCM2 {
+    position: absolute
+}
+@media screen and (min-width: 700px) {
+    .simple-mainStyles_red_2QKEX {
+        color: green
+    }
+}
+"
+`;
+
+exports[`Stylesheet Simple - Development mode - should create a deterministic stylesheet 1`] = `
+".simple-mainStyles_blue_PxCM2 {
+    height: 100px;
+    width: 100px;
+    color: blue;
+    display: flex
+}
+.simple-mainStyles_blue_PxCM2:hover {
+    background-color: purple
+}
+.simple-mainStyles_red_2QKEX {
+    color: red
+}
+body .simple-mainStyles_red_2QKEX {
+    z-index: 2
+}
+html .simple-mainStyles_blue_PxCM2 {
+    position: absolute
+}
+@media screen and (min-width: 700px) {
+    .simple-mainStyles_red_2QKEX {
+        color: green
+    }
+}
+"
+`;
+
+exports[`Stylesheet Simple - Production mode - should create a deterministic stylesheet 1`] = `
+".PxCM2{height:100px;width:100px;color:#00f;display:flex}.PxCM2:hover{background-color:purple}._2QKEX{color:red}body ._2QKEX{z-index:2}html .PxCM2{position:absolute}@media screen and (min-width:700px){._2QKEX{color:green}}
+"
+`;
+
+exports[`Stylesheet Simple - Theme function ident - should create a deterministic stylesheet 1`] = `
+".PxCM2 {
+    height: 100px;
+    width: 100px;
+    color: blue;
+    display: flex
+}
+.PxCM2:hover {
+    background-color: purple
+}
+._2QKEX {
+    color: red
+}
+body ._2QKEX {
+    z-index: 2
+}
+html .PxCM2 {
+    position: absolute
+}
+@media screen and (min-width: 700px) {
+    ._2QKEX {
+        color: green
+    }
+}
+"
+`;
+
+exports[`Stylesheet Themed - Autoprefixer (iOS 8) - should create a deterministic stylesheet 1`] = `
+"._1dptv {
+    background-color: white;
+    display: -webkit-flex;
+    display: flex
+}
+._3Lve__1bxB {
+    background-color: yellow
+}
+"
+`;
+
+exports[`Stylesheet Themed - Custom idents - should create a deterministic stylesheet 1`] = `
+".styles-regularStyle_1dptv {
+    background-color: white;
+    display: flex
+}
+.styles-themeStyle_3Lve_-yellow_1b {
+    background-color: yellow
+}
+"
+`;
+
+exports[`Stylesheet Themed - Development mode - should create a deterministic stylesheet 1`] = `
+".styles-regularStyle_1dptv {
+    background-color: white;
+    display: flex
+}
+.styles-themeStyle_3Lve__theme-yellow_1bxB {
+    background-color: yellow
+}
+"
+`;
+
+exports[`Stylesheet Themed - Production mode - should create a deterministic stylesheet 1`] = `
+"._1dptv{background-color:#fff;display:flex}
+._3Lve__1bxB{background-color:#ff0}
+"
+`;
+
+exports[`Stylesheet Themed - Theme function ident - should create a deterministic stylesheet 1`] = `
+"._1dptv {
+    background-color: white;
+    display: flex
+}
+._3Lve__yellow_theme_1b {
+    background-color: yellow
+}
+"
+`;
+
+exports[`Stylesheet Unused modules - Autoprefixer (iOS 8) - should create a deterministic stylesheet 1`] = `
+"._1OJEF {
+    height: 100px;
+    width: 100px
+}
+"
+`;
+
+exports[`Stylesheet Unused modules - Custom idents - should create a deterministic stylesheet 1`] = `
+".used-used_1OJEF {
+    height: 100px;
+    width: 100px
+}
+"
+`;
+
+exports[`Stylesheet Unused modules - Development mode - should create a deterministic stylesheet 1`] = `
+".unused-unused_-XARm {
+    color: red;
+    background-color: blue
+}
+.used-used_1OJEF {
+    height: 100px;
+    width: 100px
+}
+"
+`;
+
+exports[`Stylesheet Unused modules - Production mode - should create a deterministic stylesheet 1`] = `
+"._1OJEF{height:100px;width:100px}
+"
+`;
+
+exports[`Stylesheet Unused modules - Theme function ident - should create a deterministic stylesheet 1`] = `
+"._1OJEF {
+    height: 100px;
+    width: 100px
+}
+"
+`;

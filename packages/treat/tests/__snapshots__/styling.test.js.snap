@@ -1,0 +1,178 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Styling and specificity Dynamic imports - development mode (style-loader) on mobile theme A should be styled correctly 1`] = `
+Object {
+  "background-color": "yellow",
+  "display": "flex",
+  "height": "100px",
+  "width": "100px",
+}
+`;
+
+exports[`Styling and specificity Dynamic imports - development mode (style-loader) on mobile theme B should be styled correctly 1`] = `
+Object {
+  "background-color": "red",
+  "display": "flex",
+  "height": "100px",
+  "width": "100px",
+}
+`;
+
+exports[`Styling and specificity Dynamic imports - mini-css-extract-loader on mobile theme A should be styled correctly 1`] = `
+Object {
+  "background-color": "#ff0",
+  "display": "flex",
+  "height": "100px",
+  "width": "100px",
+}
+`;
+
+exports[`Styling and specificity Dynamic imports - mini-css-extract-loader on mobile theme B should be styled correctly 1`] = `
+Object {
+  "background-color": "red",
+  "display": "flex",
+  "height": "100px",
+  "width": "100px",
+}
+`;
+
+exports[`Styling and specificity Dynamic imports - style-loader on mobile theme A should be styled correctly 1`] = `
+Object {
+  "background-color": "#ff0",
+  "display": "flex",
+  "height": "100px",
+  "width": "100px",
+}
+`;
+
+exports[`Styling and specificity Dynamic imports - style-loader on mobile theme B should be styled correctly 1`] = `
+Object {
+  "background-color": "red",
+  "display": "flex",
+  "height": "100px",
+  "width": "100px",
+}
+`;
+
+exports[`Styling and specificity Simple - development mode (style-loader) -  on desktop and hovered should be styled correctly 1`] = `
+Object {
+  "background-color": "purple",
+  "color": "green",
+  "display": "flex",
+  "height": "100px",
+  "position": "absolute",
+  "width": "100px",
+  "z-index": "2",
+}
+`;
+
+exports[`Styling and specificity Simple - development mode (style-loader) -  on desktop should be styled correctly 1`] = `
+Object {
+  "color": "green",
+  "display": "flex",
+  "height": "100px",
+  "position": "absolute",
+  "width": "100px",
+  "z-index": "2",
+}
+`;
+
+exports[`Styling and specificity Simple - development mode (style-loader) -  on mobile should be styled correctly 1`] = `
+Object {
+  "color": "red",
+  "display": "flex",
+  "height": "100px",
+  "position": "absolute",
+  "width": "100px",
+  "z-index": "2",
+}
+`;
+
+exports[`Styling and specificity Simple - mini-css-extract-loader -  on desktop and hovered should be styled correctly 1`] = `
+Object {
+  "background-color": "purple",
+  "color": "green",
+  "display": "flex",
+  "height": "100px",
+  "position": "absolute",
+  "width": "100px",
+  "z-index": "2",
+}
+`;
+
+exports[`Styling and specificity Simple - mini-css-extract-loader -  on desktop should be styled correctly 1`] = `
+Object {
+  "color": "green",
+  "display": "flex",
+  "height": "100px",
+  "position": "absolute",
+  "width": "100px",
+  "z-index": "2",
+}
+`;
+
+exports[`Styling and specificity Simple - mini-css-extract-loader -  on mobile should be styled correctly 1`] = `
+Object {
+  "color": "red",
+  "display": "flex",
+  "height": "100px",
+  "position": "absolute",
+  "width": "100px",
+  "z-index": "2",
+}
+`;
+
+exports[`Styling and specificity Simple - style-loader -  on desktop and hovered should be styled correctly 1`] = `
+Object {
+  "background-color": "purple",
+  "color": "green",
+  "display": "flex",
+  "height": "100px",
+  "position": "absolute",
+  "width": "100px",
+  "z-index": "2",
+}
+`;
+
+exports[`Styling and specificity Simple - style-loader -  on desktop should be styled correctly 1`] = `
+Object {
+  "color": "green",
+  "display": "flex",
+  "height": "100px",
+  "position": "absolute",
+  "width": "100px",
+  "z-index": "2",
+}
+`;
+
+exports[`Styling and specificity Simple - style-loader -  on mobile should be styled correctly 1`] = `
+Object {
+  "color": "red",
+  "display": "flex",
+  "height": "100px",
+  "position": "absolute",
+  "width": "100px",
+  "z-index": "2",
+}
+`;
+
+exports[`Styling and specificity Themed - development mode (style-loader) on mobile should be styled correctly 1`] = `
+Object {
+  "background-color": "yellow",
+  "display": "flex",
+}
+`;
+
+exports[`Styling and specificity Themed - mini-css-extract-loader on mobile should be styled correctly 1`] = `
+Object {
+  "background-color": "#ff0",
+  "display": "flex",
+}
+`;
+
+exports[`Styling and specificity Themed - style-loader on mobile should be styled correctly 1`] = `
+Object {
+  "background-color": "#ff0",
+  "display": "flex",
+}
+`;

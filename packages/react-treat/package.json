@@ -1,0 +1,25 @@
+{
+  "name": "react-treat",
+  "description": "React library for integrating with treat",
+  "version": "1.0.0-beta.1",
+  "main": "lib/commonjs",
+  "module": "lib/module",
+  "author": "SEEK",
+  "license": "MIT",
+  "repository": "https://github.com/seek-oss/treat/tree/master/packages/react-treat",
+  "scripts": {
+    "build:module": "tsc --module es2015 --outDir lib/module",
+    "build:commonjs": "tsc --module commonjs --outDir lib/commonjs",
+    "build": "concurrently 'yarn build:module' 'yarn build:commonjs'",
+    "watch": "concurrently 'tsc --module commonjs --watch' 'tsc --module module --watch'"
+  },
+  "keywords": [
+    "treat"
+  ],
+  "peerDependencies": {
+    "react": ">=16.8.0"
+  },
+  "devDependencies": {
+    "treat": "^1.0.0-beta.1"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "packages": [
+    "packages/*"
+  ],
+  "version": "1.0.0-beta.1",
+  "npmClient": "yarn",
+  "useWorkspaces": true,
+  "ignoreChanges": [
+    "**/tests/**",
+    "**/*.test.{js,ts}",
+    "**/*.md"
+  ],
+  "command": {
+    "version": {
+      "allowBranch": "master",
+      "message": "chore(release): Publish %s"
+    }
+  }
+}

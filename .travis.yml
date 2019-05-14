@@ -1,0 +1,30 @@
+language: node_js
+
+node_js: 10
+
+notifications:
+  email: false
+
+cache:
+  yarn: true
+  directories:
+    - node_modules
+
+install:
+  - yarn --frozen-lockfile
+
+script:
+  - yarn test
+
+before_deploy:
+  - git config --global user.name "seek-oss-ci";
+  - git config --global user.email "opensource@seek.com.au";
+  - npm config set //registry.npmjs.org/:_authToken $NPM_TOKEN
+
+deploy:
+  provider: script
+  script: yarn release
+  skip_cleanup: true
+  on:
+    branch: master
+    tags: true

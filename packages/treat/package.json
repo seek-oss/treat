@@ -1,0 +1,34 @@
+{
+  "name": "treat",
+  "version": "1.0.0-beta.1",
+  "description": "Themeable, typed CSS-in-JS with (basically) zero runtime",
+  "main": "lib/commonjs",
+  "module": "lib/module",
+  "scripts": {
+    "build:module": "tsc --module es2015 --outDir lib/module",
+    "build:commonjs": "tsc --module commonjs --outDir lib/commonjs",
+    "build": "concurrently 'yarn build:module' 'yarn build:commonjs'",
+    "watch": "concurrently 'tsc --module commonjs --watch' 'tsc --module module --watch'"
+  },
+  "author": "SEEK",
+  "license": "MIT",
+  "repository": "https://github.com/seek-oss/treat/tree/master/packages/treat",
+  "peerDependencies": {
+    "webpack": "^4.30.0"
+  },
+  "dependencies": {
+    "@types/lodash": "^4.14.123",
+    "autoprefixer": "^9.5.0",
+    "bluebird": "^3.5.4",
+    "css-loader": "^2.1.0",
+    "cssnano": "^4.1.10",
+    "csstype": "^2.6.3",
+    "eval": "^0.1.2",
+    "loader-utils": "^1.2.3",
+    "normalize-path": "^3.0.0",
+    "postcss": "^7.0.14",
+    "postcss-js": "^2.0.0",
+    "style-loader": "^0.23.1",
+    "webpack-virtual-modules": "^0.1.10"
+  }
+}

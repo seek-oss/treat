@@ -23,8 +23,7 @@ before_deploy:
 
 deploy:
   provider: script
-  script: yarn release
+  script: yarn release --yes
   skip_cleanup: true
   on:
     branch: master
-    tags: true

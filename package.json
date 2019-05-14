@@ -9,7 +9,6 @@
     "start-example": "webpack-dev-server",
     "build-example": "rm -rf dist && webpack",
     "build": "lerna run build",
-    "prerelease": "yarn test",
     "release": "lerna publish --canary --preid beta --dist-tag next",
     "commit": "git-cz"
   },

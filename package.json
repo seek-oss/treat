@@ -1,14 +1,13 @@
 {
   "private": true,
-  "workspaces": [
-    "packages/*"
-  ],
+  "workspaces": ["packages/*"],
   "scripts": {
     "pretest": "yarn build",
     "test": "jest",
     "start-example": "webpack-dev-server",
     "build-example": "rm -rf dist && webpack",
     "build": "lerna run build",
+    "postversion": "syncpack fix-mismatches --filter \"^treat$\"",
     "release": "lerna publish --canary --preid beta --dist-tag next",
     "commit": "git-cz"
   },
@@ -55,6 +54,7 @@
     "puppeteer": "^1.14.0",
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
+    "syncpack": "^4.5.2",
     "typescript": "^3.4.1",
     "webpack": "^4.30.0",
     "webpack-cli": "^3.2.3",

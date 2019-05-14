@@ -24,8 +24,9 @@ Because theming is achieved by generating multiple classes, **legacy browsers ar
 
 - [Requirements](#requirements)
 - [tl;dr (React version)](#tldr-react-version)
-- [Webpack Setup](#webpack-setup)
-- [Babel Setup](#babel-setup)
+- [Setup](#setup)
+  - [Webpack Setup](#webpack-setup)
+  - [Babel Setup](#babel-setup)
 - [API Reference](#api-reference)
   - [Data Types](#data-types)
     - [Styles](#styles)
@@ -37,13 +38,14 @@ Because theming is achieved by generating multiple classes, **legacy browsers ar
     - [css](#css)
     - [globalStyle](#globalstyle)
   - [Debugging](#debugging)
+  - [Runtime API](#runtime-api)
+    - [resolveClassNames](#resolveclassnames)
+    - [resolveStyles](#resolvestyles)
   - [React API](#react-api)
     - [TreatProvider](#treatprovider)
     - [useClassNames](#useclassnames)
     - [useStyles](#usestyles)
-  - [Low-Level API](#low-level-api)
-    - [resolveClassNames](#resolveclassnames)
-    - [resolveStyles](#resolvestyles)
+  - [Webpack Plugin API](#webpack-plugin-api)
 
 ---
 
@@ -51,11 +53,11 @@ Because theming is achieved by generating multiple classes, **legacy browsers ar
 
 Your project must be using [webpack](#webpack-setup) with the supplied [webpack plugin](#webpack-setup), but that's it.
 
-**We provide first-class support for [React](https://reactjs.org/) and [TypeScript](https://www.typescriptlang.org/),** but those layers are _entirely optional._ We also provide low level runtime APIs that could be integrated into other frameworks, if needed.
+**First-class support is provided for [React](https://reactjs.org/) and [TypeScript](https://www.typescriptlang.org/),** but those layers are _entirely optional._ The core [runtime API](#runtime-api) can also be integrated into other frameworks, if needed.
 
 ## tl;dr (React version)
 
-> React is [not required](#low-level-api) to use treat—but it certainly makes it easy 😎
+> React is [not required](#runtime-api) to use treat—but it certainly makes it easy 😎
 
 First, install all dependencies:
 
@@ -128,9 +130,11 @@ export function Button({ className, ...restProps }) {
 }
 ```
 
-## Webpack Setup
+## Setup
 
-To get started, add the treat [webpack](https://webpack.js.org/) plugin to [`webpack.config.js`](https://webpack.js.org/concepts/configuration).
+### Webpack Setup
+
+To get started, add the treat [webpack](https://webpack.js.org/) plugin to [`webpack.config.js`](https://webpack.js.org/concepts/configuration). Since webpack is required to use treat, the webpack plugin is provided via the core `treat` package as `treat/webpack-plugin`.
 
 ```js
 const TreatPlugin = require('treat/webpack-plugin');
@@ -158,52 +162,11 @@ module.exports = {
 };
 ```
 
-By default, all class names are hashes. If you'd like more fine-grained control over the generated class names, you can create your own [custom interpolations](https://github.com/webpack/loader-utils#interpolatename).
+For more configuration options, view the full [webpack plugin API](#webpack-plugin-api).
 
-<!-- prettier-ignore -->
-```js
-module.exports = {
-  plugins: [
-    new TreatPlugin({
-      localIdentName: '[name]-[local]_[hash:base64:5]',
-      themeIdentName: '_[folder]-[name]_[hash:base64:5]'
-    })
-  ]
-};
-```
+### Babel Setup
 
-`themeIdentName` can also be a function that receives your theme as a parameter. This allows you to minimize the characters in your theme ident for production.
-
-> Warning: Ensure all themes have a unique ident value.
-
-<!-- prettier-ignore -->
-```js
-const themes = ['light', 'dark'];
-
-module.exports = {
-  plugins: [
-    new TreatPlugin({
-      themeIdentName: (theme) => themes.indexOf(theme.name)
-    })
-  ]
-};
-```
-
-### Webpack plugin options
-
-| option         | description                                                                                                                                         | default value                                                                                                                              |
-| -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
-| test           | [Webpack condition](https://webpack.js.org/configuration/module/#rule-conditions) targetting `treat` files.                                         | `/\.treat.(js\|ts)$/`                                                                                                                      |
-| outputCSS      | Whether to output CSS into the bundle. Useful for dual config SSR apps.                                                                             | `true`                                                                                                                                     |
-| outputLoaders  | Array of webpack loaders to handle CSS files, they will be placed after `css-loader`. Strings and objects with options are supported.               | `['style-loader']`                                                                                                                         |
-| localIdentName | Template string for naming css classes. Should always contain a `hash` option to avoid clashes.                                                     | `[hash:base64:5]`                                                                                                                          |
-| themeIdentName | Same as `localIdentName` but for themes. Useful for debugging which classes belong to which theme. Can also be a function that receives your theme. | `[hash:base64:4]`                                                                                                                          |
-| minify         | Minify the output css                                                                                                                               | Inferred from [webpack mode](https://webpack.js.org/concepts/#mode). Defaults to `true` if `production` mode.                              |
-| browsers       | A [browserslist](https://github.com/browserslist/browserslist) query to pass to [autoprefixer](https://github.com/postcss/autoprefixer)             | By default, your browserslist query will be resolved from your [browserslist config](https://github.com/browserslist/browserslist#queries) |
-
-## Babel Setup
-
-While entirely optional, treat provides a Babel plugin to improve the [debugging](#debugging) experience.
+In order to improve the [debugging](#debugging) experience, treat also provides an optional Babel plugin.
 
 First, install the plugin:
 
@@ -340,7 +303,7 @@ const themedClass = style((theme: Theme) => ({
 
 ### Styling API
 
-**The following styling APIs are only valid within treat files (e.g. `Button.treat.js`).**
+The following styling APIs are only valid within treat files (e.g. `Button.treat.js`).
 
 #### createTheme
 
@@ -413,29 +376,67 @@ globalStyle('html, body', {
 
 ### Debugging
 
+> Note: This can be automated via our [Babel plugin](#babel-setup).
+
 All styling APIs (except for `globalStyle`) have an optional argument that allows you to provide a local debug name.
 
-For example, the local name for this style will be `style` by default.
+For example, the local name for the following style will be `style` by default because treat doesn't have access to your variable name at runtime.
 
 <!-- prettier-ignore -->
 ```js
 export const green = style({ color: 'green' });
 ```
 
-This is because treat doesn't have access to your variable name at runtime.
-
-To fix this, you can pass in a debug name that typically would mirror your variable name:
+To fix this, you can pass in a debug name as the last argument:
 
 <!-- prettier-ignore -->
 ```js
 export const green = style({ color: 'green' }, 'green');
 ```
 
-**Note: This debug name can be automated via our [Babel plugin](#babel-setup).**
+### Runtime API
+
+> Note: If you're using React, you should use our [React API](#react-api) instead.
+
+#### resolveClassNames
+
+Type: `function`
+
+Resolves class names relative to a given theme. Serves as a treat-enabled version of the [Classnames API](https://github.com/JedWatson/classnames#usage), but with the desired theme as the first argument.
+
+```js
+import { resolveClassNames } from 'treat';
+
+import theme from './theme.treat.js';
+import * as styles from './Button.treat.js';
+
+const className = resolveClassNames(
+  theme,
+  styles.button,
+  {
+    [styles.primary]: isPrimary
+  },
+  ...etc
+);
+```
+
+#### resolveStyles
+
+Type: `function`
+
+Resolves an entire styles object relative to a given theme.
+
+```js
+import { resolveStyles } from 'treat';
+import * as styles from './styles.treat.js';
+import theme from './theme.treat.js';
+
+const themedStyles = resolveStyles(styles, theme);
+```
 
 ### React API
 
-> Note: React is [not required](#low-level-api) to use treat!
+> Note: React is [not required](#runtime-api) to use treat!
 
 #### TreatProvider
 
@@ -508,45 +509,17 @@ export function Button({ primary, ...props }) {
 }
 ```
 
-### Low-Level API
+### Webpack Plugin API
 
-> Note: If you're using React, use our [React API](#react-api) instead.
-
-#### resolveClassNames
-
-Type: `function`
-
-Resolves class names relative to a given theme. Serves as a treat-enabled version of the [Classnames API](https://github.com/JedWatson/classnames#usage), but with the desired theme as the first argument.
-
-```js
-import { resolveClassNames } from 'treat';
-
-import theme from './theme.treat.js';
-import * as styles from './Button.treat.js';
-
-const className = resolveClassNames(
-  theme,
-  styles.button,
-  {
-    [styles.primary]: isPrimary
-  },
-  ...etc
-);
-```
-
-#### resolveStyles
-
-Type: `function`
-
-Resolves an entire styles object relative to a given theme.
-
-```js
-import { resolveStyles } from 'treat';
-import * as styles from './styles.treat.js';
-import theme from './theme.treat.js';
-
-const themedStyles = resolveStyles(styles, theme);
-```
+| option         | description                                                                                                                                         | default value                                                                                                                              |
+| -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| test           | [Webpack condition](https://webpack.js.org/configuration/module/#rule-conditions) targetting `treat` files.                                         | `/\.treat.(js\|ts)$/`                                                                                                                      |
+| outputCSS      | Whether to output CSS into the bundle. Useful for dual config SSR apps.                                                                             | `true`                                                                                                                                     |
+| outputLoaders  | Array of webpack loaders to handle CSS files, they will be placed after `css-loader`. Strings and objects with options are supported.               | `['style-loader']`                                                                                                                         |
+| localIdentName | Template string for naming css classes. Should always contain a `hash` option to avoid clashes.                                                     | Development: `[name]-[local]_[hash:base64:5]`<br /><br />Production: `[hash:base64:5]`                                                     |
+| themeIdentName | Same as `localIdentName` but for themes. Useful for debugging which classes belong to which theme. Can also be a function that receives your theme. | Development: `_[name]-[local]_[hash:base64:4]`<br /><br />Production: `[hash:base64:4]`                                                    |
+| minify         | Minify the output css                                                                                                                               | Inferred from [webpack mode](https://webpack.js.org/concepts/#mode). Defaults to `true` if `production` mode.                              |
+| browsers       | A [browserslist](https://github.com/browserslist/browserslist) query to pass to [autoprefixer](https://github.com/postcss/autoprefixer)             | By default, your browserslist query will be resolved from your [browserslist config](https://github.com/browserslist/browserslist#queries) |
 
 ## License
 

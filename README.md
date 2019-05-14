@@ -521,6 +521,11 @@ export function Button({ primary, ...props }) {
 | minify         | Minify the output css                                                                                                                               | Inferred from [webpack mode](https://webpack.js.org/concepts/#mode). Defaults to `true` if `production` mode.                              |
 | browsers       | A [browserslist](https://github.com/browserslist/browserslist) query to pass to [autoprefixer](https://github.com/postcss/autoprefixer)             | By default, your browserslist query will be resolved from your [browserslist config](https://github.com/browserslist/browserslist#queries) |
 
+## Thanks
+
+- [Johannes Ewald](https://twitter.com/Jhnnns) for letting us have the `treat` name on npm.
+- [Nathan Nam Tran](https://twitter.com/naistran) for creating [css-in-js-loader](https://github.com/naistran/css-in-js-loader), which served as the initial starting point for our approach.
+
 ## License
 
 MIT.

@@ -159,7 +159,7 @@ Object {
 exports[`Styling and specificity Themed - development mode (style-loader) should be styled correctly with theme one 1`] = `
 Object {
   "background-color": "yellow",
-  "display": "block",
+  "display": "flex",
   "height": "12px",
   "line-height": "6",
   "z-index": "3",
@@ -169,7 +169,7 @@ Object {
 exports[`Styling and specificity Themed - development mode (style-loader) should be styled correctly with theme two 1`] = `
 Object {
   "background-color": "red",
-  "display": "block",
+  "display": "flex",
   "height": "8px",
   "line-height": "4",
   "z-index": "3",
@@ -179,7 +179,7 @@ Object {
 exports[`Styling and specificity Themed - mini-css-extract-loader should be styled correctly with theme one 1`] = `
 Object {
   "background-color": "#ff0",
-  "display": "block",
+  "display": "flex",
   "height": "12px",
   "line-height": "6",
   "z-index": "3",
@@ -189,7 +189,7 @@ Object {
 exports[`Styling and specificity Themed - mini-css-extract-loader should be styled correctly with theme two 1`] = `
 Object {
   "background-color": "red",
-  "display": "block",
+  "display": "flex",
   "height": "8px",
   "line-height": "4",
   "z-index": "3",
@@ -199,7 +199,7 @@ Object {
 exports[`Styling and specificity Themed - style-loader should be styled correctly with theme one 1`] = `
 Object {
   "background-color": "#ff0",
-  "display": "block",
+  "display": "flex",
   "height": "12px",
   "line-height": "6",
   "z-index": "3",
@@ -209,7 +209,7 @@ Object {
 exports[`Styling and specificity Themed - style-loader should be styled correctly with theme two 1`] = `
 Object {
   "background-color": "red",
-  "display": "block",
+  "display": "flex",
   "height": "8px",
   "line-height": "4",
   "z-index": "3",

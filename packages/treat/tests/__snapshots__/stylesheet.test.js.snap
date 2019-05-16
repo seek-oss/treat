@@ -496,7 +496,9 @@ html .PxCM2 {
 
 exports[`Stylesheet Themed - Autoprefixer (iOS 8) - should create a deterministic stylesheet 1`] = `
 "._6tvyw {
-    z-index: 1
+    z-index: 1;
+    display: -webkit-flex;
+    display: flex
 }
 .inLwD {
     z-index: 2
@@ -527,7 +529,8 @@ exports[`Stylesheet Themed - Autoprefixer (iOS 8) - should create a deterministi
 
 exports[`Stylesheet Themed - Custom idents - should create a deterministic stylesheet 1`] = `
 ".stylesOne-regularStyle_6tvyw {
-    z-index: 1
+    z-index: 1;
+    display: flex
 }
 .stylesTwo-regularStyle_inLwD {
     z-index: 2
@@ -558,7 +561,8 @@ exports[`Stylesheet Themed - Custom idents - should create a deterministic style
 
 exports[`Stylesheet Themed - Development mode - should create a deterministic stylesheet 1`] = `
 ".stylesOne-regularStyle_6tvyw {
-    z-index: 1
+    z-index: 1;
+    display: flex
 }
 .stylesTwo-regularStyle_inLwD {
     z-index: 2
@@ -588,7 +592,7 @@ exports[`Stylesheet Themed - Development mode - should create a deterministic st
 `;
 
 exports[`Stylesheet Themed - Production mode - should create a deterministic stylesheet 1`] = `
-"._6tvyw{z-index:1}
+"._6tvyw{z-index:1;display:flex}
 .inLwD{z-index:2}
 ._2cR4h{z-index:3}
 ._1eYVB_3h9W{background-color:#ff0}
@@ -602,7 +606,8 @@ exports[`Stylesheet Themed - Production mode - should create a deterministic sty
 
 exports[`Stylesheet Themed - Theme function ident - should create a deterministic stylesheet 1`] = `
 "._6tvyw {
-    z-index: 1
+    z-index: 1;
+    display: flex
 }
 .inLwD {
     z-index: 2

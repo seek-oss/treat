@@ -6,6 +6,7 @@ const themeStyle = style(theme => ({
 
 const regularStyle = style({
   zIndex: 1,
+  display: 'flex',
 });
 
 export default {

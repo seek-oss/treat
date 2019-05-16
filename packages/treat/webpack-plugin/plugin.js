@@ -151,7 +151,21 @@ module.exports = class TreatWebpackPlugin {
 
           if (modulesToRemove.length > 0) {
             chunks.forEach(chunk => {
-              modulesToRemove.forEach(({ module }) => {
+              modulesToRemove.forEach(({ module, identifier }) => {
+                this.store.getThemeIdentifiers().forEach(themeIdentifier => {
+                  const themeModule = compilation.findModule(themeIdentifier);
+
+                  themeModule.dependencies = themeModule.dependencies.filter(
+                    dependency => {
+                      if (!dependency.module) {
+                        return true;
+                      }
+
+                      return dependency.module.identifier() !== identifier;
+                    },
+                  );
+                });
+
                 chunk.removeModule(module);
               });
             });

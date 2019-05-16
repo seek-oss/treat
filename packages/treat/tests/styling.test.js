@@ -160,5 +160,27 @@ describe('Styling and specificity', () => {
         server.close();
       });
     });
+
+    describe(`Unused modules - ${label}`, () => {
+      let server;
+
+      beforeAll(async () => {
+        server = await startFixture({
+          entry: require.resolve('./fixtures/unused-modules/index.js'),
+          ...config(),
+        });
+        await page.goto(server.url);
+      });
+
+      it('should be styled correctly', async () => {
+        const styles = await getStyles(page, mainSelector);
+
+        expect(styles).toMatchSnapshot();
+      });
+
+      afterAll(() => {
+        server.close();
+      });
+    });
   });
 });

@@ -110,16 +110,16 @@ describe('Styling and specificity', () => {
         await page.goto(server.url);
       });
 
-      describe('on mobile', () => {
-        beforeAll(async () => {
-          await page.setViewport({ width: 400, height: 800 });
-        });
+      it('should be styled correctly with theme one', async () => {
+        const styles = await getStyles(page, '#theme1');
 
-        it('should be styled correctly', async () => {
-          const styles = await getStyles(page, mainSelector);
+        expect(styles).toMatchSnapshot();
+      });
 
-          expect(styles).toMatchSnapshot();
-        });
+      it('should be styled correctly with theme two', async () => {
+        const styles = await getStyles(page, '#theme2');
+
+        expect(styles).toMatchSnapshot();
       });
 
       afterAll(() => {

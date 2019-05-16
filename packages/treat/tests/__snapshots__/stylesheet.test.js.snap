@@ -495,52 +495,143 @@ html .PxCM2 {
 `;
 
 exports[`Stylesheet Themed - Autoprefixer (iOS 8) - should create a deterministic stylesheet 1`] = `
-"._1dptv {
-    background-color: white;
+"._6tvyw {
+    z-index: 1;
     display: -webkit-flex;
     display: flex
 }
-._3Lve__1bxB {
+.inLwD {
+    z-index: 2
+}
+._2cR4h {
+    z-index: 3
+}
+._1eYVB_3h9W {
     background-color: yellow
+}
+._3a3qh_3h9W {
+    height: 12px
+}
+._1FZ-j_3h9W {
+    line-height: 6
+}
+._1eYVB_3JfQ {
+    background-color: red
+}
+._3a3qh_3JfQ {
+    height: 8px
+}
+._1FZ-j_3JfQ {
+    line-height: 4
 }
 "
 `;
 
 exports[`Stylesheet Themed - Custom idents - should create a deterministic stylesheet 1`] = `
-".styles-regularStyle_1dptv {
-    background-color: white;
+".stylesOne-regularStyle_6tvyw {
+    z-index: 1;
     display: flex
 }
-.styles-themeStyle_3Lve_-yellow_1b {
+.stylesTwo-regularStyle_inLwD {
+    z-index: 2
+}
+.stylesThree-regularStyle_2cR4h {
+    z-index: 3
+}
+.stylesOne-themeStyle_1eYVB-themeOne_3h {
     background-color: yellow
+}
+.stylesTwo-themeStyle_3a3qh-themeOne_3h {
+    height: 12px
+}
+.stylesThree-themeStyle_1FZ-j-themeOne_3h {
+    line-height: 6
+}
+.stylesOne-themeStyle_1eYVB-themeTwo_3J {
+    background-color: red
+}
+.stylesTwo-themeStyle_3a3qh-themeTwo_3J {
+    height: 8px
+}
+.stylesThree-themeStyle_1FZ-j-themeTwo_3J {
+    line-height: 4
 }
 "
 `;
 
 exports[`Stylesheet Themed - Development mode - should create a deterministic stylesheet 1`] = `
-".styles-regularStyle_1dptv {
-    background-color: white;
+".stylesOne-regularStyle_6tvyw {
+    z-index: 1;
     display: flex
 }
-.styles-themeStyle_3Lve__theme-yellow_1bxB {
+.stylesTwo-regularStyle_inLwD {
+    z-index: 2
+}
+.stylesThree-regularStyle_2cR4h {
+    z-index: 3
+}
+.stylesOne-themeStyle_1eYVB_themeOne-themeOne_3h9W {
     background-color: yellow
+}
+.stylesTwo-themeStyle_3a3qh_themeOne-themeOne_3h9W {
+    height: 12px
+}
+.stylesThree-themeStyle_1FZ-j_themeOne-themeOne_3h9W {
+    line-height: 6
+}
+.stylesOne-themeStyle_1eYVB_themeTwo-themeTwo_3JfQ {
+    background-color: red
+}
+.stylesTwo-themeStyle_3a3qh_themeTwo-themeTwo_3JfQ {
+    height: 8px
+}
+.stylesThree-themeStyle_1FZ-j_themeTwo-themeTwo_3JfQ {
+    line-height: 4
 }
 "
 `;
 
 exports[`Stylesheet Themed - Production mode - should create a deterministic stylesheet 1`] = `
-"._1dptv{background-color:#fff;display:flex}
-._3Lve__1bxB{background-color:#ff0}
+"._6tvyw{z-index:1;display:flex}
+.inLwD{z-index:2}
+._2cR4h{z-index:3}
+._1eYVB_3h9W{background-color:#ff0}
+._3a3qh_3h9W{height:12px}
+._1FZ-j_3h9W{line-height:6}
+._1eYVB_3JfQ{background-color:red}
+._3a3qh_3JfQ{height:8px}
+._1FZ-j_3JfQ{line-height:4}
 "
 `;
 
 exports[`Stylesheet Themed - Theme function ident - should create a deterministic stylesheet 1`] = `
-"._1dptv {
-    background-color: white;
+"._6tvyw {
+    z-index: 1;
     display: flex
 }
-._3Lve__yellow_theme_1b {
+.inLwD {
+    z-index: 2
+}
+._2cR4h {
+    z-index: 3
+}
+._1eYVB_theme_one_3h {
     background-color: yellow
+}
+._3a3qh_theme_one_3h {
+    height: 12px
+}
+._1FZ-j_theme_one_3h {
+    line-height: 6
+}
+._1eYVB_theme_two_3J {
+    background-color: red
+}
+._3a3qh_theme_two_3J {
+    height: 8px
+}
+._1FZ-j_theme_two_3J {
+    line-height: 4
 }
 "
 `;

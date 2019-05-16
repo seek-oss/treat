@@ -2,15 +2,50 @@ import { Properties } from 'csstype';
 import { Theme } from 'treat/theme';
 import { SimplePseudos } from './transformCSS';
 
+type Omit<T, K> = Pick<T, Exclude<keyof T, K>>;
+
 export type PostCSS = object;
 
 export type ThemeRef = string;
 
-type CSSProperties = Properties<string | number>;
+type AnimationProperties =
+  | 'animation'
+  | 'animationName'
+  | 'animationDelay'
+  | 'animationDirection'
+  | 'animationDuration'
+  | 'animationFillMode'
+  | 'animationIterationCount'
+  | 'animationPlayState'
+  | 'animationTimingFunction';
+
+type BasicCSSProperties = Omit<
+  Properties<string | number>,
+  AnimationProperties
+>;
+
+export interface CSSKeyframe {
+  [time: string]: BasicCSSProperties;
+}
+
+export interface CSSAnimation {
+  keyframes: string | CSSKeyframe;
+  animationDelay?: string;
+  animationDirection?: string;
+  animationDuration?: string;
+  animationFillMode?: string;
+  animationIterationCount?: string;
+  animationPlayState?: string;
+  animationTimingFunction?: string;
+}
+
+export type CSSProperties = BasicCSSProperties & {
+  animation?: CSSAnimation;
+};
 
 type PseudoStyles = { [key in SimplePseudos[number]]?: CSSProperties };
 
-type CSSPropertiesAndPseudos = Properties<string | number> & PseudoStyles;
+type CSSPropertiesAndPseudos = CSSProperties & PseudoStyles;
 
 interface SelectorMap {
   [selector: string]: CSSProperties;

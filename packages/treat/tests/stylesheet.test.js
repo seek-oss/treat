@@ -99,6 +99,10 @@ const fixtureEntries = [
     fixtureName: 'Multi file',
     entry: './fixtures/multi-file/index.js',
   },
+  {
+    fixtureName: 'Animations',
+    entry: './fixtures/animations/index.js',
+  },
 ];
 
 describe('Stylesheet', () => {

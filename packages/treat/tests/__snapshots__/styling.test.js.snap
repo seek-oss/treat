@@ -215,3 +215,27 @@ Object {
   "z-index": "3",
 }
 `;
+
+exports[`Styling and specificity Unused modules - development mode (style-loader) should be styled correctly 1`] = `
+Object {
+  "display": "block",
+  "height": "100px",
+  "width": "100px",
+}
+`;
+
+exports[`Styling and specificity Unused modules - mini-css-extract-loader should be styled correctly 1`] = `
+Object {
+  "display": "block",
+  "height": "100px",
+  "width": "100px",
+}
+`;
+
+exports[`Styling and specificity Unused modules - style-loader should be styled correctly 1`] = `
+Object {
+  "display": "block",
+  "height": "100px",
+  "width": "100px",
+}
+`;

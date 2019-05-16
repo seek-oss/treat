@@ -1,12 +1,41 @@
-import { resolveStyles } from 'treat';
-import theme from './theme.treat';
-import styleRefs from './styles.treat';
+import { resolveClassNames } from 'treat';
+import themeOne from './themeOne.treat';
+import themeTwo from './themeTwo.treat';
 
-const node = document.createElement('div');
+import stylesOne from './stylesOne.treat';
+import stylesTwo from './stylesTwo.treat';
+import stylesThree from './stylesThree.treat';
 
-const styles = resolveStyles(theme, styleRefs);
+const nodeOne = document.createElement('div');
+const nodeTwo = document.createElement('div');
 
-node.setAttribute('id', 'main');
-node.setAttribute('class', `${styles.regularStyle} ${styles.themeStyle}`);
+nodeOne.setAttribute('id', 'theme1');
+nodeOne.setAttribute(
+  'class',
+  resolveClassNames(
+    themeOne,
+    stylesOne.regularStyle,
+    stylesOne.themeStyle,
+    stylesTwo.regularStyle,
+    stylesTwo.themeStyle,
+    stylesThree.regularStyle,
+    stylesThree.themeStyle,
+  ),
+);
 
-document.body.appendChild(node);
+nodeTwo.setAttribute('id', 'theme2');
+nodeTwo.setAttribute(
+  'class',
+  resolveClassNames(
+    themeTwo,
+    stylesOne.regularStyle,
+    stylesOne.themeStyle,
+    stylesTwo.regularStyle,
+    stylesTwo.themeStyle,
+    stylesThree.regularStyle,
+    stylesThree.themeStyle,
+  ),
+);
+
+document.body.appendChild(nodeOne);
+document.body.appendChild(nodeTwo);

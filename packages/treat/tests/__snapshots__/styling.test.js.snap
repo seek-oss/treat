@@ -156,23 +156,62 @@ Object {
 }
 `;
 
-exports[`Styling and specificity Themed - development mode (style-loader) on mobile should be styled correctly 1`] = `
+exports[`Styling and specificity Themed - development mode (style-loader) should be styled correctly with theme one 1`] = `
 Object {
   "background-color": "yellow",
-  "display": "flex",
+  "display": "block",
+  "height": "12px",
+  "line-height": "6",
+  "z-index": "3",
 }
 `;
 
-exports[`Styling and specificity Themed - mini-css-extract-loader on mobile should be styled correctly 1`] = `
+exports[`Styling and specificity Themed - development mode (style-loader) should be styled correctly with theme two 1`] = `
 Object {
-  "background-color": "#ff0",
-  "display": "flex",
+  "background-color": "red",
+  "display": "block",
+  "height": "8px",
+  "line-height": "4",
+  "z-index": "3",
 }
 `;
 
-exports[`Styling and specificity Themed - style-loader on mobile should be styled correctly 1`] = `
+exports[`Styling and specificity Themed - mini-css-extract-loader should be styled correctly with theme one 1`] = `
 Object {
   "background-color": "#ff0",
-  "display": "flex",
+  "display": "block",
+  "height": "12px",
+  "line-height": "6",
+  "z-index": "3",
+}
+`;
+
+exports[`Styling and specificity Themed - mini-css-extract-loader should be styled correctly with theme two 1`] = `
+Object {
+  "background-color": "red",
+  "display": "block",
+  "height": "8px",
+  "line-height": "4",
+  "z-index": "3",
+}
+`;
+
+exports[`Styling and specificity Themed - style-loader should be styled correctly with theme one 1`] = `
+Object {
+  "background-color": "#ff0",
+  "display": "block",
+  "height": "12px",
+  "line-height": "6",
+  "z-index": "3",
+}
+`;
+
+exports[`Styling and specificity Themed - style-loader should be styled correctly with theme two 1`] = `
+Object {
+  "background-color": "red",
+  "display": "block",
+  "height": "8px",
+  "line-height": "4",
+  "z-index": "3",
 }
 `;

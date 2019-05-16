@@ -3,7 +3,6 @@ const partition = require('lodash/partition');
 const virtualModules = require('./virtualModules');
 const store = require('./store');
 const reIndexModules = require('./reIndexModules');
-const { shortIdent } = require('./utils');
 const TreatError = require('./TreatError');
 
 const isProductionLikeMode = options => {
@@ -112,13 +111,16 @@ module.exports = class TreatWebpackPlugin {
             : module.issuer && module.issuer.resource;
 
           if (resourceToCheck && cssResources.includes(resourceToCheck)) {
-            const { owner, type } = this.store.getThemedCssModuleInfo(
+            const { owner, type, theme } = this.store.getThemedCssModuleInfo(
               resourceToCheck,
             );
 
             cssModules.set(module.identifier(), {
               ownerIdentifier: owner,
               type,
+              themeIdentifier: theme
+                ? this.store.getTheme(theme).identifier
+                : null,
             });
           }
         }
@@ -133,6 +135,9 @@ module.exports = class TreatWebpackPlugin {
               ...moduleInfo,
               module: compilation.findModule(identifier),
               owner: compilation.findModule(moduleInfo.ownerIdentifier),
+              themeModule: moduleInfo.themeIdentifier
+                ? compilation.findModule(moduleInfo.themeIdentifier)
+                : null,
               identifier,
             }),
           );
@@ -164,6 +169,7 @@ module.exports = class TreatWebpackPlugin {
                 getIndex: ({ module }) => chunkGroup.getModuleIndex(module),
                 getIndex2: ({ module }) => chunkGroup.getModuleIndex2(module),
                 getOwnerIndex: ({ owner }) => owner.index,
+                getThemeIndex: ({ themeModule }) => themeModule.index,
                 setIndex: ({ module }, i) =>
                   chunkGroup.setModuleIndex(module, i),
                 setIndex2: ({ module }, i) =>
@@ -177,6 +183,7 @@ module.exports = class TreatWebpackPlugin {
             getIndex: ({ module }) => module.index,
             getIndex2: ({ module }) => module.index2,
             getOwnerIndex: ({ owner }) => owner.index,
+            getThemeIndex: ({ themeModule }) => themeModule.index,
             setIndex: ({ module }, i) => (module.index = i),
             setIndex2: ({ module }, i) => (module.index2 = i),
           });
@@ -205,6 +212,7 @@ module.exports = class TreatWebpackPlugin {
               reIndexModules(relevantDependencies, {
                 getIndex: ({ dependency }) => dependency.sourceOrder,
                 getOwnerIndex: ({ owner }) => owner.index,
+                getThemeIndex: ({ themeModule }) => themeModule.index,
                 setIndex: ({ dependency }, i) => {
                   dependency.sourceOrder = i;
                 },

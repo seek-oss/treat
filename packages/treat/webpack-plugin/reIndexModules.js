@@ -1,14 +1,14 @@
-const { THEMED, shortIdent } = require('./utils');
+const { THEMED } = require('./utils');
 
-const handleInvalidOwnerIndex = (module, ownerIndex) => {
+const handleInvalidIndex = (module, ownerIndex, descriptor) => {
   if (typeof ownerIndex !== 'number') {
     throw new Error(
-      `Could not get owner index for module ${module.identifier}`,
+      `Could not get ${descriptor} index for module ${module.identifier}`,
     );
   }
 };
 
-const sortModules = (modules, { getIndex, getOwnerIndex }) => {
+const sortModules = (modules, { getIndex, getOwnerIndex, getThemeIndex }) => {
   return modules.sort((a, b) => {
     if (a.type !== THEMED && b.type === THEMED) {
       return -1;
@@ -18,11 +18,23 @@ const sortModules = (modules, { getIndex, getOwnerIndex }) => {
       return 1;
     }
 
+    if (a.type === THEMED && b.type === THEMED) {
+      const themeIndexA = getThemeIndex(a);
+      const themeIndexB = getThemeIndex(b);
+
+      handleInvalidIndex(a, themeIndexA, 'theme');
+      handleInvalidIndex(b, themeIndexB, 'theme');
+
+      if (themeIndexA !== themeIndexB) {
+        return themeIndexA - themeIndexB;
+      }
+    }
+
     const ownerIndexA = getOwnerIndex(a);
     const ownerIndexB = getOwnerIndex(b);
 
-    handleInvalidOwnerIndex(a, ownerIndexA);
-    handleInvalidOwnerIndex(b, ownerIndexB);
+    handleInvalidIndex(a, ownerIndexA, 'owner');
+    handleInvalidIndex(b, ownerIndexB, 'owner');
 
     if (ownerIndexA === ownerIndexB) {
       return getIndex(a) - getIndex(b);
@@ -34,7 +46,7 @@ const sortModules = (modules, { getIndex, getOwnerIndex }) => {
 
 module.exports = (
   modules,
-  { getIndex, getIndex2, getOwnerIndex, setIndex, setIndex2 },
+  { getIndex, getIndex2, getOwnerIndex, getThemeIndex, setIndex, setIndex2 },
 ) => {
   const originalOrderModules = modules
     .slice()
@@ -43,6 +55,7 @@ module.exports = (
   const sortedModules = sortModules(modules.slice(), {
     getIndex,
     getOwnerIndex,
+    getThemeIndex,
   });
 
   originalOrderModules

@@ -40,6 +40,7 @@ module.exports = () => {
           return {
             owner,
             type: request.type,
+            theme: request.theme,
           };
         }
       }
@@ -55,6 +56,8 @@ module.exports = () => {
       identifier,
     });
   };
+
+  const getTheme = themeRef => themes.get(themeRef);
 
   const deleteModuleThemes = moduleIdentifier => {
     Array.from(themes.entries())
@@ -83,6 +86,7 @@ module.exports = () => {
     popAllModules,
     addModule,
     addTheme,
+    getTheme,
     getCSSResources,
     getThemeCount,
     deleteModuleThemes,

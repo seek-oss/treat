@@ -57,7 +57,7 @@ export const resolveClassNames = (
           hasOwn.call(arg, key) &&
           (arg as { [classRef: string]: boolean })[key]
         ) {
-          classes.push(key);
+          classes.push(getClassName(themeRef, key));
         }
       }
     }

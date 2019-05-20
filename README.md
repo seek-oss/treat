@@ -37,7 +37,7 @@ Because theming is achieved by generating multiple classes, **legacy browsers ar
   - [Styling API](#styling-api)
     - [createTheme](#createtheme)
     - [style](#style)
-    - [css](#css)
+    - [styleMap](#stylemap)
     - [globalStyle](#globalstyle)
   - [Debugging](#debugging)
   - [Runtime API](#runtime-api)
@@ -216,7 +216,7 @@ While not an exhaustive list of all types defined in the library, this section c
 
 Type: `object`
 
-When passing styles to the [`style`](#style) and [`css`](#css) functions, or returning styles from a [`ThemedStyles` function](#themedstyles), you'll need to define them in the following format.
+When passing styles to the [`style`](#style) and [`styleMap`](#stylemap) functions, or returning styles from a [`ThemedStyles` function](#themedstyles), you'll need to define them in the following format.
 
 ```js
 {
@@ -333,6 +333,8 @@ The following styling APIs are only valid within treat files (e.g. `Button.treat
 
 Type: `function`
 
+The `createTheme` function allows you to register individual themes within a treat file.
+
 ```js
 import { createTheme } from 'treat';
 
@@ -345,6 +347,8 @@ const theme = createTheme({
 #### style
 
 Type: `function`
+
+The `style` function allows you to create individual style rules within a treat file.
 
 ```js
 import { style } from 'treat';
@@ -364,16 +368,16 @@ export const green = style({
 });
 ```
 
-#### css
+#### styleMap
 
 Type: `function`
 
-The `css` function allows you to create multiple class names at once, returning an object that maps to the generated class names (similar to [CSS Modules](https://github.com/css-modules/css-modules)).
+The `styleMap` function allows you to easily create multiple namespaces within a treat file. This is particularly useful when mapping component props to separate style maps.
 
 ```js
-import { css } from 'treat';
+import { styleMap } from 'treat';
 
-export default css(theme => ({
+export const backgrounds = styleMap(theme => ({
   primary: {
     backgroundColor: theme.colors.brand
   },

@@ -1,10 +1,10 @@
 const {
   createTheme,
   style,
-  css,
+  styleMap,
   resolveClassNames,
   resolveStyles,
-} = require('../lib/commonjs');
+} = require('treat');
 
 describe('Mocks', () => {
   describe('With debug names', () => {
@@ -23,16 +23,16 @@ describe('Mocks', () => {
         expect(className).toBe('unthemedStyle');
       });
 
-      it('Should support unthemed css', () => {
-        const themedStyles = css(
+      it('Should support unthemed styleMap', () => {
+        const themedStyles = styleMap(
           {
             red: { color: 'red' },
           },
-          'unthemedCss',
+          'unthemedStyleMap',
         );
 
         const styles = resolveStyles(testTheme1, themedStyles);
-        expect(styles.red).toBe('unthemedCss_red');
+        expect(styles.red).toBe('unthemedStyleMap_red');
       });
     });
 
@@ -47,19 +47,19 @@ describe('Mocks', () => {
         expect(className2).toBe('themedStyle_testTheme2');
       });
 
-      it('Should support themed css', () => {
-        const themedStyles = css(
+      it('Should support themed styleMap', () => {
+        const themedStyles = styleMap(
           () => ({
             red: { color: 'red' },
           }),
-          'themedCss',
+          'themedStyleMap',
         );
 
         const styles1 = resolveStyles(testTheme1, themedStyles);
-        expect(styles1.red).toBe('themedCss_red_testTheme1');
+        expect(styles1.red).toBe('themedStyleMap_red_testTheme1');
 
         const styles2 = resolveStyles(testTheme2, themedStyles);
-        expect(styles2.red).toBe('themedCss_red_testTheme2');
+        expect(styles2.red).toBe('themedStyleMap_red_testTheme2');
       });
     });
   });
@@ -80,8 +80,8 @@ describe('Mocks', () => {
         expect(className).toBe('style');
       });
 
-      it('Should support unthemed css', () => {
-        const themedStyles = css({
+      it('Should support unthemed styleMap', () => {
+        const themedStyles = styleMap({
           red: { color: 'red' },
         });
 
@@ -101,8 +101,8 @@ describe('Mocks', () => {
         expect(className2).toBe('style_theme');
       });
 
-      it('Should support themed css', () => {
-        const themedStyles = css(() => ({
+      it('Should support themed styleMap', () => {
+        const themedStyles = styleMap(() => ({
           red: { color: 'red' },
         }));
 

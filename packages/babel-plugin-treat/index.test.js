@@ -81,11 +81,11 @@ describe('babel plugin', () => {
             `);
   });
 
-  it('should handle css assigned to const', () => {
+  it('should handle styleMap assigned to const', () => {
     const source = `
-       import { css } from 'treat';
+       import { styleMap } from 'treat';
 
-        const three = css({
+        const three = styleMap({
             testStyle: {
               zIndex: 2,
             }
@@ -93,8 +93,8 @@ describe('babel plugin', () => {
     `;
 
     expect(transform(source)).toMatchInlineSnapshot(`
-                  "import { css } from 'treat';
-                  const three = css({
+                  "import { styleMap } from 'treat';
+                  const three = styleMap({
                     testStyle: {
                       zIndex: 2
                     }
@@ -117,9 +117,9 @@ describe('babel plugin', () => {
 
   it('should ignore functions that already supply a debug name', () => {
     const source = `
-       import { css } from 'treat';
+       import { styleMap } from 'treat';
 
-        const three = css({
+        const three = styleMap({
             testStyle: {
               zIndex: 2,
             }
@@ -127,8 +127,8 @@ describe('babel plugin', () => {
     `;
 
     expect(transform(source)).toMatchInlineSnapshot(`
-                  "import { css } from 'treat';
-                  const three = css({
+                  "import { styleMap } from 'treat';
+                  const three = styleMap({
                     testStyle: {
                       zIndex: 2
                     }

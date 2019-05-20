@@ -1,6 +1,6 @@
 const { dirname, basename } = require('path');
 
-const treatExports = ['style', 'css', 'createTheme'];
+const treatExports = ['style', 'styleMap', 'css', 'createTheme'];
 
 module.exports = function({ types: t }) {
   return {

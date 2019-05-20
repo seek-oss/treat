@@ -127,7 +127,7 @@ export function App() {
 }
 ```
 
-Define and export [themed styles](#themedstyles) from a treat file, using the theme.
+Define and export [themed styles](#themedstyles) from a treat file.
 
 ```js
 // Button.treat.js

@@ -23,7 +23,9 @@ Because theming is achieved by generating multiple classes, **legacy browsers ar
 ---
 
 - [Requirements](#requirements)
-- [tl;dr (React version)](#tldr-react-version)
+- [Example Usage](#example-usage)
+  - [Basic Usage](#basic-usage)
+  - [Themed Usage (React version)](#themed-usage-react-version)
 - [Setup](#setup)
   - [Webpack Setup](#webpack-setup)
   - [Babel Setup](#babel-setup)
@@ -39,12 +41,12 @@ Because theming is achieved by generating multiple classes, **legacy browsers ar
     - [globalStyle](#globalstyle)
   - [Debugging](#debugging)
   - [Runtime API](#runtime-api)
-    - [resolveClassNames](#resolveclassnames)
     - [resolveStyles](#resolvestyles)
+    - [resolveClassName](#resolveclassname)
   - [React API](#react-api)
     - [TreatProvider](#treatprovider)
-    - [useClassNames](#useclassnames)
     - [useStyles](#usestyles)
+    - [useClassName](#useclassname)
   - [Webpack Plugin API](#webpack-plugin-api)
 
 ---
@@ -55,17 +57,47 @@ Your project must be using [webpack](#webpack-setup) with the supplied [webpack 
 
 **First-class support is provided for [React](https://reactjs.org/) and [TypeScript](https://www.typescriptlang.org/),** but those layers are _entirely optional._ The core [runtime API](#runtime-api) can also be integrated into other frameworks, if needed.
 
-## tl;dr (React version)
+The core runtime makes use of [`Map`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map), so you may need to provide a [polyfill](https://www.npmjs.com/package/es6-map) for [pre-ES2015 browsers.](https://caniuse.com/#feat=es6)
 
-> React is [not required](#runtime-api) to use treat—but it certainly makes it easy 😎
+## Example Usage
 
-First, install all dependencies:
+### Basic Usage
 
-```bash
-$ yarn add treat@next react-treat@next
+First, define and export [styles](#styles) from a treat file.
+
+```js
+// Button.treat.js
+
+// ** THIS CODE WON'T END UP IN YOUR BUNDLE! **
+
+import { style } from 'treat';
+
+export const button = style({
+  backgroundColor: 'blue',
+  height: 48
+}));
 ```
 
-Then, create a theme. Normally, you'd define multiple themes, but let's keep it short.
+Then, import the styles.
+
+> Note: React is [not required](#runtime-api) to use treat.
+
+```js
+// Button.js
+
+import React from 'react';
+import * as styles from './Button.treat.js';
+
+export const Button = props => (
+  <button {...props} className={styles.button} />
+);
+```
+
+### Themed Usage (React version)
+
+> Note: React is [not required](#runtime-api) to use treat.
+
+First, create and export a theme from a treat file. Normally, you'd define multiple themes, but let's keep it short.
 
 ```js
 // theme.treat.js
@@ -80,7 +112,7 @@ export default createTheme({
 });
 ```
 
-During render, provide the desired theme via context.
+Then, import the desired theme and pass it to [`TreatProvider`](TreatProvider) at the root of your application.
 
 ```js
 // App.js
@@ -95,7 +127,7 @@ export function App() {
 }
 ```
 
-Define some [styles](#styles), using the theme.
+Define and export [themed styles](#themedstyles) from a treat file, using the theme.
 
 ```js
 // Button.treat.js
@@ -110,23 +142,19 @@ export const button = style(theme => ({
 }));
 ```
 
-Then render themed classes via the [`useClassNames` Hook.](#useclassnames)
+Then import and resolve themed styles via the [`useStyles` Hook.](#usestyles)
 
 ```js
 // Button.js
 
 import React from 'react';
-import { useClassNames } from 'react-treat';
+import { useStyles } from 'react-treat';
+import * as styleRefs from './Button.treat.js';
 
-import * as styles from './Button.treat.js';
+export function Button(props) {
+  const styles = useStyles(styleRefs);
 
-export function Button({ className, ...restProps }) {
-  return (
-    <button
-      className={useClassNames(styles.button, className)}
-      {...restProps}
-    />
-  );
+  return <button {...props} className={styles.button} />;
 }
 ```
 
@@ -398,51 +426,44 @@ export const green = style({ color: 'green' }, 'green');
 
 > Note: If you're using React, you should use our [React API](#react-api) instead.
 
-#### resolveClassNames
-
-Type: `function`
-
-Resolves class names relative to a given theme. Serves as a treat-enabled version of the [Classnames API](https://github.com/JedWatson/classnames#usage), but with the desired theme as the first argument.
-
-```js
-import { resolveClassNames } from 'treat';
-
-import theme from './theme.treat.js';
-import * as styles from './Button.treat.js';
-
-const className = resolveClassNames(
-  theme,
-  styles.button,
-  {
-    [styles.primary]: isPrimary
-  },
-  ...etc
-);
-```
-
 #### resolveStyles
 
 Type: `function`
 
-Resolves an entire styles object relative to a given theme.
+Resolves styles for an entire treat file relative to a given theme.
 
 ```js
 import { resolveStyles } from 'treat';
-import * as styles from './styles.treat.js';
+import * as styleRefs from './styles.treat.js';
 import theme from './theme.treat.js';
 
-const themedStyles = resolveStyles(styles, theme);
+const styles = resolveStyles(theme, styleRefs);
+```
+
+#### resolveClassName
+
+Type: `function`
+
+Resolves a single treat class name relative to a given theme.
+
+```js
+import { resolveClassName } from 'treat';
+
+import theme from './theme.treat.js';
+import * as styleRefs from './Button.treat.js';
+
+const className = resolveClassName(theme, styleRefs.button);
 ```
 
 ### React API
 
-> Note: React is [not required](#runtime-api) to use treat!
+> Note: React is [not required](#runtime-api) to use treat.
 
 #### TreatProvider
 
 Type: `Component`
 
-In order for the [`useClassNames`](#useclassnames) and [`useStyles`](#usestyles) Hooks to work, you'll need to render a `TreatProvider` higher in the tree.
+In order for the [`useStyles`](#usestyles) and [`useClassName`](#useclassname) Hooks to work, you'll need to render a `TreatProvider` higher in the tree.
 
 ```js
 import React from 'react';
@@ -455,58 +476,41 @@ export function App() {
 }
 ```
 
-#### useClassNames
-
-Type: `function`
-
-A [React Hook](https://reactjs.org/docs/hooks-intro.html) that resolves treat classes relative to the current theme, returning a single `className` string. Serves as a treat-enabled version of the [Classnames API](https://github.com/JedWatson/classnames#usage).
-
-```js
-import React from 'react';
-import { useClassNames } from 'react-treat';
-
-import * as styles from './Button.treat.js';
-
-export function Button({ primary, ...props }) {
-  return (
-    <button
-      {...props}
-      className={useClassNames(
-        styles.button,
-        {
-          [styles.primary]: primary
-        }
-        ...etc
-      )}
-    />
-  );
-}
-```
-
 #### useStyles
 
 Type: `function`
 
-A [React Hook](https://reactjs.org/docs/hooks-intro.html) that resolves an entire object of treat classes relative to the current theme.
+A [React Hook](https://reactjs.org/docs/hooks-intro.html) that resolves styles for an entire treat file relative to the current theme.
 
 ```js
 import React from 'react';
-import { useClassNames } from 'react-treat';
-
+import { useStyles } from 'react-treat';
 import * as styleRefs from './Button.treat.js';
 
 export function Button({ primary, ...props }) {
   const styles = useStyles(styleRefs);
 
-  return (
-    <button
-      {...props}
-      className={`${styles.button} ${
-        primary ? styles.primary : ''
-      }`}
-    />
-  );
+  return <button {...props} className={styles.button} />;
 }
+```
+
+#### useClassName
+
+Type: `function`
+
+A [React Hook](https://reactjs.org/docs/hooks-intro.html) that resolves a single treat class relative to the current theme.
+
+```js
+import React from 'react';
+import { useClassName } from 'react-treat';
+import * as styleRefs from './Button.treat.js';
+
+export const Button = props => (
+  <button
+    {...props}
+    className={useClassName(styles.button)}
+  />
+);
 ```
 
 ### Webpack Plugin API

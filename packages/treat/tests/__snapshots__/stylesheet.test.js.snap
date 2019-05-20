@@ -109,14 +109,8 @@ exports[`Stylesheet Animations - Autoprefixer (iOS 8) - should create a determin
 }
 @media (min-width: 700px) {
     ._3uaaH:hover {
-        -webkit-animation-timing-function: ease-out;
-                animation-timing-function: ease-out;
-        -webkit-animation-duration: 1.5s;
-                animation-duration: 1.5s;
-        -webkit-animation-fill-mode: forwards;
-                animation-fill-mode: forwards;
-        -webkit-animation-name: Yuc9Q;
-                animation-name: Yuc9Q
+        -webkit-animation: Yuc9Q 1.5s ease-out forwards;
+                animation: Yuc9Q 1.5s ease-out forwards
     }
 }
 @media (max-width: 699px) {
@@ -187,10 +181,7 @@ exports[`Stylesheet Animations - Custom idents - should create a deterministic s
 }
 @media (min-width: 700px) {
     .animations-animations_3uaaH:hover {
-        animation-timing-function: ease-out;
-        animation-duration: 1.5s;
-        animation-fill-mode: forwards;
-        animation-name: Yuc9Q
+        animation: Yuc9Q 1.5s ease-out forwards
     }
 }
 @media (max-width: 699px) {
@@ -257,10 +248,7 @@ exports[`Stylesheet Animations - Development mode - should create a deterministi
 }
 @media (min-width: 700px) {
     .animations-animations_3uaaH:hover {
-        animation-timing-function: ease-out;
-        animation-duration: 1.5s;
-        animation-fill-mode: forwards;
-        animation-name: Yuc9Q
+        animation: Yuc9Q 1.5s ease-out forwards
     }
 }
 @media (max-width: 699px) {
@@ -275,7 +263,7 @@ exports[`Stylesheet Animations - Development mode - should create a deterministi
 `;
 
 exports[`Stylesheet Animations - Production mode - should create a deterministic stylesheet 1`] = `
-"@keyframes Xxm1J{0%{opacity:0}to{opacity:1}}@keyframes Yuc9Q{0%{color:hsla(0,0%,100%,0);transform:scale(1)}25%{transform:scale(2,3)}50%{transform:scale(5)}75%{transform:scale(4,.5)}to{transform:scale(1);color:#fff}}@keyframes ULbBx{0%{transform:rotate(0deg)}to{transform:rotate(359deg)}}._3uaaH{margin-top:300px;margin-left:300px;display:flex;justify-content:center;align-items:center;height:200px;width:200px;background-color:red;color:hsla(0,0%,100%,0);animation-timing-function:linear;animation-duration:3s;animation-fill-mode:both;animation-name:Xxm1J}@media (min-width:700px){._3uaaH:hover{animation-timing-function:ease-out;animation-duration:1.5s;animation-fill-mode:forwards;animation-name:Yuc9Q}}@media (max-width:699px){._3uaaH{animation-timing-function:linear;animation-duration:1.5s;animation-iteration-count:infinite;animation-name:ULbBx}}
+"@keyframes Xxm1J{0%{opacity:0}to{opacity:1}}@keyframes Yuc9Q{0%{color:hsla(0,0%,100%,0);transform:scale(1)}25%{transform:scale(2,3)}50%{transform:scale(5)}75%{transform:scale(4,.5)}to{transform:scale(1);color:#fff}}@keyframes ULbBx{0%{transform:rotate(0deg)}to{transform:rotate(359deg)}}._3uaaH{margin-top:300px;margin-left:300px;display:flex;justify-content:center;align-items:center;height:200px;width:200px;background-color:red;color:hsla(0,0%,100%,0);animation-timing-function:linear;animation-duration:3s;animation-fill-mode:both;animation-name:Xxm1J}@media (min-width:700px){._3uaaH:hover{animation:Yuc9Q 1.5s ease-out forwards}}@media (max-width:699px){._3uaaH{animation-timing-function:linear;animation-duration:1.5s;animation-iteration-count:infinite;animation-name:ULbBx}}
 "
 `;
 
@@ -332,10 +320,7 @@ exports[`Stylesheet Animations - Theme function ident - should create a determin
 }
 @media (min-width: 700px) {
     ._3uaaH:hover {
-        animation-timing-function: ease-out;
-        animation-duration: 1.5s;
-        animation-fill-mode: forwards;
-        animation-name: Yuc9Q
+        animation: Yuc9Q 1.5s ease-out forwards
     }
 }
 @media (max-width: 699px) {

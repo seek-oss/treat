@@ -11,7 +11,7 @@ import {
   Styles,
   ThemedStyles,
   ThemeRef,
-  CSSKeyframe,
+  CSSKeyframes,
   CSSProperties,
 } from './types';
 import { makeThemedClassReference, createContentHash } from './utils';
@@ -35,7 +35,7 @@ const templateThemeClassRef = (classRef: string) =>
 const convertToCssClass = (ref: string) => `.${ref}`;
 
 const createKeyframe = (
-  keyframe: string | CSSKeyframe,
+  keyframe: string | CSSKeyframes,
   themeRef?: ThemeRef,
 ) => {
   if (typeof keyframe === 'string') {
@@ -107,11 +107,8 @@ const processSelectors = (styles: Styles, themeRef?: ThemeRef) => {
 };
 
 const processAnimations = (styles: Styles, themeRef?: ThemeRef) => {
-  if (styles.animation) {
-    styles.animation.keyframes = createKeyframe(
-      styles.animation.keyframes,
-      themeRef,
-    );
+  if (styles.keyframes) {
+    styles.keyframes = createKeyframe(styles.keyframes, themeRef);
   }
 
   const media = styles['@media'];
@@ -125,9 +122,9 @@ const processAnimations = (styles: Styles, themeRef?: ThemeRef) => {
   Object.entries(styles)
     .filter(([property]) => property.startsWith(':'))
     .forEach(([_pseudoProperty, pseudoStyles]: [string, CSSProperties]) => {
-      if (pseudoStyles.animation) {
-        pseudoStyles.animation.keyframes = createKeyframe(
-          pseudoStyles.animation.keyframes,
+      if (pseudoStyles.keyframes) {
+        pseudoStyles.keyframes = createKeyframe(
+          pseudoStyles.keyframes,
           themeRef,
         );
       }

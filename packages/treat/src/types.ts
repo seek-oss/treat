@@ -8,39 +8,14 @@ export type PostCSS = object;
 
 export type ThemeRef = string;
 
-type AnimationProperties =
-  | 'animation'
-  | 'animationName'
-  | 'animationDelay'
-  | 'animationDirection'
-  | 'animationDuration'
-  | 'animationFillMode'
-  | 'animationIterationCount'
-  | 'animationPlayState'
-  | 'animationTimingFunction';
+type BasicCSSProperties = Properties<string | number>;
 
-type BasicCSSProperties = Omit<
-  Properties<string | number>,
-  AnimationProperties
->;
-
-export interface CSSKeyframe {
+export interface CSSKeyframes {
   [time: string]: BasicCSSProperties;
 }
 
-export interface CSSAnimation {
-  keyframes: string | CSSKeyframe;
-  animationDelay?: string;
-  animationDirection?: string;
-  animationDuration?: string;
-  animationFillMode?: string;
-  animationIterationCount?: string;
-  animationPlayState?: string;
-  animationTimingFunction?: string;
-}
-
 export type CSSProperties = BasicCSSProperties & {
-  animation?: CSSAnimation;
+  keyframes?: CSSKeyframes | string;
 };
 
 type PseudoStyles = { [key in SimplePseudos[number]]?: CSSProperties };

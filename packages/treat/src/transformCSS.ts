@@ -132,14 +132,18 @@ const normalizeStyles = (className: string, styles: any) => {
   const allStyles = Object.assign(rawStyles, pseudoStyles, selectorStyles);
 
   Object.keys(allStyles).forEach(ident => {
-    if (allStyles[ident].animation) {
-      const { keyframes, ...animationProps } = allStyles[ident].animation;
+    if (allStyles[ident].keyframes) {
+      const { keyframes, animation } = allStyles[ident];
 
-      Object.assign(allStyles[ident], {
-        ...animationProps,
-        animationName: keyframes,
-        animation: undefined,
-      });
+      if (keyframes) {
+        Object.assign(allStyles[ident], {
+          animation: animation
+            ? animation.replace('@keyframes', keyframes)
+            : undefined,
+          animationName: animation ? undefined : keyframes,
+          keyframes: undefined,
+        });
+      }
     }
   });
 

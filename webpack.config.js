@@ -3,7 +3,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TreatPlugin = require('treat/webpack-plugin');
 
 module.exports = {
-  entry: './packages/treat/tests/fixtures/animations/index.js',
+  entry: './example/client.tsx',
   mode: 'development',
   resolve: {
     extensions: ['.js', '.json', '.ts', '.tsx'],
@@ -21,7 +21,6 @@ module.exports = {
       localIdentName: '[name]-[local]_[hash:base64:5]',
       themeIdentName: '-theme-[hash:base64:2]',
       outputLoaders: [MiniCssExtractPlugin.loader],
-      browsers: ['last 2 Chrome versions'],
     }),
     new HtmlWebpackPlugin(),
     new MiniCssExtractPlugin(),

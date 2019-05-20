@@ -107,8 +107,8 @@ const processSelectors = (styles: Styles, themeRef?: ThemeRef) => {
 };
 
 const processAnimations = (styles: Styles, themeRef?: ThemeRef) => {
-  if (styles.keyframes) {
-    styles.keyframes = createKeyframe(styles.keyframes, themeRef);
+  if (styles['@keyframes']) {
+    styles['@keyframes'] = createKeyframe(styles['@keyframes'], themeRef);
   }
 
   const media = styles['@media'];
@@ -122,9 +122,9 @@ const processAnimations = (styles: Styles, themeRef?: ThemeRef) => {
   Object.entries(styles)
     .filter(([property]) => property.startsWith(':'))
     .forEach(([_pseudoProperty, pseudoStyles]: [string, CSSProperties]) => {
-      if (pseudoStyles.keyframes) {
-        pseudoStyles.keyframes = createKeyframe(
-          pseudoStyles.keyframes,
+      if (pseudoStyles['@keyframes']) {
+        pseudoStyles['@keyframes'] = createKeyframe(
+          pseudoStyles['@keyframes'],
           themeRef,
         );
       }

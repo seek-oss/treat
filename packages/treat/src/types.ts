@@ -15,7 +15,7 @@ export interface CSSKeyframes {
 }
 
 export type CSSProperties = BasicCSSProperties & {
-  keyframes?: CSSKeyframes | string;
+  '@keyframes'?: CSSKeyframes | string;
 };
 
 type PseudoStyles = { [key in SimplePseudos[number]]?: CSSProperties };

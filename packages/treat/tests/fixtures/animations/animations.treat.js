@@ -10,7 +10,7 @@ export default style({
   width: 200,
   backgroundColor: 'red',
   color: 'rgba(255,255,255,0)',
-  keyframes: {
+  '@keyframes': {
     from: {
       opacity: 0,
     },
@@ -24,7 +24,7 @@ export default style({
   '@media': {
     '(min-width: 700px)': {
       ':hover': {
-        keyframes: {
+        '@keyframes': {
           from: {
             color: 'rgba(255,255,255,0)',
             transform: 'scale(1)',
@@ -47,7 +47,7 @@ export default style({
       },
     },
     '(max-width: 699px)': {
-      keyframes: {
+      '@keyframes': {
         from: {
           transform: 'rotate(0deg)',
         },

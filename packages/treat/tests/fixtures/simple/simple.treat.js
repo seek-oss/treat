@@ -1,6 +1,6 @@
-import { css, globalStyle } from 'treat';
+import { styleMap, globalStyle } from 'treat';
 
-const styles = css(
+const styles = styleMap(
   {
     blue: {
       height: 100,

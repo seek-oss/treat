@@ -1,4 +1,4 @@
-import { createTheme, css, style, globalStyle } from 'treat';
+import { createTheme, style, styleMap, globalStyle } from 'treat';
 
 const bigTheme = createTheme(
   {
@@ -52,7 +52,7 @@ const lotsOfSelectors = breakpoint => ({
   },
 });
 
-const styles = css({
+const styles = styleMap({
   blue: lotsOfSelectors(300),
 });
 

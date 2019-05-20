@@ -126,7 +126,7 @@ export function style(
   }
 }
 
-export function css<ClassName extends string>(
+export function styleMap<ClassName extends string>(
   stylesheet: StyleSheet<Theme, ClassName>,
   localDebugName?: string,
 ): StylesMap<ClassName> {
@@ -183,6 +183,8 @@ export function css<ClassName extends string>(
 
   return classRefs;
 }
+
+export const css = styleMap; // Backwards compatibility
 
 export function createTheme(tokens: Theme, localDebugName?: string): ThemeRef {
   const theme = {

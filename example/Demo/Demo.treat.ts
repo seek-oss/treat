@@ -1,6 +1,6 @@
-import { css, style } from 'treat';
+import { style, styleMap } from 'treat';
 
-export const nonThemeStyles = css({
+export const nonThemeStyles = styleMap({
   yellow: {
     color: 'yellow',
   },
@@ -9,7 +9,7 @@ export const nonThemeStyles = css({
   },
 });
 
-const someStyle = css(theme => ({
+const someStyle = styleMap(theme => ({
   button: {
     width: '400px',
     height: theme.rowHeight,

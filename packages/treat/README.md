@@ -74,17 +74,13 @@ export const button = style({
 
 Then, import the styles.
 
-> Note: React is [not required](#runtime-api) to use treat.
-
 ```js
 // Button.js
 
-import React from 'react';
 import * as styles from './Button.treat.js';
 
-export const Button = props => (
-  <button {...props} className={styles.button} />
-);
+export const buttonTemplate = ({ text }) =>
+  `<button class="${styles.button}">${text}</button>`;
 ```
 
 ### Themed Usage (React version)

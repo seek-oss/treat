@@ -34,6 +34,7 @@
     "@babel/preset-react": "^7.0.0",
     "@babel/preset-typescript": "^7.3.3",
     "@commitlint/cli": "^7.6.1",
+    "@types/classnames": "^2.2.7",
     "@types/react": "^16.8.17",
     "@types/react-dom": "^16.8.4",
     "babel-loader": "^8.0.5",

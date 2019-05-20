@@ -52,6 +52,22 @@ export type ClassRef = string;
 
 export type StylesMap<ClassName extends string> = Record<ClassName, ClassRef>;
 
+type TreatModuleValue =
+  | string
+  | number
+  | boolean
+  | null
+  | TreatModuleObject
+  | TreatModuleArray;
+
+interface TreatModuleObject {
+  [index: string]: TreatModuleValue;
+  [index: number]: TreatModuleValue;
+}
+interface TreatModuleArray extends Array<TreatModuleValue> {}
+
+export type TreatModule = TreatModuleObject | TreatModuleArray;
+
 export interface WebpackTreat {
   addLocalCss: (css: object) => void;
   addThemedCss: (themeRef: ThemeRef, css: object) => void;

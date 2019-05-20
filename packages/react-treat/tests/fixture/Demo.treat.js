@@ -6,16 +6,12 @@ export const nonThemeStyles = styleMap({
   },
 });
 
-const someStyle = styleMap(theme => ({
-  button: {
-    width: '400px',
-    height: theme.rowHeight * 2,
-    backgroundColor: theme.primaryColor,
-  },
-}));
-
-export default {
-  foo: {
-    someStyle,
-  },
+export const foo = {
+  someStyle: styleMap(theme => ({
+    button: {
+      width: '400px',
+      height: theme.rowHeight * 2,
+      backgroundColor: theme.primaryColor,
+    },
+  })),
 };

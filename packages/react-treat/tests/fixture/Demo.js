@@ -1,16 +1,21 @@
 import React from 'react';
-import { useClassNames } from 'react-treat';
+import classnames from 'classnames';
+import { useStyles } from 'react-treat';
 
-import styles, { nonThemeStyles } from './Demo.treat';
+import * as styleRefs from './Demo.treat';
 
-export default () => (
-  <div
-    id="main"
-    className={useClassNames(
-      styles.foo.someStyle.button,
-      nonThemeStyles.yellow,
-    )}
-  >
-    This font is always yellow
-  </div>
-);
+export default () => {
+  const styles = useStyles(styleRefs);
+
+  return (
+    <div
+      id="main"
+      className={classnames(
+        styles.foo.someStyle.button,
+        styles.nonThemeStyles.yellow,
+      )}
+    >
+      This font is always yellow
+    </div>
+  );
+};

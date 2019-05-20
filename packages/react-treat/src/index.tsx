@@ -2,9 +2,11 @@ import React, { createContext, useContext, ReactNode } from 'react';
 import {
   resolveClassNames,
   ResolveClassNamesArgs,
+  resolveClassName,
   resolveStyles,
-  StylesMap,
   ThemeRef,
+  ClassRef,
+  TreatModule,
 } from 'treat';
 
 const treatThemeContext = createContext<ThemeRef | null>(null);
@@ -29,9 +31,11 @@ export const useTheme = () => {
   return theme;
 };
 
-export const useStyles = <ClassNames extends string>(
-  styles: StylesMap<ClassNames>,
-) => resolveStyles(useTheme(), styles);
+export const useStyles = <UserStyles extends TreatModule>(styles: UserStyles) =>
+  resolveStyles(useTheme(), styles);
+
+export const useClassName = (classRef: ClassRef) =>
+  resolveClassName(useTheme(), classRef);
 
 export const useClassNames = (...args: ResolveClassNamesArgs) =>
   resolveClassNames(useTheme(), ...args);

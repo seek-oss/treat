@@ -11,8 +11,11 @@ import {
   Styles,
   ThemedStyles,
   ThemeRef,
+  CSSKeyframes,
+  CSSProperties,
 } from './types';
 import { makeThemedClassReference } from './utils';
+import { createContentHash } from './createContentHash';
 import mockWebpackTreat from './mockWebpackTreat';
 
 declare const __webpack__treat__: WebpackTreat | undefined;
@@ -31,6 +34,29 @@ const templateThemeClassRef = (classRef: string) =>
   `${themePlaceholder}${classRef}`;
 
 const convertToCssClass = (ref: string) => `.${ref}`;
+
+const createKeyframe = (
+  keyframe: string | CSSKeyframes,
+  themeRef?: ThemeRef,
+) => {
+  if (typeof keyframe === 'string') {
+    return keyframe;
+  }
+
+  const keyframeRef = createContentHash(keyframe);
+
+  const keyframeBlock = {
+    [`@keyframes ${keyframeRef}`]: keyframe,
+  };
+
+  if (themeRef) {
+    addThemedCss(themeRef, keyframeBlock);
+  } else {
+    addLocalCss(keyframeBlock);
+  }
+
+  return keyframeRef;
+};
 
 const interpolateSelector = (selector: string, themeRef?: ThemeRef) => {
   const localClassRefsRegex = RegExp(`(${localClassRefs.join('|')})`, 'g');
@@ -81,12 +107,42 @@ const processSelectors = (styles: Styles, themeRef?: ThemeRef) => {
   }
 };
 
+const processAnimations = (styles: Styles, themeRef?: ThemeRef) => {
+  if (styles['@keyframes']) {
+    styles['@keyframes'] = createKeyframe(styles['@keyframes'], themeRef);
+  }
+
+  const media = styles['@media'];
+
+  if (media) {
+    Object.keys(media).forEach(mediaQuery => {
+      processAnimations(media[mediaQuery]);
+    });
+  }
+
+  Object.entries(styles)
+    .filter(([property]) => property.startsWith(':'))
+    .forEach(([_pseudoProperty, pseudoStyles]: [string, CSSProperties]) => {
+      if (pseudoStyles['@keyframes']) {
+        pseudoStyles['@keyframes'] = createKeyframe(
+          pseudoStyles['@keyframes'],
+          themeRef,
+        );
+      }
+    });
+};
+
+const processStyle = (styles: Styles, themeRef?: ThemeRef) => {
+  processSelectors(styles, themeRef);
+  processAnimations(styles, themeRef);
+};
+
 type ThemeStyleMap = {
   [themeRef: string]: Styles;
 };
 const createThemedCss = (classRef: ClassRef, styles: ThemeStyleMap) => {
   Object.entries(styles).forEach(([themeRef, style]) => {
-    processSelectors(style, themeRef);
+    processStyle(style, themeRef);
 
     const themedClassRef = makeThemedClassReference(themeRef, classRef);
 
@@ -109,7 +165,7 @@ export function style(
   if (typeof styles === 'object') {
     localClassRefs.push(classRef);
 
-    processSelectors(styles);
+    processStyle(styles);
 
     addLocalCss({ [convertToCssClass(classRef)]: styles });
 
@@ -171,7 +227,7 @@ export function styleMap<ClassName extends string>(
           classRefs[classIdentifier] = classRef;
           localClassRefs.push(classRef);
 
-          processSelectors(styles);
+          processStyle(styles);
 
           return [convertToCssClass(classRef), styles];
         },

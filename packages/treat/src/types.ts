@@ -2,15 +2,25 @@ import { Properties } from 'csstype';
 import { Theme } from 'treat/theme';
 import { SimplePseudos } from './transformCSS';
 
+type Omit<T, K> = Pick<T, Exclude<keyof T, K>>;
+
 export type PostCSS = object;
 
 export type ThemeRef = string;
 
-type CSSProperties = Properties<string | number>;
+type BasicCSSProperties = Properties<string | number>;
+
+export interface CSSKeyframes {
+  [time: string]: BasicCSSProperties;
+}
+
+export type CSSProperties = BasicCSSProperties & {
+  '@keyframes'?: CSSKeyframes | string;
+};
 
 type PseudoStyles = { [key in SimplePseudos[number]]?: CSSProperties };
 
-type CSSPropertiesAndPseudos = Properties<string | number> & PseudoStyles;
+type CSSPropertiesAndPseudos = CSSProperties & PseudoStyles;
 
 interface SelectorMap {
   [selector: string]: CSSProperties;

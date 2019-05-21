@@ -279,6 +279,41 @@ Within selectors, existing treat classes can be referenced.
 }
 ```
 
+The `@keyframes` property allows the creation of keyframes that will automatically be attached to the style as your `animation-name`.
+
+```js
+{
+  backgroundColor: 'white',
+  '@keyframes': {
+    from: {
+      transform: 'rotate(0deg)',
+    },
+    to: {
+      transform: 'rotate(359deg)',
+    },
+  },
+  animationTimingFunction: 'linear',
+  animationDuration: '1.5s',
+}
+```
+
+The animation shorthand is also supported via a `@keyframes` placeholder.
+
+```js
+{
+  backgroundColor: 'white',
+  '@keyframes': {
+    from: {
+      transform: 'rotate(0deg)',
+    },
+    to: {
+      transform: 'rotate(359deg)',
+    },
+  },
+  animation: '@keyframes 1.5s linear'
+}
+```
+
 #### ThemedStyles
 
 Type: `function`

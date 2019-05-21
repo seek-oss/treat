@@ -1,5 +1,7 @@
 const flatten = require('lodash/flatten');
-const { createContentHash } = require('./utils');
+
+// Import from compiled code
+const { createContentHash } = require('../lib/commonjs/createContentHash');
 
 module.exports = () => {
   const treatModules = [];

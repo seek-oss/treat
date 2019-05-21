@@ -14,6 +14,7 @@ const configVariations = [
       mode: 'development',
       plugins: [
         new TreatPlugin({
+          browsers: ['chrome > 70'],
           outputLoaders: [MiniCssExtractPlugin.loader],
         }),
         new MiniCssExtractPlugin({
@@ -28,6 +29,7 @@ const configVariations = [
       mode: 'production',
       plugins: [
         new TreatPlugin({
+          browsers: ['chrome > 70'],
           outputLoaders: [MiniCssExtractPlugin.loader],
         }),
         new MiniCssExtractPlugin({
@@ -41,6 +43,7 @@ const configVariations = [
     config: () => ({
       plugins: [
         new TreatPlugin({
+          browsers: ['chrome > 70'],
           minify: false,
           localIdentName: '[name]-[local]_[hash:base64:5]',
           themeIdentName: '-[local]_[hash:base64:2]',
@@ -57,6 +60,7 @@ const configVariations = [
     config: () => ({
       plugins: [
         new TreatPlugin({
+          browsers: ['chrome > 70'],
           minify: false,
           themeIdentName: theme => `_${theme.name}_[hash:base64:2]`,
           outputLoaders: [MiniCssExtractPlugin.loader],
@@ -98,6 +102,10 @@ const fixtureEntries = [
   {
     fixtureName: 'Multi file',
     entry: './fixtures/multi-file/index.js',
+  },
+  {
+    fixtureName: 'Animations',
+    entry: './fixtures/animations/index.js',
   },
 ];
 

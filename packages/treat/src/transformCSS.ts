@@ -99,7 +99,7 @@ const simplePseudos = [
 
 export type SimplePseudos = typeof simplePseudos;
 
-const extractSimpleStyles = (className: string, styles: any) => {
+const normalizeStyles = (className: string, styles: any) => {
   const omitThese = [...simplePseudos, '@media', 'selectors'];
 
   const pseudoStyles = mapKeys(
@@ -125,11 +125,29 @@ const extractSimpleStyles = (className: string, styles: any) => {
   const rawStyles =
     Object.keys(rawRules).length > 0
       ? {
-          [className]: omit(styles, omitThese),
+          [className]: rawRules,
         }
       : {};
 
-  return Object.assign(rawStyles, pseudoStyles, selectorStyles);
+  const allStyles = Object.assign(rawStyles, pseudoStyles, selectorStyles);
+
+  Object.keys(allStyles).forEach(ident => {
+    if (allStyles[ident]['@keyframes']) {
+      const { '@keyframes': keyframeRef, animation } = allStyles[ident];
+
+      if (keyframeRef) {
+        Object.assign(allStyles[ident], {
+          animation: animation
+            ? animation.replace('@keyframes', keyframeRef)
+            : undefined,
+          animationName: animation ? undefined : keyframeRef,
+          '@keyframes': undefined,
+        });
+      }
+    }
+  });
+
+  return allStyles;
 };
 
 export default (styles: any) => {
@@ -137,12 +155,12 @@ export default (styles: any) => {
   const responsiveStylesheet = {};
 
   Object.entries(styles).forEach(([className, styles]: [string, any]) => {
-    const defaultStyles = extractSimpleStyles(className, styles);
+    const defaultStyles = normalizeStyles(className, styles);
     const responsiveStyles = {};
 
     if (styles['@media']) {
       each(styles['@media'], (mediaStyles, query) => {
-        const blockStyles = extractSimpleStyles(className, mediaStyles);
+        const blockStyles = normalizeStyles(className, mediaStyles);
 
         if (!isEqual(defaultStyles, blockStyles)) {
           merge(responsiveStyles, {

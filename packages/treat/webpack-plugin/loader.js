@@ -247,7 +247,7 @@ async function produce(loader, request) {
       if (outputCSS) {
         const module = await makeCssModule(styles);
 
-        if (request) {
+        if (module) {
           return {
             type,
             theme,

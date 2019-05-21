@@ -2,8 +2,16 @@ import { style, createTheme } from 'treat';
 
 const seconds = num => `${num}s`;
 
-export const fastTheme = createTheme({ duration: 1, color: 'red' });
-export const slowTheme = createTheme({ duration: 3, color: 'blue' });
+export const fastTheme = createTheme({
+  name: 'fast',
+  duration: 1,
+  color: 'red',
+});
+export const slowTheme = createTheme({
+  name: 'slow',
+  duration: 3,
+  color: 'blue',
+});
 
 export const unthemedAnimation = style({
   marginLeft: 300,

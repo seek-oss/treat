@@ -477,26 +477,6 @@ exports[`Stylesheet Animations - Theme function ident - should create a determin
         animation-name: ULbBx
     }
 }
-@keyframes _3W3VQ {
-    from {
-        background-color: white
-    }
-    to {
-        background-color: blue
-    }
-}
-._2yo5n_undefined_10 {
-    height: 200px;
-    width: 200px
-}
-._2MisJ ~ ._2yo5n_undefined_10 {
-    animation-timing-function: linear;
-    animation-duration: 3s;
-    animation-direction: alternate;
-    animation-fill-mode: both;
-    animation-iteration-count: infinite;
-    animation-name: _3W3VQ
-}
 @keyframes _0Mv05 {
     from {
         background-color: white
@@ -505,17 +485,37 @@ exports[`Stylesheet Animations - Theme function ident - should create a determin
         background-color: red
     }
 }
-._2yo5n_undefined_3u {
+._2yo5n_fast_3u {
     height: 200px;
     width: 200px
 }
-._2MisJ ~ ._2yo5n_undefined_3u {
+._2MisJ ~ ._2yo5n_fast_3u {
     animation-timing-function: linear;
     animation-duration: 1s;
     animation-direction: alternate;
     animation-fill-mode: both;
     animation-iteration-count: infinite;
     animation-name: _0Mv05
+}
+@keyframes _3W3VQ {
+    from {
+        background-color: white
+    }
+    to {
+        background-color: blue
+    }
+}
+._2yo5n_slow_10 {
+    height: 200px;
+    width: 200px
+}
+._2MisJ ~ ._2yo5n_slow_10 {
+    animation-timing-function: linear;
+    animation-duration: 3s;
+    animation-direction: alternate;
+    animation-fill-mode: both;
+    animation-iteration-count: infinite;
+    animation-name: _3W3VQ
 }
 "
 `;

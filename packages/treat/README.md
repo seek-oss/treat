@@ -10,16 +10,18 @@ $ yarn add treat@next
 
 Write your styles in JavaScript/TypeScript within **_treat files_** (e.g. `Button.treat.js`) that get **_executed at build time_**.
 
-All CSS rules are created ahead of time, so the runtime is _very_ lightweight—only needing to swap out pre-existing classes. **All CSS logic, including its dependencies, will not be included in your final bundle.**
+All CSS rules are created ahead of time, so the runtime is _very_ lightweight—only needing to swap out pre-existing classes. In fact, if your application doesn't use theming, you don't even need the runtime at all.
 
-Because theming is achieved by generating multiple classes, **legacy browsers are supported.**
+**All CSS logic, including its dependencies, will not be included in your final bundle.**
+
+Because theming is achieved by generating multiple classes, **_legacy browsers are supported._**
 
 ---
 
 - [Requirements](#requirements)
 - [Example Usage](#example-usage)
   - [Basic Usage](#basic-usage)
-  - [Themed Usage (React version)](#themed-usage-react-version)
+  - [Themed Usage](#themed-usage)
 - [Setup](#setup)
   - [Webpack Setup](#webpack-setup)
   - [Babel Setup](#babel-setup)
@@ -79,11 +81,11 @@ Then, import the styles.
 
 import * as styles from './Button.treat.js';
 
-export const buttonTemplate = ({ text }) =>
+export default ({ text }) =>
   `<button class="${styles.button}">${text}</button>`;
 ```
 
-### Themed Usage (React version)
+### Themed Usage
 
 > Note: React is [not required](#runtime-api) to use treat.
 
@@ -273,6 +275,41 @@ Within selectors, existing treat classes can be referenced.
 }
 ```
 
+The `@keyframes` property allows the creation of keyframes that will automatically be attached to the style as your `animation-name`.
+
+```js
+{
+  backgroundColor: 'white',
+  '@keyframes': {
+    from: {
+      transform: 'rotate(0deg)',
+    },
+    to: {
+      transform: 'rotate(359deg)',
+    },
+  },
+  animationTimingFunction: 'linear',
+  animationDuration: '1.5s',
+}
+```
+
+The animation shorthand is also supported via a `@keyframes` placeholder.
+
+```js
+{
+  backgroundColor: 'white',
+  '@keyframes': {
+    from: {
+      transform: 'rotate(0deg)',
+    },
+    to: {
+      transform: 'rotate(359deg)',
+    },
+  },
+  animation: '@keyframes 1.5s linear'
+}
+```
+
 #### ThemedStyles
 
 Type: `function`
@@ -366,12 +403,12 @@ export const green = style({
 
 Type: `function`
 
-The `styleMap` function allows you to easily create multiple namespaces within a treat file. This is particularly useful when mapping component props to separate style maps.
+The `styleMap` function allows you to easily create multiple namespaces within a treat file.
 
 ```js
 import { styleMap } from 'treat';
 
-export const backgrounds = styleMap(theme => ({
+export const variants = styleMap(theme => ({
   primary: {
     backgroundColor: theme.colors.brand
   },
@@ -379,6 +416,61 @@ export const backgrounds = styleMap(theme => ({
     backgroundColor: theme.colors.accent
   }
 }));
+```
+
+This is particularly useful when mapping component props to separate style maps. For example, if you wanted to map these styles to a React component in TypeScript:
+
+```ts
+import React from 'react';
+import { useStyles } from 'react-treat';
+import * as styleRefs from './Button.treat';
+
+export function Button({ variant = 'primary', ...props }) {
+  const styles = useStyles(styleRefs);
+
+  return (
+    <button
+      {...props}
+      className={styles.variants[variant]}
+    />
+  );
+}
+```
+
+This pattern scales extremely well to [atomic CSS patterns](https://css-tricks.com/lets-define-exactly-atomic-css/). For example:
+
+```js
+// atoms.treat.js
+
+import { styleMap } from 'treat';
+import { mapValues } from 'lodash';
+
+const spacingTokens = {
+  small: 4,
+  medium: 8,
+  large: 16
+};
+
+const spacingStyles = property =>
+  mapValues(spacingTokens, value => ({
+    [property]: value
+  }));
+
+export const padding = {
+  top: styleMap(spacingStyles('paddingTop')),
+  bottom: styleMap(spacingStyles('paddingBottom')),
+  left: styleMap(spacingStyles('paddingLeft')),
+  right: styleMap(spacingStyles('paddingRight'))
+};
+
+export const margin = {
+  top: styleMap(spacingStyles('marginTop')),
+  bottom: styleMap(spacingStyles('marginBottom')),
+  left: styleMap(spacingStyles('marginLeft')),
+  right: styleMap(spacingStyles('marginRight'))
+};
+
+// etc...
 ```
 
 #### globalStyle

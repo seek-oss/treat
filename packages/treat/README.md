@@ -425,7 +425,7 @@ import React from 'react';
 import { useStyles } from 'react-treat';
 import * as styleRefs from './Button.treat';
 
-export default ({ variant = 'primary', ...props }) => {
+export function Button({ variant = 'primary', ...props }) {
   const styles = useStyles(styleRefs);
 
   return (
@@ -434,7 +434,7 @@ export default ({ variant = 'primary', ...props }) => {
       className={styles.variants[variant]}
     />
   );
-};
+}
 ```
 
 This pattern scales extremely well to [atomic CSS patterns](https://css-tricks.com/lets-define-exactly-atomic-css/). For example:

@@ -11,7 +11,8 @@
     "build": "lerna run build",
     "watch": "lerna run watch",
     "release": "lerna publish --canary --preid beta --dist-tag next",
-    "commit": "git-cz"
+    "commit": "git-cz",
+    "debug-fixture": "node ./test-helpers/debugFixture.js"
   },
   "config": {
     "commitizen": {

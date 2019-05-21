@@ -14,7 +14,8 @@ import {
   CSSKeyframes,
   CSSProperties,
 } from './types';
-import { makeThemedClassReference, createContentHash } from './utils';
+import { makeThemedClassReference } from './utils';
+import { createContentHash } from './createContentHash';
 import mockWebpackTreat from './mockWebpackTreat';
 
 declare const __webpack__treat__: WebpackTreat | undefined;

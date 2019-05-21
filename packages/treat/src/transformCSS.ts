@@ -133,14 +133,14 @@ const normalizeStyles = (className: string, styles: any) => {
 
   Object.keys(allStyles).forEach(ident => {
     if (allStyles[ident]['@keyframes']) {
-      const { '@keyframes': keyframes, animation } = allStyles[ident];
+      const { '@keyframes': keyframeRef, animation } = allStyles[ident];
 
-      if (keyframes) {
+      if (keyframeRef) {
         Object.assign(allStyles[ident], {
           animation: animation
-            ? animation.replace('@keyframes', keyframes)
+            ? animation.replace('@keyframes', keyframeRef)
             : undefined,
-          animationName: animation ? undefined : keyframes,
+          animationName: animation ? undefined : keyframeRef,
           '@keyframes': undefined,
         });
       }

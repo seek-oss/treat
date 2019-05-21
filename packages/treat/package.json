@@ -4,6 +4,7 @@
   "description": "Themeable, typed CSS-in-JS with (basically) zero runtime",
   "main": "lib/commonjs",
   "module": "lib/module",
+  "sideEffects": false,
   "scripts": {
     "build:module": "tsc --module es2015 --outDir lib/module",
     "build:commonjs": "tsc --module commonjs --outDir lib/commonjs",

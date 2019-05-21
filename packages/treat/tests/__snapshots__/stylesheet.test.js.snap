@@ -85,8 +85,7 @@ exports[`Stylesheet Animations - Autoprefixer (iOS 8) - should create a determin
                 transform: rotate(359deg)
     }
 }
-._3uaaH {
-    margin-top: 300px;
+._2yo5n {
     margin-left: 300px;
     display: -webkit-flex;
     display: flex;
@@ -96,7 +95,7 @@ exports[`Stylesheet Animations - Autoprefixer (iOS 8) - should create a determin
             align-items: center;
     height: 200px;
     width: 200px;
-    background-color: red;
+    background-color: yellow;
     color: rgba(255,255,255,0);
     -webkit-animation-timing-function: linear;
             animation-timing-function: linear;
@@ -108,13 +107,13 @@ exports[`Stylesheet Animations - Autoprefixer (iOS 8) - should create a determin
             animation-name: Xxm1J
 }
 @media (min-width: 700px) {
-    ._3uaaH:hover {
+    ._2yo5n:hover {
         -webkit-animation: Yuc9Q 1.5s ease-out forwards;
                 animation: Yuc9Q 1.5s ease-out forwards
     }
 }
 @media (max-width: 699px) {
-    ._3uaaH {
+    ._2yo5n {
         -webkit-animation-timing-function: linear;
                 animation-timing-function: linear;
         -webkit-animation-duration: 1.5s;
@@ -124,6 +123,82 @@ exports[`Stylesheet Animations - Autoprefixer (iOS 8) - should create a determin
         -webkit-animation-name: ULbBx;
                 animation-name: ULbBx
     }
+}
+@-webkit-keyframes _3W3VQ {
+    from {
+        background-color: white
+    }
+    to {
+        background-color: blue
+    }
+}
+@keyframes _3W3VQ {
+    from {
+        background-color: white
+    }
+    to {
+        background-color: blue
+    }
+}
+._2MisJ_10hq {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: center;
+            justify-content: center;
+    -webkit-align-items: center;
+            align-items: center;
+    height: 200px;
+    width: 200px;
+    -webkit-animation-timing-function: linear;
+            animation-timing-function: linear;
+    -webkit-animation-duration: 3s;
+            animation-duration: 3s;
+    -webkit-animation-direction: alternate;
+            animation-direction: alternate;
+    -webkit-animation-fill-mode: both;
+            animation-fill-mode: both;
+    -webkit-animation-iteration-count: infinite;
+            animation-iteration-count: infinite;
+    -webkit-animation-name: _3W3VQ;
+            animation-name: _3W3VQ
+}
+@-webkit-keyframes _0Mv05 {
+    from {
+        background-color: white
+    }
+    to {
+        background-color: red
+    }
+}
+@keyframes _0Mv05 {
+    from {
+        background-color: white
+    }
+    to {
+        background-color: red
+    }
+}
+._2MisJ_3uaa {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: center;
+            justify-content: center;
+    -webkit-align-items: center;
+            align-items: center;
+    height: 200px;
+    width: 200px;
+    -webkit-animation-timing-function: linear;
+            animation-timing-function: linear;
+    -webkit-animation-duration: 1s;
+            animation-duration: 1s;
+    -webkit-animation-direction: alternate;
+            animation-direction: alternate;
+    -webkit-animation-fill-mode: both;
+            animation-fill-mode: both;
+    -webkit-animation-iteration-count: infinite;
+            animation-iteration-count: infinite;
+    -webkit-animation-name: _0Mv05;
+            animation-name: _0Mv05
 }
 "
 `;
@@ -164,15 +239,14 @@ exports[`Stylesheet Animations - Custom idents - should create a deterministic s
         transform: rotate(359deg)
     }
 }
-.animations-animations_3uaaH {
-    margin-top: 300px;
+.animations-unthemedAnimation_2yo5n {
     margin-left: 300px;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 200px;
     width: 200px;
-    background-color: red;
+    background-color: yellow;
     color: rgba(255,255,255,0);
     animation-timing-function: linear;
     animation-duration: 3s;
@@ -180,17 +254,59 @@ exports[`Stylesheet Animations - Custom idents - should create a deterministic s
     animation-name: Xxm1J
 }
 @media (min-width: 700px) {
-    .animations-animations_3uaaH:hover {
+    .animations-unthemedAnimation_2yo5n:hover {
         animation: Yuc9Q 1.5s ease-out forwards
     }
 }
 @media (max-width: 699px) {
-    .animations-animations_3uaaH {
+    .animations-unthemedAnimation_2yo5n {
         animation-timing-function: linear;
         animation-duration: 1.5s;
         animation-iteration-count: infinite;
         animation-name: ULbBx
     }
+}
+@keyframes _3W3VQ {
+    from {
+        background-color: white
+    }
+    to {
+        background-color: blue
+    }
+}
+.animations-themedAnimation_2MisJ-slowTheme_10 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    width: 200px;
+    animation-timing-function: linear;
+    animation-duration: 3s;
+    animation-direction: alternate;
+    animation-fill-mode: both;
+    animation-iteration-count: infinite;
+    animation-name: _3W3VQ
+}
+@keyframes _0Mv05 {
+    from {
+        background-color: white
+    }
+    to {
+        background-color: red
+    }
+}
+.animations-themedAnimation_2MisJ-fastTheme_3u {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    width: 200px;
+    animation-timing-function: linear;
+    animation-duration: 1s;
+    animation-direction: alternate;
+    animation-fill-mode: both;
+    animation-iteration-count: infinite;
+    animation-name: _0Mv05
 }
 "
 `;
@@ -231,15 +347,14 @@ exports[`Stylesheet Animations - Development mode - should create a deterministi
         transform: rotate(359deg)
     }
 }
-.animations-animations_3uaaH {
-    margin-top: 300px;
+.animations-unthemedAnimation_2yo5n {
     margin-left: 300px;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 200px;
     width: 200px;
-    background-color: red;
+    background-color: yellow;
     color: rgba(255,255,255,0);
     animation-timing-function: linear;
     animation-duration: 3s;
@@ -247,23 +362,67 @@ exports[`Stylesheet Animations - Development mode - should create a deterministi
     animation-name: Xxm1J
 }
 @media (min-width: 700px) {
-    .animations-animations_3uaaH:hover {
+    .animations-unthemedAnimation_2yo5n:hover {
         animation: Yuc9Q 1.5s ease-out forwards
     }
 }
 @media (max-width: 699px) {
-    .animations-animations_3uaaH {
+    .animations-unthemedAnimation_2yo5n {
         animation-timing-function: linear;
         animation-duration: 1.5s;
         animation-iteration-count: infinite;
         animation-name: ULbBx
     }
 }
+@keyframes _3W3VQ {
+    from {
+        background-color: white
+    }
+    to {
+        background-color: blue
+    }
+}
+.animations-themedAnimation_2MisJ_animations-slowTheme_10hq {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    width: 200px;
+    animation-timing-function: linear;
+    animation-duration: 3s;
+    animation-direction: alternate;
+    animation-fill-mode: both;
+    animation-iteration-count: infinite;
+    animation-name: _3W3VQ
+}
+@keyframes _0Mv05 {
+    from {
+        background-color: white
+    }
+    to {
+        background-color: red
+    }
+}
+.animations-themedAnimation_2MisJ_animations-fastTheme_3uaa {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    width: 200px;
+    animation-timing-function: linear;
+    animation-duration: 1s;
+    animation-direction: alternate;
+    animation-fill-mode: both;
+    animation-iteration-count: infinite;
+    animation-name: _0Mv05
+}
 "
 `;
 
 exports[`Stylesheet Animations - Production mode - should create a deterministic stylesheet 1`] = `
-"@keyframes Xxm1J{0%{opacity:0}to{opacity:1}}@keyframes Yuc9Q{0%{color:hsla(0,0%,100%,0);transform:scale(1)}25%{transform:scale(2,3)}50%{transform:scale(5)}75%{transform:scale(4,.5)}to{transform:scale(1);color:#fff}}@keyframes ULbBx{0%{transform:rotate(0deg)}to{transform:rotate(359deg)}}._3uaaH{margin-top:300px;margin-left:300px;display:flex;justify-content:center;align-items:center;height:200px;width:200px;background-color:red;color:hsla(0,0%,100%,0);animation-timing-function:linear;animation-duration:3s;animation-fill-mode:both;animation-name:Xxm1J}@media (min-width:700px){._3uaaH:hover{animation:Yuc9Q 1.5s ease-out forwards}}@media (max-width:699px){._3uaaH{animation-timing-function:linear;animation-duration:1.5s;animation-iteration-count:infinite;animation-name:ULbBx}}
+"@keyframes Xxm1J{0%{opacity:0}to{opacity:1}}@keyframes Yuc9Q{0%{color:hsla(0,0%,100%,0);transform:scale(1)}25%{transform:scale(2,3)}50%{transform:scale(5)}75%{transform:scale(4,.5)}to{transform:scale(1);color:#fff}}@keyframes ULbBx{0%{transform:rotate(0deg)}to{transform:rotate(359deg)}}._2yo5n{margin-left:300px;display:flex;justify-content:center;align-items:center;height:200px;width:200px;background-color:#ff0;color:hsla(0,0%,100%,0);animation-timing-function:linear;animation-duration:3s;animation-fill-mode:both;animation-name:Xxm1J}@media (min-width:700px){._2yo5n:hover{animation:Yuc9Q 1.5s ease-out forwards}}@media (max-width:699px){._2yo5n{animation-timing-function:linear;animation-duration:1.5s;animation-iteration-count:infinite;animation-name:ULbBx}}
+@keyframes _0Mv05{0%{background-color:#fff}to{background-color:red}}._2MisJ_3uaa{display:flex;justify-content:center;align-items:center;height:200px;width:200px;animation-timing-function:linear;animation-duration:1s;animation-direction:alternate;animation-fill-mode:both;animation-iteration-count:infinite;animation-name:_0Mv05}
+@keyframes _3W3VQ{0%{background-color:#fff}to{background-color:#00f}}._2MisJ_10hq{display:flex;justify-content:center;align-items:center;height:200px;width:200px;animation-timing-function:linear;animation-duration:3s;animation-direction:alternate;animation-fill-mode:both;animation-iteration-count:infinite;animation-name:_3W3VQ}
 "
 `;
 
@@ -303,15 +462,14 @@ exports[`Stylesheet Animations - Theme function ident - should create a determin
         transform: rotate(359deg)
     }
 }
-._3uaaH {
-    margin-top: 300px;
+._2yo5n {
     margin-left: 300px;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 200px;
     width: 200px;
-    background-color: red;
+    background-color: yellow;
     color: rgba(255,255,255,0);
     animation-timing-function: linear;
     animation-duration: 3s;
@@ -319,17 +477,59 @@ exports[`Stylesheet Animations - Theme function ident - should create a determin
     animation-name: Xxm1J
 }
 @media (min-width: 700px) {
-    ._3uaaH:hover {
+    ._2yo5n:hover {
         animation: Yuc9Q 1.5s ease-out forwards
     }
 }
 @media (max-width: 699px) {
-    ._3uaaH {
+    ._2yo5n {
         animation-timing-function: linear;
         animation-duration: 1.5s;
         animation-iteration-count: infinite;
         animation-name: ULbBx
     }
+}
+@keyframes _3W3VQ {
+    from {
+        background-color: white
+    }
+    to {
+        background-color: blue
+    }
+}
+._2MisJ_undefined_10 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    width: 200px;
+    animation-timing-function: linear;
+    animation-duration: 3s;
+    animation-direction: alternate;
+    animation-fill-mode: both;
+    animation-iteration-count: infinite;
+    animation-name: _3W3VQ
+}
+@keyframes _0Mv05 {
+    from {
+        background-color: white
+    }
+    to {
+        background-color: red
+    }
+}
+._2MisJ_undefined_3u {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    width: 200px;
+    animation-timing-function: linear;
+    animation-duration: 1s;
+    animation-direction: alternate;
+    animation-fill-mode: both;
+    animation-iteration-count: infinite;
+    animation-name: _0Mv05
 }
 "
 `;

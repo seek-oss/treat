@@ -85,7 +85,7 @@ exports[`Stylesheet Animations - Autoprefixer (iOS 8) - should create a determin
                 transform: rotate(359deg)
     }
 }
-._2yo5n {
+._2MisJ {
     margin-left: 300px;
     display: -webkit-flex;
     display: flex;
@@ -107,13 +107,13 @@ exports[`Stylesheet Animations - Autoprefixer (iOS 8) - should create a determin
             animation-name: Xxm1J
 }
 @media (min-width: 700px) {
-    ._2yo5n:hover {
+    ._2MisJ:hover {
         -webkit-animation: Yuc9Q 1.5s ease-out forwards;
                 animation: Yuc9Q 1.5s ease-out forwards
     }
 }
 @media (max-width: 699px) {
-    ._2yo5n {
+    ._2MisJ {
         -webkit-animation-timing-function: linear;
                 animation-timing-function: linear;
         -webkit-animation-duration: 1.5s;
@@ -140,15 +140,11 @@ exports[`Stylesheet Animations - Autoprefixer (iOS 8) - should create a determin
         background-color: blue
     }
 }
-._2MisJ_10hq {
-    display: -webkit-flex;
-    display: flex;
-    -webkit-justify-content: center;
-            justify-content: center;
-    -webkit-align-items: center;
-            align-items: center;
+._2yo5n_10hq {
     height: 200px;
-    width: 200px;
+    width: 200px
+}
+._2MisJ ~ ._2yo5n_10hq {
     -webkit-animation-timing-function: linear;
             animation-timing-function: linear;
     -webkit-animation-duration: 3s;
@@ -178,15 +174,11 @@ exports[`Stylesheet Animations - Autoprefixer (iOS 8) - should create a determin
         background-color: red
     }
 }
-._2MisJ_3uaa {
-    display: -webkit-flex;
-    display: flex;
-    -webkit-justify-content: center;
-            justify-content: center;
-    -webkit-align-items: center;
-            align-items: center;
+._2yo5n_3uaa {
     height: 200px;
-    width: 200px;
+    width: 200px
+}
+._2MisJ ~ ._2yo5n_3uaa {
     -webkit-animation-timing-function: linear;
             animation-timing-function: linear;
     -webkit-animation-duration: 1s;
@@ -239,7 +231,7 @@ exports[`Stylesheet Animations - Custom idents - should create a deterministic s
         transform: rotate(359deg)
     }
 }
-.animations-unthemedAnimation_2yo5n {
+.animations-unthemedAnimation_2MisJ {
     margin-left: 300px;
     display: flex;
     justify-content: center;
@@ -254,38 +246,17 @@ exports[`Stylesheet Animations - Custom idents - should create a deterministic s
     animation-name: Xxm1J
 }
 @media (min-width: 700px) {
-    .animations-unthemedAnimation_2yo5n:hover {
+    .animations-unthemedAnimation_2MisJ:hover {
         animation: Yuc9Q 1.5s ease-out forwards
     }
 }
 @media (max-width: 699px) {
-    .animations-unthemedAnimation_2yo5n {
+    .animations-unthemedAnimation_2MisJ {
         animation-timing-function: linear;
         animation-duration: 1.5s;
         animation-iteration-count: infinite;
         animation-name: ULbBx
     }
-}
-@keyframes _3W3VQ {
-    from {
-        background-color: white
-    }
-    to {
-        background-color: blue
-    }
-}
-.animations-themedAnimation_2MisJ-slowTheme_10 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 200px;
-    width: 200px;
-    animation-timing-function: linear;
-    animation-duration: 3s;
-    animation-direction: alternate;
-    animation-fill-mode: both;
-    animation-iteration-count: infinite;
-    animation-name: _3W3VQ
 }
 @keyframes _0Mv05 {
     from {
@@ -295,18 +266,37 @@ exports[`Stylesheet Animations - Custom idents - should create a deterministic s
         background-color: red
     }
 }
-.animations-themedAnimation_2MisJ-fastTheme_3u {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.animations-themedAnimation_2yo5n-fastTheme_3u {
     height: 200px;
-    width: 200px;
+    width: 200px
+}
+.animations-unthemedAnimation_2MisJ ~ .animations-themedAnimation_2yo5n-fastTheme_3u {
     animation-timing-function: linear;
     animation-duration: 1s;
     animation-direction: alternate;
     animation-fill-mode: both;
     animation-iteration-count: infinite;
     animation-name: _0Mv05
+}
+@keyframes _3W3VQ {
+    from {
+        background-color: white
+    }
+    to {
+        background-color: blue
+    }
+}
+.animations-themedAnimation_2yo5n-slowTheme_10 {
+    height: 200px;
+    width: 200px
+}
+.animations-unthemedAnimation_2MisJ ~ .animations-themedAnimation_2yo5n-slowTheme_10 {
+    animation-timing-function: linear;
+    animation-duration: 3s;
+    animation-direction: alternate;
+    animation-fill-mode: both;
+    animation-iteration-count: infinite;
+    animation-name: _3W3VQ
 }
 "
 `;
@@ -347,7 +337,7 @@ exports[`Stylesheet Animations - Development mode - should create a deterministi
         transform: rotate(359deg)
     }
 }
-.animations-unthemedAnimation_2yo5n {
+.animations-unthemedAnimation_2MisJ {
     margin-left: 300px;
     display: flex;
     justify-content: center;
@@ -362,12 +352,12 @@ exports[`Stylesheet Animations - Development mode - should create a deterministi
     animation-name: Xxm1J
 }
 @media (min-width: 700px) {
-    .animations-unthemedAnimation_2yo5n:hover {
+    .animations-unthemedAnimation_2MisJ:hover {
         animation: Yuc9Q 1.5s ease-out forwards
     }
 }
 @media (max-width: 699px) {
-    .animations-unthemedAnimation_2yo5n {
+    .animations-unthemedAnimation_2MisJ {
         animation-timing-function: linear;
         animation-duration: 1.5s;
         animation-iteration-count: infinite;
@@ -382,12 +372,11 @@ exports[`Stylesheet Animations - Development mode - should create a deterministi
         background-color: blue
     }
 }
-.animations-themedAnimation_2MisJ_animations-slowTheme_10hq {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.animations-themedAnimation_2yo5n_animations-slowTheme_10hq {
     height: 200px;
-    width: 200px;
+    width: 200px
+}
+.animations-unthemedAnimation_2MisJ ~ .animations-themedAnimation_2yo5n_animations-slowTheme_10hq {
     animation-timing-function: linear;
     animation-duration: 3s;
     animation-direction: alternate;
@@ -403,12 +392,11 @@ exports[`Stylesheet Animations - Development mode - should create a deterministi
         background-color: red
     }
 }
-.animations-themedAnimation_2MisJ_animations-fastTheme_3uaa {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.animations-themedAnimation_2yo5n_animations-fastTheme_3uaa {
     height: 200px;
-    width: 200px;
+    width: 200px
+}
+.animations-unthemedAnimation_2MisJ ~ .animations-themedAnimation_2yo5n_animations-fastTheme_3uaa {
     animation-timing-function: linear;
     animation-duration: 1s;
     animation-direction: alternate;
@@ -420,9 +408,9 @@ exports[`Stylesheet Animations - Development mode - should create a deterministi
 `;
 
 exports[`Stylesheet Animations - Production mode - should create a deterministic stylesheet 1`] = `
-"@keyframes Xxm1J{0%{opacity:0}to{opacity:1}}@keyframes Yuc9Q{0%{color:hsla(0,0%,100%,0);transform:scale(1)}25%{transform:scale(2,3)}50%{transform:scale(5)}75%{transform:scale(4,.5)}to{transform:scale(1);color:#fff}}@keyframes ULbBx{0%{transform:rotate(0deg)}to{transform:rotate(359deg)}}._2yo5n{margin-left:300px;display:flex;justify-content:center;align-items:center;height:200px;width:200px;background-color:#ff0;color:hsla(0,0%,100%,0);animation-timing-function:linear;animation-duration:3s;animation-fill-mode:both;animation-name:Xxm1J}@media (min-width:700px){._2yo5n:hover{animation:Yuc9Q 1.5s ease-out forwards}}@media (max-width:699px){._2yo5n{animation-timing-function:linear;animation-duration:1.5s;animation-iteration-count:infinite;animation-name:ULbBx}}
-@keyframes _0Mv05{0%{background-color:#fff}to{background-color:red}}._2MisJ_3uaa{display:flex;justify-content:center;align-items:center;height:200px;width:200px;animation-timing-function:linear;animation-duration:1s;animation-direction:alternate;animation-fill-mode:both;animation-iteration-count:infinite;animation-name:_0Mv05}
-@keyframes _3W3VQ{0%{background-color:#fff}to{background-color:#00f}}._2MisJ_10hq{display:flex;justify-content:center;align-items:center;height:200px;width:200px;animation-timing-function:linear;animation-duration:3s;animation-direction:alternate;animation-fill-mode:both;animation-iteration-count:infinite;animation-name:_3W3VQ}
+"@keyframes Xxm1J{0%{opacity:0}to{opacity:1}}@keyframes Yuc9Q{0%{color:hsla(0,0%,100%,0);transform:scale(1)}25%{transform:scale(2,3)}50%{transform:scale(5)}75%{transform:scale(4,.5)}to{transform:scale(1);color:#fff}}@keyframes ULbBx{0%{transform:rotate(0deg)}to{transform:rotate(359deg)}}._2MisJ{margin-left:300px;display:flex;justify-content:center;align-items:center;height:200px;width:200px;background-color:#ff0;color:hsla(0,0%,100%,0);animation-timing-function:linear;animation-duration:3s;animation-fill-mode:both;animation-name:Xxm1J}@media (min-width:700px){._2MisJ:hover{animation:Yuc9Q 1.5s ease-out forwards}}@media (max-width:699px){._2MisJ{animation-timing-function:linear;animation-duration:1.5s;animation-iteration-count:infinite;animation-name:ULbBx}}
+@keyframes _0Mv05{0%{background-color:#fff}to{background-color:red}}._2yo5n_3uaa{height:200px;width:200px}._2MisJ~._2yo5n_3uaa{animation-timing-function:linear;animation-duration:1s;animation-direction:alternate;animation-fill-mode:both;animation-iteration-count:infinite;animation-name:_0Mv05}
+@keyframes _3W3VQ{0%{background-color:#fff}to{background-color:#00f}}._2yo5n_10hq{height:200px;width:200px}._2MisJ~._2yo5n_10hq{animation-timing-function:linear;animation-duration:3s;animation-direction:alternate;animation-fill-mode:both;animation-iteration-count:infinite;animation-name:_3W3VQ}
 "
 `;
 
@@ -462,7 +450,7 @@ exports[`Stylesheet Animations - Theme function ident - should create a determin
         transform: rotate(359deg)
     }
 }
-._2yo5n {
+._2MisJ {
     margin-left: 300px;
     display: flex;
     justify-content: center;
@@ -477,38 +465,17 @@ exports[`Stylesheet Animations - Theme function ident - should create a determin
     animation-name: Xxm1J
 }
 @media (min-width: 700px) {
-    ._2yo5n:hover {
+    ._2MisJ:hover {
         animation: Yuc9Q 1.5s ease-out forwards
     }
 }
 @media (max-width: 699px) {
-    ._2yo5n {
+    ._2MisJ {
         animation-timing-function: linear;
         animation-duration: 1.5s;
         animation-iteration-count: infinite;
         animation-name: ULbBx
     }
-}
-@keyframes _3W3VQ {
-    from {
-        background-color: white
-    }
-    to {
-        background-color: blue
-    }
-}
-._2MisJ_undefined_10 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 200px;
-    width: 200px;
-    animation-timing-function: linear;
-    animation-duration: 3s;
-    animation-direction: alternate;
-    animation-fill-mode: both;
-    animation-iteration-count: infinite;
-    animation-name: _3W3VQ
 }
 @keyframes _0Mv05 {
     from {
@@ -518,18 +485,37 @@ exports[`Stylesheet Animations - Theme function ident - should create a determin
         background-color: red
     }
 }
-._2MisJ_undefined_3u {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+._2yo5n_fast_3u {
     height: 200px;
-    width: 200px;
+    width: 200px
+}
+._2MisJ ~ ._2yo5n_fast_3u {
     animation-timing-function: linear;
     animation-duration: 1s;
     animation-direction: alternate;
     animation-fill-mode: both;
     animation-iteration-count: infinite;
     animation-name: _0Mv05
+}
+@keyframes _3W3VQ {
+    from {
+        background-color: white
+    }
+    to {
+        background-color: blue
+    }
+}
+._2yo5n_slow_10 {
+    height: 200px;
+    width: 200px
+}
+._2MisJ ~ ._2yo5n_slow_10 {
+    animation-timing-function: linear;
+    animation-duration: 3s;
+    animation-direction: alternate;
+    animation-fill-mode: both;
+    animation-iteration-count: infinite;
+    animation-name: _3W3VQ
 }
 "
 `;

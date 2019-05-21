@@ -108,18 +108,21 @@ const processSelectors = (styles: Styles, themeRef?: ThemeRef) => {
 };
 
 const processAnimations = (styles: Styles, themeRef?: ThemeRef) => {
+  // handle root level keyframes
   if (styles['@keyframes']) {
     styles['@keyframes'] = createKeyframe(styles['@keyframes'], themeRef);
   }
 
   const media = styles['@media'];
 
+  // handle keyframes in media queries
   if (media) {
     Object.keys(media).forEach(mediaQuery => {
       processAnimations(media[mediaQuery]);
     });
   }
 
+  // handle keyframes in simple pseudos
   Object.entries(styles)
     .filter(([property]) => property.startsWith(':'))
     .forEach(([_pseudoProperty, pseudoStyles]: [string, CSSProperties]) => {
@@ -130,6 +133,15 @@ const processAnimations = (styles: Styles, themeRef?: ThemeRef) => {
         );
       }
     });
+
+  // handle keyframes in complex selectors
+  if (styles.selectors) {
+    Object.values(styles.selectors).forEach(style => {
+      if (style['@keyframes']) {
+        style['@keyframes'] = createKeyframe(style['@keyframes'], themeRef);
+      }
+    });
+  }
 };
 
 const processStyle = (styles: Styles, themeRef?: ThemeRef) => {

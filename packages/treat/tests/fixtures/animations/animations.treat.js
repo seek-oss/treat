@@ -2,29 +2,16 @@ import { style, createTheme } from 'treat';
 
 const seconds = num => `${num}s`;
 
-export const fastTheme = createTheme({ duration: 1, color: 'red' });
-export const slowTheme = createTheme({ duration: 3, color: 'blue' });
-
-export const themedAnimation = style(({ duration, color }) => ({
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  height: 200,
-  width: 200,
-  '@keyframes': {
-    from: {
-      backgroundColor: 'white',
-    },
-    to: {
-      backgroundColor: color,
-    },
-  },
-  animationTimingFunction: 'linear',
-  animationDuration: seconds(duration),
-  animationDirection: 'alternate',
-  animationFillMode: 'both',
-  animationIterationCount: 'infinite',
-}));
+export const fastTheme = createTheme({
+  name: 'fast',
+  duration: 1,
+  color: 'red',
+});
+export const slowTheme = createTheme({
+  name: 'slow',
+  duration: 3,
+  color: 'blue',
+});
 
 export const unthemedAnimation = style({
   marginLeft: 300,
@@ -86,3 +73,25 @@ export const unthemedAnimation = style({
     },
   },
 });
+
+export const themedAnimation = style(({ duration, color }) => ({
+  height: 200,
+  width: 200,
+  selectors: {
+    [`${unthemedAnimation} ~ &`]: {
+      '@keyframes': {
+        from: {
+          backgroundColor: 'white',
+        },
+        to: {
+          backgroundColor: color,
+        },
+      },
+      animationTimingFunction: 'linear',
+      animationDuration: seconds(duration),
+      animationDirection: 'alternate',
+      animationFillMode: 'both',
+      animationIterationCount: 'infinite',
+    },
+  },
+}));

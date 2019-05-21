@@ -901,7 +901,10 @@ exports[`Stylesheet Multi file - Theme function ident - should create a determin
 `;
 
 exports[`Stylesheet Simple - Autoprefixer (iOS 8) - should create a deterministic stylesheet 1`] = `
-".PxCM2 {
+"html, body {
+    background-color: pink
+}
+.PxCM2 {
     height: 100px;
     width: 100px;
     color: blue;
@@ -929,7 +932,10 @@ html .PxCM2 {
 `;
 
 exports[`Stylesheet Simple - Custom idents - should create a deterministic stylesheet 1`] = `
-".simple-mainStyles_blue_PxCM2 {
+"html, body {
+    background-color: pink
+}
+.simple-mainStyles_blue_PxCM2 {
     height: 100px;
     width: 100px;
     color: blue;
@@ -956,7 +962,10 @@ html .simple-mainStyles_blue_PxCM2 {
 `;
 
 exports[`Stylesheet Simple - Development mode - should create a deterministic stylesheet 1`] = `
-".simple-mainStyles_blue_PxCM2 {
+"html, body {
+    background-color: pink
+}
+.simple-mainStyles_blue_PxCM2 {
     height: 100px;
     width: 100px;
     color: blue;
@@ -983,12 +992,15 @@ html .simple-mainStyles_blue_PxCM2 {
 `;
 
 exports[`Stylesheet Simple - Production mode - should create a deterministic stylesheet 1`] = `
-".PxCM2{height:100px;width:100px;color:#00f;display:flex}.PxCM2:hover{background-color:purple}._2QKEX{color:red}body ._2QKEX{z-index:2}html .PxCM2{position:absolute}@media screen and (min-width:700px){._2QKEX{color:green}}
+"body,html{background-color:pink}.PxCM2{height:100px;width:100px;color:#00f;display:flex}.PxCM2:hover{background-color:purple}._2QKEX{color:red}body ._2QKEX{z-index:2}html .PxCM2{position:absolute}@media screen and (min-width:700px){._2QKEX{color:green}}
 "
 `;
 
 exports[`Stylesheet Simple - Theme function ident - should create a deterministic stylesheet 1`] = `
-".PxCM2 {
+"html, body {
+    background-color: pink
+}
+.PxCM2 {
     height: 100px;
     width: 100px;
     color: blue;

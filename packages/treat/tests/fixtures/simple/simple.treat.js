@@ -1,5 +1,9 @@
 import { styleMap, globalStyle } from 'treat';
 
+globalStyle('html, body', {
+  backgroundColor: 'pink',
+});
+
 const styles = styleMap(
   {
     blue: {

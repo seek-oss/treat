@@ -59,24 +59,31 @@ const createKeyframe = (
 };
 
 const interpolateSelector = (selector: string, themeRef?: ThemeRef) => {
-  const localClassRefsRegex = RegExp(`(${localClassRefs.join('|')})`, 'g');
+  let normalisedSelector = selector;
+
+  if (localClassRefs.length > 0) {
+    const localClassRefsRegex = RegExp(`(${localClassRefs.join('|')})`, 'g');
+
+    normalisedSelector = normalisedSelector.replace(
+      localClassRefsRegex,
+      (_, match) => {
+        return convertToCssClass(match);
+      },
+    );
+  }
 
   const themeClassRefsRegex = RegExp(
     `\\${themePlaceholder}([a-zA-Z1-9_-]+)`,
     'g',
   );
 
-  return selector
-    .replace(themeClassRefsRegex, (_, match) => {
-      if (!themeRef) {
-        throw new Error(`No theme ref provided to 'interpolateSelector'`);
-      }
+  return normalisedSelector.replace(themeClassRefsRegex, (_, match) => {
+    if (!themeRef) {
+      throw new Error(`No theme ref provided to 'interpolateSelector'`);
+    }
 
-      return convertToCssClass(makeThemedClassReference(themeRef, match));
-    })
-    .replace(localClassRefsRegex, (_, match) => {
-      return convertToCssClass(match);
-    });
+    return convertToCssClass(makeThemedClassReference(themeRef, match));
+  });
 };
 
 const combinedThemeSelector = (selector: string) => {

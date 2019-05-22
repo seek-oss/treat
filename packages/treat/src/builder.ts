@@ -1,5 +1,4 @@
 import fromPairs from 'lodash/fromPairs';
-import mapKeys from 'lodash/mapKeys';
 
 import { Theme } from 'treat/theme';
 import {
@@ -14,26 +13,27 @@ import {
   CSSKeyframes,
   CSSProperties,
 } from './types';
-import { makeThemedClassReference } from './utils';
+import {
+  makeThemedClassReference,
+  convertToCssClass,
+  templateThemeClassRef,
+} from './utils';
 import { createContentHash } from './createContentHash';
+import {
+  processSelectors,
+  addLocalClassRef,
+  combinedThemeSelector,
+} from './processSelectors';
 import mockWebpackTreat from './mockWebpackTreat';
 
 declare const __webpack__treat__: WebpackTreat | undefined;
 
 let scopeCount = 0;
-const localClassRefs: Array<ClassRef> = [];
 
 const { addLocalCss, addThemedCss, addTheme, getThemes, getIdentName } =
   typeof __webpack__treat__ === 'undefined'
     ? mockWebpackTreat
     : __webpack__treat__;
-
-const themePlaceholder = '$';
-
-const templateThemeClassRef = (classRef: string) =>
-  `${themePlaceholder}${classRef}`;
-
-const convertToCssClass = (ref: string) => `.${ref}`;
 
 const createKeyframe = (
   keyframe: string | CSSKeyframes,
@@ -56,62 +56,6 @@ const createKeyframe = (
   }
 
   return keyframeRef;
-};
-
-const interpolateSelector = (selector: string, themeRef?: ThemeRef) => {
-  let normalisedSelector = selector;
-
-  if (localClassRefs.length > 0) {
-    const localClassRefsRegex = RegExp(`(${localClassRefs.join('|')})`, 'g');
-
-    normalisedSelector = normalisedSelector.replace(
-      localClassRefsRegex,
-      (_, match) => {
-        return convertToCssClass(match);
-      },
-    );
-  }
-
-  const themeClassRefsRegex = RegExp(
-    `\\${themePlaceholder}([a-zA-Z1-9_-]+)`,
-    'g',
-  );
-
-  return normalisedSelector.replace(themeClassRefsRegex, (_, match) => {
-    if (!themeRef) {
-      throw new Error(`No theme ref provided to 'interpolateSelector'`);
-    }
-
-    return convertToCssClass(makeThemedClassReference(themeRef, match));
-  });
-};
-
-const combinedThemeSelector = (selector: string) => {
-  if (selector.indexOf(themePlaceholder) > -1) {
-    return getThemes()
-      .map(({ themeRef }) => interpolateSelector(selector, themeRef))
-      .join(', ');
-  }
-
-  return interpolateSelector(selector);
-};
-
-const processSelectors = (styles: Styles, themeRef?: ThemeRef) => {
-  if (styles.selectors) {
-    styles.selectors = mapKeys(styles.selectors, (_valid, key) =>
-      themeRef
-        ? interpolateSelector(key, themeRef)
-        : combinedThemeSelector(key),
-    );
-  }
-
-  const media = styles['@media'];
-
-  if (media) {
-    Object.keys(media).forEach(mediaQuery => {
-      processSelectors(media[mediaQuery], themeRef);
-    });
-  }
 };
 
 const processAnimations = (styles: Styles, themeRef?: ThemeRef) => {
@@ -152,7 +96,7 @@ const processAnimations = (styles: Styles, themeRef?: ThemeRef) => {
 };
 
 const processStyle = (styles: Styles, themeRef?: ThemeRef) => {
-  processSelectors(styles, themeRef);
+  processSelectors({ styles, themeRef, themes: getThemes() });
   processAnimations(styles, themeRef);
 };
 
@@ -182,7 +126,7 @@ export function style(
   const classRef = getIdentName(localName, scopeCount++);
 
   if (typeof styles === 'object') {
-    localClassRefs.push(classRef);
+    addLocalClassRef(classRef);
 
     processStyle(styles);
 
@@ -244,7 +188,7 @@ export function styleMap<ClassName extends string>(
             scopeCount++,
           );
           classRefs[classIdentifier] = classRef;
-          localClassRefs.push(classRef);
+          addLocalClassRef(classRef);
 
           processStyle(styles);
 
@@ -273,7 +217,7 @@ export function createTheme(tokens: Theme, localDebugName?: string): ThemeRef {
 }
 
 export function globalStyle(selector: string, styles: Styles): void {
-  const normalisedSelector = combinedThemeSelector(selector);
+  const normalisedSelector = combinedThemeSelector(selector, getThemes());
 
   addLocalCss({ [normalisedSelector]: styles });
 }

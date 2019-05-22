@@ -110,7 +110,9 @@ const normalizeStyles = (className: string, styles: any) => {
   let selectorStyles = {};
   if (styles.selectors) {
     selectorStyles = mapKeys(styles.selectors, (_, selector) => {
-      if (selector.indexOf('&') === -1) {
+      // Themed selectors can be empty if themes haven't registered yet.
+      // In this case don't throw the error
+      if (selector.length > 0 && selector.indexOf('&') === -1) {
         throw new Error(
           'Selectors must contain an "&" character, which is a reference to the parent class.',
         );

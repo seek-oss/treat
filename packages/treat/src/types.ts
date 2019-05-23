@@ -2,8 +2,6 @@ import { Properties } from 'csstype';
 import { Theme } from 'treat/theme';
 import { SimplePseudos } from './transformCSS';
 
-type Omit<T, K> = Pick<T, Exclude<keyof T, K>>;
-
 export type PostCSS = object;
 
 export type ThemeRef = string;
@@ -26,8 +24,8 @@ interface SelectorMap {
   [selector: string]: CSSProperties;
 }
 
-interface MediaQueries {
-  [query: string]: SimpleStyles;
+export interface MediaQueries<StyleType> {
+  [query: string]: StyleType;
 }
 
 interface SimpleStyles extends CSSPropertiesAndPseudos {
@@ -35,7 +33,7 @@ interface SimpleStyles extends CSSPropertiesAndPseudos {
 }
 
 export interface Styles extends SimpleStyles {
-  '@media'?: MediaQueries;
+  '@media'?: MediaQueries<SimpleStyles>;
 }
 
 export type ThemedStyles<Theme> = (theme: Theme) => Styles;

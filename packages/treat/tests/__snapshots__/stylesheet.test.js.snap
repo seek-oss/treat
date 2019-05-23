@@ -550,6 +550,11 @@ html ._3yryF {
         color: black
     }
 }
+@media screen and (min-width: 700px) {
+    html ._3yryF {
+        position: relative
+    }
+}
 ._2Cl3x_1fZK:focus {
     color: purple
 }
@@ -633,6 +638,11 @@ html .complexSelectors-styles_blue_3yryF {
     }
     .complexSelectors-themedStyle_3vGr3-big_1l .complexSelectors-unthemedClassStyle_2wcfh .complexSelectors-styles_blue_3yryF, .complexSelectors-themedStyle_3vGr3-small_1f .complexSelectors-unthemedClassStyle_2wcfh .complexSelectors-styles_blue_3yryF {
         color: black
+    }
+}
+@media screen and (min-width: 700px) {
+    html .complexSelectors-styles_blue_3yryF {
+        position: relative
     }
 }
 .complexSelectors-red_2Cl3x-big_1l:focus {
@@ -720,6 +730,11 @@ html .complexSelectors-styles_blue_3yryF {
         color: black
     }
 }
+@media screen and (min-width: 700px) {
+    html .complexSelectors-styles_blue_3yryF {
+        position: relative
+    }
+}
 .complexSelectors-red_2Cl3x_complexSelectors-big_1ld8:focus {
     color: purple
 }
@@ -776,7 +791,7 @@ html .complexSelectors-styles_blue_3yryF {
 `;
 
 exports[`Stylesheet Complex selectors - Production mode - should create a deterministic stylesheet 1`] = `
-"._3yryF:focus{color:purple}._3yryF ._2wcfh{background-color:red}._3yryF ._3vGr3_1fZK,._3yryF ._3vGr3_1ld8{background-color:#00f}._3vGr3_1fZK ._2wcfh ._3yryF,._3vGr3_1ld8 ._2wcfh ._3yryF{background-color:#000}html ._3yryF{position:absolute}@media screen and (min-width:300px){._3yryF{color:green}._3yryF ._2wcfh{color:red}._3yryF ._3vGr3_1fZK,._3yryF ._3vGr3_1ld8{color:#00f}._3vGr3_1fZK ._2wcfh ._3yryF,._3vGr3_1ld8 ._2wcfh ._3yryF{color:#000}}
+"._3yryF:focus{color:purple}._3yryF ._2wcfh{background-color:red}._3yryF ._3vGr3_1fZK,._3yryF ._3vGr3_1ld8{background-color:#00f}._3vGr3_1fZK ._2wcfh ._3yryF,._3vGr3_1ld8 ._2wcfh ._3yryF{background-color:#000}html ._3yryF{position:absolute}@media screen and (min-width:300px){._3yryF{color:green}._3yryF ._2wcfh{color:red}._3yryF ._3vGr3_1fZK,._3yryF ._3vGr3_1ld8{color:#00f}._3vGr3_1fZK ._2wcfh ._3yryF,._3vGr3_1ld8 ._2wcfh ._3yryF{color:#000}}@media screen and (min-width:700px){html ._3yryF{position:relative}}
 ._2Cl3x_1ld8:focus{color:purple}._2Cl3x_1ld8 ._2wcfh{background-color:red}._2Cl3x_1ld8 ._3vGr3_1ld8{background-color:#00f}._3vGr3_1ld8 ._2wcfh ._2Cl3x_1ld8{background-color:#000}@media screen and (min-width:700px){._2Cl3x_1ld8{color:green}._2Cl3x_1ld8 ._2wcfh{color:red}._2Cl3x_1ld8 ._3vGr3_1ld8{color:#00f}._3vGr3_1ld8 ._2wcfh ._2Cl3x_1ld8{color:#000}}
 ._2Cl3x_1fZK:focus{color:purple}._2Cl3x_1fZK ._2wcfh{background-color:red}._2Cl3x_1fZK ._3vGr3_1fZK{background-color:#00f}._3vGr3_1fZK ._2wcfh ._2Cl3x_1fZK{background-color:#000}@media screen and (min-width:1000px){._2Cl3x_1fZK{color:green}._2Cl3x_1fZK ._2wcfh{color:red}._2Cl3x_1fZK ._3vGr3_1fZK{color:#00f}._3vGr3_1fZK ._2wcfh ._2Cl3x_1fZK{color:#000}}
 "
@@ -810,6 +825,11 @@ html ._3yryF {
     }
     ._3vGr3_big_theme_1l ._2wcfh ._3yryF, ._3vGr3_small_theme_1f ._2wcfh ._3yryF {
         color: black
+    }
+}
+@media screen and (min-width: 700px) {
+    html ._3yryF {
+        position: relative
     }
 }
 ._2Cl3x_small_theme_1f:focus {

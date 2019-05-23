@@ -12,6 +12,7 @@ import {
   ThemeRef,
   CSSKeyframes,
   CSSProperties,
+  MediaQueries,
 } from './types';
 import {
   makeThemedClassReference,
@@ -216,7 +217,8 @@ export function createTheme(tokens: Theme, localDebugName?: string): ThemeRef {
   return theme.themeRef;
 }
 
-export function globalStyle(selector: string, styles: Styles): void {
+type GlobalStyles = CSSProperties & MediaQueries<CSSProperties>;
+export function globalStyle(selector: string, styles: GlobalStyles): void {
   const normalisedSelector = combinedThemeSelector(selector, getThemes());
 
   addLocalCss({ [normalisedSelector]: styles });

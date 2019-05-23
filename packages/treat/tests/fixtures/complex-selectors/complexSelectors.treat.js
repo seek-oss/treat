@@ -60,6 +60,11 @@ const red = style(theme => lotsOfSelectors(theme.breakpoint));
 
 globalStyle(`html ${styles.blue}`, {
   position: 'absolute',
+  '@media': {
+    'screen and (min-width: 700px)': {
+      position: 'relative',
+    },
+  },
 });
 
 export default {

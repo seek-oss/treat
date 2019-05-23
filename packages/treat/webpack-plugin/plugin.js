@@ -259,7 +259,7 @@ module.exports = class TreatWebpackPlugin {
 
     compiler.options.module.rules.splice(0, 0, {
       test: this.test,
-      sideEffects: false,
+      sideEffects: true,
       use: [
         {
           loader: require.resolve('./loader'),

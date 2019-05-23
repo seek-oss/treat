@@ -19,7 +19,9 @@ export default ({ route, clientStats }: RenderParams) => {
   return `<html>
     <body>
         <div id="app">${render(route)}</div>
-        <script src="${clientStats.assetsByChunkName.main}"></script>
+        ${clientStats.entrypoints.main.assets.map(
+          (asset: string) => `<script src="${asset}"></script>`,
+        )}
     </body>
   </html>`;
 };

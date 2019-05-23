@@ -25,16 +25,16 @@ interface SelectorMap {
 }
 
 export interface MediaQueries<StyleType> {
-  [query: string]: StyleType;
+  '@media'?: {
+    [query: string]: StyleType;
+  };
 }
 
-interface SimpleStyles extends CSSPropertiesAndPseudos {
+interface StylesWithSelectors extends CSSPropertiesAndPseudos {
   selectors?: SelectorMap;
 }
 
-export interface Styles extends SimpleStyles {
-  '@media'?: MediaQueries<SimpleStyles>;
-}
+export type Styles = StylesWithSelectors & MediaQueries<StylesWithSelectors>;
 
 export type ThemedStyles<Theme> = (theme: Theme) => Styles;
 

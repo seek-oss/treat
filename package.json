@@ -6,8 +6,7 @@
   "scripts": {
     "pretest": "yarn build",
     "test": "jest",
-    "start-example": "webpack-dev-server",
-    "build-example": "rm -rf dist && webpack",
+    "start-docs": "webpack-dev-server --config ./site/webpack.config.js",
     "build": "lerna run build",
     "watch": "lerna run watch",
     "release": "lerna publish --canary --preid beta --dist-tag next",

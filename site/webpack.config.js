@@ -3,7 +3,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TreatPlugin = require('treat/webpack-plugin');
 
 module.exports = {
-  entry: './example/client.tsx',
+  entry: require.resolve('./src/client.tsx'),
   mode: 'development',
   resolve: {
     extensions: ['.js', '.json', '.ts', '.tsx'],

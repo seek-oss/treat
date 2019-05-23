@@ -11,8 +11,24 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(ts|tsx|js)$/,
-        use: ['babel-loader'],
+        test: /\.(ts|tsx|js|mdx?)$/,
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              babelrc: false,
+              presets: [
+                '@babel/preset-typescript',
+                ['@babel/preset-env', { modules: false }],
+                '@babel/preset-react',
+              ],
+            },
+          },
+        ],
+      },
+      {
+        test: /\.mdx?$/,
+        use: ['@mdx-js/loader'],
       },
     ],
   },

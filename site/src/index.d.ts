@@ -7,3 +7,7 @@ declare module '*.png' {
   let ImageSrc: string;
   export default ImageSrc;
 }
+
+declare module '@mdx-js/tag' {
+  export const MDXProvider: (props: any) => JSX.Element;
+}

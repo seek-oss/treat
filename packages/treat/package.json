@@ -18,6 +18,7 @@
     "webpack": "^4.30.0"
   },
   "dependencies": {
+    "@hapi/joi": "^15.0.3",
     "@types/lodash": "^4.14.123",
     "autoprefixer": "^9.5.0",
     "bluebird": "^3.5.4",

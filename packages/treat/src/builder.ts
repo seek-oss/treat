@@ -25,6 +25,7 @@ import {
   addLocalClassRef,
   combinedThemeSelector,
 } from './processSelectors';
+import { validateStyle, validateGlobalStyle } from './validator';
 import mockWebpackTreat from './mockWebpackTreat';
 
 declare const __webpack__treat__: WebpackTreat | undefined;
@@ -106,6 +107,8 @@ type ThemeStyleMap = {
 };
 const createThemedCss = (classRef: ClassRef, styles: ThemeStyleMap) => {
   Object.entries(styles).forEach(([themeRef, style]) => {
+    validateStyle(style);
+
     processStyle(style, themeRef);
 
     const themedClassRef = makeThemedClassReference(themeRef, classRef);
@@ -127,6 +130,8 @@ export function style(
   const classRef = getIdentName(localName, scopeCount++);
 
   if (typeof styles === 'object') {
+    validateStyle(styles);
+
     addLocalClassRef(classRef);
 
     processStyle(styles);
@@ -137,9 +142,14 @@ export function style(
   } else {
     const themedStyles = Object.assign(
       {},
-      ...getThemes().map(({ themeRef, tokens }) => ({
-        [themeRef]: styles(tokens),
-      })),
+      ...getThemes().map(({ themeRef, tokens }) => {
+        const themedStyles = styles(tokens);
+        validateStyle(themedStyles);
+
+        return {
+          [themeRef]: styles(tokens),
+        };
+      }),
     );
 
     return createThemedCss(classRef, themedStyles);
@@ -184,6 +194,8 @@ export function styleMap<ClassName extends string>(
     const postCss: PostCSS = fromPairs(
       Object.entries(stylesheet).map(
         ([classIdentifier, styles]: [ClassRef, Styles]) => {
+          validateStyle(styles);
+
           const classRef = getIdentName(
             createLocalName(classIdentifier),
             scopeCount++,
@@ -219,6 +231,8 @@ export function createTheme(tokens: Theme, localDebugName?: string): ThemeRef {
 
 type GlobalStyles = CSSProperties & MediaQueries<CSSProperties>;
 export function globalStyle(selector: string, styles: GlobalStyles): void {
+  validateGlobalStyle(styles);
+
   const normalisedSelector = combinedThemeSelector(selector, getThemes());
 
   addLocalCss({ [normalisedSelector]: styles });

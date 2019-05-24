@@ -7,7 +7,7 @@ import omit from 'lodash/omit';
 import isEqual from 'lodash/isEqual';
 import { validateSelector } from './validateSelector';
 
-const simplePseudos = [
+export const simplePseudos = [
   ':-moz-any-link',
   ':-moz-full-screen',
   ':-moz-placeholder',

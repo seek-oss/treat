@@ -1,5 +1,7 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+
+import NavLink from '../Typography/NavLink';
+import * as styles from './SideBar.treat';
 
 interface SideBarProps {
   items: Array<{
@@ -8,7 +10,7 @@ interface SideBarProps {
   }>;
 }
 export default ({ items }: SideBarProps) => (
-  <div style={{ display: 'flex', flexDirection: 'column' }}>
+  <div className={styles.root}>
     {items.map(({ title, route }) => (
       <NavLink key={route} to={route}>
         {title}

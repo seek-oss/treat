@@ -2,7 +2,6 @@ import fromPairs from 'lodash/fromPairs';
 
 import { Theme } from 'treat/theme';
 import {
-  WebpackTreat,
   ClassRef,
   StyleSheet,
   StylesMap,
@@ -25,16 +24,15 @@ import {
   addLocalClassRef,
   combinedThemeSelector,
 } from './processSelectors';
-import mockWebpackTreat from './mockWebpackTreat';
-
-declare const __webpack__treat__: WebpackTreat | undefined;
-
-let scopeCount = 0;
-
-const { addLocalCss, addThemedCss, addTheme, getThemes, getIdentName } =
-  typeof __webpack__treat__ === 'undefined'
-    ? mockWebpackTreat
-    : __webpack__treat__;
+import { validateStyle, validateGlobalStyle } from './validator';
+import {
+  addLocalCss,
+  addThemedCss,
+  addTheme,
+  getThemes,
+  getIdentName,
+  getNextScope,
+} from './webpackTreat';
 
 const createKeyframe = (
   keyframe: string | CSSKeyframes,
@@ -106,6 +104,8 @@ type ThemeStyleMap = {
 };
 const createThemedCss = (classRef: ClassRef, styles: ThemeStyleMap) => {
   Object.entries(styles).forEach(([themeRef, style]) => {
+    validateStyle(style);
+
     processStyle(style, themeRef);
 
     const themedClassRef = makeThemedClassReference(themeRef, classRef);
@@ -124,9 +124,11 @@ export function style(
   localDebugName?: string,
 ): ClassRef {
   const localName = localDebugName || 'style';
-  const classRef = getIdentName(localName, scopeCount++);
+  const classRef = getIdentName(localName, getNextScope());
 
   if (typeof styles === 'object') {
+    validateStyle(styles);
+
     addLocalClassRef(classRef);
 
     processStyle(styles);
@@ -137,9 +139,14 @@ export function style(
   } else {
     const themedStyles = Object.assign(
       {},
-      ...getThemes().map(({ themeRef, tokens }) => ({
-        [themeRef]: styles(tokens),
-      })),
+      ...getThemes().map(({ themeRef, tokens }) => {
+        const themedStyles = styles(tokens);
+        validateStyle(themedStyles);
+
+        return {
+          [themeRef]: themedStyles,
+        };
+      }),
     );
 
     return createThemedCss(classRef, themedStyles);
@@ -176,7 +183,10 @@ export function styleMap<ClassName extends string>(
     });
 
     Array.from(styleMap.entries()).forEach(([classIdent, styles]) => {
-      const classRef = getIdentName(createLocalName(classIdent), scopeCount++);
+      const classRef = getIdentName(
+        createLocalName(classIdent),
+        getNextScope(),
+      );
 
       classRefs[classIdent] = createThemedCss(classRef, styles);
     });
@@ -184,9 +194,11 @@ export function styleMap<ClassName extends string>(
     const postCss: PostCSS = fromPairs(
       Object.entries(stylesheet).map(
         ([classIdentifier, styles]: [ClassRef, Styles]) => {
+          validateStyle(styles);
+
           const classRef = getIdentName(
             createLocalName(classIdentifier),
-            scopeCount++,
+            getNextScope(),
           );
           classRefs[classIdentifier] = classRef;
           addLocalClassRef(classRef);
@@ -208,7 +220,7 @@ export const css = styleMap; // Backwards compatibility
 
 export function createTheme(tokens: Theme, localDebugName?: string): ThemeRef {
   const theme = {
-    themeRef: getIdentName(localDebugName || 'theme', scopeCount++, tokens),
+    themeRef: getIdentName(localDebugName || 'theme', getNextScope(), tokens),
     tokens,
   };
 
@@ -219,6 +231,8 @@ export function createTheme(tokens: Theme, localDebugName?: string): ThemeRef {
 
 type GlobalStyles = CSSProperties & MediaQueries<CSSProperties>;
 export function globalStyle(selector: string, styles: GlobalStyles): void {
+  validateGlobalStyle(styles);
+
   const normalisedSelector = combinedThemeSelector(selector, getThemes());
 
   addLocalCss({ [normalisedSelector]: styles });

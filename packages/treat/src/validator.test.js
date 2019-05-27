@@ -142,6 +142,17 @@ describe('validator', () => {
           },
         },
       },
+      {
+        selectors: {
+          ['.someClass &']: {
+            '@media': {
+              '(min-width: 800px)': {
+                color: 'red',
+              },
+            },
+          },
+        },
+      },
     ];
 
     it.each(invalidTests)('invalid', value => {

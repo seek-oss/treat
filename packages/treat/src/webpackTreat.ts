@@ -1,5 +1,3 @@
-// This file is a mock of the real webpack treat implementation that is supplied by the loader.
-// This file should only be used in tests.
 import { Theme } from 'treat/theme';
 import { WebpackTreat, TreatTheme } from './types';
 

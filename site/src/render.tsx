@@ -16,16 +16,22 @@ interface RenderParams {
   clientStats: any;
 }
 export default ({ route, clientStats }: RenderParams) => {
-  const assets = clientStats.entrypoints.main.assets.map((asset: string) =>
-    asset.endsWith('.css')
-      ? `<link rel="stylesheet" href="${asset}"></link>`
-      : `<script src="${asset}"></script>`,
-  );
+  const assets = clientStats.entrypoints.main.assets as Array<string>;
+
+  const cssAssets = assets
+    .filter(asset => asset.endsWith('.css'))
+    .map(asset => `<link rel="stylesheet" href="${asset}"></link>`);
+  const jsAssets = assets
+    .filter(asset => asset.endsWith('.js'))
+    .map(asset => `<script src="${asset}"></script>`);
 
   return `<html>
+    <head>
+      ${cssAssets.join('\n')}
+    </head>
     <body>
         <div id="app">${render(route)}</div>
-        ${assets.join('\n')}
+        ${jsAssets.join('\n')}
     </body>
   </html>`;
 };

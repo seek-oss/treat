@@ -1,7 +1,7 @@
 const { validateSelector } = require('../lib/commonjs/validateSelector');
 
 describe('validateSelector', () => {
-  describe('valid selectors', () => {
+  describe('selectors that target "&"', () => {
     const validSelectors = [
       '&',
       '& &',
@@ -29,7 +29,7 @@ describe('validateSelector', () => {
     });
   });
 
-  describe('invalid selectors', () => {
+  describe('selectors that do not target "&"', () => {
     const invalidSelectors = [
       '& .foo',
       '& [foo]',

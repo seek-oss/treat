@@ -5,7 +5,10 @@ describe('validateSelector', () => {
     const validSelectors = [
       '&',
       '& &',
+      '&, &',
       '.foo &',
+      '.foo &, .bar &',
+      '.foo > * > &',
       '[foo] &',
       '& .foo &',
       '.foo ~ .bar &',
@@ -32,6 +35,8 @@ describe('validateSelector', () => {
   describe('selectors that do not target "&"', () => {
     const invalidSelectors = [
       '& .foo',
+      '&, & .foo',
+      '& .foo, &',
       '& [foo]',
       '& .foo .bar',
       '& .foo .bar .baz',

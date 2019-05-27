@@ -5,6 +5,7 @@ import each from 'lodash/each';
 import pick from 'lodash/pick';
 import omit from 'lodash/omit';
 import isEqual from 'lodash/isEqual';
+import { validateSelector } from './validateSelector';
 
 const simplePseudos = [
   ':-moz-any-link',
@@ -111,11 +112,9 @@ const normalizeStyles = (className: string, styles: any) => {
   if (styles.selectors) {
     selectorStyles = mapKeys(styles.selectors, (_, selector) => {
       // Themed selectors can be empty if themes haven't registered yet.
-      // In this case don't throw the error
-      if (selector.length > 0 && selector.indexOf('&') === -1) {
-        throw new Error(
-          'Selectors must contain an "&" character, which is a reference to the parent class.',
-        );
+      // In this case don't validate the selector
+      if (selector.length > 0) {
+        validateSelector(selector);
       }
 
       return selector.replace(RegExp('&', 'g'), className);

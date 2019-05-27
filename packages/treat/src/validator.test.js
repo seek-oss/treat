@@ -8,7 +8,34 @@ describe('validator', () => {
     const validTests = [
       {},
       { display: 'block' },
-      { color: 'red', '@media': { '(min-width: 800px)': { color: 'blue' } } },
+      {
+        color: 'red',
+        '@media': { '(min-width: 800px)': { color: 'blue' } },
+      },
+      {
+        '@keyframes': {
+          from: {
+            transform: 'scale(0)',
+          },
+          to: {
+            transform: 'scale(1)',
+          },
+        },
+      },
+      {
+        '@media': {
+          '(min-width: 800px)': {
+            '@keyframes': {
+              from: {
+                transform: 'scale(0)',
+              },
+              to: {
+                transform: 'scale(1)',
+              },
+            },
+          },
+        },
+      },
     ];
 
     it.each(validTests)('valid', value => {
@@ -91,6 +118,48 @@ describe('validator', () => {
         selectors: {
           ['.someClass &']: {
             color: 'red',
+          },
+        },
+      },
+      {
+        '@keyframes': {
+          from: {
+            transform: 'scale(0)',
+          },
+          to: {
+            transform: 'scale(1)',
+          },
+        },
+      },
+      {
+        '@media': {
+          '(min-width: 800px)': {
+            '@keyframes': {
+              from: {
+                transform: 'scale(0)',
+              },
+              to: {
+                transform: 'scale(1)',
+              },
+            },
+          },
+        },
+      },
+      {
+        '@media': {
+          '(min-width: 800px)': {
+            selectors: {
+              ['.someClass &']: {
+                '@keyframes': {
+                  from: {
+                    transform: 'scale(0)',
+                  },
+                  to: {
+                    transform: 'scale(1)',
+                  },
+                },
+              },
+            },
           },
         },
       },

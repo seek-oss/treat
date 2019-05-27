@@ -144,7 +144,7 @@ export function style(
         validateStyle(themedStyles);
 
         return {
-          [themeRef]: styles(tokens),
+          [themeRef]: themedStyles,
         };
       }),
     );

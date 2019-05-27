@@ -2,7 +2,6 @@ import fromPairs from 'lodash/fromPairs';
 
 import { Theme } from 'treat/theme';
 import {
-  WebpackTreat,
   ClassRef,
   StyleSheet,
   StylesMap,
@@ -26,16 +25,14 @@ import {
   combinedThemeSelector,
 } from './processSelectors';
 import { validateStyle, validateGlobalStyle } from './validator';
-import mockWebpackTreat from './mockWebpackTreat';
-
-declare const __webpack__treat__: WebpackTreat | undefined;
-
-let scopeCount = 0;
-
-const { addLocalCss, addThemedCss, addTheme, getThemes, getIdentName } =
-  typeof __webpack__treat__ === 'undefined'
-    ? mockWebpackTreat
-    : __webpack__treat__;
+import {
+  addLocalCss,
+  addThemedCss,
+  addTheme,
+  getThemes,
+  getIdentName,
+  getNextScope,
+} from './webpackTreat';
 
 const createKeyframe = (
   keyframe: string | CSSKeyframes,
@@ -127,7 +124,7 @@ export function style(
   localDebugName?: string,
 ): ClassRef {
   const localName = localDebugName || 'style';
-  const classRef = getIdentName(localName, scopeCount++);
+  const classRef = getIdentName(localName, getNextScope());
 
   if (typeof styles === 'object') {
     validateStyle(styles);
@@ -186,7 +183,10 @@ export function styleMap<ClassName extends string>(
     });
 
     Array.from(styleMap.entries()).forEach(([classIdent, styles]) => {
-      const classRef = getIdentName(createLocalName(classIdent), scopeCount++);
+      const classRef = getIdentName(
+        createLocalName(classIdent),
+        getNextScope(),
+      );
 
       classRefs[classIdent] = createThemedCss(classRef, styles);
     });
@@ -198,7 +198,7 @@ export function styleMap<ClassName extends string>(
 
           const classRef = getIdentName(
             createLocalName(classIdentifier),
-            scopeCount++,
+            getNextScope(),
           );
           classRefs[classIdentifier] = classRef;
           addLocalClassRef(classRef);
@@ -220,7 +220,7 @@ export const css = styleMap; // Backwards compatibility
 
 export function createTheme(tokens: Theme, localDebugName?: string): ThemeRef {
   const theme = {
-    themeRef: getIdentName(localDebugName || 'theme', scopeCount++, tokens),
+    themeRef: getIdentName(localDebugName || 'theme', getNextScope(), tokens),
     tokens,
   };
 

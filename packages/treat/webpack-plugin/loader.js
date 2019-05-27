@@ -6,6 +6,8 @@ const NodeTargetPlugin = require('webpack/lib/node/NodeTargetPlugin');
 const LibraryTemplatePlugin = require('webpack/lib/LibraryTemplatePlugin');
 const SingleEntryPlugin = require('webpack/lib/SingleEntryPlugin');
 const LimitChunkCountPlugin = require('webpack/lib/optimize/LimitChunkCountPlugin');
+const ExternalsPlugin = require('webpack/lib/ExternalsPlugin');
+
 const normalizePath = require('normalize-path');
 const Promise = require('bluebird');
 const sortBy = require('lodash/sortBy');
@@ -30,19 +32,21 @@ const stringifyLoaderRequest = loaderConfig => {
 const compileTreatSource = (loader, request) =>
   new Promise((resolve, reject) => {
     // Child compiler will compile treat files to be evaled during compilation
-    const childFilename = 'treat-output-filename';
+    const childFilename = loaderUtils.interpolateName(loader, '[name]', {});
     const outputOptions = { filename: childFilename };
 
     const childCompiler = getRootCompilation(loader).createChildCompiler(
       TWL,
       outputOptions,
+      [
+        new NodeTemplatePlugin(outputOptions),
+        new LibraryTemplatePlugin(null, 'commonjs2'),
+        new NodeTargetPlugin(),
+        new SingleEntryPlugin(loader.context, `!!${request}`),
+        new LimitChunkCountPlugin({ maxChunks: 1 }),
+        new ExternalsPlugin('commonjs', 'treat'),
+      ],
     );
-
-    new NodeTemplatePlugin(outputOptions).apply(childCompiler);
-    new LibraryTemplatePlugin(null, 'commonjs2').apply(childCompiler);
-    new NodeTargetPlugin().apply(childCompiler);
-    new SingleEntryPlugin(loader.context, `!!${request}`).apply(childCompiler);
-    new LimitChunkCountPlugin({ maxChunks: 1 }).apply(childCompiler);
 
     const subCache = 'subcache ' + __dirname + ' ' + request;
     childCompiler.hooks.compilation.tap(TWL, compilation => {
@@ -203,27 +207,27 @@ async function produce(loader, request) {
 
   let result;
 
+  const __webpack_treat__ = {
+    addLocalCss,
+    addThemedCss,
+    getThemes: store.getThemes,
+    addTheme: theme => {
+      ownedThemes.push(theme.themeRef);
+
+      store.addTheme(theme, loader.resourcePath, loader._module.identifier());
+    },
+    getIdentName,
+  };
+
+  const sourceWithBoundLoaderInstance = `require('treat/lib/commonjs/webpackTreat').setWebpackTreat(__webpack_treat__);\n${source}`;
+
   try {
     result = eval(
-      source,
+      sourceWithBoundLoaderInstance,
       loader.resourcePath,
       {
         console,
-        __webpack__treat__: {
-          addLocalCss,
-          addThemedCss,
-          getThemes: store.getThemes,
-          addTheme: theme => {
-            ownedThemes.push(theme.themeRef);
-
-            store.addTheme(
-              theme,
-              loader.resourcePath,
-              loader._module.identifier(),
-            );
-          },
-          getIdentName,
-        },
+        __webpack_treat__,
       },
       true,
     );

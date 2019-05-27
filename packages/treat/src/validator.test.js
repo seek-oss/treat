@@ -12,9 +12,7 @@ describe('validator', () => {
     ];
 
     it.each(validTests)('valid', value => {
-      const { valid } = validateGlobalStyle(value, false);
-
-      expect(valid).toBe(true);
+      expect(() => validateGlobalStyle(value)).not.toThrow();
     });
 
     const invalidTests = [
@@ -54,9 +52,7 @@ describe('validator', () => {
     ];
 
     it.each(invalidTests)('invalid', value => {
-      const { valid } = validateGlobalStyle(value, false);
-
-      expect(valid).toBe(false);
+      expect(() => validateGlobalStyle(value)).toThrow();
     });
   });
 
@@ -101,9 +97,7 @@ describe('validator', () => {
     ];
 
     it.each(validTests)('valid', value => {
-      const { valid } = validateStyle(value, false);
-
-      expect(valid).toBe(true);
+      expect(() => validateStyle(value)).not.toThrow();
     });
 
     const invalidTests = [
@@ -151,9 +145,7 @@ describe('validator', () => {
     ];
 
     it.each(invalidTests)('invalid', value => {
-      const { valid } = validateStyle(value, false);
-
-      expect(valid).toBe(false);
+      expect(() => validateStyle(value)).toThrow();
     });
   });
 });

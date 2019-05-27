@@ -255,7 +255,7 @@ Media queries are also supported via the `@media` key.
 }
 ```
 
-For anything more advanced, you can provide a set of custom selectors. Within each selector, you must provide the ampersand character (`&`), which refers to the generated class name.
+For anything more advanced, you can provide a set of custom selectors. Within each selector, you must target the ampersand character (`&`), which refers to the generated class name.
 
 ```js
 {

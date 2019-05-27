@@ -27,10 +27,10 @@ const lotsOfSelectors = breakpoint => ({
     [`screen and (min-width: ${breakpoint}px)`]: {
       color: 'green',
       selectors: {
-        [`& ${unthemedClassStyle}`]: {
+        [`${unthemedClassStyle} &`]: {
           color: 'red',
         },
-        [`& ${themedStyle}`]: {
+        [`${themedStyle} &`]: {
           color: 'blue',
         },
         [`${themedStyle} ${unthemedClassStyle} &`]: {
@@ -40,10 +40,10 @@ const lotsOfSelectors = breakpoint => ({
     },
   },
   selectors: {
-    [`& ${unthemedClassStyle}`]: {
+    [`${unthemedClassStyle} &`]: {
       backgroundColor: 'red',
     },
-    [`& ${themedStyle}`]: {
+    [`${themedStyle} &`]: {
       backgroundColor: 'blue',
     },
     [`${themedStyle} ${unthemedClassStyle} &`]: {

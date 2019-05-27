@@ -524,10 +524,10 @@ exports[`Stylesheet Complex selectors - Autoprefixer (iOS 8) - should create a d
 "._3yryF:focus {
     color: purple
 }
-._3yryF ._2wcfh {
+._2wcfh ._3yryF {
     background-color: red
 }
-._3yryF ._3vGr3_1ld8, ._3yryF ._3vGr3_1fZK {
+._3vGr3_1ld8 ._3yryF, ._3vGr3_1fZK ._3yryF {
     background-color: blue
 }
 ._3vGr3_1ld8 ._2wcfh ._3yryF, ._3vGr3_1fZK ._2wcfh ._3yryF {
@@ -540,10 +540,10 @@ html ._3yryF {
     ._3yryF {
         color: green
     }
-    ._3yryF ._2wcfh {
+    ._2wcfh ._3yryF {
         color: red
     }
-    ._3yryF ._3vGr3_1ld8, ._3yryF ._3vGr3_1fZK {
+    ._3vGr3_1ld8 ._3yryF, ._3vGr3_1fZK ._3yryF {
         color: blue
     }
     ._3vGr3_1ld8 ._2wcfh ._3yryF, ._3vGr3_1fZK ._2wcfh ._3yryF {
@@ -558,10 +558,10 @@ html ._3yryF {
 ._2Cl3x_1fZK:focus {
     color: purple
 }
-._2Cl3x_1fZK ._2wcfh {
+._2wcfh ._2Cl3x_1fZK {
     background-color: red
 }
-._2Cl3x_1fZK ._3vGr3_1fZK {
+._3vGr3_1fZK ._2Cl3x_1fZK {
     background-color: blue
 }
 ._3vGr3_1fZK ._2wcfh ._2Cl3x_1fZK {
@@ -571,10 +571,10 @@ html ._3yryF {
     ._2Cl3x_1fZK {
         color: green
     }
-    ._2Cl3x_1fZK ._2wcfh {
+    ._2wcfh ._2Cl3x_1fZK {
         color: red
     }
-    ._2Cl3x_1fZK ._3vGr3_1fZK {
+    ._3vGr3_1fZK ._2Cl3x_1fZK {
         color: blue
     }
     ._3vGr3_1fZK ._2wcfh ._2Cl3x_1fZK {
@@ -584,10 +584,10 @@ html ._3yryF {
 ._2Cl3x_1ld8:focus {
     color: purple
 }
-._2Cl3x_1ld8 ._2wcfh {
+._2wcfh ._2Cl3x_1ld8 {
     background-color: red
 }
-._2Cl3x_1ld8 ._3vGr3_1ld8 {
+._3vGr3_1ld8 ._2Cl3x_1ld8 {
     background-color: blue
 }
 ._3vGr3_1ld8 ._2wcfh ._2Cl3x_1ld8 {
@@ -597,10 +597,10 @@ html ._3yryF {
     ._2Cl3x_1ld8 {
         color: green
     }
-    ._2Cl3x_1ld8 ._2wcfh {
+    ._2wcfh ._2Cl3x_1ld8 {
         color: red
     }
-    ._2Cl3x_1ld8 ._3vGr3_1ld8 {
+    ._3vGr3_1ld8 ._2Cl3x_1ld8 {
         color: blue
     }
     ._3vGr3_1ld8 ._2wcfh ._2Cl3x_1ld8 {
@@ -614,10 +614,10 @@ exports[`Stylesheet Complex selectors - Custom idents - should create a determin
 ".complexSelectors-styles_blue_3yryF:focus {
     color: purple
 }
-.complexSelectors-styles_blue_3yryF .complexSelectors-unthemedClassStyle_2wcfh {
+.complexSelectors-unthemedClassStyle_2wcfh .complexSelectors-styles_blue_3yryF {
     background-color: red
 }
-.complexSelectors-styles_blue_3yryF .complexSelectors-themedStyle_3vGr3-big_1l, .complexSelectors-styles_blue_3yryF .complexSelectors-themedStyle_3vGr3-small_1f {
+.complexSelectors-themedStyle_3vGr3-big_1l .complexSelectors-styles_blue_3yryF, .complexSelectors-themedStyle_3vGr3-small_1f .complexSelectors-styles_blue_3yryF {
     background-color: blue
 }
 .complexSelectors-themedStyle_3vGr3-big_1l .complexSelectors-unthemedClassStyle_2wcfh .complexSelectors-styles_blue_3yryF, .complexSelectors-themedStyle_3vGr3-small_1f .complexSelectors-unthemedClassStyle_2wcfh .complexSelectors-styles_blue_3yryF {
@@ -630,10 +630,10 @@ html .complexSelectors-styles_blue_3yryF {
     .complexSelectors-styles_blue_3yryF {
         color: green
     }
-    .complexSelectors-styles_blue_3yryF .complexSelectors-unthemedClassStyle_2wcfh {
+    .complexSelectors-unthemedClassStyle_2wcfh .complexSelectors-styles_blue_3yryF {
         color: red
     }
-    .complexSelectors-styles_blue_3yryF .complexSelectors-themedStyle_3vGr3-big_1l, .complexSelectors-styles_blue_3yryF .complexSelectors-themedStyle_3vGr3-small_1f {
+    .complexSelectors-themedStyle_3vGr3-big_1l .complexSelectors-styles_blue_3yryF, .complexSelectors-themedStyle_3vGr3-small_1f .complexSelectors-styles_blue_3yryF {
         color: blue
     }
     .complexSelectors-themedStyle_3vGr3-big_1l .complexSelectors-unthemedClassStyle_2wcfh .complexSelectors-styles_blue_3yryF, .complexSelectors-themedStyle_3vGr3-small_1f .complexSelectors-unthemedClassStyle_2wcfh .complexSelectors-styles_blue_3yryF {
@@ -645,39 +645,13 @@ html .complexSelectors-styles_blue_3yryF {
         position: relative
     }
 }
-.complexSelectors-red_2Cl3x-big_1l:focus {
-    color: purple
-}
-.complexSelectors-red_2Cl3x-big_1l .complexSelectors-unthemedClassStyle_2wcfh {
-    background-color: red
-}
-.complexSelectors-red_2Cl3x-big_1l .complexSelectors-themedStyle_3vGr3-big_1l {
-    background-color: blue
-}
-.complexSelectors-themedStyle_3vGr3-big_1l .complexSelectors-unthemedClassStyle_2wcfh .complexSelectors-red_2Cl3x-big_1l {
-    background-color: black
-}
-@media screen and (min-width: 700px) {
-    .complexSelectors-red_2Cl3x-big_1l {
-        color: green
-    }
-    .complexSelectors-red_2Cl3x-big_1l .complexSelectors-unthemedClassStyle_2wcfh {
-        color: red
-    }
-    .complexSelectors-red_2Cl3x-big_1l .complexSelectors-themedStyle_3vGr3-big_1l {
-        color: blue
-    }
-    .complexSelectors-themedStyle_3vGr3-big_1l .complexSelectors-unthemedClassStyle_2wcfh .complexSelectors-red_2Cl3x-big_1l {
-        color: black
-    }
-}
 .complexSelectors-red_2Cl3x-small_1f:focus {
     color: purple
 }
-.complexSelectors-red_2Cl3x-small_1f .complexSelectors-unthemedClassStyle_2wcfh {
+.complexSelectors-unthemedClassStyle_2wcfh .complexSelectors-red_2Cl3x-small_1f {
     background-color: red
 }
-.complexSelectors-red_2Cl3x-small_1f .complexSelectors-themedStyle_3vGr3-small_1f {
+.complexSelectors-themedStyle_3vGr3-small_1f .complexSelectors-red_2Cl3x-small_1f {
     background-color: blue
 }
 .complexSelectors-themedStyle_3vGr3-small_1f .complexSelectors-unthemedClassStyle_2wcfh .complexSelectors-red_2Cl3x-small_1f {
@@ -687,13 +661,39 @@ html .complexSelectors-styles_blue_3yryF {
     .complexSelectors-red_2Cl3x-small_1f {
         color: green
     }
-    .complexSelectors-red_2Cl3x-small_1f .complexSelectors-unthemedClassStyle_2wcfh {
+    .complexSelectors-unthemedClassStyle_2wcfh .complexSelectors-red_2Cl3x-small_1f {
         color: red
     }
-    .complexSelectors-red_2Cl3x-small_1f .complexSelectors-themedStyle_3vGr3-small_1f {
+    .complexSelectors-themedStyle_3vGr3-small_1f .complexSelectors-red_2Cl3x-small_1f {
         color: blue
     }
     .complexSelectors-themedStyle_3vGr3-small_1f .complexSelectors-unthemedClassStyle_2wcfh .complexSelectors-red_2Cl3x-small_1f {
+        color: black
+    }
+}
+.complexSelectors-red_2Cl3x-big_1l:focus {
+    color: purple
+}
+.complexSelectors-unthemedClassStyle_2wcfh .complexSelectors-red_2Cl3x-big_1l {
+    background-color: red
+}
+.complexSelectors-themedStyle_3vGr3-big_1l .complexSelectors-red_2Cl3x-big_1l {
+    background-color: blue
+}
+.complexSelectors-themedStyle_3vGr3-big_1l .complexSelectors-unthemedClassStyle_2wcfh .complexSelectors-red_2Cl3x-big_1l {
+    background-color: black
+}
+@media screen and (min-width: 700px) {
+    .complexSelectors-red_2Cl3x-big_1l {
+        color: green
+    }
+    .complexSelectors-unthemedClassStyle_2wcfh .complexSelectors-red_2Cl3x-big_1l {
+        color: red
+    }
+    .complexSelectors-themedStyle_3vGr3-big_1l .complexSelectors-red_2Cl3x-big_1l {
+        color: blue
+    }
+    .complexSelectors-themedStyle_3vGr3-big_1l .complexSelectors-unthemedClassStyle_2wcfh .complexSelectors-red_2Cl3x-big_1l {
         color: black
     }
 }
@@ -704,10 +704,10 @@ exports[`Stylesheet Complex selectors - Development mode - should create a deter
 ".complexSelectors-styles_blue_3yryF:focus {
     color: purple
 }
-.complexSelectors-styles_blue_3yryF .complexSelectors-unthemedClassStyle_2wcfh {
+.complexSelectors-unthemedClassStyle_2wcfh .complexSelectors-styles_blue_3yryF {
     background-color: red
 }
-.complexSelectors-styles_blue_3yryF .complexSelectors-themedStyle_3vGr3_complexSelectors-big_1ld8, .complexSelectors-styles_blue_3yryF .complexSelectors-themedStyle_3vGr3_complexSelectors-small_1fZK {
+.complexSelectors-themedStyle_3vGr3_complexSelectors-big_1ld8 .complexSelectors-styles_blue_3yryF, .complexSelectors-themedStyle_3vGr3_complexSelectors-small_1fZK .complexSelectors-styles_blue_3yryF {
     background-color: blue
 }
 .complexSelectors-themedStyle_3vGr3_complexSelectors-big_1ld8 .complexSelectors-unthemedClassStyle_2wcfh .complexSelectors-styles_blue_3yryF, .complexSelectors-themedStyle_3vGr3_complexSelectors-small_1fZK .complexSelectors-unthemedClassStyle_2wcfh .complexSelectors-styles_blue_3yryF {
@@ -720,10 +720,10 @@ html .complexSelectors-styles_blue_3yryF {
     .complexSelectors-styles_blue_3yryF {
         color: green
     }
-    .complexSelectors-styles_blue_3yryF .complexSelectors-unthemedClassStyle_2wcfh {
+    .complexSelectors-unthemedClassStyle_2wcfh .complexSelectors-styles_blue_3yryF {
         color: red
     }
-    .complexSelectors-styles_blue_3yryF .complexSelectors-themedStyle_3vGr3_complexSelectors-big_1ld8, .complexSelectors-styles_blue_3yryF .complexSelectors-themedStyle_3vGr3_complexSelectors-small_1fZK {
+    .complexSelectors-themedStyle_3vGr3_complexSelectors-big_1ld8 .complexSelectors-styles_blue_3yryF, .complexSelectors-themedStyle_3vGr3_complexSelectors-small_1fZK .complexSelectors-styles_blue_3yryF {
         color: blue
     }
     .complexSelectors-themedStyle_3vGr3_complexSelectors-big_1ld8 .complexSelectors-unthemedClassStyle_2wcfh .complexSelectors-styles_blue_3yryF, .complexSelectors-themedStyle_3vGr3_complexSelectors-small_1fZK .complexSelectors-unthemedClassStyle_2wcfh .complexSelectors-styles_blue_3yryF {
@@ -738,10 +738,10 @@ html .complexSelectors-styles_blue_3yryF {
 .complexSelectors-red_2Cl3x_complexSelectors-big_1ld8:focus {
     color: purple
 }
-.complexSelectors-red_2Cl3x_complexSelectors-big_1ld8 .complexSelectors-unthemedClassStyle_2wcfh {
+.complexSelectors-unthemedClassStyle_2wcfh .complexSelectors-red_2Cl3x_complexSelectors-big_1ld8 {
     background-color: red
 }
-.complexSelectors-red_2Cl3x_complexSelectors-big_1ld8 .complexSelectors-themedStyle_3vGr3_complexSelectors-big_1ld8 {
+.complexSelectors-themedStyle_3vGr3_complexSelectors-big_1ld8 .complexSelectors-red_2Cl3x_complexSelectors-big_1ld8 {
     background-color: blue
 }
 .complexSelectors-themedStyle_3vGr3_complexSelectors-big_1ld8 .complexSelectors-unthemedClassStyle_2wcfh .complexSelectors-red_2Cl3x_complexSelectors-big_1ld8 {
@@ -751,10 +751,10 @@ html .complexSelectors-styles_blue_3yryF {
     .complexSelectors-red_2Cl3x_complexSelectors-big_1ld8 {
         color: green
     }
-    .complexSelectors-red_2Cl3x_complexSelectors-big_1ld8 .complexSelectors-unthemedClassStyle_2wcfh {
+    .complexSelectors-unthemedClassStyle_2wcfh .complexSelectors-red_2Cl3x_complexSelectors-big_1ld8 {
         color: red
     }
-    .complexSelectors-red_2Cl3x_complexSelectors-big_1ld8 .complexSelectors-themedStyle_3vGr3_complexSelectors-big_1ld8 {
+    .complexSelectors-themedStyle_3vGr3_complexSelectors-big_1ld8 .complexSelectors-red_2Cl3x_complexSelectors-big_1ld8 {
         color: blue
     }
     .complexSelectors-themedStyle_3vGr3_complexSelectors-big_1ld8 .complexSelectors-unthemedClassStyle_2wcfh .complexSelectors-red_2Cl3x_complexSelectors-big_1ld8 {
@@ -764,10 +764,10 @@ html .complexSelectors-styles_blue_3yryF {
 .complexSelectors-red_2Cl3x_complexSelectors-small_1fZK:focus {
     color: purple
 }
-.complexSelectors-red_2Cl3x_complexSelectors-small_1fZK .complexSelectors-unthemedClassStyle_2wcfh {
+.complexSelectors-unthemedClassStyle_2wcfh .complexSelectors-red_2Cl3x_complexSelectors-small_1fZK {
     background-color: red
 }
-.complexSelectors-red_2Cl3x_complexSelectors-small_1fZK .complexSelectors-themedStyle_3vGr3_complexSelectors-small_1fZK {
+.complexSelectors-themedStyle_3vGr3_complexSelectors-small_1fZK .complexSelectors-red_2Cl3x_complexSelectors-small_1fZK {
     background-color: blue
 }
 .complexSelectors-themedStyle_3vGr3_complexSelectors-small_1fZK .complexSelectors-unthemedClassStyle_2wcfh .complexSelectors-red_2Cl3x_complexSelectors-small_1fZK {
@@ -777,10 +777,10 @@ html .complexSelectors-styles_blue_3yryF {
     .complexSelectors-red_2Cl3x_complexSelectors-small_1fZK {
         color: green
     }
-    .complexSelectors-red_2Cl3x_complexSelectors-small_1fZK .complexSelectors-unthemedClassStyle_2wcfh {
+    .complexSelectors-unthemedClassStyle_2wcfh .complexSelectors-red_2Cl3x_complexSelectors-small_1fZK {
         color: red
     }
-    .complexSelectors-red_2Cl3x_complexSelectors-small_1fZK .complexSelectors-themedStyle_3vGr3_complexSelectors-small_1fZK {
+    .complexSelectors-themedStyle_3vGr3_complexSelectors-small_1fZK .complexSelectors-red_2Cl3x_complexSelectors-small_1fZK {
         color: blue
     }
     .complexSelectors-themedStyle_3vGr3_complexSelectors-small_1fZK .complexSelectors-unthemedClassStyle_2wcfh .complexSelectors-red_2Cl3x_complexSelectors-small_1fZK {
@@ -791,9 +791,9 @@ html .complexSelectors-styles_blue_3yryF {
 `;
 
 exports[`Stylesheet Complex selectors - Production mode - should create a deterministic stylesheet 1`] = `
-"._3yryF:focus{color:purple}._3yryF ._2wcfh{background-color:red}._3yryF ._3vGr3_1fZK,._3yryF ._3vGr3_1ld8{background-color:#00f}._3vGr3_1fZK ._2wcfh ._3yryF,._3vGr3_1ld8 ._2wcfh ._3yryF{background-color:#000}html ._3yryF{position:absolute}@media screen and (min-width:300px){._3yryF{color:green}._3yryF ._2wcfh{color:red}._3yryF ._3vGr3_1fZK,._3yryF ._3vGr3_1ld8{color:#00f}._3vGr3_1fZK ._2wcfh ._3yryF,._3vGr3_1ld8 ._2wcfh ._3yryF{color:#000}}@media screen and (min-width:700px){html ._3yryF{position:relative}}
-._2Cl3x_1ld8:focus{color:purple}._2Cl3x_1ld8 ._2wcfh{background-color:red}._2Cl3x_1ld8 ._3vGr3_1ld8{background-color:#00f}._3vGr3_1ld8 ._2wcfh ._2Cl3x_1ld8{background-color:#000}@media screen and (min-width:700px){._2Cl3x_1ld8{color:green}._2Cl3x_1ld8 ._2wcfh{color:red}._2Cl3x_1ld8 ._3vGr3_1ld8{color:#00f}._3vGr3_1ld8 ._2wcfh ._2Cl3x_1ld8{color:#000}}
-._2Cl3x_1fZK:focus{color:purple}._2Cl3x_1fZK ._2wcfh{background-color:red}._2Cl3x_1fZK ._3vGr3_1fZK{background-color:#00f}._3vGr3_1fZK ._2wcfh ._2Cl3x_1fZK{background-color:#000}@media screen and (min-width:1000px){._2Cl3x_1fZK{color:green}._2Cl3x_1fZK ._2wcfh{color:red}._2Cl3x_1fZK ._3vGr3_1fZK{color:#00f}._3vGr3_1fZK ._2wcfh ._2Cl3x_1fZK{color:#000}}
+"._3yryF:focus{color:purple}._2wcfh ._3yryF{background-color:red}._3vGr3_1fZK ._3yryF,._3vGr3_1ld8 ._3yryF{background-color:#00f}._3vGr3_1fZK ._2wcfh ._3yryF,._3vGr3_1ld8 ._2wcfh ._3yryF{background-color:#000}html ._3yryF{position:absolute}@media screen and (min-width:300px){._3yryF{color:green}._2wcfh ._3yryF{color:red}._3vGr3_1fZK ._3yryF,._3vGr3_1ld8 ._3yryF{color:#00f}._3vGr3_1fZK ._2wcfh ._3yryF,._3vGr3_1ld8 ._2wcfh ._3yryF{color:#000}}@media screen and (min-width:700px){html ._3yryF{position:relative}}
+._2Cl3x_1ld8:focus{color:purple}._2wcfh ._2Cl3x_1ld8{background-color:red}._3vGr3_1ld8 ._2Cl3x_1ld8{background-color:#00f}._3vGr3_1ld8 ._2wcfh ._2Cl3x_1ld8{background-color:#000}@media screen and (min-width:700px){._2Cl3x_1ld8{color:green}._2wcfh ._2Cl3x_1ld8{color:red}._3vGr3_1ld8 ._2Cl3x_1ld8{color:#00f}._3vGr3_1ld8 ._2wcfh ._2Cl3x_1ld8{color:#000}}
+._2Cl3x_1fZK:focus{color:purple}._2wcfh ._2Cl3x_1fZK{background-color:red}._3vGr3_1fZK ._2Cl3x_1fZK{background-color:#00f}._3vGr3_1fZK ._2wcfh ._2Cl3x_1fZK{background-color:#000}@media screen and (min-width:1000px){._2Cl3x_1fZK{color:green}._2wcfh ._2Cl3x_1fZK{color:red}._3vGr3_1fZK ._2Cl3x_1fZK{color:#00f}._3vGr3_1fZK ._2wcfh ._2Cl3x_1fZK{color:#000}}
 "
 `;
 
@@ -801,10 +801,10 @@ exports[`Stylesheet Complex selectors - Theme function ident - should create a d
 "._3yryF:focus {
     color: purple
 }
-._3yryF ._2wcfh {
+._2wcfh ._3yryF {
     background-color: red
 }
-._3yryF ._3vGr3_big_theme_1l, ._3yryF ._3vGr3_small_theme_1f {
+._3vGr3_big_theme_1l ._3yryF, ._3vGr3_small_theme_1f ._3yryF {
     background-color: blue
 }
 ._3vGr3_big_theme_1l ._2wcfh ._3yryF, ._3vGr3_small_theme_1f ._2wcfh ._3yryF {
@@ -817,10 +817,10 @@ html ._3yryF {
     ._3yryF {
         color: green
     }
-    ._3yryF ._2wcfh {
+    ._2wcfh ._3yryF {
         color: red
     }
-    ._3yryF ._3vGr3_big_theme_1l, ._3yryF ._3vGr3_small_theme_1f {
+    ._3vGr3_big_theme_1l ._3yryF, ._3vGr3_small_theme_1f ._3yryF {
         color: blue
     }
     ._3vGr3_big_theme_1l ._2wcfh ._3yryF, ._3vGr3_small_theme_1f ._2wcfh ._3yryF {
@@ -835,10 +835,10 @@ html ._3yryF {
 ._2Cl3x_small_theme_1f:focus {
     color: purple
 }
-._2Cl3x_small_theme_1f ._2wcfh {
+._2wcfh ._2Cl3x_small_theme_1f {
     background-color: red
 }
-._2Cl3x_small_theme_1f ._3vGr3_small_theme_1f {
+._3vGr3_small_theme_1f ._2Cl3x_small_theme_1f {
     background-color: blue
 }
 ._3vGr3_small_theme_1f ._2wcfh ._2Cl3x_small_theme_1f {
@@ -848,10 +848,10 @@ html ._3yryF {
     ._2Cl3x_small_theme_1f {
         color: green
     }
-    ._2Cl3x_small_theme_1f ._2wcfh {
+    ._2wcfh ._2Cl3x_small_theme_1f {
         color: red
     }
-    ._2Cl3x_small_theme_1f ._3vGr3_small_theme_1f {
+    ._3vGr3_small_theme_1f ._2Cl3x_small_theme_1f {
         color: blue
     }
     ._3vGr3_small_theme_1f ._2wcfh ._2Cl3x_small_theme_1f {
@@ -861,10 +861,10 @@ html ._3yryF {
 ._2Cl3x_big_theme_1l:focus {
     color: purple
 }
-._2Cl3x_big_theme_1l ._2wcfh {
+._2wcfh ._2Cl3x_big_theme_1l {
     background-color: red
 }
-._2Cl3x_big_theme_1l ._3vGr3_big_theme_1l {
+._3vGr3_big_theme_1l ._2Cl3x_big_theme_1l {
     background-color: blue
 }
 ._3vGr3_big_theme_1l ._2wcfh ._2Cl3x_big_theme_1l {
@@ -874,10 +874,10 @@ html ._3yryF {
     ._2Cl3x_big_theme_1l {
         color: green
     }
-    ._2Cl3x_big_theme_1l ._2wcfh {
+    ._2wcfh ._2Cl3x_big_theme_1l {
         color: red
     }
-    ._2Cl3x_big_theme_1l ._3vGr3_big_theme_1l {
+    ._3vGr3_big_theme_1l ._2Cl3x_big_theme_1l {
         color: blue
     }
     ._3vGr3_big_theme_1l ._2wcfh ._2Cl3x_big_theme_1l {

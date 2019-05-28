@@ -1,5 +1,3 @@
-# 🍬 treat
-
 [![Build Status](https://img.shields.io/travis/seek-oss/treat/master.svg?logo=travis&style=for-the-badge)](http://travis-ci.org/seek-oss/treat) [![treat@next](https://img.shields.io/npm/v/treat/next.svg?label=treat@next&logo=npm&style=for-the-badge)](https://www.npmjs.com/package/treat) [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg?style=for-the-badge)](https://lerna.js.org/)
 
 Themeable, typed CSS-in-JS with (basically) zero runtime. What a treat.
@@ -27,10 +25,10 @@ Because theming is achieved by generating multiple classes, **_legacy browsers a
   - [Babel Setup](#babel-setup)
 - [API Reference](#api-reference)
   - [Data Types](#data-types)
-    - [Styles](#styles)
+    - [Style](#style)
     - [ThemedStyles](#themedstyles)
     - [Theme](#theme)
-  - [Styling API](#styling-api)
+  - [Style API](#style-api)
     - [createTheme](#createtheme)
     - [style](#style)
     - [styleMap](#stylemap)
@@ -208,7 +206,7 @@ Then, add it to your Babel config. For example, in `.babelrc`:
 
 While not an exhaustive list of all types defined in the library, this section covers the core data types that are essential to using the library.
 
-#### Styles
+#### Style
 
 Type: `object`
 
@@ -356,7 +354,7 @@ const themedClass = style((theme: Theme) => ({
 }));
 ```
 
-### Styling API
+### Style API
 
 The following styling APIs are only valid within treat files (e.g. `Button.treat.js`).
 

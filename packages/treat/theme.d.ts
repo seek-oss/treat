@@ -1,3 +1,3 @@
 declare module 'treat/theme' {
-  export interface Theme {}
+  export type Theme = any;
 }

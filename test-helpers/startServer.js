@@ -1,9 +1,9 @@
-const webpack = require('webpack');
-const MemoryFS = require('memory-fs');
-const express = require('express');
-const mime = require('mime-types');
-const merge = require('webpack-merge');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+import webpack from 'webpack';
+import MemoryFS from 'memory-fs';
+import express from 'express';
+import mime from 'mime-types';
+import merge from 'webpack-merge';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
 
 const build = config =>
   new Promise((resolve, reject) => {
@@ -92,7 +92,7 @@ const startServer = fs =>
     });
   });
 
-module.exports = async config => {
+export default async config => {
   const fs = await build(config);
 
   return await startServer(fs);

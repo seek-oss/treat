@@ -1,6 +1,6 @@
-const TreatPlugin = require('treat/webpack-plugin');
-const startFixture = require('../../../test-helpers/startServer');
-const getStyles = require('../../../test-helpers/getStyles');
+import TreatPlugin from 'treat/webpack-plugin';
+import startFixture from '../../../test-helpers/startServer';
+import getStyles from '../../../test-helpers/getStyles';
 
 describe('React', () => {
   let server;

@@ -1,4 +1,4 @@
-module.exports = async (page, selector) => {
+export default async (page, selector) => {
   await page._client.send('DOM.enable');
   await page._client.send('CSS.enable');
   const doc = await page._client.send('DOM.getDocument');

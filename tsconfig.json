@@ -11,5 +11,5 @@
     "declaration": true,
     "incremental": true
   },
-  "exclude": ["node_modules", "**/*.test.js", "**/*.test.ts"]
+  "exclude": ["node_modules", "**/*.test.js", "**/*.test.ts", "**/*.test.tsx"]
 }

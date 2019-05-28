@@ -1,10 +1,10 @@
-const {
+import {
   createTheme,
   style,
   styleMap,
   resolveClassNames,
   resolveStyles,
-} = require('treat');
+} from 'treat';
 
 describe('Mocks', () => {
   describe('With debug names', () => {

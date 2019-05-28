@@ -1,10 +1,11 @@
-const babel = require('@babel/core');
-const plugin = require('.');
+import { transformSync } from '@babel/core';
+import plugin from '.';
 
 const transform = (source, options = {}, filename = '/mockFilename.treat.js') =>
-  babel.transformSync(source, {
+  transformSync(source, {
     filename,
     plugins: [[plugin, options]],
+    configFile: false,
   }).code;
 
 describe('babel plugin', () => {

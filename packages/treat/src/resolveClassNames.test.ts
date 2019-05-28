@@ -1,4 +1,4 @@
-const { resolveClassNames } = require('treat');
+import { resolveClassNames } from 'treat';
 
 const themeRef = '_theme';
 

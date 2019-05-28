@@ -24,7 +24,7 @@ const styles = styleMap(
       },
       selectors: {
         'body &': {
-          zIndex: '2',
+          zIndex: 2,
         },
       },
     },

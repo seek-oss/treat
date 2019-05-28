@@ -1,4 +1,5 @@
 const webpack = require('webpack');
+const { join } = require('path');
 const WebpackDevServer = require('webpack-dev-server');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const TreatPlugin = require('treat/webpack-plugin');
@@ -11,13 +12,21 @@ if (!fixture) {
 }
 
 const config = {
-  entry: require.resolve(`../packages/treat/tests/fixtures/${fixture}`),
+  entry: join(
+    __dirname,
+    '../packages/treat/tests/fixtures',
+    fixture,
+    'index.ts',
+  ),
+  resolve: {
+    extensions: ['.js', '.json', '.ts', '.tsx'],
+  },
   mode: 'development',
   devtool: 'source-map',
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.(js|ts|tsx)$/,
         use: [
           {
             loader: 'babel-loader',
@@ -25,6 +34,7 @@ const config = {
               babelrc: false,
               presets: [
                 ['@babel/preset-env', { modules: false }],
+                '@babel/preset-typescript',
                 '@babel/preset-react',
               ],
               plugins: [

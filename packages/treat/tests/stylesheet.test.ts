@@ -1,8 +1,8 @@
-const bent = require('bent');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+import bent from 'bent';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 
-const startFixture = require('../../../test-helpers/startServer');
-const TreatPlugin = require('../webpack-plugin');
+import startFixture from '../../../test-helpers/startServer';
+import TreatPlugin from '../webpack-plugin';
 
 const getString = bent('string');
 const cssFileName = 'main.css';
@@ -89,23 +89,23 @@ const configVariations = [
 ];
 
 const fixtureEntries = [
-  { fixtureName: 'Simple', entry: './fixtures/simple/index.js' },
-  { fixtureName: 'Themed', entry: './fixtures/themed/index.js' },
+  { fixtureName: 'Simple', entry: './fixtures/simple/index.ts' },
+  { fixtureName: 'Themed', entry: './fixtures/themed/index.ts' },
   {
     fixtureName: 'Unused modules',
-    entry: './fixtures/unused-modules/index.js',
+    entry: './fixtures/unused-modules/index.ts',
   },
   {
     fixtureName: 'Complex selectors',
-    entry: './fixtures/complex-selectors/index.js',
+    entry: './fixtures/complex-selectors/index.ts',
   },
   {
     fixtureName: 'Multi file',
-    entry: './fixtures/multi-file/index.js',
+    entry: './fixtures/multi-file/index.ts',
   },
   {
     fixtureName: 'Animations',
-    entry: './fixtures/animations/index.js',
+    entry: './fixtures/animations/index.ts',
   },
 ];
 

@@ -1,8 +1,8 @@
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 
-const TreatPlugin = require('../webpack-plugin');
-const startFixture = require('../../../test-helpers/startServer');
-const getStyles = require('../../../test-helpers/getStyles');
+import TreatPlugin from '../webpack-plugin';
+import startFixture from '../../../test-helpers/startServer';
+import getStyles from '../../../test-helpers/getStyles';
 
 const mainSelector = '#main';
 
@@ -52,7 +52,7 @@ describe('Styling and specificity', () => {
 
       beforeAll(async () => {
         server = await startFixture({
-          entry: require.resolve('./fixtures/simple/index.js'),
+          entry: require.resolve('./fixtures/simple/index.ts'),
           ...config(),
         });
         await page.goto(server.url);
@@ -104,7 +104,7 @@ describe('Styling and specificity', () => {
 
       beforeAll(async () => {
         server = await startFixture({
-          entry: require.resolve('./fixtures/themed/index.js'),
+          entry: require.resolve('./fixtures/themed/index.ts'),
           ...config(),
         });
         await page.goto(server.url);
@@ -132,7 +132,7 @@ describe('Styling and specificity', () => {
 
       beforeAll(async () => {
         server = await startFixture({
-          entry: require.resolve('./fixtures/dynamic-imports/index.js'),
+          entry: require.resolve('./fixtures/dynamic-imports/index.ts'),
           ...config(),
         });
         await page.goto(server.url);
@@ -166,7 +166,7 @@ describe('Styling and specificity', () => {
 
       beforeAll(async () => {
         server = await startFixture({
-          entry: require.resolve('./fixtures/unused-modules/index.js'),
+          entry: require.resolve('./fixtures/unused-modules/index.ts'),
           ...config(),
         });
         await page.goto(server.url);

@@ -6,7 +6,7 @@ interface Theme {
   color: string;
 }
 
-const seconds = num => `${num}s`;
+const seconds = (num: number) => `${num}s`;
 
 export const fastTheme = createTheme({
   name: 'fast',

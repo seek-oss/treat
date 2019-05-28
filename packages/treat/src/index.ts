@@ -4,4 +4,12 @@ export { resolveClassName } from './resolveClassName';
 export { resolveClassNames, ResolveClassNamesArgs } from './resolveClassNames';
 
 // Backwards compat: Styles
-export { Style, Styles, GlobalStyle, CSSProperties } from './types';
+export {
+  Style,
+  Styles,
+  GlobalStyle,
+  CSSProperties,
+  ThemeRef,
+  ClassRef,
+  TreatModule,
+} from './types';

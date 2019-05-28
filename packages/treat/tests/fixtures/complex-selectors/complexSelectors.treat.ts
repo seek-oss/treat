@@ -1,5 +1,10 @@
 import { createTheme, style, styleMap, globalStyle } from 'treat';
 
+interface Theme {
+  name: string;
+  breakpoint: number;
+}
+
 const bigTheme = createTheme(
   {
     name: 'big_theme',
@@ -56,7 +61,7 @@ const styles = styleMap({
   blue: lotsOfSelectors(300),
 });
 
-const red = style(theme => lotsOfSelectors(theme.breakpoint));
+const red = style((theme: Theme) => lotsOfSelectors(theme.breakpoint));
 
 globalStyle(`html ${styles.blue}`, {
   position: 'absolute',
@@ -67,7 +72,7 @@ globalStyle(`html ${styles.blue}`, {
   },
 });
 
-globalStyle(`html ${red}`, theme => ({
+globalStyle(`html ${red}`, (theme: Theme) => ({
   position: 'absolute',
   '@media': {
     [`screen and (min-width: ${theme.breakpoint + 1}px)`]: {

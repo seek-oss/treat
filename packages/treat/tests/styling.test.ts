@@ -52,7 +52,7 @@ describe('Styling and specificity', () => {
 
       beforeAll(async () => {
         server = await startFixture({
-          entry: require.resolve('./fixtures/simple/index.js'),
+          entry: require.resolve('./fixtures/simple/index.ts'),
           ...config(),
         });
         await page.goto(server.url);
@@ -104,7 +104,7 @@ describe('Styling and specificity', () => {
 
       beforeAll(async () => {
         server = await startFixture({
-          entry: require.resolve('./fixtures/themed/index.js'),
+          entry: require.resolve('./fixtures/themed/index.ts'),
           ...config(),
         });
         await page.goto(server.url);
@@ -132,7 +132,7 @@ describe('Styling and specificity', () => {
 
       beforeAll(async () => {
         server = await startFixture({
-          entry: require.resolve('./fixtures/dynamic-imports/index.js'),
+          entry: require.resolve('./fixtures/dynamic-imports/index.ts'),
           ...config(),
         });
         await page.goto(server.url);
@@ -166,7 +166,7 @@ describe('Styling and specificity', () => {
 
       beforeAll(async () => {
         server = await startFixture({
-          entry: require.resolve('./fixtures/unused-modules/index.js'),
+          entry: require.resolve('./fixtures/unused-modules/index.ts'),
           ...config(),
         });
         await page.goto(server.url);

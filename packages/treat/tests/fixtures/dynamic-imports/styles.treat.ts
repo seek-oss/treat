@@ -1,6 +1,10 @@
 import { style } from 'treat';
 
-const themeStyle = style(theme => ({
+interface Theme {
+  primaryColor: string;
+}
+
+const themeStyle = style((theme: Theme) => ({
   backgroundColor: theme.primaryColor,
 }));
 

@@ -85,7 +85,7 @@ exports[`Stylesheet Animations - Autoprefixer (iOS 8) - should create a determin
                 transform: rotate(359deg)
     }
 }
-._2MisJ {
+._1aUDE {
     margin-left: 300px;
     display: -webkit-flex;
     display: flex;
@@ -107,13 +107,13 @@ exports[`Stylesheet Animations - Autoprefixer (iOS 8) - should create a determin
             animation-name: Xxm1J
 }
 @media (min-width: 700px) {
-    ._2MisJ:hover {
+    ._1aUDE:hover {
         -webkit-animation: Yuc9Q 1.5s ease-out forwards;
                 animation: Yuc9Q 1.5s ease-out forwards
     }
 }
 @media (max-width: 699px) {
-    ._2MisJ {
+    ._1aUDE {
         -webkit-animation-timing-function: linear;
                 animation-timing-function: linear;
         -webkit-animation-duration: 1.5s;
@@ -123,40 +123,6 @@ exports[`Stylesheet Animations - Autoprefixer (iOS 8) - should create a determin
         -webkit-animation-name: ULbBx;
                 animation-name: ULbBx
     }
-}
-@-webkit-keyframes _3W3VQ {
-    from {
-        background-color: white
-    }
-    to {
-        background-color: blue
-    }
-}
-@keyframes _3W3VQ {
-    from {
-        background-color: white
-    }
-    to {
-        background-color: blue
-    }
-}
-._2yo5n_10hq {
-    height: 200px;
-    width: 200px
-}
-._2MisJ ~ ._2yo5n_10hq {
-    -webkit-animation-timing-function: linear;
-            animation-timing-function: linear;
-    -webkit-animation-duration: 3s;
-            animation-duration: 3s;
-    -webkit-animation-direction: alternate;
-            animation-direction: alternate;
-    -webkit-animation-fill-mode: both;
-            animation-fill-mode: both;
-    -webkit-animation-iteration-count: infinite;
-            animation-iteration-count: infinite;
-    -webkit-animation-name: _3W3VQ;
-            animation-name: _3W3VQ
 }
 @-webkit-keyframes _0Mv05 {
     from {
@@ -174,11 +140,11 @@ exports[`Stylesheet Animations - Autoprefixer (iOS 8) - should create a determin
         background-color: red
     }
 }
-._2yo5n_3uaa {
+.tjufO_3XPt {
     height: 200px;
     width: 200px
 }
-._2MisJ ~ ._2yo5n_3uaa {
+._1aUDE ~ .tjufO_3XPt {
     -webkit-animation-timing-function: linear;
             animation-timing-function: linear;
     -webkit-animation-duration: 1s;
@@ -191,6 +157,40 @@ exports[`Stylesheet Animations - Autoprefixer (iOS 8) - should create a determin
             animation-iteration-count: infinite;
     -webkit-animation-name: _0Mv05;
             animation-name: _0Mv05
+}
+@-webkit-keyframes _3W3VQ {
+    from {
+        background-color: white
+    }
+    to {
+        background-color: blue
+    }
+}
+@keyframes _3W3VQ {
+    from {
+        background-color: white
+    }
+    to {
+        background-color: blue
+    }
+}
+.tjufO_6Iw9 {
+    height: 200px;
+    width: 200px
+}
+._1aUDE ~ .tjufO_6Iw9 {
+    -webkit-animation-timing-function: linear;
+            animation-timing-function: linear;
+    -webkit-animation-duration: 3s;
+            animation-duration: 3s;
+    -webkit-animation-direction: alternate;
+            animation-direction: alternate;
+    -webkit-animation-fill-mode: both;
+            animation-fill-mode: both;
+    -webkit-animation-iteration-count: infinite;
+            animation-iteration-count: infinite;
+    -webkit-animation-name: _3W3VQ;
+            animation-name: _3W3VQ
 }
 "
 `;
@@ -231,7 +231,7 @@ exports[`Stylesheet Animations - Custom idents - should create a deterministic s
         transform: rotate(359deg)
     }
 }
-.animations-unthemedAnimation_2MisJ {
+.animations-unthemedAnimation_1aUDE {
     margin-left: 300px;
     display: flex;
     justify-content: center;
@@ -246,12 +246,12 @@ exports[`Stylesheet Animations - Custom idents - should create a deterministic s
     animation-name: Xxm1J
 }
 @media (min-width: 700px) {
-    .animations-unthemedAnimation_2MisJ:hover {
+    .animations-unthemedAnimation_1aUDE:hover {
         animation: Yuc9Q 1.5s ease-out forwards
     }
 }
 @media (max-width: 699px) {
-    .animations-unthemedAnimation_2MisJ {
+    .animations-unthemedAnimation_1aUDE {
         animation-timing-function: linear;
         animation-duration: 1.5s;
         animation-iteration-count: infinite;
@@ -266,11 +266,11 @@ exports[`Stylesheet Animations - Custom idents - should create a deterministic s
         background-color: red
     }
 }
-.animations-themedAnimation_2yo5n-fastTheme_3u {
+.animations-themedAnimation_tjufO-fastTheme_3X {
     height: 200px;
     width: 200px
 }
-.animations-unthemedAnimation_2MisJ ~ .animations-themedAnimation_2yo5n-fastTheme_3u {
+.animations-unthemedAnimation_1aUDE ~ .animations-themedAnimation_tjufO-fastTheme_3X {
     animation-timing-function: linear;
     animation-duration: 1s;
     animation-direction: alternate;
@@ -286,11 +286,11 @@ exports[`Stylesheet Animations - Custom idents - should create a deterministic s
         background-color: blue
     }
 }
-.animations-themedAnimation_2yo5n-slowTheme_10 {
+.animations-themedAnimation_tjufO-slowTheme_6I {
     height: 200px;
     width: 200px
 }
-.animations-unthemedAnimation_2MisJ ~ .animations-themedAnimation_2yo5n-slowTheme_10 {
+.animations-unthemedAnimation_1aUDE ~ .animations-themedAnimation_tjufO-slowTheme_6I {
     animation-timing-function: linear;
     animation-duration: 3s;
     animation-direction: alternate;
@@ -337,7 +337,7 @@ exports[`Stylesheet Animations - Development mode - should create a deterministi
         transform: rotate(359deg)
     }
 }
-.animations-unthemedAnimation_2MisJ {
+.animations-unthemedAnimation_1aUDE {
     margin-left: 300px;
     display: flex;
     justify-content: center;
@@ -352,12 +352,12 @@ exports[`Stylesheet Animations - Development mode - should create a deterministi
     animation-name: Xxm1J
 }
 @media (min-width: 700px) {
-    .animations-unthemedAnimation_2MisJ:hover {
+    .animations-unthemedAnimation_1aUDE:hover {
         animation: Yuc9Q 1.5s ease-out forwards
     }
 }
 @media (max-width: 699px) {
-    .animations-unthemedAnimation_2MisJ {
+    .animations-unthemedAnimation_1aUDE {
         animation-timing-function: linear;
         animation-duration: 1.5s;
         animation-iteration-count: infinite;
@@ -372,11 +372,11 @@ exports[`Stylesheet Animations - Development mode - should create a deterministi
         background-color: blue
     }
 }
-.animations-themedAnimation_2yo5n_animations-slowTheme_10hq {
+.animations-themedAnimation_tjufO_animations-slowTheme_6Iw9 {
     height: 200px;
     width: 200px
 }
-.animations-unthemedAnimation_2MisJ ~ .animations-themedAnimation_2yo5n_animations-slowTheme_10hq {
+.animations-unthemedAnimation_1aUDE ~ .animations-themedAnimation_tjufO_animations-slowTheme_6Iw9 {
     animation-timing-function: linear;
     animation-duration: 3s;
     animation-direction: alternate;
@@ -392,11 +392,11 @@ exports[`Stylesheet Animations - Development mode - should create a deterministi
         background-color: red
     }
 }
-.animations-themedAnimation_2yo5n_animations-fastTheme_3uaa {
+.animations-themedAnimation_tjufO_animations-fastTheme_3XPt {
     height: 200px;
     width: 200px
 }
-.animations-unthemedAnimation_2MisJ ~ .animations-themedAnimation_2yo5n_animations-fastTheme_3uaa {
+.animations-unthemedAnimation_1aUDE ~ .animations-themedAnimation_tjufO_animations-fastTheme_3XPt {
     animation-timing-function: linear;
     animation-duration: 1s;
     animation-direction: alternate;
@@ -408,9 +408,9 @@ exports[`Stylesheet Animations - Development mode - should create a deterministi
 `;
 
 exports[`Stylesheet Animations - Production mode - should create a deterministic stylesheet 1`] = `
-"@keyframes Xxm1J{0%{opacity:0}to{opacity:1}}@keyframes Yuc9Q{0%{color:hsla(0,0%,100%,0);transform:scale(1)}25%{transform:scale(2,3)}50%{transform:scale(5)}75%{transform:scale(4,.5)}to{transform:scale(1);color:#fff}}@keyframes ULbBx{0%{transform:rotate(0deg)}to{transform:rotate(359deg)}}._2MisJ{margin-left:300px;display:flex;justify-content:center;align-items:center;height:200px;width:200px;background-color:#ff0;color:hsla(0,0%,100%,0);animation-timing-function:linear;animation-duration:3s;animation-fill-mode:both;animation-name:Xxm1J}@media (min-width:700px){._2MisJ:hover{animation:Yuc9Q 1.5s ease-out forwards}}@media (max-width:699px){._2MisJ{animation-timing-function:linear;animation-duration:1.5s;animation-iteration-count:infinite;animation-name:ULbBx}}
-@keyframes _0Mv05{0%{background-color:#fff}to{background-color:red}}._2yo5n_3uaa{height:200px;width:200px}._2MisJ~._2yo5n_3uaa{animation-timing-function:linear;animation-duration:1s;animation-direction:alternate;animation-fill-mode:both;animation-iteration-count:infinite;animation-name:_0Mv05}
-@keyframes _3W3VQ{0%{background-color:#fff}to{background-color:#00f}}._2yo5n_10hq{height:200px;width:200px}._2MisJ~._2yo5n_10hq{animation-timing-function:linear;animation-duration:3s;animation-direction:alternate;animation-fill-mode:both;animation-iteration-count:infinite;animation-name:_3W3VQ}
+"@keyframes Xxm1J{0%{opacity:0}to{opacity:1}}@keyframes Yuc9Q{0%{color:hsla(0,0%,100%,0);transform:scale(1)}25%{transform:scale(2,3)}50%{transform:scale(5)}75%{transform:scale(4,.5)}to{transform:scale(1);color:#fff}}@keyframes ULbBx{0%{transform:rotate(0deg)}to{transform:rotate(359deg)}}._1aUDE{margin-left:300px;display:flex;justify-content:center;align-items:center;height:200px;width:200px;background-color:#ff0;color:hsla(0,0%,100%,0);animation-timing-function:linear;animation-duration:3s;animation-fill-mode:both;animation-name:Xxm1J}@media (min-width:700px){._1aUDE:hover{animation:Yuc9Q 1.5s ease-out forwards}}@media (max-width:699px){._1aUDE{animation-timing-function:linear;animation-duration:1.5s;animation-iteration-count:infinite;animation-name:ULbBx}}
+@keyframes _0Mv05{0%{background-color:#fff}to{background-color:red}}.tjufO_3XPt{height:200px;width:200px}._1aUDE~.tjufO_3XPt{animation-timing-function:linear;animation-duration:1s;animation-direction:alternate;animation-fill-mode:both;animation-iteration-count:infinite;animation-name:_0Mv05}
+@keyframes _3W3VQ{0%{background-color:#fff}to{background-color:#00f}}.tjufO_6Iw9{height:200px;width:200px}._1aUDE~.tjufO_6Iw9{animation-timing-function:linear;animation-duration:3s;animation-direction:alternate;animation-fill-mode:both;animation-iteration-count:infinite;animation-name:_3W3VQ}
 "
 `;
 
@@ -450,7 +450,7 @@ exports[`Stylesheet Animations - Theme function ident - should create a determin
         transform: rotate(359deg)
     }
 }
-._2MisJ {
+._1aUDE {
     margin-left: 300px;
     display: flex;
     justify-content: center;
@@ -465,12 +465,12 @@ exports[`Stylesheet Animations - Theme function ident - should create a determin
     animation-name: Xxm1J
 }
 @media (min-width: 700px) {
-    ._2MisJ:hover {
+    ._1aUDE:hover {
         animation: Yuc9Q 1.5s ease-out forwards
     }
 }
 @media (max-width: 699px) {
-    ._2MisJ {
+    ._1aUDE {
         animation-timing-function: linear;
         animation-duration: 1.5s;
         animation-iteration-count: infinite;
@@ -485,11 +485,11 @@ exports[`Stylesheet Animations - Theme function ident - should create a determin
         background-color: red
     }
 }
-._2yo5n_fast_3u {
+.tjufO_fast_3X {
     height: 200px;
     width: 200px
 }
-._2MisJ ~ ._2yo5n_fast_3u {
+._1aUDE ~ .tjufO_fast_3X {
     animation-timing-function: linear;
     animation-duration: 1s;
     animation-direction: alternate;
@@ -505,11 +505,11 @@ exports[`Stylesheet Animations - Theme function ident - should create a determin
         background-color: blue
     }
 }
-._2yo5n_slow_10 {
+.tjufO_slow_6I {
     height: 200px;
     width: 200px
 }
-._2MisJ ~ ._2yo5n_slow_10 {
+._1aUDE ~ .tjufO_slow_6I {
     animation-timing-function: linear;
     animation-duration: 3s;
     animation-direction: alternate;
@@ -521,105 +521,105 @@ exports[`Stylesheet Animations - Theme function ident - should create a determin
 `;
 
 exports[`Stylesheet Complex selectors - Autoprefixer (iOS 8) - should create a deterministic stylesheet 1`] = `
-"._3yryF:focus {
+".bZ2kF:focus {
     color: purple
 }
-._2wcfh ._3yryF {
+._2t1sd .bZ2kF {
     background-color: red
 }
-._3vGr3_1ld8 ._3yryF, ._3vGr3_1fZK ._3yryF {
+._3dbtz_p20 .bZ2kF, ._3dbtz_1lKd .bZ2kF {
     background-color: blue
 }
-._3vGr3_1ld8 ._2wcfh ._3yryF, ._3vGr3_1fZK ._2wcfh ._3yryF {
+._3dbtz_p20 ._2t1sd .bZ2kF, ._3dbtz_1lKd ._2t1sd .bZ2kF {
     background-color: black
 }
-html ._3yryF {
+html .bZ2kF {
     position: absolute
 }
 @media screen and (min-width: 300px) {
-    ._3yryF {
+    .bZ2kF {
         color: green
     }
-    ._2wcfh ._3yryF {
+    ._2t1sd .bZ2kF {
         color: red
     }
-    ._3vGr3_1ld8 ._3yryF, ._3vGr3_1fZK ._3yryF {
+    ._3dbtz_p20 .bZ2kF, ._3dbtz_1lKd .bZ2kF {
         color: blue
     }
-    ._3vGr3_1ld8 ._2wcfh ._3yryF, ._3vGr3_1fZK ._2wcfh ._3yryF {
+    ._3dbtz_p20 ._2t1sd .bZ2kF, ._3dbtz_1lKd ._2t1sd .bZ2kF {
         color: black
     }
 }
 @media screen and (min-width: 700px) {
-    html ._3yryF {
+    html .bZ2kF {
         position: relative
     }
 }
-._2Cl3x_1fZK:focus {
+._1-2GZ_p20:focus {
     color: purple
 }
-._2wcfh ._2Cl3x_1fZK {
+._2t1sd ._1-2GZ_p20 {
     background-color: red
 }
-._3vGr3_1fZK ._2Cl3x_1fZK {
+._3dbtz_p20 ._1-2GZ_p20 {
     background-color: blue
 }
-._3vGr3_1fZK ._2wcfh ._2Cl3x_1fZK {
+._3dbtz_p20 ._2t1sd ._1-2GZ_p20 {
     background-color: black
 }
-html ._2Cl3x_1fZK {
-    position: absolute
-}
-@media screen and (min-width: 1000px) {
-    ._2Cl3x_1fZK {
-        color: green
-    }
-    ._2wcfh ._2Cl3x_1fZK {
-        color: red
-    }
-    ._3vGr3_1fZK ._2Cl3x_1fZK {
-        color: blue
-    }
-    ._3vGr3_1fZK ._2wcfh ._2Cl3x_1fZK {
-        color: black
-    }
-}
-@media screen and (min-width: 1001px) {
-    html ._2Cl3x_1fZK {
-        position: relative
-    }
-}
-._2Cl3x_1ld8:focus {
-    color: purple
-}
-._2wcfh ._2Cl3x_1ld8 {
-    background-color: red
-}
-._3vGr3_1ld8 ._2Cl3x_1ld8 {
-    background-color: blue
-}
-._3vGr3_1ld8 ._2wcfh ._2Cl3x_1ld8 {
-    background-color: black
-}
-html ._2Cl3x_1ld8 {
+html ._1-2GZ_p20 {
     position: absolute
 }
 @media screen and (min-width: 700px) {
-    ._2Cl3x_1ld8 {
+    ._1-2GZ_p20 {
         color: green
     }
-    ._2wcfh ._2Cl3x_1ld8 {
+    ._2t1sd ._1-2GZ_p20 {
         color: red
     }
-    ._3vGr3_1ld8 ._2Cl3x_1ld8 {
+    ._3dbtz_p20 ._1-2GZ_p20 {
         color: blue
     }
-    ._3vGr3_1ld8 ._2wcfh ._2Cl3x_1ld8 {
+    ._3dbtz_p20 ._2t1sd ._1-2GZ_p20 {
         color: black
     }
 }
 @media screen and (min-width: 701px) {
-    html ._2Cl3x_1ld8 {
+    html ._1-2GZ_p20 {
+        position: relative
+    }
+}
+._1-2GZ_1lKd:focus {
+    color: purple
+}
+._2t1sd ._1-2GZ_1lKd {
+    background-color: red
+}
+._3dbtz_1lKd ._1-2GZ_1lKd {
+    background-color: blue
+}
+._3dbtz_1lKd ._2t1sd ._1-2GZ_1lKd {
+    background-color: black
+}
+html ._1-2GZ_1lKd {
+    position: absolute
+}
+@media screen and (min-width: 1000px) {
+    ._1-2GZ_1lKd {
+        color: green
+    }
+    ._2t1sd ._1-2GZ_1lKd {
+        color: red
+    }
+    ._3dbtz_1lKd ._1-2GZ_1lKd {
+        color: blue
+    }
+    ._3dbtz_1lKd ._2t1sd ._1-2GZ_1lKd {
+        color: black
+    }
+}
+@media screen and (min-width: 1001px) {
+    html ._1-2GZ_1lKd {
         position: relative
     }
 }
@@ -627,105 +627,105 @@ html ._2Cl3x_1ld8 {
 `;
 
 exports[`Stylesheet Complex selectors - Custom idents - should create a deterministic stylesheet 1`] = `
-".complexSelectors-styles_blue_3yryF:focus {
+".complexSelectors-styles_blue_bZ2kF:focus {
     color: purple
 }
-.complexSelectors-unthemedClassStyle_2wcfh .complexSelectors-styles_blue_3yryF {
+.complexSelectors-unthemedClassStyle_2t1sd .complexSelectors-styles_blue_bZ2kF {
     background-color: red
 }
-.complexSelectors-themedStyle_3vGr3-big_1l .complexSelectors-styles_blue_3yryF, .complexSelectors-themedStyle_3vGr3-small_1f .complexSelectors-styles_blue_3yryF {
+.complexSelectors-themedStyle_3dbtz-big__p .complexSelectors-styles_blue_bZ2kF, .complexSelectors-themedStyle_3dbtz-small_1l .complexSelectors-styles_blue_bZ2kF {
     background-color: blue
 }
-.complexSelectors-themedStyle_3vGr3-big_1l .complexSelectors-unthemedClassStyle_2wcfh .complexSelectors-styles_blue_3yryF, .complexSelectors-themedStyle_3vGr3-small_1f .complexSelectors-unthemedClassStyle_2wcfh .complexSelectors-styles_blue_3yryF {
+.complexSelectors-themedStyle_3dbtz-big__p .complexSelectors-unthemedClassStyle_2t1sd .complexSelectors-styles_blue_bZ2kF, .complexSelectors-themedStyle_3dbtz-small_1l .complexSelectors-unthemedClassStyle_2t1sd .complexSelectors-styles_blue_bZ2kF {
     background-color: black
 }
-html .complexSelectors-styles_blue_3yryF {
+html .complexSelectors-styles_blue_bZ2kF {
     position: absolute
 }
 @media screen and (min-width: 300px) {
-    .complexSelectors-styles_blue_3yryF {
+    .complexSelectors-styles_blue_bZ2kF {
         color: green
     }
-    .complexSelectors-unthemedClassStyle_2wcfh .complexSelectors-styles_blue_3yryF {
+    .complexSelectors-unthemedClassStyle_2t1sd .complexSelectors-styles_blue_bZ2kF {
         color: red
     }
-    .complexSelectors-themedStyle_3vGr3-big_1l .complexSelectors-styles_blue_3yryF, .complexSelectors-themedStyle_3vGr3-small_1f .complexSelectors-styles_blue_3yryF {
+    .complexSelectors-themedStyle_3dbtz-big__p .complexSelectors-styles_blue_bZ2kF, .complexSelectors-themedStyle_3dbtz-small_1l .complexSelectors-styles_blue_bZ2kF {
         color: blue
     }
-    .complexSelectors-themedStyle_3vGr3-big_1l .complexSelectors-unthemedClassStyle_2wcfh .complexSelectors-styles_blue_3yryF, .complexSelectors-themedStyle_3vGr3-small_1f .complexSelectors-unthemedClassStyle_2wcfh .complexSelectors-styles_blue_3yryF {
+    .complexSelectors-themedStyle_3dbtz-big__p .complexSelectors-unthemedClassStyle_2t1sd .complexSelectors-styles_blue_bZ2kF, .complexSelectors-themedStyle_3dbtz-small_1l .complexSelectors-unthemedClassStyle_2t1sd .complexSelectors-styles_blue_bZ2kF {
         color: black
     }
 }
 @media screen and (min-width: 700px) {
-    html .complexSelectors-styles_blue_3yryF {
+    html .complexSelectors-styles_blue_bZ2kF {
         position: relative
     }
 }
-.complexSelectors-red_2Cl3x-big_1l:focus {
+.complexSelectors-red_1-2GZ-big__p:focus {
     color: purple
 }
-.complexSelectors-unthemedClassStyle_2wcfh .complexSelectors-red_2Cl3x-big_1l {
+.complexSelectors-unthemedClassStyle_2t1sd .complexSelectors-red_1-2GZ-big__p {
     background-color: red
 }
-.complexSelectors-themedStyle_3vGr3-big_1l .complexSelectors-red_2Cl3x-big_1l {
+.complexSelectors-themedStyle_3dbtz-big__p .complexSelectors-red_1-2GZ-big__p {
     background-color: blue
 }
-.complexSelectors-themedStyle_3vGr3-big_1l .complexSelectors-unthemedClassStyle_2wcfh .complexSelectors-red_2Cl3x-big_1l {
+.complexSelectors-themedStyle_3dbtz-big__p .complexSelectors-unthemedClassStyle_2t1sd .complexSelectors-red_1-2GZ-big__p {
     background-color: black
 }
-html .complexSelectors-red_2Cl3x-big_1l {
+html .complexSelectors-red_1-2GZ-big__p {
     position: absolute
 }
 @media screen and (min-width: 700px) {
-    .complexSelectors-red_2Cl3x-big_1l {
+    .complexSelectors-red_1-2GZ-big__p {
         color: green
     }
-    .complexSelectors-unthemedClassStyle_2wcfh .complexSelectors-red_2Cl3x-big_1l {
+    .complexSelectors-unthemedClassStyle_2t1sd .complexSelectors-red_1-2GZ-big__p {
         color: red
     }
-    .complexSelectors-themedStyle_3vGr3-big_1l .complexSelectors-red_2Cl3x-big_1l {
+    .complexSelectors-themedStyle_3dbtz-big__p .complexSelectors-red_1-2GZ-big__p {
         color: blue
     }
-    .complexSelectors-themedStyle_3vGr3-big_1l .complexSelectors-unthemedClassStyle_2wcfh .complexSelectors-red_2Cl3x-big_1l {
+    .complexSelectors-themedStyle_3dbtz-big__p .complexSelectors-unthemedClassStyle_2t1sd .complexSelectors-red_1-2GZ-big__p {
         color: black
     }
 }
 @media screen and (min-width: 701px) {
-    html .complexSelectors-red_2Cl3x-big_1l {
+    html .complexSelectors-red_1-2GZ-big__p {
         position: relative
     }
 }
-.complexSelectors-red_2Cl3x-small_1f:focus {
+.complexSelectors-red_1-2GZ-small_1l:focus {
     color: purple
 }
-.complexSelectors-unthemedClassStyle_2wcfh .complexSelectors-red_2Cl3x-small_1f {
+.complexSelectors-unthemedClassStyle_2t1sd .complexSelectors-red_1-2GZ-small_1l {
     background-color: red
 }
-.complexSelectors-themedStyle_3vGr3-small_1f .complexSelectors-red_2Cl3x-small_1f {
+.complexSelectors-themedStyle_3dbtz-small_1l .complexSelectors-red_1-2GZ-small_1l {
     background-color: blue
 }
-.complexSelectors-themedStyle_3vGr3-small_1f .complexSelectors-unthemedClassStyle_2wcfh .complexSelectors-red_2Cl3x-small_1f {
+.complexSelectors-themedStyle_3dbtz-small_1l .complexSelectors-unthemedClassStyle_2t1sd .complexSelectors-red_1-2GZ-small_1l {
     background-color: black
 }
-html .complexSelectors-red_2Cl3x-small_1f {
+html .complexSelectors-red_1-2GZ-small_1l {
     position: absolute
 }
 @media screen and (min-width: 1000px) {
-    .complexSelectors-red_2Cl3x-small_1f {
+    .complexSelectors-red_1-2GZ-small_1l {
         color: green
     }
-    .complexSelectors-unthemedClassStyle_2wcfh .complexSelectors-red_2Cl3x-small_1f {
+    .complexSelectors-unthemedClassStyle_2t1sd .complexSelectors-red_1-2GZ-small_1l {
         color: red
     }
-    .complexSelectors-themedStyle_3vGr3-small_1f .complexSelectors-red_2Cl3x-small_1f {
+    .complexSelectors-themedStyle_3dbtz-small_1l .complexSelectors-red_1-2GZ-small_1l {
         color: blue
     }
-    .complexSelectors-themedStyle_3vGr3-small_1f .complexSelectors-unthemedClassStyle_2wcfh .complexSelectors-red_2Cl3x-small_1f {
+    .complexSelectors-themedStyle_3dbtz-small_1l .complexSelectors-unthemedClassStyle_2t1sd .complexSelectors-red_1-2GZ-small_1l {
         color: black
     }
 }
 @media screen and (min-width: 1001px) {
-    html .complexSelectors-red_2Cl3x-small_1f {
+    html .complexSelectors-red_1-2GZ-small_1l {
         position: relative
     }
 }
@@ -733,105 +733,105 @@ html .complexSelectors-red_2Cl3x-small_1f {
 `;
 
 exports[`Stylesheet Complex selectors - Development mode - should create a deterministic stylesheet 1`] = `
-".complexSelectors-styles_blue_3yryF:focus {
+".complexSelectors-styles_blue_bZ2kF:focus {
     color: purple
 }
-.complexSelectors-unthemedClassStyle_2wcfh .complexSelectors-styles_blue_3yryF {
+.complexSelectors-unthemedClassStyle_2t1sd .complexSelectors-styles_blue_bZ2kF {
     background-color: red
 }
-.complexSelectors-themedStyle_3vGr3_complexSelectors-big_1ld8 .complexSelectors-styles_blue_3yryF, .complexSelectors-themedStyle_3vGr3_complexSelectors-small_1fZK .complexSelectors-styles_blue_3yryF {
+.complexSelectors-themedStyle_3dbtz_complexSelectors-big__p20 .complexSelectors-styles_blue_bZ2kF, .complexSelectors-themedStyle_3dbtz_complexSelectors-small_1lKd .complexSelectors-styles_blue_bZ2kF {
     background-color: blue
 }
-.complexSelectors-themedStyle_3vGr3_complexSelectors-big_1ld8 .complexSelectors-unthemedClassStyle_2wcfh .complexSelectors-styles_blue_3yryF, .complexSelectors-themedStyle_3vGr3_complexSelectors-small_1fZK .complexSelectors-unthemedClassStyle_2wcfh .complexSelectors-styles_blue_3yryF {
+.complexSelectors-themedStyle_3dbtz_complexSelectors-big__p20 .complexSelectors-unthemedClassStyle_2t1sd .complexSelectors-styles_blue_bZ2kF, .complexSelectors-themedStyle_3dbtz_complexSelectors-small_1lKd .complexSelectors-unthemedClassStyle_2t1sd .complexSelectors-styles_blue_bZ2kF {
     background-color: black
 }
-html .complexSelectors-styles_blue_3yryF {
+html .complexSelectors-styles_blue_bZ2kF {
     position: absolute
 }
 @media screen and (min-width: 300px) {
-    .complexSelectors-styles_blue_3yryF {
+    .complexSelectors-styles_blue_bZ2kF {
         color: green
     }
-    .complexSelectors-unthemedClassStyle_2wcfh .complexSelectors-styles_blue_3yryF {
+    .complexSelectors-unthemedClassStyle_2t1sd .complexSelectors-styles_blue_bZ2kF {
         color: red
     }
-    .complexSelectors-themedStyle_3vGr3_complexSelectors-big_1ld8 .complexSelectors-styles_blue_3yryF, .complexSelectors-themedStyle_3vGr3_complexSelectors-small_1fZK .complexSelectors-styles_blue_3yryF {
+    .complexSelectors-themedStyle_3dbtz_complexSelectors-big__p20 .complexSelectors-styles_blue_bZ2kF, .complexSelectors-themedStyle_3dbtz_complexSelectors-small_1lKd .complexSelectors-styles_blue_bZ2kF {
         color: blue
     }
-    .complexSelectors-themedStyle_3vGr3_complexSelectors-big_1ld8 .complexSelectors-unthemedClassStyle_2wcfh .complexSelectors-styles_blue_3yryF, .complexSelectors-themedStyle_3vGr3_complexSelectors-small_1fZK .complexSelectors-unthemedClassStyle_2wcfh .complexSelectors-styles_blue_3yryF {
+    .complexSelectors-themedStyle_3dbtz_complexSelectors-big__p20 .complexSelectors-unthemedClassStyle_2t1sd .complexSelectors-styles_blue_bZ2kF, .complexSelectors-themedStyle_3dbtz_complexSelectors-small_1lKd .complexSelectors-unthemedClassStyle_2t1sd .complexSelectors-styles_blue_bZ2kF {
         color: black
     }
 }
 @media screen and (min-width: 700px) {
-    html .complexSelectors-styles_blue_3yryF {
+    html .complexSelectors-styles_blue_bZ2kF {
         position: relative
     }
 }
-.complexSelectors-red_2Cl3x_complexSelectors-small_1fZK:focus {
+.complexSelectors-red_1-2GZ_complexSelectors-big__p20:focus {
     color: purple
 }
-.complexSelectors-unthemedClassStyle_2wcfh .complexSelectors-red_2Cl3x_complexSelectors-small_1fZK {
+.complexSelectors-unthemedClassStyle_2t1sd .complexSelectors-red_1-2GZ_complexSelectors-big__p20 {
     background-color: red
 }
-.complexSelectors-themedStyle_3vGr3_complexSelectors-small_1fZK .complexSelectors-red_2Cl3x_complexSelectors-small_1fZK {
+.complexSelectors-themedStyle_3dbtz_complexSelectors-big__p20 .complexSelectors-red_1-2GZ_complexSelectors-big__p20 {
     background-color: blue
 }
-.complexSelectors-themedStyle_3vGr3_complexSelectors-small_1fZK .complexSelectors-unthemedClassStyle_2wcfh .complexSelectors-red_2Cl3x_complexSelectors-small_1fZK {
+.complexSelectors-themedStyle_3dbtz_complexSelectors-big__p20 .complexSelectors-unthemedClassStyle_2t1sd .complexSelectors-red_1-2GZ_complexSelectors-big__p20 {
     background-color: black
 }
-html .complexSelectors-red_2Cl3x_complexSelectors-small_1fZK {
-    position: absolute
-}
-@media screen and (min-width: 1000px) {
-    .complexSelectors-red_2Cl3x_complexSelectors-small_1fZK {
-        color: green
-    }
-    .complexSelectors-unthemedClassStyle_2wcfh .complexSelectors-red_2Cl3x_complexSelectors-small_1fZK {
-        color: red
-    }
-    .complexSelectors-themedStyle_3vGr3_complexSelectors-small_1fZK .complexSelectors-red_2Cl3x_complexSelectors-small_1fZK {
-        color: blue
-    }
-    .complexSelectors-themedStyle_3vGr3_complexSelectors-small_1fZK .complexSelectors-unthemedClassStyle_2wcfh .complexSelectors-red_2Cl3x_complexSelectors-small_1fZK {
-        color: black
-    }
-}
-@media screen and (min-width: 1001px) {
-    html .complexSelectors-red_2Cl3x_complexSelectors-small_1fZK {
-        position: relative
-    }
-}
-.complexSelectors-red_2Cl3x_complexSelectors-big_1ld8:focus {
-    color: purple
-}
-.complexSelectors-unthemedClassStyle_2wcfh .complexSelectors-red_2Cl3x_complexSelectors-big_1ld8 {
-    background-color: red
-}
-.complexSelectors-themedStyle_3vGr3_complexSelectors-big_1ld8 .complexSelectors-red_2Cl3x_complexSelectors-big_1ld8 {
-    background-color: blue
-}
-.complexSelectors-themedStyle_3vGr3_complexSelectors-big_1ld8 .complexSelectors-unthemedClassStyle_2wcfh .complexSelectors-red_2Cl3x_complexSelectors-big_1ld8 {
-    background-color: black
-}
-html .complexSelectors-red_2Cl3x_complexSelectors-big_1ld8 {
+html .complexSelectors-red_1-2GZ_complexSelectors-big__p20 {
     position: absolute
 }
 @media screen and (min-width: 700px) {
-    .complexSelectors-red_2Cl3x_complexSelectors-big_1ld8 {
+    .complexSelectors-red_1-2GZ_complexSelectors-big__p20 {
         color: green
     }
-    .complexSelectors-unthemedClassStyle_2wcfh .complexSelectors-red_2Cl3x_complexSelectors-big_1ld8 {
+    .complexSelectors-unthemedClassStyle_2t1sd .complexSelectors-red_1-2GZ_complexSelectors-big__p20 {
         color: red
     }
-    .complexSelectors-themedStyle_3vGr3_complexSelectors-big_1ld8 .complexSelectors-red_2Cl3x_complexSelectors-big_1ld8 {
+    .complexSelectors-themedStyle_3dbtz_complexSelectors-big__p20 .complexSelectors-red_1-2GZ_complexSelectors-big__p20 {
         color: blue
     }
-    .complexSelectors-themedStyle_3vGr3_complexSelectors-big_1ld8 .complexSelectors-unthemedClassStyle_2wcfh .complexSelectors-red_2Cl3x_complexSelectors-big_1ld8 {
+    .complexSelectors-themedStyle_3dbtz_complexSelectors-big__p20 .complexSelectors-unthemedClassStyle_2t1sd .complexSelectors-red_1-2GZ_complexSelectors-big__p20 {
         color: black
     }
 }
 @media screen and (min-width: 701px) {
-    html .complexSelectors-red_2Cl3x_complexSelectors-big_1ld8 {
+    html .complexSelectors-red_1-2GZ_complexSelectors-big__p20 {
+        position: relative
+    }
+}
+.complexSelectors-red_1-2GZ_complexSelectors-small_1lKd:focus {
+    color: purple
+}
+.complexSelectors-unthemedClassStyle_2t1sd .complexSelectors-red_1-2GZ_complexSelectors-small_1lKd {
+    background-color: red
+}
+.complexSelectors-themedStyle_3dbtz_complexSelectors-small_1lKd .complexSelectors-red_1-2GZ_complexSelectors-small_1lKd {
+    background-color: blue
+}
+.complexSelectors-themedStyle_3dbtz_complexSelectors-small_1lKd .complexSelectors-unthemedClassStyle_2t1sd .complexSelectors-red_1-2GZ_complexSelectors-small_1lKd {
+    background-color: black
+}
+html .complexSelectors-red_1-2GZ_complexSelectors-small_1lKd {
+    position: absolute
+}
+@media screen and (min-width: 1000px) {
+    .complexSelectors-red_1-2GZ_complexSelectors-small_1lKd {
+        color: green
+    }
+    .complexSelectors-unthemedClassStyle_2t1sd .complexSelectors-red_1-2GZ_complexSelectors-small_1lKd {
+        color: red
+    }
+    .complexSelectors-themedStyle_3dbtz_complexSelectors-small_1lKd .complexSelectors-red_1-2GZ_complexSelectors-small_1lKd {
+        color: blue
+    }
+    .complexSelectors-themedStyle_3dbtz_complexSelectors-small_1lKd .complexSelectors-unthemedClassStyle_2t1sd .complexSelectors-red_1-2GZ_complexSelectors-small_1lKd {
+        color: black
+    }
+}
+@media screen and (min-width: 1001px) {
+    html .complexSelectors-red_1-2GZ_complexSelectors-small_1lKd {
         position: relative
     }
 }
@@ -839,112 +839,112 @@ html .complexSelectors-red_2Cl3x_complexSelectors-big_1ld8 {
 `;
 
 exports[`Stylesheet Complex selectors - Production mode - should create a deterministic stylesheet 1`] = `
-"._3yryF:focus{color:purple}._2wcfh ._3yryF{background-color:red}._3vGr3_1fZK ._3yryF,._3vGr3_1ld8 ._3yryF{background-color:#00f}._3vGr3_1fZK ._2wcfh ._3yryF,._3vGr3_1ld8 ._2wcfh ._3yryF{background-color:#000}html ._3yryF{position:absolute}@media screen and (min-width:300px){._3yryF{color:green}._2wcfh ._3yryF{color:red}._3vGr3_1fZK ._3yryF,._3vGr3_1ld8 ._3yryF{color:#00f}._3vGr3_1fZK ._2wcfh ._3yryF,._3vGr3_1ld8 ._2wcfh ._3yryF{color:#000}}@media screen and (min-width:700px){html ._3yryF{position:relative}}
-._2Cl3x_1fZK:focus{color:purple}._2wcfh ._2Cl3x_1fZK{background-color:red}._3vGr3_1fZK ._2Cl3x_1fZK{background-color:#00f}._3vGr3_1fZK ._2wcfh ._2Cl3x_1fZK{background-color:#000}html ._2Cl3x_1fZK{position:absolute}@media screen and (min-width:1000px){._2Cl3x_1fZK{color:green}._2wcfh ._2Cl3x_1fZK{color:red}._3vGr3_1fZK ._2Cl3x_1fZK{color:#00f}._3vGr3_1fZK ._2wcfh ._2Cl3x_1fZK{color:#000}}@media screen and (min-width:1001px){html ._2Cl3x_1fZK{position:relative}}
-._2Cl3x_1ld8:focus{color:purple}._2wcfh ._2Cl3x_1ld8{background-color:red}._3vGr3_1ld8 ._2Cl3x_1ld8{background-color:#00f}._3vGr3_1ld8 ._2wcfh ._2Cl3x_1ld8{background-color:#000}html ._2Cl3x_1ld8{position:absolute}@media screen and (min-width:700px){._2Cl3x_1ld8{color:green}._2wcfh ._2Cl3x_1ld8{color:red}._3vGr3_1ld8 ._2Cl3x_1ld8{color:#00f}._3vGr3_1ld8 ._2wcfh ._2Cl3x_1ld8{color:#000}}@media screen and (min-width:701px){html ._2Cl3x_1ld8{position:relative}}
+".bZ2kF:focus{color:purple}._2t1sd .bZ2kF{background-color:red}._3dbtz_1lKd .bZ2kF,._3dbtz_p20 .bZ2kF{background-color:#00f}._3dbtz_1lKd ._2t1sd .bZ2kF,._3dbtz_p20 ._2t1sd .bZ2kF{background-color:#000}html .bZ2kF{position:absolute}@media screen and (min-width:300px){.bZ2kF{color:green}._2t1sd .bZ2kF{color:red}._3dbtz_1lKd .bZ2kF,._3dbtz_p20 .bZ2kF{color:#00f}._3dbtz_1lKd ._2t1sd .bZ2kF,._3dbtz_p20 ._2t1sd .bZ2kF{color:#000}}@media screen and (min-width:700px){html .bZ2kF{position:relative}}
+._1-2GZ_p20:focus{color:purple}._2t1sd ._1-2GZ_p20{background-color:red}._3dbtz_p20 ._1-2GZ_p20{background-color:#00f}._3dbtz_p20 ._2t1sd ._1-2GZ_p20{background-color:#000}html ._1-2GZ_p20{position:absolute}@media screen and (min-width:700px){._1-2GZ_p20{color:green}._2t1sd ._1-2GZ_p20{color:red}._3dbtz_p20 ._1-2GZ_p20{color:#00f}._3dbtz_p20 ._2t1sd ._1-2GZ_p20{color:#000}}@media screen and (min-width:701px){html ._1-2GZ_p20{position:relative}}
+._1-2GZ_1lKd:focus{color:purple}._2t1sd ._1-2GZ_1lKd{background-color:red}._3dbtz_1lKd ._1-2GZ_1lKd{background-color:#00f}._3dbtz_1lKd ._2t1sd ._1-2GZ_1lKd{background-color:#000}html ._1-2GZ_1lKd{position:absolute}@media screen and (min-width:1000px){._1-2GZ_1lKd{color:green}._2t1sd ._1-2GZ_1lKd{color:red}._3dbtz_1lKd ._1-2GZ_1lKd{color:#00f}._3dbtz_1lKd ._2t1sd ._1-2GZ_1lKd{color:#000}}@media screen and (min-width:1001px){html ._1-2GZ_1lKd{position:relative}}
 "
 `;
 
 exports[`Stylesheet Complex selectors - Theme function ident - should create a deterministic stylesheet 1`] = `
-"._3yryF:focus {
+".bZ2kF:focus {
     color: purple
 }
-._2wcfh ._3yryF {
+._2t1sd .bZ2kF {
     background-color: red
 }
-._3vGr3_big_theme_1l ._3yryF, ._3vGr3_small_theme_1f ._3yryF {
+._3dbtz_big_theme__p .bZ2kF, ._3dbtz_small_theme_1l .bZ2kF {
     background-color: blue
 }
-._3vGr3_big_theme_1l ._2wcfh ._3yryF, ._3vGr3_small_theme_1f ._2wcfh ._3yryF {
+._3dbtz_big_theme__p ._2t1sd .bZ2kF, ._3dbtz_small_theme_1l ._2t1sd .bZ2kF {
     background-color: black
 }
-html ._3yryF {
+html .bZ2kF {
     position: absolute
 }
 @media screen and (min-width: 300px) {
-    ._3yryF {
+    .bZ2kF {
         color: green
     }
-    ._2wcfh ._3yryF {
+    ._2t1sd .bZ2kF {
         color: red
     }
-    ._3vGr3_big_theme_1l ._3yryF, ._3vGr3_small_theme_1f ._3yryF {
+    ._3dbtz_big_theme__p .bZ2kF, ._3dbtz_small_theme_1l .bZ2kF {
         color: blue
     }
-    ._3vGr3_big_theme_1l ._2wcfh ._3yryF, ._3vGr3_small_theme_1f ._2wcfh ._3yryF {
+    ._3dbtz_big_theme__p ._2t1sd .bZ2kF, ._3dbtz_small_theme_1l ._2t1sd .bZ2kF {
         color: black
     }
 }
 @media screen and (min-width: 700px) {
-    html ._3yryF {
+    html .bZ2kF {
         position: relative
     }
 }
-._2Cl3x_big_theme_1l:focus {
+._1-2GZ_big_theme__p:focus {
     color: purple
 }
-._2wcfh ._2Cl3x_big_theme_1l {
+._2t1sd ._1-2GZ_big_theme__p {
     background-color: red
 }
-._3vGr3_big_theme_1l ._2Cl3x_big_theme_1l {
+._3dbtz_big_theme__p ._1-2GZ_big_theme__p {
     background-color: blue
 }
-._3vGr3_big_theme_1l ._2wcfh ._2Cl3x_big_theme_1l {
+._3dbtz_big_theme__p ._2t1sd ._1-2GZ_big_theme__p {
     background-color: black
 }
-html ._2Cl3x_big_theme_1l {
+html ._1-2GZ_big_theme__p {
     position: absolute
 }
 @media screen and (min-width: 700px) {
-    ._2Cl3x_big_theme_1l {
+    ._1-2GZ_big_theme__p {
         color: green
     }
-    ._2wcfh ._2Cl3x_big_theme_1l {
+    ._2t1sd ._1-2GZ_big_theme__p {
         color: red
     }
-    ._3vGr3_big_theme_1l ._2Cl3x_big_theme_1l {
+    ._3dbtz_big_theme__p ._1-2GZ_big_theme__p {
         color: blue
     }
-    ._3vGr3_big_theme_1l ._2wcfh ._2Cl3x_big_theme_1l {
+    ._3dbtz_big_theme__p ._2t1sd ._1-2GZ_big_theme__p {
         color: black
     }
 }
 @media screen and (min-width: 701px) {
-    html ._2Cl3x_big_theme_1l {
+    html ._1-2GZ_big_theme__p {
         position: relative
     }
 }
-._2Cl3x_small_theme_1f:focus {
+._1-2GZ_small_theme_1l:focus {
     color: purple
 }
-._2wcfh ._2Cl3x_small_theme_1f {
+._2t1sd ._1-2GZ_small_theme_1l {
     background-color: red
 }
-._3vGr3_small_theme_1f ._2Cl3x_small_theme_1f {
+._3dbtz_small_theme_1l ._1-2GZ_small_theme_1l {
     background-color: blue
 }
-._3vGr3_small_theme_1f ._2wcfh ._2Cl3x_small_theme_1f {
+._3dbtz_small_theme_1l ._2t1sd ._1-2GZ_small_theme_1l {
     background-color: black
 }
-html ._2Cl3x_small_theme_1f {
+html ._1-2GZ_small_theme_1l {
     position: absolute
 }
 @media screen and (min-width: 1000px) {
-    ._2Cl3x_small_theme_1f {
+    ._1-2GZ_small_theme_1l {
         color: green
     }
-    ._2wcfh ._2Cl3x_small_theme_1f {
+    ._2t1sd ._1-2GZ_small_theme_1l {
         color: red
     }
-    ._3vGr3_small_theme_1f ._2Cl3x_small_theme_1f {
+    ._3dbtz_small_theme_1l ._1-2GZ_small_theme_1l {
         color: blue
     }
-    ._3vGr3_small_theme_1f ._2wcfh ._2Cl3x_small_theme_1f {
+    ._3dbtz_small_theme_1l ._2t1sd ._1-2GZ_small_theme_1l {
         color: black
     }
 }
 @media screen and (min-width: 1001px) {
-    html ._2Cl3x_small_theme_1f {
+    html ._1-2GZ_small_theme_1l {
         position: relative
     }
 }
@@ -952,33 +952,33 @@ html ._2Cl3x_small_theme_1f {
 `;
 
 exports[`Stylesheet Multi file - Autoprefixer (iOS 8) - should create a deterministic stylesheet 1`] = `
-".zkB3l {
+"._3jirG {
     color: blue
 }
 "
 `;
 
 exports[`Stylesheet Multi file - Custom idents - should create a deterministic stylesheet 1`] = `
-".multi-multiStyles_zkB3l {
+".multi-multiStyles_3jirG {
     color: blue
 }
 "
 `;
 
 exports[`Stylesheet Multi file - Development mode - should create a deterministic stylesheet 1`] = `
-".multi-multiStyles_zkB3l {
+".multi-multiStyles_3jirG {
     color: blue
 }
 "
 `;
 
 exports[`Stylesheet Multi file - Production mode - should create a deterministic stylesheet 1`] = `
-".zkB3l{color:#00f}
+"._3jirG{color:#00f}
 "
 `;
 
 exports[`Stylesheet Multi file - Theme function ident - should create a deterministic stylesheet 1`] = `
-".zkB3l {
+"._3jirG {
     color: blue
 }
 "
@@ -988,27 +988,27 @@ exports[`Stylesheet Simple - Autoprefixer (iOS 8) - should create a deterministi
 "html, body {
     background-color: pink
 }
-.PxCM2 {
+._3_dn5 {
     height: 100px;
     width: 100px;
     color: blue;
     display: -webkit-flex;
     display: flex
 }
-.PxCM2:hover {
+._3_dn5:hover {
     background-color: purple
 }
-._2QKEX {
+._1WwEN {
     color: red
 }
-body ._2QKEX {
+body ._1WwEN {
     z-index: 2
 }
-html .PxCM2 {
+html ._3_dn5 {
     position: absolute
 }
 @media screen and (min-width: 700px) {
-    ._2QKEX {
+    ._1WwEN {
         color: green
     }
 }
@@ -1019,26 +1019,26 @@ exports[`Stylesheet Simple - Custom idents - should create a deterministic style
 "html, body {
     background-color: pink
 }
-.simple-mainStyles_blue_PxCM2 {
+.simple-mainStyles_blue_3_dn5 {
     height: 100px;
     width: 100px;
     color: blue;
     display: flex
 }
-.simple-mainStyles_blue_PxCM2:hover {
+.simple-mainStyles_blue_3_dn5:hover {
     background-color: purple
 }
-.simple-mainStyles_red_2QKEX {
+.simple-mainStyles_red_1WwEN {
     color: red
 }
-body .simple-mainStyles_red_2QKEX {
+body .simple-mainStyles_red_1WwEN {
     z-index: 2
 }
-html .simple-mainStyles_blue_PxCM2 {
+html .simple-mainStyles_blue_3_dn5 {
     position: absolute
 }
 @media screen and (min-width: 700px) {
-    .simple-mainStyles_red_2QKEX {
+    .simple-mainStyles_red_1WwEN {
         color: green
     }
 }
@@ -1049,26 +1049,26 @@ exports[`Stylesheet Simple - Development mode - should create a deterministic st
 "html, body {
     background-color: pink
 }
-.simple-mainStyles_blue_PxCM2 {
+.simple-mainStyles_blue_3_dn5 {
     height: 100px;
     width: 100px;
     color: blue;
     display: flex
 }
-.simple-mainStyles_blue_PxCM2:hover {
+.simple-mainStyles_blue_3_dn5:hover {
     background-color: purple
 }
-.simple-mainStyles_red_2QKEX {
+.simple-mainStyles_red_1WwEN {
     color: red
 }
-body .simple-mainStyles_red_2QKEX {
+body .simple-mainStyles_red_1WwEN {
     z-index: 2
 }
-html .simple-mainStyles_blue_PxCM2 {
+html .simple-mainStyles_blue_3_dn5 {
     position: absolute
 }
 @media screen and (min-width: 700px) {
-    .simple-mainStyles_red_2QKEX {
+    .simple-mainStyles_red_1WwEN {
         color: green
     }
 }
@@ -1076,7 +1076,7 @@ html .simple-mainStyles_blue_PxCM2 {
 `;
 
 exports[`Stylesheet Simple - Production mode - should create a deterministic stylesheet 1`] = `
-"body,html{background-color:pink}.PxCM2{height:100px;width:100px;color:#00f;display:flex}.PxCM2:hover{background-color:purple}._2QKEX{color:red}body ._2QKEX{z-index:2}html .PxCM2{position:absolute}@media screen and (min-width:700px){._2QKEX{color:green}}
+"body,html{background-color:pink}._3_dn5{height:100px;width:100px;color:#00f;display:flex}._3_dn5:hover{background-color:purple}._1WwEN{color:red}body ._1WwEN{z-index:2}html ._3_dn5{position:absolute}@media screen and (min-width:700px){._1WwEN{color:green}}
 "
 `;
 
@@ -1084,26 +1084,26 @@ exports[`Stylesheet Simple - Theme function ident - should create a deterministi
 "html, body {
     background-color: pink
 }
-.PxCM2 {
+._3_dn5 {
     height: 100px;
     width: 100px;
     color: blue;
     display: flex
 }
-.PxCM2:hover {
+._3_dn5:hover {
     background-color: purple
 }
-._2QKEX {
+._1WwEN {
     color: red
 }
-body ._2QKEX {
+body ._1WwEN {
     z-index: 2
 }
-html .PxCM2 {
+html ._3_dn5 {
     position: absolute
 }
 @media screen and (min-width: 700px) {
-    ._2QKEX {
+    ._1WwEN {
         color: green
     }
 }
@@ -1111,149 +1111,149 @@ html .PxCM2 {
 `;
 
 exports[`Stylesheet Themed - Autoprefixer (iOS 8) - should create a deterministic stylesheet 1`] = `
-"._6tvyw {
+".H4Gfx {
     z-index: 1;
     display: -webkit-flex;
     display: flex
 }
-.inLwD {
+._3EiJS {
     z-index: 2
 }
-._2cR4h {
+._1ecu3 {
     z-index: 3
 }
-._1eYVB_3h9W {
+._3vi0Y_2ywy {
     background-color: yellow
 }
-._3a3qh_3h9W {
+._1qrIM_2ywy {
     height: 12px
 }
-._1FZ-j_3h9W {
+.yEYY9_2ywy {
     line-height: 6
 }
-._1eYVB_3JfQ {
+._3vi0Y_1c8Y {
     background-color: red
 }
-._3a3qh_3JfQ {
+._1qrIM_1c8Y {
     height: 8px
 }
-._1FZ-j_3JfQ {
+.yEYY9_1c8Y {
     line-height: 4
 }
 "
 `;
 
 exports[`Stylesheet Themed - Custom idents - should create a deterministic stylesheet 1`] = `
-".stylesOne-regularStyle_6tvyw {
+".stylesOne-regularStyle_H4Gfx {
     z-index: 1;
     display: flex
 }
-.stylesTwo-regularStyle_inLwD {
+.stylesTwo-regularStyle_3EiJS {
     z-index: 2
 }
-.stylesThree-regularStyle_2cR4h {
+.stylesThree-regularStyle_1ecu3 {
     z-index: 3
 }
-.stylesOne-themeStyle_1eYVB-themeOne_3h {
+.stylesOne-themeStyle_3vi0Y-themeOne_2y {
     background-color: yellow
 }
-.stylesTwo-themeStyle_3a3qh-themeOne_3h {
+.stylesTwo-themeStyle_1qrIM-themeOne_2y {
     height: 12px
 }
-.stylesThree-themeStyle_1FZ-j-themeOne_3h {
+.stylesThree-themeStyle_yEYY9-themeOne_2y {
     line-height: 6
 }
-.stylesOne-themeStyle_1eYVB-themeTwo_3J {
+.stylesOne-themeStyle_3vi0Y-themeTwo_1c {
     background-color: red
 }
-.stylesTwo-themeStyle_3a3qh-themeTwo_3J {
+.stylesTwo-themeStyle_1qrIM-themeTwo_1c {
     height: 8px
 }
-.stylesThree-themeStyle_1FZ-j-themeTwo_3J {
+.stylesThree-themeStyle_yEYY9-themeTwo_1c {
     line-height: 4
 }
 "
 `;
 
 exports[`Stylesheet Themed - Development mode - should create a deterministic stylesheet 1`] = `
-".stylesOne-regularStyle_6tvyw {
+".stylesOne-regularStyle_H4Gfx {
     z-index: 1;
     display: flex
 }
-.stylesTwo-regularStyle_inLwD {
+.stylesTwo-regularStyle_3EiJS {
     z-index: 2
 }
-.stylesThree-regularStyle_2cR4h {
+.stylesThree-regularStyle_1ecu3 {
     z-index: 3
 }
-.stylesOne-themeStyle_1eYVB_themeOne-themeOne_3h9W {
+.stylesOne-themeStyle_3vi0Y_themeOne-themeOne_2ywy {
     background-color: yellow
 }
-.stylesTwo-themeStyle_3a3qh_themeOne-themeOne_3h9W {
+.stylesTwo-themeStyle_1qrIM_themeOne-themeOne_2ywy {
     height: 12px
 }
-.stylesThree-themeStyle_1FZ-j_themeOne-themeOne_3h9W {
+.stylesThree-themeStyle_yEYY9_themeOne-themeOne_2ywy {
     line-height: 6
 }
-.stylesOne-themeStyle_1eYVB_themeTwo-themeTwo_3JfQ {
+.stylesOne-themeStyle_3vi0Y_themeTwo-themeTwo_1c8Y {
     background-color: red
 }
-.stylesTwo-themeStyle_3a3qh_themeTwo-themeTwo_3JfQ {
+.stylesTwo-themeStyle_1qrIM_themeTwo-themeTwo_1c8Y {
     height: 8px
 }
-.stylesThree-themeStyle_1FZ-j_themeTwo-themeTwo_3JfQ {
+.stylesThree-themeStyle_yEYY9_themeTwo-themeTwo_1c8Y {
     line-height: 4
 }
 "
 `;
 
 exports[`Stylesheet Themed - Production mode - should create a deterministic stylesheet 1`] = `
-"._6tvyw{z-index:1;display:flex}
-.inLwD{z-index:2}
-._2cR4h{z-index:3}
-._1eYVB_3h9W{background-color:#ff0}
-._3a3qh_3h9W{height:12px}
-._1FZ-j_3h9W{line-height:6}
-._1eYVB_3JfQ{background-color:red}
-._3a3qh_3JfQ{height:8px}
-._1FZ-j_3JfQ{line-height:4}
+".H4Gfx{z-index:1;display:flex}
+._3EiJS{z-index:2}
+._1ecu3{z-index:3}
+._3vi0Y_2ywy{background-color:#ff0}
+._1qrIM_2ywy{height:12px}
+.yEYY9_2ywy{line-height:6}
+._3vi0Y_1c8Y{background-color:red}
+._1qrIM_1c8Y{height:8px}
+.yEYY9_1c8Y{line-height:4}
 "
 `;
 
 exports[`Stylesheet Themed - Theme function ident - should create a deterministic stylesheet 1`] = `
-"._6tvyw {
+".H4Gfx {
     z-index: 1;
     display: flex
 }
-.inLwD {
+._3EiJS {
     z-index: 2
 }
-._2cR4h {
+._1ecu3 {
     z-index: 3
 }
-._1eYVB_theme_one_3h {
+._3vi0Y_theme_one_2y {
     background-color: yellow
 }
-._3a3qh_theme_one_3h {
+._1qrIM_theme_one_2y {
     height: 12px
 }
-._1FZ-j_theme_one_3h {
+.yEYY9_theme_one_2y {
     line-height: 6
 }
-._1eYVB_theme_two_3J {
+._3vi0Y_theme_two_1c {
     background-color: red
 }
-._3a3qh_theme_two_3J {
+._1qrIM_theme_two_1c {
     height: 8px
 }
-._1FZ-j_theme_two_3J {
+.yEYY9_theme_two_1c {
     line-height: 4
 }
 "
 `;
 
 exports[`Stylesheet Unused modules - Autoprefixer (iOS 8) - should create a deterministic stylesheet 1`] = `
-"._1OJEF {
+"._1tscQ {
     height: 100px;
     width: 100px
 }
@@ -1261,7 +1261,7 @@ exports[`Stylesheet Unused modules - Autoprefixer (iOS 8) - should create a dete
 `;
 
 exports[`Stylesheet Unused modules - Custom idents - should create a deterministic stylesheet 1`] = `
-".used-used_1OJEF {
+".used-used_1tscQ {
     height: 100px;
     width: 100px
 }
@@ -1269,11 +1269,11 @@ exports[`Stylesheet Unused modules - Custom idents - should create a determinist
 `;
 
 exports[`Stylesheet Unused modules - Development mode - should create a deterministic stylesheet 1`] = `
-".unused-unused_-XARm {
+".unused-unused_2i3yF {
     color: red;
     background-color: blue
 }
-.used-used_1OJEF {
+.used-used_1tscQ {
     height: 100px;
     width: 100px
 }
@@ -1281,12 +1281,12 @@ exports[`Stylesheet Unused modules - Development mode - should create a determin
 `;
 
 exports[`Stylesheet Unused modules - Production mode - should create a deterministic stylesheet 1`] = `
-"._1OJEF{height:100px;width:100px}
+"._1tscQ{height:100px;width:100px}
 "
 `;
 
 exports[`Stylesheet Unused modules - Theme function ident - should create a deterministic stylesheet 1`] = `
-"._1OJEF {
+"._1tscQ {
     height: 100px;
     width: 100px
 }

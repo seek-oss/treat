@@ -1,5 +1,11 @@
 import { style, createTheme } from 'treat';
 
+interface Theme {
+  name: string;
+  duration: number;
+  color: string;
+}
+
 const seconds = num => `${num}s`;
 
 export const fastTheme = createTheme({
@@ -74,7 +80,7 @@ export const unthemedAnimation = style({
   },
 });
 
-export const themedAnimation = style(({ duration, color }) => ({
+export const themedAnimation = style(({ duration, color }: Theme) => ({
   height: 200,
   width: 200,
   selectors: {

@@ -9,10 +9,13 @@ const build = config =>
   new Promise((resolve, reject) => {
     const defaultConfig = {
       output: { path: '/' },
+      resolve: {
+        extensions: ['.js', '.json', '.ts', '.tsx'],
+      },
       module: {
         rules: [
           {
-            test: /\.js$/,
+            test: /\.(js|ts|tsx)$/,
             use: [
               {
                 loader: 'babel-loader',
@@ -21,6 +24,7 @@ const build = config =>
                   presets: [
                     ['@babel/preset-env', { modules: false }],
                     '@babel/preset-react',
+                    '@babel/preset-typescript',
                   ],
                   plugins: [
                     '@babel/plugin-syntax-dynamic-import',

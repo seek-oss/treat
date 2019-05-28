@@ -33,10 +33,10 @@ Because theming is achieved by generating multiple classes, **_legacy browsers a
   - [Babel Setup](#babel-setup)
 - [API Reference](#api-reference)
   - [Data Types](#data-types)
-    - [Style](#style)
+    - [Style](#style-type)
     - [ThemedStyle](#themedstyle)
     - [Theme](#theme)
-  - [Style API](#style-api)
+  - [Styling API](#styling-api)
     - [createTheme](#createtheme)
     - [style](#style)
     - [styleMap](#stylemap)
@@ -65,7 +65,7 @@ The core runtime makes use of [`Map`](https://developer.mozilla.org/en-US/docs/W
 
 ### Basic Usage
 
-First, define and export [styles](#style) from a treat file.
+First, define and export [styles](#style-type) from a treat file.
 
 ```js
 // Button.treat.js
@@ -214,11 +214,11 @@ Then, add it to your Babel config. For example, in `.babelrc`:
 
 While not an exhaustive list of all types defined in the library, this section covers the core data types that are essential to using the library.
 
-#### Style
+#### Style type
 
 Type: `object`
 
-When passing styles to the [`style`](#style) and [`styleMap`](#stylemap) functions, or returning styles from a [`ThemedStyles` function](#themedstyle), you'll need to define them in the following format.
+When passing styles to the [`style`](#style) and [`styleMap`](#stylemap) functions, or returning styles from a [`ThemedStyle` function](#themedstyle), you'll need to define them in the following format.
 
 ```js
 {
@@ -320,7 +320,7 @@ The animation shorthand is also supported via a `@keyframes` placeholder.
 
 Type: `function`
 
-Accepts a [`Theme`](#theme) and returns a [`Style` object.](#style)
+Accepts a [`Theme`](#theme) and returns a [`Style` object.](#style-type)
 
 ```js
 theme => ({
@@ -362,7 +362,7 @@ const themedClass = style((theme: Theme) => ({
 }));
 ```
 
-### Style API
+### Styling API
 
 The following styling APIs are only valid within treat files (e.g. `Button.treat.js`).
 

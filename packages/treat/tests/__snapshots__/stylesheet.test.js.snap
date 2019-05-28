@@ -567,6 +567,9 @@ html ._3yryF {
 ._3vGr3_1fZK ._2wcfh ._2Cl3x_1fZK {
     background-color: black
 }
+html ._2Cl3x_1fZK {
+    position: absolute
+}
 @media screen and (min-width: 1000px) {
     ._2Cl3x_1fZK {
         color: green
@@ -581,6 +584,11 @@ html ._3yryF {
         color: black
     }
 }
+@media screen and (min-width: 1001px) {
+    html ._2Cl3x_1fZK {
+        position: relative
+    }
+}
 ._2Cl3x_1ld8:focus {
     color: purple
 }
@@ -592,6 +600,9 @@ html ._3yryF {
 }
 ._3vGr3_1ld8 ._2wcfh ._2Cl3x_1ld8 {
     background-color: black
+}
+html ._2Cl3x_1ld8 {
+    position: absolute
 }
 @media screen and (min-width: 700px) {
     ._2Cl3x_1ld8 {
@@ -605,6 +616,11 @@ html ._3yryF {
     }
     ._3vGr3_1ld8 ._2wcfh ._2Cl3x_1ld8 {
         color: black
+    }
+}
+@media screen and (min-width: 701px) {
+    html ._2Cl3x_1ld8 {
+        position: relative
     }
 }
 "
@@ -645,6 +661,40 @@ html .complexSelectors-styles_blue_3yryF {
         position: relative
     }
 }
+.complexSelectors-red_2Cl3x-big_1l:focus {
+    color: purple
+}
+.complexSelectors-unthemedClassStyle_2wcfh .complexSelectors-red_2Cl3x-big_1l {
+    background-color: red
+}
+.complexSelectors-themedStyle_3vGr3-big_1l .complexSelectors-red_2Cl3x-big_1l {
+    background-color: blue
+}
+.complexSelectors-themedStyle_3vGr3-big_1l .complexSelectors-unthemedClassStyle_2wcfh .complexSelectors-red_2Cl3x-big_1l {
+    background-color: black
+}
+html .complexSelectors-red_2Cl3x-big_1l {
+    position: absolute
+}
+@media screen and (min-width: 700px) {
+    .complexSelectors-red_2Cl3x-big_1l {
+        color: green
+    }
+    .complexSelectors-unthemedClassStyle_2wcfh .complexSelectors-red_2Cl3x-big_1l {
+        color: red
+    }
+    .complexSelectors-themedStyle_3vGr3-big_1l .complexSelectors-red_2Cl3x-big_1l {
+        color: blue
+    }
+    .complexSelectors-themedStyle_3vGr3-big_1l .complexSelectors-unthemedClassStyle_2wcfh .complexSelectors-red_2Cl3x-big_1l {
+        color: black
+    }
+}
+@media screen and (min-width: 701px) {
+    html .complexSelectors-red_2Cl3x-big_1l {
+        position: relative
+    }
+}
 .complexSelectors-red_2Cl3x-small_1f:focus {
     color: purple
 }
@@ -656,6 +706,9 @@ html .complexSelectors-styles_blue_3yryF {
 }
 .complexSelectors-themedStyle_3vGr3-small_1f .complexSelectors-unthemedClassStyle_2wcfh .complexSelectors-red_2Cl3x-small_1f {
     background-color: black
+}
+html .complexSelectors-red_2Cl3x-small_1f {
+    position: absolute
 }
 @media screen and (min-width: 1000px) {
     .complexSelectors-red_2Cl3x-small_1f {
@@ -671,30 +724,9 @@ html .complexSelectors-styles_blue_3yryF {
         color: black
     }
 }
-.complexSelectors-red_2Cl3x-big_1l:focus {
-    color: purple
-}
-.complexSelectors-unthemedClassStyle_2wcfh .complexSelectors-red_2Cl3x-big_1l {
-    background-color: red
-}
-.complexSelectors-themedStyle_3vGr3-big_1l .complexSelectors-red_2Cl3x-big_1l {
-    background-color: blue
-}
-.complexSelectors-themedStyle_3vGr3-big_1l .complexSelectors-unthemedClassStyle_2wcfh .complexSelectors-red_2Cl3x-big_1l {
-    background-color: black
-}
-@media screen and (min-width: 700px) {
-    .complexSelectors-red_2Cl3x-big_1l {
-        color: green
-    }
-    .complexSelectors-unthemedClassStyle_2wcfh .complexSelectors-red_2Cl3x-big_1l {
-        color: red
-    }
-    .complexSelectors-themedStyle_3vGr3-big_1l .complexSelectors-red_2Cl3x-big_1l {
-        color: blue
-    }
-    .complexSelectors-themedStyle_3vGr3-big_1l .complexSelectors-unthemedClassStyle_2wcfh .complexSelectors-red_2Cl3x-big_1l {
-        color: black
+@media screen and (min-width: 1001px) {
+    html .complexSelectors-red_2Cl3x-small_1f {
+        position: relative
     }
 }
 "
@@ -735,32 +767,6 @@ html .complexSelectors-styles_blue_3yryF {
         position: relative
     }
 }
-.complexSelectors-red_2Cl3x_complexSelectors-big_1ld8:focus {
-    color: purple
-}
-.complexSelectors-unthemedClassStyle_2wcfh .complexSelectors-red_2Cl3x_complexSelectors-big_1ld8 {
-    background-color: red
-}
-.complexSelectors-themedStyle_3vGr3_complexSelectors-big_1ld8 .complexSelectors-red_2Cl3x_complexSelectors-big_1ld8 {
-    background-color: blue
-}
-.complexSelectors-themedStyle_3vGr3_complexSelectors-big_1ld8 .complexSelectors-unthemedClassStyle_2wcfh .complexSelectors-red_2Cl3x_complexSelectors-big_1ld8 {
-    background-color: black
-}
-@media screen and (min-width: 700px) {
-    .complexSelectors-red_2Cl3x_complexSelectors-big_1ld8 {
-        color: green
-    }
-    .complexSelectors-unthemedClassStyle_2wcfh .complexSelectors-red_2Cl3x_complexSelectors-big_1ld8 {
-        color: red
-    }
-    .complexSelectors-themedStyle_3vGr3_complexSelectors-big_1ld8 .complexSelectors-red_2Cl3x_complexSelectors-big_1ld8 {
-        color: blue
-    }
-    .complexSelectors-themedStyle_3vGr3_complexSelectors-big_1ld8 .complexSelectors-unthemedClassStyle_2wcfh .complexSelectors-red_2Cl3x_complexSelectors-big_1ld8 {
-        color: black
-    }
-}
 .complexSelectors-red_2Cl3x_complexSelectors-small_1fZK:focus {
     color: purple
 }
@@ -772,6 +778,9 @@ html .complexSelectors-styles_blue_3yryF {
 }
 .complexSelectors-themedStyle_3vGr3_complexSelectors-small_1fZK .complexSelectors-unthemedClassStyle_2wcfh .complexSelectors-red_2Cl3x_complexSelectors-small_1fZK {
     background-color: black
+}
+html .complexSelectors-red_2Cl3x_complexSelectors-small_1fZK {
+    position: absolute
 }
 @media screen and (min-width: 1000px) {
     .complexSelectors-red_2Cl3x_complexSelectors-small_1fZK {
@@ -787,13 +796,52 @@ html .complexSelectors-styles_blue_3yryF {
         color: black
     }
 }
+@media screen and (min-width: 1001px) {
+    html .complexSelectors-red_2Cl3x_complexSelectors-small_1fZK {
+        position: relative
+    }
+}
+.complexSelectors-red_2Cl3x_complexSelectors-big_1ld8:focus {
+    color: purple
+}
+.complexSelectors-unthemedClassStyle_2wcfh .complexSelectors-red_2Cl3x_complexSelectors-big_1ld8 {
+    background-color: red
+}
+.complexSelectors-themedStyle_3vGr3_complexSelectors-big_1ld8 .complexSelectors-red_2Cl3x_complexSelectors-big_1ld8 {
+    background-color: blue
+}
+.complexSelectors-themedStyle_3vGr3_complexSelectors-big_1ld8 .complexSelectors-unthemedClassStyle_2wcfh .complexSelectors-red_2Cl3x_complexSelectors-big_1ld8 {
+    background-color: black
+}
+html .complexSelectors-red_2Cl3x_complexSelectors-big_1ld8 {
+    position: absolute
+}
+@media screen and (min-width: 700px) {
+    .complexSelectors-red_2Cl3x_complexSelectors-big_1ld8 {
+        color: green
+    }
+    .complexSelectors-unthemedClassStyle_2wcfh .complexSelectors-red_2Cl3x_complexSelectors-big_1ld8 {
+        color: red
+    }
+    .complexSelectors-themedStyle_3vGr3_complexSelectors-big_1ld8 .complexSelectors-red_2Cl3x_complexSelectors-big_1ld8 {
+        color: blue
+    }
+    .complexSelectors-themedStyle_3vGr3_complexSelectors-big_1ld8 .complexSelectors-unthemedClassStyle_2wcfh .complexSelectors-red_2Cl3x_complexSelectors-big_1ld8 {
+        color: black
+    }
+}
+@media screen and (min-width: 701px) {
+    html .complexSelectors-red_2Cl3x_complexSelectors-big_1ld8 {
+        position: relative
+    }
+}
 "
 `;
 
 exports[`Stylesheet Complex selectors - Production mode - should create a deterministic stylesheet 1`] = `
 "._3yryF:focus{color:purple}._2wcfh ._3yryF{background-color:red}._3vGr3_1fZK ._3yryF,._3vGr3_1ld8 ._3yryF{background-color:#00f}._3vGr3_1fZK ._2wcfh ._3yryF,._3vGr3_1ld8 ._2wcfh ._3yryF{background-color:#000}html ._3yryF{position:absolute}@media screen and (min-width:300px){._3yryF{color:green}._2wcfh ._3yryF{color:red}._3vGr3_1fZK ._3yryF,._3vGr3_1ld8 ._3yryF{color:#00f}._3vGr3_1fZK ._2wcfh ._3yryF,._3vGr3_1ld8 ._2wcfh ._3yryF{color:#000}}@media screen and (min-width:700px){html ._3yryF{position:relative}}
-._2Cl3x_1ld8:focus{color:purple}._2wcfh ._2Cl3x_1ld8{background-color:red}._3vGr3_1ld8 ._2Cl3x_1ld8{background-color:#00f}._3vGr3_1ld8 ._2wcfh ._2Cl3x_1ld8{background-color:#000}@media screen and (min-width:700px){._2Cl3x_1ld8{color:green}._2wcfh ._2Cl3x_1ld8{color:red}._3vGr3_1ld8 ._2Cl3x_1ld8{color:#00f}._3vGr3_1ld8 ._2wcfh ._2Cl3x_1ld8{color:#000}}
-._2Cl3x_1fZK:focus{color:purple}._2wcfh ._2Cl3x_1fZK{background-color:red}._3vGr3_1fZK ._2Cl3x_1fZK{background-color:#00f}._3vGr3_1fZK ._2wcfh ._2Cl3x_1fZK{background-color:#000}@media screen and (min-width:1000px){._2Cl3x_1fZK{color:green}._2wcfh ._2Cl3x_1fZK{color:red}._3vGr3_1fZK ._2Cl3x_1fZK{color:#00f}._3vGr3_1fZK ._2wcfh ._2Cl3x_1fZK{color:#000}}
+._2Cl3x_1fZK:focus{color:purple}._2wcfh ._2Cl3x_1fZK{background-color:red}._3vGr3_1fZK ._2Cl3x_1fZK{background-color:#00f}._3vGr3_1fZK ._2wcfh ._2Cl3x_1fZK{background-color:#000}html ._2Cl3x_1fZK{position:absolute}@media screen and (min-width:1000px){._2Cl3x_1fZK{color:green}._2wcfh ._2Cl3x_1fZK{color:red}._3vGr3_1fZK ._2Cl3x_1fZK{color:#00f}._3vGr3_1fZK ._2wcfh ._2Cl3x_1fZK{color:#000}}@media screen and (min-width:1001px){html ._2Cl3x_1fZK{position:relative}}
+._2Cl3x_1ld8:focus{color:purple}._2wcfh ._2Cl3x_1ld8{background-color:red}._3vGr3_1ld8 ._2Cl3x_1ld8{background-color:#00f}._3vGr3_1ld8 ._2wcfh ._2Cl3x_1ld8{background-color:#000}html ._2Cl3x_1ld8{position:absolute}@media screen and (min-width:700px){._2Cl3x_1ld8{color:green}._2wcfh ._2Cl3x_1ld8{color:red}._3vGr3_1ld8 ._2Cl3x_1ld8{color:#00f}._3vGr3_1ld8 ._2wcfh ._2Cl3x_1ld8{color:#000}}@media screen and (min-width:701px){html ._2Cl3x_1ld8{position:relative}}
 "
 `;
 
@@ -832,6 +880,40 @@ html ._3yryF {
         position: relative
     }
 }
+._2Cl3x_big_theme_1l:focus {
+    color: purple
+}
+._2wcfh ._2Cl3x_big_theme_1l {
+    background-color: red
+}
+._3vGr3_big_theme_1l ._2Cl3x_big_theme_1l {
+    background-color: blue
+}
+._3vGr3_big_theme_1l ._2wcfh ._2Cl3x_big_theme_1l {
+    background-color: black
+}
+html ._2Cl3x_big_theme_1l {
+    position: absolute
+}
+@media screen and (min-width: 700px) {
+    ._2Cl3x_big_theme_1l {
+        color: green
+    }
+    ._2wcfh ._2Cl3x_big_theme_1l {
+        color: red
+    }
+    ._3vGr3_big_theme_1l ._2Cl3x_big_theme_1l {
+        color: blue
+    }
+    ._3vGr3_big_theme_1l ._2wcfh ._2Cl3x_big_theme_1l {
+        color: black
+    }
+}
+@media screen and (min-width: 701px) {
+    html ._2Cl3x_big_theme_1l {
+        position: relative
+    }
+}
 ._2Cl3x_small_theme_1f:focus {
     color: purple
 }
@@ -843,6 +925,9 @@ html ._3yryF {
 }
 ._3vGr3_small_theme_1f ._2wcfh ._2Cl3x_small_theme_1f {
     background-color: black
+}
+html ._2Cl3x_small_theme_1f {
+    position: absolute
 }
 @media screen and (min-width: 1000px) {
     ._2Cl3x_small_theme_1f {
@@ -858,30 +943,9 @@ html ._3yryF {
         color: black
     }
 }
-._2Cl3x_big_theme_1l:focus {
-    color: purple
-}
-._2wcfh ._2Cl3x_big_theme_1l {
-    background-color: red
-}
-._3vGr3_big_theme_1l ._2Cl3x_big_theme_1l {
-    background-color: blue
-}
-._3vGr3_big_theme_1l ._2wcfh ._2Cl3x_big_theme_1l {
-    background-color: black
-}
-@media screen and (min-width: 700px) {
-    ._2Cl3x_big_theme_1l {
-        color: green
-    }
-    ._2wcfh ._2Cl3x_big_theme_1l {
-        color: red
-    }
-    ._3vGr3_big_theme_1l ._2Cl3x_big_theme_1l {
-        color: blue
-    }
-    ._3vGr3_big_theme_1l ._2wcfh ._2Cl3x_big_theme_1l {
-        color: black
+@media screen and (min-width: 1001px) {
+    html ._2Cl3x_small_theme_1f {
+        position: relative
     }
 }
 "

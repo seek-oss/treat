@@ -6,14 +6,17 @@ import {
   themePlaceholder,
   makeThemedClassReference,
 } from './utils';
-import { Styles, ClassRef, ThemeRef, TreatTheme } from './types';
+import { Style, ClassRef, ThemeRef, TreatTheme } from './types';
 
 const localClassRefs: Array<ClassRef> = [];
+
+export const isThemedSelector = (selector: string) =>
+  selector.indexOf(themePlaceholder) > -1;
 
 export const addLocalClassRef = (classRef: ClassRef) =>
   localClassRefs.push(classRef);
 
-const interpolateSelector = (selector: string, themeRef?: ThemeRef) => {
+export const interpolateSelector = (selector: string, themeRef?: ThemeRef) => {
   let normalisedSelector = selector;
 
   if (localClassRefs.length > 0) {
@@ -45,7 +48,7 @@ export const combinedThemeSelector = (
   selector: string,
   themes: Array<TreatTheme<Theme>>,
 ) => {
-  if (selector.indexOf(themePlaceholder) > -1) {
+  if (isThemedSelector(selector)) {
     return themes
       .map(({ themeRef }) => interpolateSelector(selector, themeRef))
       .join(', ');
@@ -55,29 +58,29 @@ export const combinedThemeSelector = (
 };
 
 interface ProcessSelectorsParams {
-  styles: Styles;
+  style: Style;
   themes: Array<TreatTheme<Theme>>;
   themeRef?: ThemeRef;
 }
 export const processSelectors = ({
-  styles,
+  style,
   themeRef,
   themes,
 }: ProcessSelectorsParams) => {
-  if (styles.selectors) {
-    styles.selectors = mapKeys(styles.selectors, (_valid, key) =>
+  if (style.selectors) {
+    style.selectors = mapKeys(style.selectors, (_valid, key) =>
       themeRef
         ? interpolateSelector(key, themeRef)
         : combinedThemeSelector(key, themes),
     );
   }
 
-  const media = styles['@media'];
+  const media = style['@media'];
 
   if (media) {
     Object.keys(media).forEach(mediaQuery => {
       processSelectors({
-        styles: media[mediaQuery],
+        style: media[mediaQuery],
         themeRef,
         themes,
       });

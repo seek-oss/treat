@@ -16,9 +16,9 @@ export type CSSProperties = BasicCSSProperties & {
   '@keyframes'?: CSSKeyframes | string;
 };
 
-type PseudoStyles = { [key in SimplePseudos[number]]?: CSSProperties };
+type PseudoProperties = { [key in SimplePseudos[number]]?: CSSProperties };
 
-type CSSPropertiesAndPseudos = CSSProperties & PseudoStyles;
+type CSSPropertiesAndPseudos = CSSProperties & PseudoProperties;
 
 interface SelectorMap {
   [selector: string]: CSSProperties;
@@ -30,26 +30,25 @@ export interface MediaQueries<StyleType> {
   };
 }
 
-interface StylesWithSelectors extends CSSPropertiesAndPseudos {
+export interface StyleWithSelectors extends CSSPropertiesAndPseudos {
   selectors?: SelectorMap;
 }
 
-export type Styles = StylesWithSelectors & MediaQueries<StylesWithSelectors>;
+export type Style = StyleWithSelectors & MediaQueries<StyleWithSelectors>;
 
-export type ThemedStyles<Theme> = (theme: Theme) => Styles;
+// backwards compat
+export type Styles = Style;
 
-export type StaticStyleSheet<ClassName extends string> = Record<
+export type GlobalStyle = CSSProperties & MediaQueries<CSSProperties>;
+
+export type StyleMap<ClassName extends string, StyleType> = Record<
   ClassName,
-  Styles
+  StyleType
 >;
 
-export type ThemedStyleSheet<Theme, ClassName extends string> = (
-  theme: Theme,
-) => StaticStyleSheet<ClassName>;
-
-export type StyleSheet<Theme, ClassName extends string> =
-  | ThemedStyleSheet<Theme, ClassName>
-  | StaticStyleSheet<ClassName>;
+export type ThemedStyle<StyleType, Theme> =
+  | ((theme: Theme) => StyleType)
+  | StyleType;
 
 export interface TreatTheme<Tokens> {
   themeRef: ThemeRef;

@@ -67,6 +67,15 @@ globalStyle(`html ${styles.blue}`, {
   },
 });
 
+globalStyle(`html ${red}`, theme => ({
+  position: 'absolute',
+  '@media': {
+    [`screen and (min-width: ${theme.breakpoint + 1}px)`]: {
+      position: 'relative',
+    },
+  },
+}));
+
 export default {
   blue: styles.blue,
   red,

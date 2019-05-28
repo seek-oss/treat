@@ -28,7 +28,7 @@ Because theming is achieved by generating multiple classes, **_legacy browsers a
     - [Style](#style-type)
     - [ThemedStyle](#themedstyle)
     - [Theme](#theme)
-  - [Styling API](#styling-api)
+  - [Style API](#style-api)
     - [createTheme](#createtheme)
     - [style](#style)
     - [styleMap](#stylemap)
@@ -354,9 +354,9 @@ const themedClass = style((theme: Theme) => ({
 }));
 ```
 
-### Styling API
+### Style API
 
-The following styling APIs are only valid within treat files (e.g. `Button.treat.js`).
+The following style APIs are only valid within treat files (e.g. `Button.treat.js`).
 
 #### createTheme
 

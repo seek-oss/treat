@@ -1,5 +1,7 @@
 import { Theme } from 'treat/theme';
 import mapKeys from 'lodash/mapKeys';
+import flatMap from 'lodash/flatMap';
+import uniq from 'lodash/uniq';
 
 import {
   convertToCssClass,
@@ -49,9 +51,13 @@ export const combinedThemeSelector = (
   themes: Array<TreatTheme<Theme>>,
 ) => {
   if (isThemedSelector(selector)) {
-    return themes
-      .map(({ themeRef }) => interpolateSelector(selector, themeRef))
-      .join(', ');
+    return uniq(
+      flatMap(selector.split(','), selectorPart =>
+        themes.map(({ themeRef }) =>
+          interpolateSelector(selectorPart.trim(), themeRef),
+        ),
+      ),
+    ).join(', ');
   }
 
   return interpolateSelector(selector);

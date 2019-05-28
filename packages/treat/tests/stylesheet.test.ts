@@ -1,8 +1,8 @@
-const bent = require('bent');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+import bent from 'bent';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 
-const startFixture = require('../../../test-helpers/startServer');
-const TreatPlugin = require('../webpack-plugin');
+import startFixture from '../../../test-helpers/startServer';
+import TreatPlugin from '../webpack-plugin';
 
 const getString = bent('string');
 const cssFileName = 'main.css';

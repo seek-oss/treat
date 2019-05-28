@@ -1,8 +1,8 @@
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 
-const TreatPlugin = require('../webpack-plugin');
-const startFixture = require('../../../test-helpers/startServer');
-const getStyles = require('../../../test-helpers/getStyles');
+import TreatPlugin from '../webpack-plugin';
+import startFixture from '../../../test-helpers/startServer';
+import getStyles from '../../../test-helpers/getStyles';
 
 const mainSelector = '#main';
 

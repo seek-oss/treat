@@ -1,4 +1,4 @@
-const { validateSelector } = require('../lib/commonjs/validateSelector');
+import { validateSelector } from './validateSelector';
 
 describe('validateSelector', () => {
   describe('selectors that target "&"', () => {

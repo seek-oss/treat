@@ -1,8 +1,8 @@
-const { combinedThemeSelector } = require('../lib/commonjs/processSelectors');
+import { combinedThemeSelector } from './processSelectors';
 
 describe('combinedThemeSelector', () => {
   describe('single theme', () => {
-    const themes = [{ themeRef: '_singleTheme' }];
+    const themes = [{ themeRef: '_singleTheme', tokens: {} }];
     const tests = [
       ['html', 'html'],
       ['html .someClass', 'html .someClass'],
@@ -23,7 +23,10 @@ describe('combinedThemeSelector', () => {
   });
 
   describe('multiple themes', () => {
-    const themes = [{ themeRef: '_themeOne' }, { themeRef: '_themeTwo' }];
+    const themes = [
+      { themeRef: '_themeOne', tokens: {} },
+      { themeRef: '_themeTwo', tokens: {} },
+    ];
     const tests = [
       ['html', 'html'],
       ['html .someClass', 'html .someClass'],

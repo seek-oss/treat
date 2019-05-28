@@ -7,7 +7,7 @@ describe('React', () => {
 
   beforeAll(async () => {
     server = await startFixture({
-      entry: require.resolve('./fixture/client.js'),
+      entry: require.resolve('./fixtures/simple-app/client.js'),
       plugins: [new TreatPlugin()],
     });
     await page.goto(server.url);

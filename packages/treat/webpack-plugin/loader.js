@@ -103,12 +103,12 @@ const compileTreatSource = (loader, request) =>
   });
 
 module.exports = function(source) {
-  this.cacheable(false);
+  this.cacheable(true);
   return source;
 };
 
 module.exports.pitch = function(request) {
-  this.cacheable(false);
+  this.cacheable(true);
   const callback = this.async();
 
   produce(this, request)

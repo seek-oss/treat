@@ -66,18 +66,22 @@ describe('babel plugin', () => {
         import { style } from 'treat';
 
         const test = {
-          two: style({
-            zIndex: 2,
-          })
+          one: {
+            two: style({
+              zIndex: 2,
+            })
+          }
         };
     `;
 
     expect(transform(source)).toMatchInlineSnapshot(`
                   "import { style } from 'treat';
                   const test = {
-                    two: style({
-                      zIndex: 2
-                    }, \\"two\\")
+                    one: {
+                      two: style({
+                        zIndex: 2
+                      }, \\"test_one_two\\")
+                    }
                   };"
             `);
   });

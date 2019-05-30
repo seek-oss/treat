@@ -1,4 +1,10 @@
-const { THEMED } = require('./utils');
+const chalk = require('chalk');
+const { THEMED, debugIdent } = require('./utils');
+
+const formatReindex = (currIndex, newIndex) =>
+  currIndex > newIndex
+    ? `${chalk.green(currIndex)} -> ${chalk.red(newIndex)}`
+    : `${chalk.red(currIndex)} -> ${chalk.green(newIndex)}`;
 
 const handleInvalidIndex = (module, ownerIndex, descriptor) => {
   if (typeof ownerIndex !== 'number') {
@@ -47,7 +53,10 @@ const sortModules = (modules, { getIndex, getOwnerIndex, getThemeIndex }) => {
 module.exports = (
   modules,
   { getIndex, getIndex2, getOwnerIndex, getThemeIndex, setIndex, setIndex2 },
+  { trace, target },
 ) => {
+  trace('Sorting', target);
+
   const originalOrderModules = modules
     .slice()
     .sort((a, b) => getIndex(a) - getIndex(b));
@@ -75,12 +84,12 @@ module.exports = (
         newIndex2: getIndex2(newModuleLocation),
       };
     })
-    .forEach(({ moduleInfo, newIndex, newIndex2 }, index) => {
-      // console.log([
-      //   index,
-      //   `Moving ${shortIdent(moduleInfo.identifier)}`,
-      //   `${getIndex(moduleInfo)} -> ${newIndex}`,
-      // ]);
+    .forEach(({ moduleInfo, newIndex, newIndex2 }) => {
+      trace(
+        'Moving',
+        formatReindex(getIndex(moduleInfo), newIndex),
+        debugIdent(moduleInfo.identifier),
+      );
 
       setIndex(moduleInfo, newIndex);
       setIndex2(moduleInfo, newIndex2);

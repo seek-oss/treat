@@ -1,10 +1,12 @@
+const chalk = require('chalk');
+
 const THEMED = 'THEMED';
 const LOCAL = 'LOCAL';
 
-const shortIdent = str => str.replace(/.*\//, '');
+const debugIdent = str => chalk.blue(`"${str.replace(/.*\//, '')}"`);
 
 module.exports = {
-  shortIdent,
+  debugIdent,
   THEMED,
   LOCAL,
 };

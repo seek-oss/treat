@@ -60,20 +60,6 @@ module.exports = class TreatWebpackPlugin {
         });
 
       compilation.hooks.finishModules.tapPromise(TWP, async () => {
-        const finalThemeHash = this.store.getThemesHash();
-        const treatModules = this.store.popAllModules();
-
-        // Rebuild all treat modules that built before all themes were registered
-        const staleModules = treatModules.filter(
-          ({ themeHash }) => themeHash != finalThemeHash,
-        );
-
-        await Promise.map(staleModules, async ({ moduleIdentifier }) => {
-          const treatModule = compilation.findModule(moduleIdentifier);
-
-          await rebuildModule(treatModule);
-        });
-
         // Filter out css modules that no longer exist (watch mode)
         this.store
           .getAllCssOwners()
@@ -90,15 +76,39 @@ module.exports = class TreatWebpackPlugin {
             this.store.deleteModuleThemes(identifier);
           });
 
-        // Rebuild all theme modules to ensure they contain upto date css
-        await Promise.map(
-          this.store.getThemeIdentifiers(),
-          async themeModuleIdentifier => {
-            const treatModule = compilation.findModule(themeModuleIdentifier);
+        const finalThemeHash = this.store.getThemesHash();
+        const builtTreatModules = this.store
+          .popAllModules()
+          .filter(
+            ({ moduleIdentifier }) =>
+              !this.store.getThemeIdentifiers().includes(moduleIdentifier),
+          );
 
-            await rebuildModule(treatModule);
-          },
+        // Rebuild all non theme treat modules that built before all themes were registered
+        const staleModules = builtTreatModules.filter(
+          ({ themeHash }) => themeHash != finalThemeHash,
         );
+
+        await Promise.map(staleModules, async ({ moduleIdentifier }) => {
+          const treatModule = compilation.findModule(moduleIdentifier);
+
+          await rebuildModule(treatModule);
+        });
+
+        // Modules should be upto date so clear rebuild queue
+        this.store.popAllModules();
+
+        if (builtTreatModules.length > 0) {
+          // Rebuild all theme modules to ensure they contain upto date css
+          await Promise.map(
+            this.store.getThemeIdentifiers(),
+            async themeModuleIdentifier => {
+              const treatModule = compilation.findModule(themeModuleIdentifier);
+
+              await rebuildModule(treatModule);
+            },
+          );
+        }
 
         // Build css modules Map for sorting after chunk phase
         const cssResources = this.store

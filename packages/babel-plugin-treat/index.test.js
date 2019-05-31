@@ -1,10 +1,11 @@
-const babel = require('@babel/core');
-const plugin = require('.');
+import { transformSync } from '@babel/core';
+import plugin from '.';
 
 const transform = (source, options = {}, filename = '/mockFilename.treat.js') =>
-  babel.transformSync(source, {
+  transformSync(source, {
     filename,
     plugins: [[plugin, options]],
+    configFile: false,
   }).code;
 
 describe('babel plugin', () => {
@@ -65,18 +66,22 @@ describe('babel plugin', () => {
         import { style } from 'treat';
 
         const test = {
-          two: style({
-            zIndex: 2,
-          })
+          one: {
+            two: style({
+              zIndex: 2,
+            })
+          }
         };
     `;
 
     expect(transform(source)).toMatchInlineSnapshot(`
                   "import { style } from 'treat';
                   const test = {
-                    two: style({
-                      zIndex: 2
-                    }, \\"two\\")
+                    one: {
+                      two: style({
+                        zIndex: 2
+                      }, \\"test_one_two\\")
+                    }
                   };"
             `);
   });

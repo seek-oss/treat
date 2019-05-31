@@ -1,13 +1,13 @@
-const TreatPlugin = require('treat/webpack-plugin');
-const startFixture = require('../../../test-helpers/startServer');
-const getStyles = require('../../../test-helpers/getStyles');
+import TreatPlugin from 'treat/webpack-plugin';
+import startFixture from '../../../test-helpers/startServer';
+import getStyles from '../../../test-helpers/getStyles';
 
 describe('React', () => {
   let server;
 
   beforeAll(async () => {
     server = await startFixture({
-      entry: require.resolve('./fixture/client.js'),
+      entry: require.resolve('./fixtures/simple-app/client.tsx'),
       plugins: [new TreatPlugin()],
     });
     await page.goto(server.url);

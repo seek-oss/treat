@@ -1,4 +1,4 @@
-const { resolveStyles } = require('treat');
+import { resolveStyles } from 'treat';
 
 const themeRef = '_theme';
 

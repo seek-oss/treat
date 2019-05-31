@@ -1,17 +1,18 @@
 import fromPairs from 'lodash/fromPairs';
+import dedent from 'dedent';
 
 import { Theme } from 'treat/theme';
 import {
   ClassRef,
-  StyleSheet,
+  Style,
+  GlobalStyle,
   StylesMap,
   PostCSS,
-  Styles,
-  ThemedStyles,
   ThemeRef,
   CSSKeyframes,
   CSSProperties,
-  MediaQueries,
+  ThemedStyle,
+  StyleMap,
 } from './types';
 import {
   makeThemedClassReference,
@@ -22,7 +23,8 @@ import { createContentHash } from './createContentHash';
 import {
   processSelectors,
   addLocalClassRef,
-  combinedThemeSelector,
+  interpolateSelector,
+  isThemedSelector,
 } from './processSelectors';
 import { validateStyle, validateGlobalStyle } from './validator';
 import {
@@ -57,13 +59,13 @@ const createKeyframe = (
   return keyframeRef;
 };
 
-const processAnimations = (styles: Styles, themeRef?: ThemeRef) => {
+const processAnimations = (style: Style, themeRef?: ThemeRef) => {
   // handle root level keyframes
-  if (styles['@keyframes']) {
-    styles['@keyframes'] = createKeyframe(styles['@keyframes'], themeRef);
+  if (style['@keyframes']) {
+    style['@keyframes'] = createKeyframe(style['@keyframes'], themeRef);
   }
 
-  const media = styles['@media'];
+  const media = style['@media'];
 
   // handle keyframes in media queries
   if (media) {
@@ -73,88 +75,94 @@ const processAnimations = (styles: Styles, themeRef?: ThemeRef) => {
   }
 
   // handle keyframes in simple pseudos
-  Object.entries(styles)
+  Object.entries(style)
     .filter(([property]) => property.startsWith(':'))
-    .forEach(([_pseudoProperty, pseudoStyles]: [string, CSSProperties]) => {
-      if (pseudoStyles['@keyframes']) {
-        pseudoStyles['@keyframes'] = createKeyframe(
-          pseudoStyles['@keyframes'],
+    .forEach(([_pseudoProperty, pseudoStyle]: [string, CSSProperties]) => {
+      if (pseudoStyle['@keyframes']) {
+        pseudoStyle['@keyframes'] = createKeyframe(
+          pseudoStyle['@keyframes'],
           themeRef,
         );
       }
     });
 
   // handle keyframes in complex selectors
-  if (styles.selectors) {
-    Object.values(styles.selectors).forEach(style => {
-      if (style['@keyframes']) {
-        style['@keyframes'] = createKeyframe(style['@keyframes'], themeRef);
+  if (style.selectors) {
+    Object.values(style.selectors).forEach(selectorStyle => {
+      if (selectorStyle['@keyframes']) {
+        selectorStyle['@keyframes'] = createKeyframe(
+          selectorStyle['@keyframes'],
+          themeRef,
+        );
       }
     });
   }
 };
 
-const processStyle = (styles: Styles, themeRef?: ThemeRef) => {
-  processSelectors({ styles, themeRef, themes: getThemes() });
-  processAnimations(styles, themeRef);
+const processStyle = (style: Style, themeRef?: ThemeRef) => {
+  processSelectors({ style, themeRef, themes: getThemes() });
+  processAnimations(style, themeRef);
 };
 
 type ThemeStyleMap = {
-  [themeRef: string]: Styles;
+  [themeRef: string]: Style;
 };
-const createThemedCss = (classRef: ClassRef, styles: ThemeStyleMap) => {
-  Object.entries(styles).forEach(([themeRef, style]) => {
-    validateStyle(style);
+const createThemedCss = (classRef: ClassRef, style: ThemeStyleMap) => {
+  Object.entries(style).forEach(([themeRef, themeStyle]) => {
+    validateStyle(themeStyle);
 
-    processStyle(style, themeRef);
+    processStyle(themeStyle, themeRef);
 
     const themedClassRef = makeThemedClassReference(themeRef, classRef);
 
     addThemedCss(themeRef, {
-      [convertToCssClass(themedClassRef)]: style,
+      [convertToCssClass(themedClassRef)]: themeStyle,
     });
   });
 
   return templateThemeClassRef(classRef);
 };
 
-type StyleDeclaration = Styles | ThemedStyles<Theme>;
 export function style(
-  styles: StyleDeclaration,
+  style: ThemedStyle<Style, Theme>,
   localDebugName?: string,
 ): ClassRef {
   const localName = localDebugName || 'style';
   const classRef = getIdentName(localName, getNextScope());
 
-  if (typeof styles === 'object') {
-    validateStyle(styles);
+  if (typeof style === 'object') {
+    validateStyle(style);
 
     addLocalClassRef(classRef);
 
-    processStyle(styles);
+    processStyle(style);
 
-    addLocalCss({ [convertToCssClass(classRef)]: styles });
+    addLocalCss({ [convertToCssClass(classRef)]: style });
 
     return classRef;
   } else {
-    const themedStyles = Object.assign(
+    const themedStyle = Object.assign(
       {},
       ...getThemes().map(({ themeRef, tokens }) => {
-        const themedStyles = styles(tokens);
-        validateStyle(themedStyles);
+        const themedStyle = style(tokens);
+        validateStyle(themedStyle);
 
         return {
-          [themeRef]: themedStyles,
+          [themeRef]: themedStyle,
         };
       }),
     );
 
-    return createThemedCss(classRef, themedStyles);
+    return createThemedCss(classRef, themedStyle);
   }
 }
 
+type StyleMapParam<ClassName extends string> = ThemedStyle<
+  StyleMap<ClassName, Style>,
+  Theme
+>;
 export function styleMap<ClassName extends string>(
-  stylesheet: StyleSheet<Theme, ClassName>,
+  stylesheet: StyleMapParam<ClassName>,
   localDebugName?: string,
 ): StylesMap<ClassName> {
   const classRefs: { [className: string]: ClassRef } = {};
@@ -193,8 +201,8 @@ export function styleMap<ClassName extends string>(
   } else {
     const postCss: PostCSS = fromPairs(
       Object.entries(stylesheet).map(
-        ([classIdentifier, styles]: [ClassRef, Styles]) => {
-          validateStyle(styles);
+        ([classIdentifier, style]: [ClassRef, Style]) => {
+          validateStyle(style);
 
           const classRef = getIdentName(
             createLocalName(classIdentifier),
@@ -203,9 +211,9 @@ export function styleMap<ClassName extends string>(
           classRefs[classIdentifier] = classRef;
           addLocalClassRef(classRef);
 
-          processStyle(styles);
+          processStyle(style);
 
-          return [convertToCssClass(classRef), styles];
+          return [convertToCssClass(classRef), style];
         },
       ),
     );
@@ -229,11 +237,40 @@ export function createTheme(tokens: Theme, localDebugName?: string): ThemeRef {
   return theme.themeRef;
 }
 
-type GlobalStyles = CSSProperties & MediaQueries<CSSProperties>;
-export function globalStyle(selector: string, styles: GlobalStyles): void {
-  validateGlobalStyle(styles);
+export function globalStyle(
+  selector: string,
+  style: ThemedStyle<GlobalStyle, Theme>,
+): void {
+  if (isThemedSelector(selector)) {
+    getThemes().forEach(theme => {
+      const themedSelector = interpolateSelector(selector, theme.themeRef);
 
-  const normalisedSelector = combinedThemeSelector(selector, getThemes());
+      const themeStyle =
+        typeof style === 'function' ? style(theme.tokens) : style;
 
-  addLocalCss({ [normalisedSelector]: styles });
+      validateGlobalStyle(themeStyle);
+
+      addThemedCss(theme.themeRef, { [themedSelector]: themeStyle });
+    });
+  } else {
+    const normalisedSelector = interpolateSelector(selector);
+
+    if (typeof style === 'function') {
+      throw Error(
+        dedent`
+          Unthemeable selector: ${normalisedSelector}
+          
+          Global styles cannot be themed unless the selector references a themed class.
+          
+          For example, you could add a themed class to the start of your selector (e.g. ${'`${themedClass} h1`'}).
+          
+          Without a reference to a themed class, there is no way to selectively apply styles based on the current theme.
+        `,
+      );
+    }
+
+    validateGlobalStyle(style);
+
+    addLocalCss({ [normalisedSelector]: style });
+  }
 }

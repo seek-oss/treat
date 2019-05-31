@@ -27,10 +27,10 @@ Because theming is achieved by generating multiple classes, **_legacy browsers a
   - [Babel Setup](#babel-setup)
 - [API Reference](#api-reference)
   - [Data Types](#data-types)
-    - [Styles](#styles)
-    - [ThemedStyles](#themedstyles)
+    - [Style](#style-type)
+    - [ThemedStyle](#themedstyle)
     - [Theme](#theme)
-  - [Styling API](#styling-api)
+  - [Style API](#style-api)
     - [createTheme](#createtheme)
     - [style](#style)
     - [styleMap](#stylemap)
@@ -59,7 +59,7 @@ The core runtime makes use of [`Map`](https://developer.mozilla.org/en-US/docs/W
 
 ### Basic Usage
 
-First, define and export [styles](#styles) from a treat file.
+First, define and export [styles](#style-type) from a treat file.
 
 ```js
 // Button.treat.js
@@ -119,7 +119,7 @@ export function App() {
 }
 ```
 
-Now that you've configured the theming system, define and export [themed styles](#themedstyles) from a treat file.
+Now that you've configured the theming system, define and export [themed styles](#themedstyle) from a treat file.
 
 ```js
 // Button.treat.js
@@ -208,11 +208,11 @@ Then, add it to your Babel config. For example, in `.babelrc`:
 
 While not an exhaustive list of all types defined in the library, this section covers the core data types that are essential to using the library.
 
-#### Styles
+#### Style type
 
 Type: `object`
 
-When passing styles to the [`style`](#style) and [`styleMap`](#stylemap) functions, or returning styles from a [`ThemedStyles` function](#themedstyles), you'll need to define them in the following format.
+When passing styles to the [`style`](#style) and [`styleMap`](#stylemap) functions, or returning styles from a [`ThemedStyle` function](#themedstyle), you'll need to define them in the following format.
 
 ```js
 {
@@ -310,11 +310,11 @@ The animation shorthand is also supported via a `@keyframes` placeholder.
 }
 ```
 
-#### ThemedStyles
+#### ThemedStyle
 
 Type: `function`
 
-Accepts a [`Theme`](#theme) and returns a [`Styles` object.](#styles)
+Accepts a [`Theme`](#theme) and returns a [`Style` object.](#style-type)
 
 ```js
 theme => ({
@@ -324,7 +324,7 @@ theme => ({
 
 #### Theme
 
-When [defining themes](#createtheme) and [consuming themes](#themedstyles), the provided theme object uses the `Theme` type, which is `any` by default. This means that any usage of a theme will not be type-safe.
+When [defining themes](#createtheme) and [consuming themes](#themedstyle), the provided theme object uses the `Theme` type, which is `any` by default. This means that any usage of a theme will not be type-safe.
 
 The simplest way to fix this is to override this type at a global level. For example, you could create a `treat.d.ts` file in your project with the following contents.
 
@@ -345,7 +345,7 @@ declare module 'treat/theme' {
 }
 ```
 
-Alternatively, if you'd prefer to avoid global types, you can manually annotate the theme object being passed into a [`ThemedStyles` function.](#themedstyles)
+Alternatively, if you'd prefer to avoid global types, you can manually annotate the theme object being passed into a [`ThemedStyle` function.](#themedstyle)
 
 ```tsx
 import { style } from 'treat';
@@ -356,9 +356,9 @@ const themedClass = style((theme: Theme) => ({
 }));
 ```
 
-### Styling API
+### Style API
 
-The following styling APIs are only valid within treat files (e.g. `Button.treat.js`).
+The following style APIs are only valid within treat files (e.g. `Button.treat.js`).
 
 #### createTheme
 

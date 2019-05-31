@@ -28,7 +28,7 @@
   },
   "toolchain": {
     "node": "10.15.2",
-    "yarn": "1.15.2"
+    "yarn": "1.16.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.4.4",
@@ -42,7 +42,10 @@
     "@types/classnames": "^2.2.7",
     "@types/dedent": "^0.7.0",
     "@types/hapi__joi": "^15.0.1",
+    "@types/jest": "^24.0.13",
+    "@types/jest-environment-puppeteer": "^4.0.0",
     "@types/node": "^12.0.1",
+    "@types/puppeteer": "^1.12.4",
     "@types/react": "^16.8.17",
     "@types/react-dom": "^16.8.4",
     "@types/react-router-dom": "^4.3.3",

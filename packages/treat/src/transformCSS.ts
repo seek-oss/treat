@@ -1,4 +1,3 @@
-import { SimplePseudos } from 'csstype';
 import merge from 'lodash/merge';
 import mapKeys from 'lodash/mapKeys';
 import each from 'lodash/each';

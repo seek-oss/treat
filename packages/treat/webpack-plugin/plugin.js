@@ -1,9 +1,12 @@
 const Promise = require('bluebird');
 const partition = require('lodash/partition');
+const chalk = require('chalk');
 const virtualModules = require('./virtualModules');
 const store = require('./store');
 const reIndexModules = require('./reIndexModules');
 const TreatError = require('./TreatError');
+const makeTreatCompiler = require('./treatCompiler');
+const { debugIdent } = require('./utils');
 
 const isProductionLikeMode = options => {
   return options.mode === 'production' || !options.mode;
@@ -19,6 +22,10 @@ const makeOptionDefaulter = prodLike => (option, { dev, prod }) => {
   return prodLike ? prod : dev;
 };
 
+const trace = (...params) => {
+  console.log(chalk.green('TreatWebpackPlugin:'), ...params);
+};
+
 module.exports = class TreatWebpackPlugin {
   constructor(options = {}) {
     const {
@@ -29,9 +36,12 @@ module.exports = class TreatWebpackPlugin {
       themeIdentName,
       minify,
       browsers,
+      verbose = false,
     } = options;
 
+    this.trace = verbose ? trace : () => {};
     this.store = store();
+    this.treatCompiler = makeTreatCompiler(this.trace);
 
     this.test = test;
     this.minify = minify;
@@ -49,6 +59,12 @@ module.exports = class TreatWebpackPlugin {
       virtualModules.apply(compiler);
     }
 
+    compiler.hooks.watchRun.tap(TWP, watchCompiler => {
+      this.treatCompiler.expireCache(
+        Object.keys(watchCompiler.watchFileSystem.watcher.mtimes),
+      );
+    });
+
     compiler.hooks.thisCompilation.tap(TWP, compilation => {
       const cssModules = new Map();
 
@@ -60,20 +76,6 @@ module.exports = class TreatWebpackPlugin {
         });
 
       compilation.hooks.finishModules.tapPromise(TWP, async () => {
-        const finalThemeHash = this.store.getThemesHash();
-        const treatModules = this.store.popAllModules();
-
-        // Rebuild all treat modules that built before all themes were registered
-        const staleModules = treatModules.filter(
-          ({ themeHash }) => themeHash != finalThemeHash,
-        );
-
-        await Promise.map(staleModules, async ({ moduleIdentifier }) => {
-          const treatModule = compilation.findModule(moduleIdentifier);
-
-          await rebuildModule(treatModule);
-        });
-
         // Filter out css modules that no longer exist (watch mode)
         this.store
           .getAllCssOwners()
@@ -90,15 +92,45 @@ module.exports = class TreatWebpackPlugin {
             this.store.deleteModuleThemes(identifier);
           });
 
-        // Rebuild all theme modules to ensure they contain upto date css
-        await Promise.map(
-          this.store.getThemeIdentifiers(),
-          async themeModuleIdentifier => {
-            const treatModule = compilation.findModule(themeModuleIdentifier);
+        const finalThemeHash = this.store.getThemesHash();
+        const builtTreatModules = this.store
+          .popAllModules()
+          .filter(
+            ({ moduleIdentifier }) =>
+              !this.store.getThemeIdentifiers().includes(moduleIdentifier),
+          );
 
-            await rebuildModule(treatModule);
-          },
+        // Rebuild all non theme treat modules that built before all themes were registered
+        const staleModules = builtTreatModules.filter(
+          ({ themeHash }) => themeHash != finalThemeHash,
         );
+
+        await Promise.map(staleModules, async ({ moduleIdentifier }) => {
+          this.trace('Rebuiling stale module: ', debugIdent(moduleIdentifier));
+          const treatModule = compilation.findModule(moduleIdentifier);
+
+          await rebuildModule(treatModule);
+        });
+
+        // Modules should be upto date so clear rebuild queue
+        this.store.popAllModules();
+
+        if (builtTreatModules.length > 0) {
+          // Rebuild all theme modules to ensure they contain upto date css
+          await Promise.map(
+            this.store.getThemeIdentifiers(),
+            async themeModuleIdentifier => {
+              this.trace(
+                'Rebuiling theme module: ',
+                debugIdent(themeModuleIdentifier),
+              );
+
+              const treatModule = compilation.findModule(themeModuleIdentifier);
+
+              await rebuildModule(treatModule);
+            },
+          );
+        }
 
         // Build css modules Map for sorting after chunk phase
         const cssResources = this.store
@@ -179,28 +211,36 @@ module.exports = class TreatWebpackPlugin {
             for (const chunkGroup of chunk.groupsIterable) {
               // Corrects ChunkGroup._moduleIndicies
               // Used for mini-extract-css-plugin ordering
-              reIndexModules(cssModulesInChunk, {
-                getIndex: ({ module }) => chunkGroup.getModuleIndex(module),
-                getIndex2: ({ module }) => chunkGroup.getModuleIndex2(module),
-                getOwnerIndex: ({ owner }) => owner.index,
-                getThemeIndex: ({ themeModule }) => themeModule.index,
-                setIndex: ({ module }, i) =>
-                  chunkGroup.setModuleIndex(module, i),
-                setIndex2: ({ module }, i) =>
-                  chunkGroup.setModuleIndex2(module, i),
-              });
+              reIndexModules(
+                cssModulesInChunk,
+                {
+                  getIndex: ({ module }) => chunkGroup.getModuleIndex(module),
+                  getIndex2: ({ module }) => chunkGroup.getModuleIndex2(module),
+                  getOwnerIndex: ({ owner }) => owner.index,
+                  getThemeIndex: ({ themeModule }) => themeModule.index,
+                  setIndex: ({ module }, i) =>
+                    chunkGroup.setModuleIndex(module, i),
+                  setIndex2: ({ module }, i) =>
+                    chunkGroup.setModuleIndex2(module, i),
+                },
+                { trace: this.trace, target: 'ChunkGroup._moduleIndicies' },
+              );
             }
           });
 
           // Corrects Module.index/index2
-          reIndexModules(usedCssModules, {
-            getIndex: ({ module }) => module.index,
-            getIndex2: ({ module }) => module.index2,
-            getOwnerIndex: ({ owner }) => owner.index,
-            getThemeIndex: ({ themeModule }) => themeModule.index,
-            setIndex: ({ module }, i) => (module.index = i),
-            setIndex2: ({ module }, i) => (module.index2 = i),
-          });
+          reIndexModules(
+            usedCssModules,
+            {
+              getIndex: ({ module }) => module.index,
+              getIndex2: ({ module }) => module.index2,
+              getOwnerIndex: ({ owner }) => owner.index,
+              getThemeIndex: ({ themeModule }) => themeModule.index,
+              setIndex: ({ module }, i) => (module.index = i),
+              setIndex2: ({ module }, i) => (module.index2 = i),
+            },
+            { trace: this.trace, target: 'Module.index/index2' },
+          );
 
           this.store
             .getThemeIdentifiers()
@@ -223,17 +263,21 @@ module.exports = class TreatWebpackPlugin {
 
               // Corrects Dependency.sourceOrder
               // Used for regular import chunk sorting, e.g. style-loader
-              reIndexModules(relevantDependencies, {
-                getIndex: ({ dependency }) => dependency.sourceOrder,
-                getOwnerIndex: ({ owner }) => owner.index,
-                getThemeIndex: ({ themeModule }) => themeModule.index,
-                setIndex: ({ dependency }, i) => {
-                  dependency.sourceOrder = i;
+              reIndexModules(
+                relevantDependencies,
+                {
+                  getIndex: ({ dependency }) => dependency.sourceOrder,
+                  getOwnerIndex: ({ owner }) => owner.index,
+                  getThemeIndex: ({ themeModule }) => themeModule.index,
+                  setIndex: ({ dependency }, i) => {
+                    dependency.sourceOrder = i;
+                  },
+                  // index2 not required for dependencies
+                  getIndex2: () => {},
+                  setIndex2: () => {},
                 },
-                // index2 not required for dependencies
-                getIndex2: () => {},
-                setIndex2: () => {},
-              });
+                { trace: this.trace, target: 'Dependency.sourceOrder' },
+              );
             });
         } catch (e) {
           compilation.errors.push(new TreatError(e));
@@ -278,6 +322,7 @@ module.exports = class TreatWebpackPlugin {
               prod: '[hash:base64:4]',
             }),
             store: this.store,
+            treatCompiler: this.treatCompiler,
           },
         },
       ],

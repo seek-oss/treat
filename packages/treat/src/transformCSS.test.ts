@@ -1,4 +1,4 @@
-const transformCSS = require('../lib/commonjs/transformCSS').default;
+import transformCSS from './transformCSS';
 
 describe('transformCSS', () => {
   it('should handle media queries', () => {

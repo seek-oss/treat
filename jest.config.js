@@ -4,6 +4,6 @@ module.exports = {
   transformIgnorePatterns: [
     '/node_modules/',
     '<rootDir>/packages/treat/webpack-plugin',
-    '<rootDir>/packages/treat/tests',
+    '<rootDir>/packages/*/tests/fixtures',
   ],
 };

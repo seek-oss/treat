@@ -68,7 +68,10 @@ module.exports = trace => {
       loader.addContextDependency(dep);
     });
 
-    return source;
+    return {
+      source,
+      dependencies: fileDependencies,
+    };
   };
 
   return {

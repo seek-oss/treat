@@ -51,11 +51,11 @@ module.exports = () => {
     throw new Error(`Couldn't find owner module for ${cssResource}`);
   };
 
-  const addTheme = (theme, resourcePath, identifier) => {
+  const addTheme = (theme, identifier, dependencies) => {
     themes.set(theme.themeRef, {
       theme,
-      resourcePath,
       identifier,
+      dependencies,
     });
   };
 
@@ -73,8 +73,10 @@ module.exports = () => {
 
   const getThemeCount = () => themes.size;
 
-  const getThemeResourcePaths = () =>
-    Array.from(themes.values()).map(({ resourcePath }) => resourcePath);
+  const getThemeDependencies = () =>
+    flatten(
+      Array.from(themes.values()).map(({ dependencies }) => dependencies),
+    );
 
   const getThemeIdentifiers = () =>
     Array.from(themes.values()).map(({ identifier }) => identifier);
@@ -99,7 +101,7 @@ module.exports = () => {
     getThemedCssModuleInfo,
     getThemesHash,
     getThemes,
-    getThemeResourcePaths,
+    getThemeDependencies,
     getThemeIdentifiers,
   };
 };

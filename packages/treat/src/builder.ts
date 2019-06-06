@@ -13,6 +13,7 @@ import {
   CSSProperties,
   ThemedStyle,
   StyleMap,
+  TreatModule,
 } from './types';
 import {
   makeThemedClassReference,
@@ -275,22 +276,12 @@ export function globalStyle(
   }
 }
 
-type UnionToIntersection<U> = (U extends any
-  ? (k: U) => void
-  : never) extends ((k: infer I) => void)
-  ? I
-  : never;
-
-type NoUnion<Key> =
-  // If this is a simple type UnionToIntersection<Key> will be the same type, otherwise it will an intersection of all types in the union and probably will not extend `Key`
-  [Key] extends [UnionToIntersection<Key>] ? Key : never;
-
-type TreeMaker<ReturnType> = (
+type MakeStyleTree<ReturnType extends TreatModule> = (
   theme: Theme,
   styleNode: (style: Style) => ClassRef,
 ) => ReturnType;
-export function styleTree<ReturnType>(
-  makeStyleTree: TreeMaker<NoUnion<ReturnType>>,
+export function styleTree<ReturnType extends TreatModule>(
+  makeStyleTree: MakeStyleTree<ReturnType>,
 ): ReturnType {
   const themedClassRefs = new Map<ClassRef, ThemeStyleMap>();
   const startingScope = getNextScope();
@@ -316,11 +307,22 @@ export function styleTree<ReturnType>(
     return makeStyleTree(tokens, makeStyle);
   });
 
+  try {
+    const themedTreesJson = JSON.parse(JSON.stringify(themedTrees));
+    if (!themedTreesJson || !isEqual(themedTrees, themedTreesJson)) {
+      throw new Error();
+    }
+  } catch (err) {
+    throw new Error(
+      "Return values from 'styleTree' functions must only contain objects, arrays and primitive types.",
+    );
+  }
+
   const [referenceTree, ...restTrees] = themedTrees;
   restTrees.forEach(tree => {
     if (!isEqual(tree, referenceTree)) {
       throw new Error(dedent`
-        Mismatching style tree.
+        Mismatching style trees.
 
         All 'styleTree' functions must return the same structure for every theme.
         

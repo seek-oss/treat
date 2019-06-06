@@ -1,1 +1,14 @@
-[]
+[
+  "packages/treat/tests/fixtures/simple/simple.treat.ts?0",
+  "packages/treat/tests/fixtures/simple/simple.treat.ts?1",
+  "packages/treat/tests/fixtures/themed/stylesThree.treat.ts?0",
+  "packages/treat/tests/fixtures/themed/stylesThree.treat.ts?1",
+  "packages/treat/tests/fixtures/themed/stylesTwo.treat.ts?0",
+  "packages/treat/tests/fixtures/themed/stylesTwo.treat.ts?1",
+  "packages/treat/tests/fixtures/themed/stylesOne.treat.ts?0",
+  "packages/treat/tests/fixtures/themed/stylesOne.treat.ts?1",
+  "packages/treat/tests/fixtures/complex-selectors/complexSelectors.treat.ts?2",
+  "packages/treat/tests/fixtures/complex-selectors/complexSelectors.treat.ts?3",
+  "packages/treat/tests/fixtures/complex-selectors/complexSelectors.treat.ts?4",
+  "packages/treat/tests/fixtures/complex-selectors/complexSelectors.treat.ts?5"
+]

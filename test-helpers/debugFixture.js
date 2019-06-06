@@ -59,8 +59,10 @@ const config = {
 
 const compiler = webpack(config);
 
-const devServer = new WebpackDevServer(compiler, {
-  overlay: true,
-});
+compiler.run();
 
-devServer.listen(8080);
+// const devServer = new WebpackDevServer(compiler, {
+//   overlay: true,
+// });
+
+// devServer.listen(8080);

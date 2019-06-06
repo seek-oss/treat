@@ -1,7 +1,7 @@
 const anyBase = require('any-base');
 const { writeManifest, readManifest } = require('./manifest');
 
-const validClassCharacters = `${anyBase.DEC}abcdefghijklmnopqrstuvwxyz_-`;
+const validClassCharacters = `abcdefghijklmnopqrstuvwxyz${anyBase.DEC}`;
 
 const decToIdent = anyBase(anyBase.DEC, validClassCharacters);
 
@@ -72,8 +72,7 @@ module.exports = class AllocationHandler {
   }
 
   allocationIndexToIdent(allocationIndex) {
-    // Shift index up 10 places so ident never starts with number
-    return decToIdent(`${allocationIndex + 10}`);
+    return `__${decToIdent(`${allocationIndex}`)}`;
   }
 
   getAllocationIdent(resourcePath, scopeIndex) {

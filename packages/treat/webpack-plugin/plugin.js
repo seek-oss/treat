@@ -67,15 +67,11 @@ module.exports = class TreatWebpackPlugin {
     }
 
     compiler.hooks.beforeRun.tapPromise(TWP, async () => {
-      console.log('beforeRun');
-
       this.allocationHandler.enableNewAllocations();
       await this.allocationHandler.hydrateAllocations();
     });
 
     compiler.hooks.done.tapPromise(TWP, async () => {
-      console.log(this.allocationHandler.getAllocations());
-
       await this.allocationHandler.persistAllocations();
     });
 

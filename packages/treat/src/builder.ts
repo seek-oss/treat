@@ -1,4 +1,4 @@
-import fromPairs from 'lodash/fromPairs';
+import { fromPairs, isEqual } from 'lodash';
 import dedent from 'dedent';
 
 import { Theme } from 'treat/theme';
@@ -316,11 +316,30 @@ export function styleTree<ReturnType>(
     return makeStyleTree(tokens, makeStyle);
   });
 
-  // validate themed trees are the same
+  const [referenceTree, ...restTrees] = themedTrees;
+  restTrees.forEach(tree => {
+    if (!isEqual(tree, referenceTree)) {
+      throw new Error(dedent`
+        Mismatching style tree.
+
+        All 'styleTree' functions must return the same structure for every theme.
+        
+        To avoid this error, ensure that object keys and array lengths do not depend on unique properties of each theme.
+        
+        Expected:
+        
+        ${JSON.stringify(referenceTree, null, 2)}
+
+        Received:
+        
+        ${JSON.stringify(tree, null, 2)}
+      `);
+    }
+  });
 
   Array.from(themedClassRefs.entries()).forEach(([classRef, styles]) => {
     createThemedCss(classRef, styles);
   });
 
-  return themedTrees[0];
+  return referenceTree;
 }

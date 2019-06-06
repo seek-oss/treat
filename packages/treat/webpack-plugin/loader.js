@@ -46,6 +46,7 @@ async function produce(loader, request) {
     browsers,
     store,
     treatCompiler,
+    allocationHandler,
   } = loaderUtils.getOptions(loader);
   let hasThemedCss = false;
   let localStyles = null;
@@ -69,10 +70,22 @@ async function produce(loader, request) {
 
   const getIdentName = (localName, scopeId, theme) => {
     const { resourcePath } = loader;
+
     const extension = path.extname(resourcePath);
     const baseName = path
       .basename(resourcePath, extension)
       .replace(/\.treat$/, '');
+
+    if (!theme) {
+      const allocationIdent = allocationHandler.getAllocationIdent(
+        relativeResourcePath,
+        scopeId,
+      );
+
+      if (allocationIdent) {
+        return allocationIdent;
+      }
+    }
 
     const identName = theme ? getThemeIdent(theme) : localIdentName;
     const normalizedIdentName = identName

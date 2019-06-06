@@ -21,6 +21,7 @@
   "dependencies": {
     "@hapi/joi": "^15.0.3",
     "@types/lodash": "^4.14.123",
+    "any-base": "^1.1.0",
     "autoprefixer": "^9.5.0",
     "bluebird": "^3.5.4",
     "chalk": "^2.4.2",

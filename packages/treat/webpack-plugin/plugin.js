@@ -1,3 +1,5 @@
+const path = require('path');
+const fs = require('fs');
 const Promise = require('bluebird');
 const partition = require('lodash/partition');
 const chalk = require('chalk');
@@ -7,6 +9,7 @@ const reIndexModules = require('./reIndexModules');
 const TreatError = require('./TreatError');
 const makeTreatCompiler = require('./treatCompiler');
 const { debugIdent } = require('./utils');
+const AllocationHandler = require('./AllocationHandler');
 
 const isProductionLikeMode = options => {
   return options.mode === 'production' || !options.mode;
@@ -37,16 +40,20 @@ module.exports = class TreatWebpackPlugin {
       minify,
       browsers,
       verbose = false,
+      manifestFile = './treat-manifest.json',
     } = options;
 
     this.trace = verbose ? trace : () => {};
     this.store = store();
+
+    this.allocationHandler = new AllocationHandler({ manifestFile });
     this.treatCompiler = makeTreatCompiler(this.trace);
 
     this.test = test;
     this.minify = minify;
     this.localIdentName = localIdentName;
     this.themeIdentName = themeIdentName;
+    this.manifestFile = manifestFile;
     this.loaderOptions = {
       outputCSS,
       outputLoaders,
@@ -58,6 +65,19 @@ module.exports = class TreatWebpackPlugin {
     if (this.loaderOptions.outputCSS) {
       virtualModules.apply(compiler);
     }
+
+    compiler.hooks.beforeRun.tapPromise(TWP, async () => {
+      console.log('beforeRun');
+
+      this.allocationHandler.enableNewAllocations();
+      await this.allocationHandler.hydrateAllocations();
+    });
+
+    compiler.hooks.done.tapPromise(TWP, async () => {
+      console.log(this.allocationHandler.getAllocations());
+
+      await this.allocationHandler.persistAllocations();
+    });
 
     compiler.hooks.watchRun.tap(TWP, watchCompiler => {
       this.treatCompiler.expireCache(
@@ -323,6 +343,7 @@ module.exports = class TreatWebpackPlugin {
             }),
             store: this.store,
             treatCompiler: this.treatCompiler,
+            allocationHandler: this.allocationHandler,
           },
         },
       ],

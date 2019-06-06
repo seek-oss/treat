@@ -20,6 +20,7 @@ nodeOne.setAttribute(
     stylesTwo.themeStyle,
     stylesThree.regularStyle,
     stylesThree.themeStyle,
+    stylesThree.tree.foo.bar.baz,
   ),
 );
 

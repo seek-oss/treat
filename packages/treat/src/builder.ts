@@ -274,3 +274,53 @@ export function globalStyle(
     addLocalCss({ [normalisedSelector]: style });
   }
 }
+
+type UnionToIntersection<U> = (U extends any
+  ? (k: U) => void
+  : never) extends ((k: infer I) => void)
+  ? I
+  : never;
+
+type NoUnion<Key> =
+  // If this is a simple type UnionToIntersection<Key> will be the same type, otherwise it will an intersection of all types in the union and probably will not extend `Key`
+  [Key] extends [UnionToIntersection<Key>] ? Key : never;
+
+type TreeMaker<ReturnType> = (
+  theme: Theme,
+  styleNode: (style: Style) => ClassRef,
+) => ReturnType;
+export function styleTree<ReturnType>(
+  makeStyleTree: TreeMaker<NoUnion<ReturnType>>,
+): ReturnType {
+  const themedClassRefs = new Map<ClassRef, ThemeStyleMap>();
+  const startingScope = getNextScope();
+
+  const themedTrees = getThemes().map(({ tokens, themeRef }) => {
+    let scopeCount = startingScope;
+
+    const makeStyle = (style: Style) => {
+      const classRef = getIdentName('stylenode', scopeCount++);
+
+      const themedClassRefValue = themedClassRefs.get(classRef) || {};
+
+      validateStyle(style);
+
+      themedClassRefs.set(
+        classRef,
+        Object.assign({}, themedClassRefValue, { [themeRef]: style }),
+      );
+
+      return templateThemeClassRef(classRef);
+    };
+
+    return makeStyleTree(tokens, makeStyle);
+  });
+
+  // validate themed trees are the same
+
+  Array.from(themedClassRefs.entries()).forEach(([classRef, styles]) => {
+    createThemedCss(classRef, styles);
+  });
+
+  return themedTrees[0];
+}

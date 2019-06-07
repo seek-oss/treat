@@ -10,8 +10,20 @@ const regularStyle = style({
 
 const tree = styleTree((theme, styleNode) => ({
   border: {
-    small: [styleNode({ border: `${theme.row * 1}px solid pink` })],
-    large: [styleNode({ border: `${theme.row * 2}px solid pink` })],
+    small: [
+      styleNode({
+        borderBottomWidth: `${theme.row * 1}px`,
+        borderBottomStyle: 'solid',
+        borderBottomColor: 'pink',
+      }),
+    ],
+    large: [
+      styleNode({
+        borderBottomWidth: `${theme.row * 2}px`,
+        borderBottomStyle: 'solid',
+        borderBottomColor: 'pink',
+      }),
+    ],
   },
 }));
 

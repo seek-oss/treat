@@ -213,7 +213,7 @@ While not an exhaustive list of all types defined in the library, this section c
 
 Type: `object`
 
-When passing styles to the [`style`](#style) and [`styleMap`](#stylemap) functions, or returning styles from a [`ThemedStyle` function](#themedstyle), you'll need to define them in the following format.
+When passing styles to the [`style`](#style), [`styleMap`](#stylemap) and [`styleTree`](#styletree) functions, or returning styles from a [`ThemedStyle` function](#themedstyle), you'll need to define them in the following format.
 
 ```js
 {

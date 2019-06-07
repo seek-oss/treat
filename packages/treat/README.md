@@ -471,7 +471,7 @@ export const padding = {
 
 Type: `function`
 
-> Note: This is an advanced feature that you _probably_ don't need. Only use this if you've exhaused all other options.
+> Note: This is an advanced feature that you _probably_ don't need. Only use this if you've exhausted all other options.
 
 The `styleTree` function allows you to create complex, nested data structures based on your theme.
 

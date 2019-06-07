@@ -1183,12 +1183,12 @@ exports[`Stylesheet Themed - Custom idents - should create a deterministic style
 .stylesThree-themeStyle_yEYY9-themeOne_2y {
     line-height: 6
 }
-.stylesThree-stylenode_3fD_0-themeOne_2y {
+.stylesThree-styleNode_3fD_0-themeOne_2y {
     border-bottom-width: 6px;
     border-bottom-style: solid;
     border-bottom-color: pink
 }
-.stylesThree-stylenode_1ezv1-themeOne_2y {
+.stylesThree-styleNode_1ezv1-themeOne_2y {
     border-bottom-width: 12px;
     border-bottom-style: solid;
     border-bottom-color: pink
@@ -1202,12 +1202,12 @@ exports[`Stylesheet Themed - Custom idents - should create a deterministic style
 .stylesThree-themeStyle_yEYY9-themeTwo_1c {
     line-height: 4
 }
-.stylesThree-stylenode_3fD_0-themeTwo_1c {
+.stylesThree-styleNode_3fD_0-themeTwo_1c {
     border-bottom-width: 4px;
     border-bottom-style: solid;
     border-bottom-color: pink
 }
-.stylesThree-stylenode_1ezv1-themeTwo_1c {
+.stylesThree-styleNode_1ezv1-themeTwo_1c {
     border-bottom-width: 8px;
     border-bottom-style: solid;
     border-bottom-color: pink
@@ -1235,12 +1235,12 @@ exports[`Stylesheet Themed - Development mode - should create a deterministic st
 .stylesThree-themeStyle_yEYY9_themeOne-themeOne_2ywy {
     line-height: 6
 }
-.stylesThree-stylenode_3fD_0_themeOne-themeOne_2ywy {
+.stylesThree-styleNode_3fD_0_themeOne-themeOne_2ywy {
     border-bottom-width: 6px;
     border-bottom-style: solid;
     border-bottom-color: pink
 }
-.stylesThree-stylenode_1ezv1_themeOne-themeOne_2ywy {
+.stylesThree-styleNode_1ezv1_themeOne-themeOne_2ywy {
     border-bottom-width: 12px;
     border-bottom-style: solid;
     border-bottom-color: pink
@@ -1254,12 +1254,12 @@ exports[`Stylesheet Themed - Development mode - should create a deterministic st
 .stylesThree-themeStyle_yEYY9_themeTwo-themeTwo_1c8Y {
     line-height: 4
 }
-.stylesThree-stylenode_3fD_0_themeTwo-themeTwo_1c8Y {
+.stylesThree-styleNode_3fD_0_themeTwo-themeTwo_1c8Y {
     border-bottom-width: 4px;
     border-bottom-style: solid;
     border-bottom-color: pink
 }
-.stylesThree-stylenode_1ezv1_themeTwo-themeTwo_1c8Y {
+.stylesThree-styleNode_1ezv1_themeTwo-themeTwo_1c8Y {
     border-bottom-width: 8px;
     border-bottom-style: solid;
     border-bottom-color: pink

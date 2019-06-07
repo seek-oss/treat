@@ -278,8 +278,9 @@ export function globalStyle(
 
 type MakeStyleTree<ReturnType extends TreatModule> = (
   theme: Theme,
-  styleNode: (style: Style) => ClassRef,
+  styleNode: (style: Style, localDebugName?: string) => ClassRef,
 ) => ReturnType;
+
 export function styleTree<ReturnType extends TreatModule>(
   makeStyleTree: MakeStyleTree<ReturnType>,
 ): ReturnType {
@@ -289,8 +290,9 @@ export function styleTree<ReturnType extends TreatModule>(
   const themedTrees = getThemes().map(({ tokens, themeRef }) => {
     let scopeCount = startingScope;
 
-    const makeStyle = (style: Style) => {
-      const classRef = getIdentName('stylenode', scopeCount++);
+    const makeStyle = (style: Style, localDebugName?: string) => {
+      const localName = localDebugName || 'styleNode';
+      const classRef = getIdentName(localName, scopeCount++);
 
       const themedClassRefValue = themedClassRefs.get(classRef) || {};
 

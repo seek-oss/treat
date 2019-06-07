@@ -34,6 +34,7 @@ Because theming is achieved by generating multiple classes, **_legacy browsers a
     - [createTheme](#createtheme)
     - [style](#style)
     - [styleMap](#stylemap)
+    - [styleTree](#styletree)
     - [globalStyle](#globalstyle)
   - [Debugging](#debugging)
   - [Runtime API](#runtime-api)
@@ -463,11 +464,45 @@ export const padding = {
   right: styleMap(spacingStyles('paddingRight'))
 };
 
-export const margin = {
-  top: styleMap(spacingStyles('marginTop')),
-  bottom: styleMap(spacingStyles('marginBottom')),
-  left: styleMap(spacingStyles('marginLeft')),
-  right: styleMap(spacingStyles('marginRight'))
+// etc...
+```
+
+#### styleTree
+
+Type: `function`
+
+> Note: This is an advanced feature that you _probably_ don't need. Only use this if you've exhausted all other options.
+
+The `styleTree` function allows you to create complex, nested data structures based on your theme.
+
+For example, if you wanted to create a nested atomic CSS structure (e.g. `atoms.padding.top.desktop`), which requires iterating over _both_ your white space scale _and_ your breakpoints:
+
+```js
+// atoms.treat.js
+
+import { styleTree } from 'treat';
+import { mapValues } from 'lodash';
+
+const responsiveSpacingStyles = property =>
+  styleTree((theme, styleNode) =>
+    mapValues(theme.spacing, space =>
+      mapValues(theme.breakpoints, minWidth =>
+        styleNode({
+          '@media': {
+            [`screen and (min-width: ${minWidth}px)`]: {
+              [property]: space * theme.grid
+            }
+          }
+        })
+      )
+    )
+  );
+
+export const padding = {
+  top: responsiveSpacingStyles('paddingTop'),
+  bottom: responsiveSpacingStyles('paddingBottom'),
+  left: responsiveSpacingStyles('paddingLeft'),
+  right: responsiveSpacingStyles('paddingRight')
 };
 
 // etc...

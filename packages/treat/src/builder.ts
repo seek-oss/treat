@@ -1,4 +1,4 @@
-import fromPairs from 'lodash/fromPairs';
+import { fromPairs, isEqual } from 'lodash';
 import dedent from 'dedent';
 
 import { Theme } from 'treat/theme';
@@ -13,6 +13,7 @@ import {
   CSSProperties,
   ThemedStyle,
   StyleMap,
+  TreatModule,
 } from './types';
 import {
   makeThemedClassReference,
@@ -273,4 +274,76 @@ export function globalStyle(
 
     addLocalCss({ [normalisedSelector]: style });
   }
+}
+
+type MakeStyleTree<ReturnType extends TreatModule> = (
+  theme: Theme,
+  styleNode: (style: Style, localDebugName?: string) => ClassRef,
+) => ReturnType;
+
+export function styleTree<ReturnType extends TreatModule>(
+  makeStyleTree: MakeStyleTree<ReturnType>,
+): ReturnType {
+  const themedClassRefs = new Map<ClassRef, ThemeStyleMap>();
+  const startingScope = getNextScope();
+
+  const themedTrees = getThemes().map(({ tokens, themeRef }) => {
+    let scopeCount = startingScope;
+
+    const makeStyle = (style: Style, localDebugName?: string) => {
+      const localName = localDebugName || 'styleNode';
+      const classRef = getIdentName(localName, scopeCount++);
+
+      const themedClassRefValue = themedClassRefs.get(classRef) || {};
+
+      validateStyle(style);
+
+      themedClassRefs.set(
+        classRef,
+        Object.assign({}, themedClassRefValue, { [themeRef]: style }),
+      );
+
+      return templateThemeClassRef(classRef);
+    };
+
+    return makeStyleTree(tokens, makeStyle);
+  });
+
+  try {
+    const themedTreesJson = JSON.parse(JSON.stringify(themedTrees));
+    if (!themedTreesJson || !isEqual(themedTrees, themedTreesJson)) {
+      throw new Error();
+    }
+  } catch (err) {
+    throw new Error(
+      "Return values from 'styleTree' functions must only contain objects, arrays and primitive types.",
+    );
+  }
+
+  const [referenceTree, ...restTrees] = themedTrees;
+  restTrees.forEach(tree => {
+    if (!isEqual(tree, referenceTree)) {
+      throw new Error(dedent`
+        Mismatching style trees.
+
+        All 'styleTree' functions must return the same structure for every theme.
+        
+        To avoid this error, ensure that object keys and array lengths do not depend on unique properties of each theme.
+        
+        Expected:
+        
+        ${JSON.stringify(referenceTree, null, 2)}
+
+        Received:
+        
+        ${JSON.stringify(tree, null, 2)}
+      `);
+    }
+  });
+
+  Array.from(themedClassRefs.entries()).forEach(([classRef, styles]) => {
+    createThemedCss(classRef, styles);
+  });
+
+  return referenceTree;
 }

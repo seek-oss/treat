@@ -9,7 +9,10 @@ const regularStyle = style({
 });
 
 const tree = styleTree((theme, styleNode) => ({
-  foo: { bar: { baz: styleNode({ height: theme.row * 10 }) } },
+  border: {
+    small: [styleNode({ border: `${theme.row * 1}px solid pink` })],
+    large: [styleNode({ border: `${theme.row * 2}px solid pink` })],
+  },
 }));
 
 export default {

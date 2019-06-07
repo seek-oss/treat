@@ -20,7 +20,7 @@ nodeOne.setAttribute(
     stylesTwo.themeStyle,
     stylesThree.regularStyle,
     stylesThree.themeStyle,
-    stylesThree.tree.foo.bar.baz,
+    stylesThree.tree.border.small[0],
   ),
 );
 
@@ -35,6 +35,7 @@ nodeTwo.setAttribute(
     stylesTwo.themeStyle,
     stylesThree.regularStyle,
     stylesThree.themeStyle,
+    stylesThree.tree.border.large[0],
   ),
 );
 

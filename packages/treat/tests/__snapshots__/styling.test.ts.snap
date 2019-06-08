@@ -159,6 +159,9 @@ Object {
 exports[`Styling and specificity Themed - development mode (style-loader) should be styled correctly with theme one 1`] = `
 Object {
   "background-color": "yellow",
+  "border-bottom-color": "pink",
+  "border-bottom-style": "solid",
+  "border-bottom-width": "6px",
   "display": "flex",
   "height": "12px",
   "line-height": "6",
@@ -169,6 +172,9 @@ Object {
 exports[`Styling and specificity Themed - development mode (style-loader) should be styled correctly with theme two 1`] = `
 Object {
   "background-color": "red",
+  "border-bottom-color": "pink",
+  "border-bottom-style": "solid",
+  "border-bottom-width": "8px",
   "display": "flex",
   "height": "8px",
   "line-height": "4",
@@ -179,6 +185,10 @@ Object {
 exports[`Styling and specificity Themed - mini-css-extract-loader should be styled correctly with theme one 1`] = `
 Object {
   "background-color": "#ff0",
+  "border-bottom": "6px solid pink",
+  "border-bottom-color": "pink",
+  "border-bottom-style": "solid",
+  "border-bottom-width": "6px",
   "display": "flex",
   "height": "12px",
   "line-height": "6",
@@ -189,6 +199,10 @@ Object {
 exports[`Styling and specificity Themed - mini-css-extract-loader should be styled correctly with theme two 1`] = `
 Object {
   "background-color": "red",
+  "border-bottom": "8px solid pink",
+  "border-bottom-color": "pink",
+  "border-bottom-style": "solid",
+  "border-bottom-width": "8px",
   "display": "flex",
   "height": "8px",
   "line-height": "4",
@@ -199,6 +213,10 @@ Object {
 exports[`Styling and specificity Themed - style-loader should be styled correctly with theme one 1`] = `
 Object {
   "background-color": "#ff0",
+  "border-bottom": "6px solid pink",
+  "border-bottom-color": "pink",
+  "border-bottom-style": "solid",
+  "border-bottom-width": "6px",
   "display": "flex",
   "height": "12px",
   "line-height": "6",
@@ -209,6 +227,10 @@ Object {
 exports[`Styling and specificity Themed - style-loader should be styled correctly with theme two 1`] = `
 Object {
   "background-color": "red",
+  "border-bottom": "8px solid pink",
+  "border-bottom-color": "pink",
+  "border-bottom-style": "solid",
+  "border-bottom-width": "8px",
   "display": "flex",
   "height": "8px",
   "line-height": "4",

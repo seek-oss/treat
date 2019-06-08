@@ -7,5 +7,6 @@ export * from './types';
 export const createTheme = () => {};
 export const style = () => {};
 export const styleMap = () => {};
+export const styleTree = () => {};
 export const css = () => {};
 export const globalStyle = () => {};

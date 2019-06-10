@@ -1131,6 +1131,16 @@ exports[`Stylesheet Themed - Autoprefixer (iOS 8) - should create a deterministi
 .yEYY9_2ywy {
     line-height: 6
 }
+._3fD_0_2ywy {
+    border-bottom-width: 6px;
+    border-bottom-style: solid;
+    border-bottom-color: pink
+}
+._1ezv1_2ywy {
+    border-bottom-width: 12px;
+    border-bottom-style: solid;
+    border-bottom-color: pink
+}
 ._3vi0Y_1c8Y {
     background-color: red
 }
@@ -1139,6 +1149,16 @@ exports[`Stylesheet Themed - Autoprefixer (iOS 8) - should create a deterministi
 }
 .yEYY9_1c8Y {
     line-height: 4
+}
+._3fD_0_1c8Y {
+    border-bottom-width: 4px;
+    border-bottom-style: solid;
+    border-bottom-color: pink
+}
+._1ezv1_1c8Y {
+    border-bottom-width: 8px;
+    border-bottom-style: solid;
+    border-bottom-color: pink
 }
 "
 `;
@@ -1163,6 +1183,16 @@ exports[`Stylesheet Themed - Custom idents - should create a deterministic style
 .stylesThree-themeStyle_yEYY9-themeOne_2y {
     line-height: 6
 }
+.stylesThree-styleNode_3fD_0-themeOne_2y {
+    border-bottom-width: 6px;
+    border-bottom-style: solid;
+    border-bottom-color: pink
+}
+.stylesThree-styleNode_1ezv1-themeOne_2y {
+    border-bottom-width: 12px;
+    border-bottom-style: solid;
+    border-bottom-color: pink
+}
 .stylesOne-themeStyle_3vi0Y-themeTwo_1c {
     background-color: red
 }
@@ -1171,6 +1201,16 @@ exports[`Stylesheet Themed - Custom idents - should create a deterministic style
 }
 .stylesThree-themeStyle_yEYY9-themeTwo_1c {
     line-height: 4
+}
+.stylesThree-styleNode_3fD_0-themeTwo_1c {
+    border-bottom-width: 4px;
+    border-bottom-style: solid;
+    border-bottom-color: pink
+}
+.stylesThree-styleNode_1ezv1-themeTwo_1c {
+    border-bottom-width: 8px;
+    border-bottom-style: solid;
+    border-bottom-color: pink
 }
 "
 `;
@@ -1195,6 +1235,16 @@ exports[`Stylesheet Themed - Development mode - should create a deterministic st
 .stylesThree-themeStyle_yEYY9_themeOne-themeOne_2ywy {
     line-height: 6
 }
+.stylesThree-styleNode_3fD_0_themeOne-themeOne_2ywy {
+    border-bottom-width: 6px;
+    border-bottom-style: solid;
+    border-bottom-color: pink
+}
+.stylesThree-styleNode_1ezv1_themeOne-themeOne_2ywy {
+    border-bottom-width: 12px;
+    border-bottom-style: solid;
+    border-bottom-color: pink
+}
 .stylesOne-themeStyle_3vi0Y_themeTwo-themeTwo_1c8Y {
     background-color: red
 }
@@ -1203,6 +1253,16 @@ exports[`Stylesheet Themed - Development mode - should create a deterministic st
 }
 .stylesThree-themeStyle_yEYY9_themeTwo-themeTwo_1c8Y {
     line-height: 4
+}
+.stylesThree-styleNode_3fD_0_themeTwo-themeTwo_1c8Y {
+    border-bottom-width: 4px;
+    border-bottom-style: solid;
+    border-bottom-color: pink
+}
+.stylesThree-styleNode_1ezv1_themeTwo-themeTwo_1c8Y {
+    border-bottom-width: 8px;
+    border-bottom-style: solid;
+    border-bottom-color: pink
 }
 "
 `;
@@ -1213,10 +1273,10 @@ exports[`Stylesheet Themed - Production mode - should create a deterministic sty
 ._1ecu3{z-index:3}
 ._3vi0Y_2ywy{background-color:#ff0}
 ._1qrIM_2ywy{height:12px}
-.yEYY9_2ywy{line-height:6}
+.yEYY9_2ywy{line-height:6}._3fD_0_2ywy{border-bottom:6px solid pink}._1ezv1_2ywy{border-bottom:12px solid pink}
 ._3vi0Y_1c8Y{background-color:red}
 ._1qrIM_1c8Y{height:8px}
-.yEYY9_1c8Y{line-height:4}
+.yEYY9_1c8Y{line-height:4}._3fD_0_1c8Y{border-bottom:4px solid pink}._1ezv1_1c8Y{border-bottom:8px solid pink}
 "
 `;
 
@@ -1240,6 +1300,16 @@ exports[`Stylesheet Themed - Theme function ident - should create a deterministi
 .yEYY9_theme_one_2y {
     line-height: 6
 }
+._3fD_0_theme_one_2y {
+    border-bottom-width: 6px;
+    border-bottom-style: solid;
+    border-bottom-color: pink
+}
+._1ezv1_theme_one_2y {
+    border-bottom-width: 12px;
+    border-bottom-style: solid;
+    border-bottom-color: pink
+}
 ._3vi0Y_theme_two_1c {
     background-color: red
 }
@@ -1248,6 +1318,16 @@ exports[`Stylesheet Themed - Theme function ident - should create a deterministi
 }
 .yEYY9_theme_two_1c {
     line-height: 4
+}
+._3fD_0_theme_two_1c {
+    border-bottom-width: 4px;
+    border-bottom-style: solid;
+    border-bottom-color: pink
+}
+._1ezv1_theme_two_1c {
+    border-bottom-width: 8px;
+    border-bottom-style: solid;
+    border-bottom-color: pink
 }
 "
 `;

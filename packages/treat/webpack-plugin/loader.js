@@ -53,7 +53,10 @@ async function produce(loader, request) {
   const ownedThemes = [];
   const ownedCssRequests = new Set();
 
-  const source = await treatCompiler.getCompiledSource(loader, request);
+  const { source, dependencies } = await treatCompiler.getCompiledSource(
+    loader,
+    request,
+  );
 
   const relativeResourcePath = normalizePath(
     path.relative('', loader.resourcePath),
@@ -133,7 +136,7 @@ async function produce(loader, request) {
     addTheme: theme => {
       ownedThemes.push(theme.themeRef);
 
-      store.addTheme(theme, loader.resourcePath, loader._module.identifier());
+      store.addTheme(theme, loader._module.identifier(), dependencies);
     },
     getIdentName,
   };
@@ -185,7 +188,7 @@ async function produce(loader, request) {
 
   if (hasThemedCss) {
     // Rebuild this module when any themes change
-    store.getThemeResourcePaths().forEach(loader.addDependency);
+    store.getThemeDependencies().forEach(loader.addDependency);
   }
 
   store.addCssRequests(loader._module.identifier(), cssRequests);

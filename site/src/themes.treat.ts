@@ -17,8 +17,6 @@ declare module 'treat/theme' {
 }
 
 export const mainTheme = createTheme({
-  rowHeight: 6,
-  columnWidth: 5,
   fontFamily:
     'Roboto, "Helvetica Neue", HelveticaNeue, Helvetica, Arial, sans- serif',
   descenderHeightScale: 0.16,

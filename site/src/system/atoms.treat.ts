@@ -1,4 +1,5 @@
-import { createSpacing } from './createAtoms';
+import { createProperty, createProperties } from './createProperty';
+import { createSpacing } from './createSpacing';
 
 const tokens = {
   grid: 4,
@@ -11,12 +12,23 @@ const tokens = {
   },
   breakpoints: {
     mobile: 0,
-    desktop: 1024,
+    desktop: 768,
   },
 };
 
-const atoms = {
-  ...createSpacing(tokens),
-};
+export const spacing = createSpacing(tokens);
+// export const properties = {
+//   display: createProperty(tokens, 'display', [
+//     'block',
+//     'inlineBlock',
+//     'inline',
+//     'flex',
+//     'grid',
+//   ]),
+// };
 
-export default atoms;
+export const properties = createProperties(tokens, {
+  display: ['block', 'flex'],
+});
+
+properties.

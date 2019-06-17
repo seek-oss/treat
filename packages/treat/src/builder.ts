@@ -276,12 +276,12 @@ export function globalStyle(
   }
 }
 
-type MakeStyleTree<ReturnType extends TreatModule> = (
+type MakeStyleTree<ReturnType> = (
   theme: Theme,
   styleNode: (style: Style, localDebugName?: string) => ClassRef,
 ) => ReturnType;
 
-export function styleTree<ReturnType extends TreatModule>(
+export function styleTree<ReturnType>(
   makeStyleTree: MakeStyleTree<ReturnType>,
 ): ReturnType {
   const themedClassRefs = new Map<ClassRef, ThemeStyleMap>();

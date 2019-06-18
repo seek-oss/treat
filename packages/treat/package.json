@@ -30,6 +30,7 @@
     "csstype": "^2.6.3",
     "dedent": "^0.7.0",
     "eval": "^0.1.2",
+    "javascript-stringify": "^2.0.0",
     "loader-utils": "^1.2.3",
     "normalize-path": "^3.0.0",
     "postcss": "^7.0.14",

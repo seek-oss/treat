@@ -64,6 +64,7 @@ type TreatModuleValue =
   | number
   | boolean
   | null
+  | undefined
   | TreatModuleObject
   | TreatModuleArray;
 

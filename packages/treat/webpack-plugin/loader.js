@@ -4,6 +4,9 @@ const loaderUtils = require('loader-utils');
 const normalizePath = require('normalize-path');
 const Promise = require('bluebird');
 const sortBy = require('lodash/sortBy');
+const isPlainObject = require('lodash/isPlainObject');
+const dedent = require('dedent');
+const { stringify } = require('javascript-stringify');
 
 const virtualModules = require('./virtualModules');
 const processCss = require('./processCss');
@@ -223,6 +226,36 @@ const stringifyCssRequest = (cssLocation, outputLoaders) => {
   return `!${cssLoaders}!${cssLocation}`;
 };
 
+const stringifyExports = value =>
+  stringify(
+    value,
+    (value, indent, next) => {
+      const valueType = typeof value;
+      if (
+        valueType === 'string' ||
+        valueType === 'number' ||
+        valueType === 'undefined' ||
+        value === null ||
+        Array.isArray(value) ||
+        isPlainObject(value)
+      ) {
+        return next(value);
+      }
+
+      throw new Error(dedent`
+        Invalid treat file exports.
+
+        You can only export plain objects, arrays, strings, numbers and null/undefined from a treat file.
+      `);
+    },
+    0,
+    {
+      references: true, // Allow circular references
+      maxDepth: Infinity,
+      maxValues: Infinity,
+    },
+  );
+
 const serializeTreatModule = (loader, cssRequests, exports) => {
   const cssImports =
     cssRequests.length > 0
@@ -239,8 +272,8 @@ const serializeTreatModule = (loader, cssRequests, exports) => {
 
   const moduleExports = Object.keys(exports).map(key =>
     key === 'default'
-      ? `export default ${JSON.stringify(exports[key])};`
-      : `export const ${key} = ${JSON.stringify(exports[key])};`,
+      ? `export default ${stringifyExports(exports[key])};`
+      : `export const ${key} = ${stringifyExports(exports[key])};`,
   );
 
   return [...sortedCssImports, ...moduleExports].join('\n');

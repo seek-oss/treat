@@ -6,6 +6,7 @@ const store = require('./store');
 const reIndexModules = require('./reIndexModules');
 const TreatError = require('./TreatError');
 const makeTreatCompiler = require('./treatCompiler');
+const optionValidator = require('./optionValidator');
 const { debugIdent } = require('./utils');
 
 const isProductionLikeMode = options => {
@@ -28,6 +29,8 @@ const trace = (...params) => {
 
 module.exports = class TreatWebpackPlugin {
   constructor(options = {}) {
+    optionValidator(options);
+
     const {
       test = /\.treat.(js|ts)$/,
       outputCSS = true,

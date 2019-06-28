@@ -16,7 +16,7 @@ export default ({ baseline, children, ...restProps }: LinkProps) => {
     <NavLink
       {...restProps}
       className={classnames(
-        typeStyles.fontFamily,
+        typeStyles.font.body,
         typeStyles.text.standard.fontSize,
         {
           [typeStyles.text.standard.transform]: baseline,

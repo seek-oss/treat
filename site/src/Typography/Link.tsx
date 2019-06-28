@@ -13,7 +13,7 @@ export default ({ baseline, children, ...restProps }: LinkProps) => {
   return (
     <Link
       {...restProps}
-      className={classnames(styles.fontFamily, styles.text.standard.fontSize, {
+      className={classnames(styles.font.body, styles.text.standard.fontSize, {
         [styles.text.standard.transform]: baseline,
       })}
     >

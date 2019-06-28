@@ -31,7 +31,8 @@ const Heading = ({ level, children }: HeadingProps) => {
     getHeadingComponent(level),
     {
       className: classnames(
-        styles.fontFamily,
+        styles.font.heading,
+        styles.color.neutral,
         styles.heading[level].fontSize,
         styles.heading[level].transform,
       ),

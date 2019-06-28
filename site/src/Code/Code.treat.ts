@@ -1,34 +1,33 @@
 import { style, globalStyle } from 'treat';
+import { Theme } from '../Theme';
 
-export const root = style(theme => ({
-  backgroundColor: 'darkgrey',
-  borderRadius: 3,
-  padding: theme.rowHeight * 2,
-  color: 'white',
+export const root = style((theme: Theme) => ({
+  backgroundColor: theme.color.neutral,
+  borderRadius: 10,
 }));
 
 const tokenSelector = (tokenName: string) => `${root} .${tokenName}`;
 
 globalStyle(tokenSelector('comment'), {
-  color: 'grey',
+  color: '#60646f',
 });
 
 globalStyle(tokenSelector('keyword'), {
-  color: 'yellow',
+  color: '#c1d8fd',
 });
 
 globalStyle(tokenSelector('string'), {
-  color: 'pink',
+  color: '#cbfff1',
 });
 
 globalStyle(tokenSelector('function'), {
-  color: 'orange',
+  color: '#f0bcff',
 });
 
 globalStyle(tokenSelector('punctuation'), {
-  color: 'blue',
+  color: '#adadff',
 });
 
 globalStyle(tokenSelector('operator'), {
-  color: 'green',
+  color: '#c6afff',
 });

@@ -1,9 +1,20 @@
-import { style, styleMap } from 'treat';
-import { Theme } from 'treat/theme';
+import { styleMap } from 'treat';
+import { Theme } from '../Theme';
 import basekick from 'basekick';
 
-export const fontFamily = style(({ fontFamily }) => ({
-  fontFamily,
+export const font = styleMap(({ headingFont, bodyFont }: Theme) => ({
+  heading: { fontFamily: headingFont },
+  body: { fontFamily: bodyFont },
+}));
+
+export const weight = styleMap((theme: Theme) => ({
+  regular: { fontWeight: theme.weight.regular },
+  strong: { fontWeight: theme.weight.strong },
+}));
+
+export const color = styleMap((theme: Theme) => ({
+  neutral: { color: theme.color.neutral },
+  code: { color: theme.color.code },
 }));
 
 interface TextDefinition {

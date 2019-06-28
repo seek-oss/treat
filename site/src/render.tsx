@@ -27,6 +27,7 @@ export default ({ route, clientStats }: RenderParams) => {
 
   return `<html>
     <head>
+      <link href="https://fonts.googleapis.com/css?family=DM+Sans:700&display=swap" rel="stylesheet">
       ${cssAssets.join('\n')}
     </head>
     <body>

@@ -27,19 +27,3 @@ export function createProperty<
     ),
   );
 }
-
-type AProperties = {
-  [K in keyof ValidCSSProperties]: Array<NonNullable<ValidCSSProperties[K]>>
-};
-export function createProperties<
-  Breakpoint extends string,
-  Properties extends AProperties,
->(
-  tokens: Breakpoints<Breakpoint>,
-  properties: Properties,
-  styleFn: StyleFn = style,
-) {
-  return mapValues(properties, (values, propertyName) =>
-    createProperty(tokens, propertyName, values, styleFn),
-  );
-}

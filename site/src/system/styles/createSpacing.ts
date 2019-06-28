@@ -17,23 +17,15 @@ export function createSpacing<Space extends string, Breakpoint extends string>(
       ),
     );
 
-  const padding = {
-    top: makeSpacingRules('paddingTop'),
-    bottom: makeSpacingRules('paddingBottom'),
-    left: makeSpacingRules('paddingLeft'),
-    right: makeSpacingRules('paddingRight'),
-  };
-
-  const margin = {
-    top: makeSpacingRules('marginTop'),
-    bottom: makeSpacingRules('marginBottom'),
-    left: makeSpacingRules('marginLeft'),
-    right: makeSpacingRules('marginRight'),
-  };
-
   return {
-    padding,
-    margin,
+    paddingTop: makeSpacingRules('paddingTop'),
+    paddingBottom: makeSpacingRules('paddingBottom'),
+    paddingLeft: makeSpacingRules('paddingLeft'),
+    paddingRight: makeSpacingRules('paddingRight'),
+    marginTop: makeSpacingRules('marginTop'),
+    marginBottom: makeSpacingRules('marginBottom'),
+    marginLeft: makeSpacingRules('marginLeft'),
+    marginRight: makeSpacingRules('marginRight'),
   };
 }
 

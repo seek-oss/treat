@@ -1,43 +1,42 @@
 import { createTheme } from 'treat';
+import { Theme } from './Theme';
 
-declare module 'treat/theme' {
-  interface TextDefinition {
-    size: number;
-    rows: number;
-  }
-
-  export interface Theme {
-    rowHeight: number;
-    columnWidth: number;
-    fontFamily: string;
-    descenderHeightScale: number;
-    heading: Record<'h1' | 'h2' | 'h3', TextDefinition>;
-    text: Record<'standard', TextDefinition>;
-  }
-}
-
-export const mainTheme = createTheme({
-  fontFamily:
+const theme: Theme = {
+  headingFont: 'Robotoo, "DM Sans", sans-serif',
+  bodyFont:
     'Roboto, "Helvetica Neue", HelveticaNeue, Helvetica, Arial, sans- serif',
   descenderHeightScale: 0.16,
+  rowHeight: 4,
+  columnWidth: 4,
+  contentWidth: 840,
   heading: {
     h1: {
-      size: 42,
-      rows: 8,
+      size: 52,
+      rows: 15,
     },
     h2: {
-      size: 28,
-      rows: 6,
+      size: 38,
+      rows: 12,
     },
     h3: {
-      size: 21,
-      rows: 5,
+      size: 30,
+      rows: 10,
     },
   },
   text: {
     standard: {
-      size: 16,
-      rows: 4,
+      size: 20,
+      rows: 9,
     },
   },
-});
+  weight: {
+    regular: 400,
+    strong: 700,
+  },
+  color: {
+    neutral: '#1f1f1f',
+    code: '#fff',
+  },
+};
+
+export const mainTheme = createTheme(theme);

@@ -1,23 +1,32 @@
-const { resolve } = require('path');
-const { writeFileSync } = require('fs');
+const { resolve, join } = require('path');
+const { promises } = require('fs');
 const glob = require('fast-glob');
 const sortBy = require('lodash/sortBy');
+const makeDocumentIndex = require('./documentIndexer');
 
 const docs = glob.sync([`*.{md,mdx}`], {
   cwd: resolve(__dirname, '../docs'),
 });
 
-const manifest = sortBy(docs, fileName => fileName).map(fileName => {
-  const [_, routeName] = fileName.match(/^\d-(.*).md/);
+(async () => {
+  const manifest = await Promise.all(
+    sortBy(docs, fileName => fileName).map(async fileName => {
+      const [_, routeName] = fileName.match(/^\d-(.*).md/);
+      const route = `/${routeName}`;
 
-  return {
-    fileName,
-    id: routeName,
-    route: `/${routeName}`,
-  };
-});
+      return {
+        fileName,
+        id: routeName,
+        route,
+        searchData: makeDocumentIndex(
+          await promises.readFile(join(__dirname, '../docs', fileName)),
+        ),
+      };
+    }),
+  );
 
-writeFileSync(
-  resolve(__dirname, 'docs-manifest.json'),
-  JSON.stringify(manifest),
-);
+  await promises.writeFile(
+    resolve(__dirname, 'docs-manifest.json'),
+    JSON.stringify(manifest),
+  );
+})();

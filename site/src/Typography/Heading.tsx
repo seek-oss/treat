@@ -22,9 +22,10 @@ const getHeadingComponent = (level: keyof typeof styleRefs.heading) => {
 
 export interface HeadingProps {
   children: ReactNode;
+  id: string;
   level: keyof typeof styleRefs.heading;
 }
-const Heading = ({ level, children }: HeadingProps) => {
+const Heading = ({ level, children, id }: HeadingProps) => {
   const styles = useStyles(styleRefs);
 
   return createElement(
@@ -36,6 +37,7 @@ const Heading = ({ level, children }: HeadingProps) => {
         styles.heading[level].fontSize,
         styles.heading[level].transform,
       ),
+      id,
     },
     children,
   );

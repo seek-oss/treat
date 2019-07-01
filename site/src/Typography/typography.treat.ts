@@ -36,16 +36,19 @@ const alignTextToGrid = (
   });
 
 const makeTypographyRules = (
+  copyType: 'heading' | 'body',
   textDefinition: {
     size: number;
     rows: number;
   },
-  { rowHeight, descenderHeightScale }: Theme,
+  { rowHeight, headingDescenderHeightScale, bodyDescenderHeightScale }: Theme,
 ) => {
   const { fontSize, lineHeight, transform } = alignTextToGrid(
     textDefinition,
     rowHeight,
-    descenderHeightScale,
+    copyType === 'heading'
+      ? headingDescenderHeightScale
+      : bodyDescenderHeightScale,
   );
 
   return {
@@ -60,11 +63,19 @@ const makeTypographyRules = (
 };
 
 export const text = {
-  standard: styleMap(theme => makeTypographyRules(theme.text.standard, theme)),
+  standard: styleMap(theme =>
+    makeTypographyRules('body', theme.text.standard, theme),
+  ),
 };
 
 export const heading = {
-  '1': styleMap(theme => makeTypographyRules(theme.heading.h1, theme)),
-  '2': styleMap(theme => makeTypographyRules(theme.heading.h2, theme)),
-  '3': styleMap(theme => makeTypographyRules(theme.heading.h3, theme)),
+  '1': styleMap(theme =>
+    makeTypographyRules('heading', theme.heading.h1, theme),
+  ),
+  '2': styleMap(theme =>
+    makeTypographyRules('heading', theme.heading.h2, theme),
+  ),
+  '3': styleMap(theme =>
+    makeTypographyRules('heading', theme.heading.h3, theme),
+  ),
 };

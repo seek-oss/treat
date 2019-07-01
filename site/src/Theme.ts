@@ -8,8 +8,9 @@ export interface Theme {
   columnWidth: number;
   contentWidth: number;
   headingFont: string;
+  headingDescenderHeightScale: number;
   bodyFont: string;
-  descenderHeightScale: number;
+  bodyDescenderHeightScale: number;
   heading: Record<'h1' | 'h2' | 'h3', TextDefinition>;
   text: Record<'standard', TextDefinition>;
   weight: {

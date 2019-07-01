@@ -3,9 +3,10 @@ import { Theme } from './Theme';
 
 const theme: Theme = {
   headingFont: '"DM Sans", sans-serif',
+  headingDescenderHeightScale: 0.12,
   bodyFont:
     'Roboto, "Helvetica Neue", HelveticaNeue, Helvetica, Arial, sans- serif',
-  descenderHeightScale: 0.16,
+  bodyDescenderHeightScale: 0.16,
   rowHeight: 4,
   columnWidth: 4,
   contentWidth: 1000,

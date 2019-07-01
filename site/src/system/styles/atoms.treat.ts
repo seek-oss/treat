@@ -4,6 +4,7 @@ import { createSpacing } from './createSpacing';
 const tokens = {
   grid: 4,
   spacing: {
+    none: 0,
     xsmall: 1,
     small: 2,
     medium: 3,

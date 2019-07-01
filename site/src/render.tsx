@@ -29,6 +29,7 @@ export default ({ route, clientStats }: RenderParams) => {
     <head>
       <link href="https://fonts.googleapis.com/css?family=DM+Sans:700&display=swap" rel="stylesheet">
       ${cssAssets.join('\n')}
+      <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
     <body>
         <div id="app">${render(route)}</div>

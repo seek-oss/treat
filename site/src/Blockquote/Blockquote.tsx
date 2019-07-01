@@ -8,7 +8,7 @@ export default (props: { children: ReactNode }) => {
 
   return (
     <Box
-      paddingLeft="large"
+      paddingLeft="xlarge"
       paddingTop="xlarge"
       marginBottom="xlarge"
       className={styles.root}

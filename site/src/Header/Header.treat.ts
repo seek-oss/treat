@@ -2,6 +2,19 @@ import { style } from 'treat';
 import { Theme } from '../Theme';
 
 export const root = style((theme: Theme) => ({
-  position: 'sticky',
-  top: theme.rowHeight * 6,
+  background: theme.background.screen,
+  position: 'fixed',
+  top: 0,
+  width: '100%',
+  zIndex: 1,
+  transition: 'all .3s ease',
 }));
+
+export const sticky = style({
+  boxShadow: '0 0 10px rgba(0,0,0,0.1)',
+});
+
+export const links = style({
+  display: 'flex',
+  flexDirection: 'column',
+});

@@ -9,7 +9,7 @@ const theme: Theme = {
   bodyDescenderHeightScale: 0.16,
   rowHeight: 4,
   columnWidth: 4,
-  contentWidth: 1000,
+  contentWidth: 860,
   heading: {
     h1: {
       size: 52,
@@ -39,6 +39,7 @@ const theme: Theme = {
     code: '#fff',
   },
   background: {
+    screen: '#fff',
     code: '#1f1f1f',
     note: '#fafafa',
   },

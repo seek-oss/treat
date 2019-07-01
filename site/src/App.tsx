@@ -1,29 +1,20 @@
 import React from 'react';
 import { TreatProvider } from 'react-treat';
 import { MDXProvider } from '@mdx-js/tag';
-
 import { mainTheme } from './themes.treat';
 import mdxComponents from './mdx-components';
 import { Section, Box } from './system';
 import Header from './Header/Header';
 import DocsPage from './DocsPage/DocsPage';
+import './App.treat';
 
 export default () => (
   <TreatProvider theme={mainTheme}>
     <MDXProvider components={mdxComponents}>
+      <Header />
       <Section>
-        <Box display={{ mobile: 'block', desktop: 'flex' }}>
-          <Box flexGrow={0} flexShrink={0} paddingRight="xxlarge">
-            <Header />
-          </Box>
-          <Box paddingTop={{ mobile: 'none', desktop: 'small' }}>
-            <Box
-              paddingTop={{ mobile: 'none', desktop: 'xxlarge' }}
-              paddingLeft={{ mobile: 'none', desktop: 'medium' }}
-            >
-              <DocsPage />
-            </Box>
-          </Box>
+        <Box paddingTop="xxlarge">
+          <DocsPage />
         </Box>
       </Section>
     </MDXProvider>

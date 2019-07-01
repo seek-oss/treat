@@ -8,23 +8,31 @@ type Children = {
   children: ReactNode;
 };
 
+const P = (props: Children) => (
+  <Box component="p" paddingBottom="xlarge">
+    <Text component="span">{props.children}</Text>
+  </Box>
+);
+
+const Pre = (props: AllHTMLAttributes<HTMLPreElement>) => (
+  <Box component="pre" paddingBottom="large" {...props} />
+);
+
+const Th = (props: Children) => (
+  <Text component="th" weight="strong">
+    {props.children}
+  </Text>
+);
+
+const Td = (props: Children) => <Text component="td">{props.children}</Text>;
+
 export default {
-  p: ({ children }: Children) => (
-    <Box component="p" paddingBottom="xlarge">
-      <Text component="span">{children}</Text>
-    </Box>
-  ),
+  p: P,
   h1: H1,
   h2: H2,
   h3: H3,
-  pre: (props: AllHTMLAttributes<HTMLPreElement>) => (
-    <Box component="pre" paddingBottom="large" {...props} />
-  ),
+  pre: Pre,
   code: Code,
-  th: ({ children }: Children) => (
-    <Text component="th" weight="strong">
-      {children}
-    </Text>
-  ),
-  td: ({ children }: Children) => <Text component="td">{children}</Text>,
+  th: Th,
+  td: Td,
 };

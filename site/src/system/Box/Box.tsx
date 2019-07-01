@@ -21,13 +21,17 @@ interface BoxProps extends AllHTMLAttributes<HTMLElement> {
   marginLeft?: ResponsiveProp<keyof Atoms['marginLeft']>;
   marginRight?: ResponsiveProp<keyof Atoms['marginRight']>;
   display?: ResponsiveProp<keyof Atoms['display']>;
+  flexGrow?: ResponsiveProp<keyof Atoms['flexGrow']>;
+  flexShrink?: ResponsiveProp<keyof Atoms['flexShrink']>;
 }
 
 // @ts-ignore
-function getClasses(styles: Atom, propValue: ResponsiveProp<PropValue>) {
-  if (typeof propValue === 'string') {
-    return styles[propValue].mobile;
-  } else if (typeof propValue === 'object') {
+function getClasses(styles: Atom, propValue?: ResponsiveProp<PropValue>) {
+  if (propValue === undefined) {
+    return undefined;
+  }
+
+  if (typeof propValue === 'object') {
     let classes = '';
     for (let breakpoint in propValue) {
       const atomValue = propValue[breakpoint];
@@ -35,6 +39,8 @@ function getClasses(styles: Atom, propValue: ResponsiveProp<PropValue>) {
     }
     return classes.slice(0, -1);
   }
+
+  return styles[propValue].mobile;
 }
 
 export const Box = ({
@@ -49,6 +55,8 @@ export const Box = ({
   marginLeft,
   marginRight,
   display,
+  flexGrow,
+  flexShrink,
   ...restProps
 }: BoxProps) => {
   const resetStyles = useStyles(resetStyleRefs);
@@ -58,15 +66,17 @@ export const Box = ({
     className,
     resetStyles.base,
     resetStyles.element[component as keyof typeof resetStyleRefs.element],
-    paddingTop && getClasses(atomStyles.paddingTop, paddingTop),
-    paddingBottom && getClasses(atomStyles.paddingBottom, paddingBottom),
-    paddingLeft && getClasses(atomStyles.paddingLeft, paddingLeft),
-    paddingRight && getClasses(atomStyles.paddingRight, paddingRight),
-    marginTop && getClasses(atomStyles.marginTop, marginTop),
-    marginBottom && getClasses(atomStyles.marginBottom, marginBottom),
-    marginLeft && getClasses(atomStyles.marginLeft, marginLeft),
-    marginRight && getClasses(atomStyles.marginRight, marginRight),
-    display && getClasses(atomStyles.display, display),
+    getClasses(atomStyles.paddingTop, paddingTop),
+    getClasses(atomStyles.paddingBottom, paddingBottom),
+    getClasses(atomStyles.paddingLeft, paddingLeft),
+    getClasses(atomStyles.paddingRight, paddingRight),
+    getClasses(atomStyles.marginTop, marginTop),
+    getClasses(atomStyles.marginBottom, marginBottom),
+    getClasses(atomStyles.marginLeft, marginLeft),
+    getClasses(atomStyles.marginRight, marginRight),
+    getClasses(atomStyles.display, display),
+    getClasses(atomStyles.flexGrow, flexGrow),
+    getClasses(atomStyles.flexShrink, flexShrink),
   );
 
   return createElement(component, { className: atomClasses, ...restProps });

@@ -14,16 +14,17 @@ export default (props: CodeProps) => {
   const padding = 'xlarge';
 
   return (
-    <Box
-      className={styles.root}
-      paddingTop={padding}
-      paddingBottom={padding}
-      paddingLeft={padding}
-      paddingRight={padding}
-    >
-      <Text component="pre" color="code" baseline={false}>
-        <code {...props} />
-      </Text>
+    <Box className={styles.root}>
+      <Box
+        paddingTop={padding}
+        paddingBottom={padding}
+        paddingLeft={padding}
+        paddingRight={padding}
+      >
+        <Text component="div" color="code" baseline={false}>
+          <code {...props} />
+        </Text>
+      </Box>
     </Box>
   );
 };

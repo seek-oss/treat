@@ -24,4 +24,6 @@ export default {
     'inlineBlock',
     'flex',
   ]),
+  flexGrow: createProperty(tokens, 'flexGrow', [0, 1]),
+  flexShrink: createProperty(tokens, 'flexShrink', [0, 1]),
 };

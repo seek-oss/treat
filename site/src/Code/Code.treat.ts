@@ -4,6 +4,7 @@ import { Theme } from '../Theme';
 export const root = style((theme: Theme) => ({
   backgroundColor: theme.color.neutral,
   borderRadius: 10,
+  overflowX: 'auto',
 }));
 
 const tokenSelector = (tokenName: string) => `${root} .${tokenName}`;

@@ -1,16 +1,17 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-
+import { Box } from '../system';
 import SideBar from '../SideBar/SideBar';
 import DocContent from './DocContent/DocContent';
-import * as styles from './DocsPage.treat';
 
 export default () => (
-  <div className={styles.root}>
-    <div className={styles.content}>
+  <Box display="flex">
+    <Box flexGrow={1}>
       <Route path="/:doc" component={DocContent} />
       <Route path="/" exact component={DocContent} />
-    </div>
-    <SideBar />
-  </div>
+    </Box>
+    <Box flexGrow={0} flexShrink={0} style={{ flexBasis: 200 }}>
+      <SideBar />
+    </Box>
+  </Box>
 );

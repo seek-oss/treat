@@ -2,13 +2,13 @@ import { createTheme } from 'treat';
 import { Theme } from './Theme';
 
 const theme: Theme = {
-  headingFont: 'Robotoo, "DM Sans", sans-serif',
+  headingFont: '"DM Sans", sans-serif',
   bodyFont:
     'Roboto, "Helvetica Neue", HelveticaNeue, Helvetica, Arial, sans- serif',
   descenderHeightScale: 0.16,
   rowHeight: 4,
   columnWidth: 4,
-  contentWidth: 840,
+  contentWidth: 1000,
   heading: {
     h1: {
       size: 52,

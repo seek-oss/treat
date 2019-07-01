@@ -4,7 +4,7 @@ export const responsiveStyles = (minWidth: number, styles: CSSProperties) =>
   minWidth > 0
     ? {
         '@media': {
-          [`screen and (min-width: ${minWidth})`]: styles,
+          [`screen and (min-width: ${minWidth}px)`]: styles,
         },
       }
     : styles;

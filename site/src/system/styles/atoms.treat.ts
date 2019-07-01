@@ -9,6 +9,7 @@ const tokens = {
     medium: 3,
     large: 5,
     xlarge: 8,
+    xxlarge: 16,
   },
   breakpoints: {
     mobile: 0,

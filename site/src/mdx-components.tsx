@@ -3,6 +3,7 @@ import Text from './Typography/Text';
 import { H1, H2, H3 } from './Typography/Heading';
 import { Box } from './system';
 import Code from './Code/Code';
+import Link from './Typography/Link';
 
 type Children = {
   children: ReactNode;
@@ -26,6 +27,9 @@ const Th = (props: Children) => (
 
 const Td = (props: Children) => <Text component="td">{props.children}</Text>;
 
+const A = ({ href, ...restProps }: AllHTMLAttributes<HTMLAnchorElement>) =>
+  href ? <Link to={href} {...restProps} /> : <a {...restProps} />;
+
 export default {
   p: P,
   h1: H1,
@@ -35,4 +39,5 @@ export default {
   code: Code,
   th: Th,
   td: Td,
+  a: A,
 };

@@ -4,6 +4,7 @@ import { H1, H2, H3 } from './Typography/Heading';
 import { Box } from './system';
 import Code from './Code/Code';
 import Link from './Typography/Link';
+import Blockquote from './Blockquote/Blockquote';
 
 type Children = {
   children: ReactNode;
@@ -40,4 +41,5 @@ export default {
   th: Th,
   td: Td,
   a: A,
+  blockquote: Blockquote,
 };

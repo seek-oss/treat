@@ -38,6 +38,13 @@ const theme: Theme = {
     neutral: '#1f1f1f',
     code: '#fff',
   },
+  background: {
+    code: '#1f1f1f',
+    note: '#fafafa',
+  },
+  border: {
+    standard: 3,
+  },
 };
 
 export const mainTheme = createTheme(theme);

@@ -9,7 +9,7 @@ export default () => {
   const styles = useStyles(styleRefs);
 
   return (
-    <Box className={styles.root}>
+    <Box paddingTop={{ mobile: 'large', desktop: 'xxlarge' }}>
       <div className={styles.links}>
         {docs.map(({ title, route }) => (
           <NavLink key={route} to={route}>

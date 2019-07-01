@@ -21,4 +21,11 @@ export interface Theme {
     neutral: string;
     code: string;
   };
+  background: {
+    code: string;
+    note: string;
+  };
+  border: {
+    standard: number;
+  };
 }

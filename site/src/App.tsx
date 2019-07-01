@@ -16,11 +16,13 @@ export default () => (
           <Box flexGrow={0} flexShrink={0} paddingRight="xxlarge">
             <Header />
           </Box>
-          <Box
-            paddingTop={{ mobile: 'none', desktop: 'xxlarge' }}
-            paddingLeft={{ mobile: 'none', desktop: 'medium' }}
-          >
-            <DocsPage />
+          <Box paddingTop={{ mobile: 'none', desktop: 'small' }}>
+            <Box
+              paddingTop={{ mobile: 'none', desktop: 'xxlarge' }}
+              paddingLeft={{ mobile: 'none', desktop: 'medium' }}
+            >
+              <DocsPage />
+            </Box>
           </Box>
         </Box>
       </Section>

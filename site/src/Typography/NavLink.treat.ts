@@ -11,5 +11,4 @@ export const link = style((theme: Theme) => ({
 
 export const active = style((theme: Theme) => ({
   fontWeight: theme.weight.strong,
-  textDecoration: 'underline',
 }));

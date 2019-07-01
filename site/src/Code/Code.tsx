@@ -14,7 +14,7 @@ export default (props: CodeProps) => {
   const padding = 'xlarge';
 
   return (
-    <Box className={styles.root}>
+    <Box className={styles.root} marginBottom="xlarge">
       <Box
         paddingTop={padding}
         paddingBottom={padding}

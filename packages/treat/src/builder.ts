@@ -1,5 +1,6 @@
 import { fromPairs, isEqual } from 'lodash';
 import dedent from 'dedent';
+import { stringify } from 'javascript-stringify';
 
 import { Theme } from 'treat/theme';
 import {
@@ -309,17 +310,6 @@ export function styleTree<ReturnType>(
     return makeStyleTree(tokens, makeStyle);
   });
 
-  try {
-    const themedTreesJson = JSON.parse(JSON.stringify(themedTrees));
-    if (!themedTreesJson || !isEqual(themedTrees, themedTreesJson)) {
-      throw new Error();
-    }
-  } catch (err) {
-    throw new Error(
-      "Return values from 'styleTree' functions must only contain objects, arrays and primitive types.",
-    );
-  }
-
   const [referenceTree, ...restTrees] = themedTrees;
   restTrees.forEach(tree => {
     if (!isEqual(tree, referenceTree)) {
@@ -332,11 +322,11 @@ export function styleTree<ReturnType>(
         
         Expected:
         
-        ${JSON.stringify(referenceTree, null, 2)}
+        ${stringify(referenceTree, null, 2)}
 
         Received:
         
-        ${JSON.stringify(tree, null, 2)}
+        ${stringify(tree, null, 2)}
       `);
     }
   });

@@ -13,7 +13,10 @@ export default () => {
   const styles = useStyles(styleRefs);
   const [menuOpen, setMenuOpen] = useState(false);
   const isSticky = useSticky(40);
-  const closeMenu = () => setMenuOpen(false);
+  const closeMenu = () => {
+    window.scrollTo(0, 0);
+    setMenuOpen(false);
+  };
 
   return (
     <Box

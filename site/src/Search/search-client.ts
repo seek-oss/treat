@@ -27,8 +27,8 @@ const searchIndex = lunr(function() {
   this.ref('id');
   this.field('content');
 
-  docsManifest.forEach(({ route, searchData }) => {
-    searchData.forEach(({ name, hash, breadcrumbs, content }) => {
+  docsManifest.forEach(({ route, sections }) => {
+    sections.forEach(({ name, hash, breadcrumbs, content }) => {
       const id = String(resultCounter++);
 
       resultStore.set(id, {

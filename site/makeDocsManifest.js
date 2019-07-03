@@ -14,7 +14,7 @@ const contents = require('./contents');
         fileName,
         id,
         route: `/${id}`,
-        searchData: makeDocumentIndex(fileContents),
+        sections: makeDocumentIndex(fileContents),
       };
     }),
   );

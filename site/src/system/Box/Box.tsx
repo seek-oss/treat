@@ -21,6 +21,8 @@ interface BoxProps extends AllHTMLAttributes<HTMLElement> {
   marginLeft?: ResponsiveProp<keyof Atoms['marginLeft']>;
   marginRight?: ResponsiveProp<keyof Atoms['marginRight']>;
   display?: ResponsiveProp<keyof Atoms['display']>;
+  alignItems?: ResponsiveProp<keyof Atoms['alignItems']>;
+  justifyContent?: ResponsiveProp<keyof Atoms['justifyContent']>;
   flexGrow?: ResponsiveProp<keyof Atoms['flexGrow']>;
   flexShrink?: ResponsiveProp<keyof Atoms['flexShrink']>;
 }
@@ -55,6 +57,8 @@ export const Box = ({
   marginLeft,
   marginRight,
   display,
+  alignItems,
+  justifyContent,
   flexGrow,
   flexShrink,
   ...restProps
@@ -75,6 +79,8 @@ export const Box = ({
     getClasses(atomStyles.marginLeft, marginLeft),
     getClasses(atomStyles.marginRight, marginRight),
     getClasses(atomStyles.display, display),
+    getClasses(atomStyles.alignItems, alignItems),
+    getClasses(atomStyles.justifyContent, justifyContent),
     getClasses(atomStyles.flexGrow, flexGrow),
     getClasses(atomStyles.flexShrink, flexShrink),
   );

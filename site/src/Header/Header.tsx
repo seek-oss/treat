@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { useStyles } from 'react-treat';
 import classnames from 'classnames';
 import { Box, Section } from '../system';
+import { Chevron } from './Chevron';
 import NavLink from '../Typography/NavLink';
 import logo from '../../../logo.png';
 import docs from '../docs-store';
@@ -13,7 +13,6 @@ export default () => {
   const styles = useStyles(styleRefs);
   const [menuOpen, setMenuOpen] = useState(false);
   const isSticky = useSticky(40);
-  const openMenu = () => setMenuOpen(true);
   const closeMenu = () => setMenuOpen(false);
 
   return (
@@ -24,9 +23,17 @@ export default () => {
       onMouseLeave={closeMenu}
     >
       <Section>
-        <Link to="/" onMouseEnter={openMenu}>
+        <Box
+          display="inline-flex"
+          alignItems="center"
+          className={styles.logoContainer}
+          onClick={() => setMenuOpen(curr => !curr)}
+        >
           <img src={logo} height="40" />
-        </Link>
+          <div className={styles.chevron}>
+            <Chevron active={menuOpen} />
+          </div>
+        </Box>
 
         <Box
           paddingTop="large"

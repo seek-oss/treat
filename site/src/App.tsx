@@ -13,7 +13,7 @@ export default () => (
     <MDXProvider components={mdxComponents}>
       <Header />
       <Section>
-        <Box paddingTop="xxlarge">
+        <Box paddingTop="xxxlarge">
           <DocsPage />
         </Box>
       </Section>

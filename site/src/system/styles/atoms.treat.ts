@@ -10,7 +10,8 @@ const tokens = {
     medium: 3,
     large: 5,
     xlarge: 8,
-    xxlarge: 16,
+    xxlarge: 12,
+    xxxlarge: 20,
   },
   breakpoints: {
     mobile: 0,
@@ -23,8 +24,19 @@ export default {
   display: createProperty(tokens, 'display', [
     'block',
     'inline',
-    'inlineBlock',
+    'inline-block',
     'flex',
+    'inline-flex',
+  ]),
+  alignItems: createProperty(tokens, 'alignItems', [
+    'flex-start',
+    'flexEnd',
+    'center',
+  ]),
+  justifyContent: createProperty(tokens, 'justifyContent', [
+    'flex-start',
+    'flex-end',
+    'center',
   ]),
   flexGrow: createProperty(tokens, 'flexGrow', [0, 1]),
   flexShrink: createProperty(tokens, 'flexShrink', [0, 1]),

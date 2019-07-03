@@ -1,26 +1,20 @@
 const { resolve, join } = require('path');
 const { promises } = require('fs');
-const glob = require('fast-glob');
-const sortBy = require('lodash/sortBy');
 const makeDocumentIndex = require('./documentIndexer');
-
-const docs = glob.sync([`*.{md,mdx}`], {
-  cwd: resolve(__dirname, '../docs'),
-});
+const contents = require('./contents');
 
 (async () => {
   const manifest = await Promise.all(
-    sortBy(docs, fileName => fileName).map(async fileName => {
-      const [_, routeName] = fileName.match(/^\d-(.*).md/);
-      const route = `/${routeName}`;
+    contents.map(async ({ fileName, id }) => {
+      const fileContents = await promises.readFile(
+        join(__dirname, '../docs', fileName),
+      );
 
       return {
         fileName,
-        id: routeName,
-        route,
-        searchData: makeDocumentIndex(
-          await promises.readFile(join(__dirname, '../docs', fileName)),
-        ),
+        id,
+        route: `/${id}`,
+        searchData: makeDocumentIndex(fileContents),
       };
     }),
   );

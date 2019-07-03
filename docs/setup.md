@@ -34,7 +34,7 @@ module.exports = {
 };
 ```
 
-For more configuration options, view the full [webpack plugin API](#webpack-plugin-api).
+For more configuration options, view the full [webpack plugin API](webpack#webpack-plugin-api).
 
 ## Babel Setup
 
@@ -52,4 +52,24 @@ Then, add it to your Babel config. For example, in `.babelrc`:
 {
   "plugins": ["babel-plugin-treat"]
 }
+```
+
+## Debugging
+
+> Note: This can be automated via our [Babel plugin](#babel-setup).
+
+All styling APIs (except for `globalStyle`) have an optional argument that allows you to provide a local debug name.
+
+For example, the local name for the following style will be `style` by default because treat doesn't have access to your variable name at runtime.
+
+<!-- prettier-ignore -->
+```js
+export const green = style({ color: 'green' });
+```
+
+To fix this, you can pass in a debug name as the last argument:
+
+<!-- prettier-ignore -->
+```js
+export const green = style({ color: 'green' }, 'green');
 ```

@@ -14,9 +14,9 @@ Because theming is achieved by generating multiple classes, **_legacy browsers a
 
 ## Requirements
 
-Your project must be using [webpack](#webpack-setup) with the supplied [webpack plugin](#webpack-setup), but that's it.
+Your project must be using [webpack](webpack) with the supplied [webpack plugin](webpack), but that's it.
 
-**First-class support is provided for [React](https://reactjs.org/) and [TypeScript](https://www.typescriptlang.org/),** but those layers are _entirely optional._ The core [runtime API](#runtime-api) can also be integrated into other frameworks, if needed.
+**First-class support is provided for [React](https://reactjs.org/) and [TypeScript](https://www.typescriptlang.org/),** but those layers are _entirely optional._ The core [runtime API](runtime-api) can also be integrated into other frameworks, if needed.
 
 The core runtime makes use of [`Map`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map), so you may need to provide a [polyfill](https://www.npmjs.com/package/es6-map) for [pre-ES2015 browsers.](https://caniuse.com/#feat=es6)
 
@@ -24,7 +24,7 @@ The core runtime makes use of [`Map`](https://developer.mozilla.org/en-US/docs/W
 
 ### Basic Usage
 
-First, define and export [styles](#styles) from a treat file.
+First, define and export [styles](data-types#styles) from a treat file.
 
 ```js
 // Button.treat.js
@@ -46,13 +46,14 @@ Then, import the styles.
 
 import * as styles from './Button.treat.js';
 
-export default ({ text }) =>
-  `<button class="${styles.button}">${text}</button>`;
+export default ({ text }) => (
+  <button class="${styles.button}">${text}</button>
+);
 ```
 
 ### Themed Usage
 
-> Note: React is [not required](#runtime-api) to use treat.
+> Note: React is [not required](runtime-api) to use treat.
 
 First, create and export a theme from a treat file. Normally, you'd define multiple themes, but let's keep it short.
 
@@ -69,7 +70,7 @@ export default createTheme({
 });
 ```
 
-Then, import the desired theme and pass it to [`TreatProvider`](TreatProvider) at the root of your application.
+Then, import the desired theme and pass it to [`TreatProvider`](react-api#treatprovider) at the root of your application.
 
 ```js
 // App.js
@@ -84,7 +85,7 @@ export function App() {
 }
 ```
 
-Now that you've configured the theming system, define and export [themed styles](#themedstyles) from a treat file.
+Now that you've configured the theming system, define and export [themed styles](data-types#themedstyles) from a treat file.
 
 ```js
 // Button.treat.js
@@ -99,7 +100,7 @@ export const button = style(theme => ({
 }));
 ```
 
-Then import and resolve themed styles via the [`useStyles` Hook.](#usestyles)
+Then import and resolve themed styles via the [`useStyles` Hook.](react-api#usestyles)
 
 ```js
 // Button.js

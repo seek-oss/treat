@@ -4,7 +4,7 @@ title: React
 
 # React
 
-> Note: React is [not required](#runtime-api) to use treat.
+> Note: React is [not required](runtime-api) to use treat.
 
 ## TreatProvider
 

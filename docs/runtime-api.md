@@ -4,7 +4,7 @@ title: Runtime API
 
 # Runtime API
 
-> Note: If you're using React, you should use our [React API](#react-api) instead.
+> Note: If you're using React, you should use our [React API](react-api) instead.
 
 ## resolveStyles
 

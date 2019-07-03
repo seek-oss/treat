@@ -10,7 +10,7 @@ While not an exhaustive list of all types defined in the library, this section c
 
 Type: `object`
 
-When passing styles to the [`style`](#style) and [`styleMap`](#stylemap) functions, or returning styles from a [`ThemedStyles` function](#themedstyles), you'll need to define them in the following format.
+When passing styles to the [`style`](styling-api#style) and [`styleMap`](styling-api#stylemap) functions, or returning styles from a [`ThemedStyles` function](#themedstyles), you'll need to define them in the following format.
 
 ```js
 {
@@ -122,7 +122,7 @@ theme => ({
 
 ## Theme
 
-When [defining themes](#createtheme) and [consuming themes](#themedstyles), the provided theme object uses the `Theme` type, which is `any` by default. This means that any usage of a theme will not be type-safe.
+When [defining themes](styling-api#createtheme) and [consuming themes](#themedstyles), the provided theme object uses the `Theme` type, which is `any` by default. This means that any usage of a theme will not be type-safe.
 
 The simplest way to fix this is to override this type at a global level. For example, you could create a `treat.d.ts` file in your project with the following contents.
 

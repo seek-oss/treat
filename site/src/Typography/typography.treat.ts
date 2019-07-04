@@ -37,14 +37,19 @@ const alignTextToGrid = (
 
 const makeTypographyRules = (
   copyType: 'heading' | 'body',
-  textDefinition: {
-    size: number;
-    rows: number;
-  },
+  textDefinition: Theme['text']['standard'],
   { rowHeight, headingDescenderHeightScale, bodyDescenderHeightScale }: Theme,
 ) => {
-  const { fontSize, lineHeight, transform } = alignTextToGrid(
-    textDefinition,
+  const mobile = alignTextToGrid(
+    textDefinition.mobile,
+    rowHeight,
+    copyType === 'heading'
+      ? headingDescenderHeightScale
+      : bodyDescenderHeightScale,
+  );
+
+  const desktop = alignTextToGrid(
+    textDefinition.desktop,
     rowHeight,
     copyType === 'heading'
       ? headingDescenderHeightScale
@@ -53,29 +58,43 @@ const makeTypographyRules = (
 
   return {
     fontSize: {
-      fontSize,
-      lineHeight,
+      fontSize: mobile.fontSize,
+      lineHeight: mobile.lineHeight,
+      '@media': {
+        'screen and (min-width: 768px)': {
+          fontSize: desktop.fontSize,
+          lineHeight: desktop.lineHeight,
+        },
+      },
     },
     transform: {
-      transform,
+      transform: mobile.transform,
+      '@media': {
+        'screen and (min-width: 768px)': {
+          transform: desktop.transform,
+        },
+      },
     },
   };
 };
 
 export const text = {
-  standard: styleMap(theme =>
+  standard: styleMap((theme: Theme) =>
     makeTypographyRules('body', theme.text.standard, theme),
+  ),
+  small: styleMap((theme: Theme) =>
+    makeTypographyRules('body', theme.text.small, theme),
   ),
 };
 
 export const heading = {
-  '1': styleMap(theme =>
+  '1': styleMap((theme: Theme) =>
     makeTypographyRules('heading', theme.heading.h1, theme),
   ),
-  '2': styleMap(theme =>
+  '2': styleMap((theme: Theme) =>
     makeTypographyRules('heading', theme.heading.h2, theme),
   ),
-  '3': styleMap(theme =>
+  '3': styleMap((theme: Theme) =>
     makeTypographyRules('heading', theme.heading.h3, theme),
   ),
 };

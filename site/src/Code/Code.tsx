@@ -11,17 +11,20 @@ export interface CodeProps {
 }
 export default (props: CodeProps) => {
   const styles = useStyles(styleRefs);
-  const padding = 'xlarge';
+  const padding = { mobile: 'large', desktop: 'xlarge' } as const;
 
   return (
-    <Box className={styles.root} marginBottom="xlarge">
+    <Box
+      className={styles.root}
+      marginBottom={{ mobile: 'small', desktop: 'xlarge' }}
+    >
       <Box
         paddingTop={padding}
         paddingBottom={padding}
         paddingLeft={padding}
         paddingRight={padding}
       >
-        <Text component="div" color="code" baseline={false}>
+        <Text size="small" component="div" color="code" baseline={false}>
           <code {...props} />
         </Text>
       </Box>

@@ -12,22 +12,56 @@ const theme: Theme = {
   contentWidth: 860,
   heading: {
     h1: {
-      size: 52,
-      rows: 15,
+      mobile: {
+        size: 36,
+        rows: 12,
+      },
+      desktop: {
+        size: 52,
+        rows: 15,
+      },
     },
     h2: {
-      size: 38,
-      rows: 12,
+      mobile: {
+        size: 28,
+        rows: 10,
+      },
+      desktop: {
+        size: 38,
+        rows: 12,
+      },
     },
     h3: {
-      size: 30,
-      rows: 10,
+      mobile: {
+        size: 22,
+        rows: 8,
+      },
+      desktop: {
+        size: 30,
+        rows: 10,
+      },
     },
   },
   text: {
     standard: {
-      size: 20,
-      rows: 9,
+      mobile: {
+        size: 17,
+        rows: 7,
+      },
+      desktop: {
+        size: 20,
+        rows: 9,
+      },
+    },
+    small: {
+      mobile: {
+        size: 16,
+        rows: 7,
+      },
+      desktop: {
+        size: 18,
+        rows: 8,
+      },
     },
   },
   weight: {

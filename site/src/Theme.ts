@@ -1,6 +1,12 @@
 interface TextDefinition {
-  size: number;
-  rows: number;
+  mobile: {
+    size: number;
+    rows: number;
+  };
+  desktop: {
+    size: number;
+    rows: number;
+  };
 }
 
 export interface Theme {
@@ -12,7 +18,7 @@ export interface Theme {
   bodyFont: string;
   bodyDescenderHeightScale: number;
   heading: Record<'h1' | 'h2' | 'h3', TextDefinition>;
-  text: Record<'standard', TextDefinition>;
+  text: Record<'standard' | 'small', TextDefinition>;
   weight: {
     strong: number;
     regular: number;

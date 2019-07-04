@@ -6,6 +6,7 @@ import * as styleRefs from './typography.treat';
 
 export interface TextProps {
   component?: ReactType;
+  size?: keyof typeof styleRefs.text;
   color?: keyof typeof styleRefs.color;
   weight?: keyof typeof styleRefs.weight;
   baseline?: boolean;
@@ -13,6 +14,7 @@ export interface TextProps {
 }
 export default ({
   component = 'p',
+  size = 'standard',
   color = 'neutral',
   weight = 'regular',
   baseline = true,
@@ -25,7 +27,7 @@ export default ({
       component={component}
       className={classnames(
         styles.font.body,
-        styles.text.standard.fontSize,
+        styles.text[size].fontSize,
         styles.color[color],
         styles.weight[weight],
         {

@@ -14,9 +14,11 @@ export default ({ match }: RouteComponentProps<DocRoute>) => {
   const prevDoc = docs[index - 1];
   const nextDoc = docs[index + 1];
 
+  const pageTitle = `Treat${index ? ` – ${title} ` : ''}`;
+
   return (
     <div>
-      <Title>Treat{index ? ` – ${title} ` : null}</Title>
+      <Title>{pageTitle}</Title>
       <Component />
       {prevDoc && (
         <div style={{ float: 'left' }}>

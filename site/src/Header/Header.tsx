@@ -12,18 +12,24 @@ import { useSticky } from './useSticky';
 export default () => {
   const styles = useStyles(styleRefs);
   const [menuOpen, setMenuOpen] = useState(false);
-  const isSticky = useSticky(40);
+  const isSticky = useSticky(60);
   const closeMenu = () => {
-    window.scrollTo(0, 0);
     setMenuOpen(false);
+  };
+
+  const handleLinkClick = () => {
+    window.scrollTo(0, 0);
+    closeMenu();
   };
 
   return (
     <Box
       paddingTop="large"
       paddingBottom="large"
-      className={classnames(styles.root, isSticky ? styles.sticky : null)}
-      onMouseLeave={closeMenu}
+      className={classnames(
+        styles.root,
+        isSticky || menuOpen ? styles.shadow : null,
+      )}
     >
       <Section>
         <Box
@@ -44,7 +50,7 @@ export default () => {
         >
           <div className={styles.links}>
             {docs.map(({ title, route }) => (
-              <NavLink key={route} to={route} onClick={closeMenu}>
+              <NavLink key={route} to={route} onClick={handleLinkClick}>
                 {title}
               </NavLink>
             ))}

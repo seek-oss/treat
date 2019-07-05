@@ -7,10 +7,9 @@ export const root = style((theme: Theme) => ({
   top: 0,
   width: '100%',
   zIndex: 1,
-  transition: 'all .3s ease',
 }));
 
-export const sticky = style({
+export const shadow = style({
   boxShadow: '0 0 10px rgba(0,0,0,0.1)',
 });
 

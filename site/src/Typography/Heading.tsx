@@ -1,5 +1,6 @@
-import React, { createElement, ReactNode } from 'react';
+import React, { createElement, Fragment, ReactNode } from 'react';
 import { useStyles } from 'react-treat';
+import { Anchor } from '../Anchor/Anchor';
 import classnames from 'classnames';
 
 import * as styleRefs from './typography.treat';
@@ -28,18 +29,22 @@ export interface HeadingProps {
 const Heading = ({ level, children, id }: HeadingProps) => {
   const styles = useStyles(styleRefs);
 
-  return createElement(
-    getHeadingComponent(level),
-    {
-      className: classnames(
-        styles.font.heading,
-        styles.color.neutral,
-        styles.heading[level].fontSize,
-        styles.heading[level].transform,
-      ),
-      id,
-    },
-    children,
+  return (
+    <Fragment>
+      <Anchor id={id} />
+      {createElement(
+        getHeadingComponent(level),
+        {
+          className: classnames(
+            styles.font.heading,
+            styles.color.neutral,
+            styles.heading[level].fontSize,
+            styles.heading[level].transform,
+          ),
+        },
+        children,
+      )}
+    </Fragment>
   );
 };
 

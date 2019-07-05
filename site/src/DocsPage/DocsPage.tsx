@@ -15,6 +15,7 @@ export default () => (
 
       return (
         <Route
+          key={route}
           path={route}
           exact
           render={() => {

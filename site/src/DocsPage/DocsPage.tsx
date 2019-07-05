@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Route } from 'react-router-dom';
 import { Title } from 'react-head';
 
@@ -7,7 +7,7 @@ import docs from '../docs-store';
 import SiblingDoc from './SiblingDoc/SiblingDoc';
 
 export default () => (
-  <Box>
+  <Fragment>
     {docs.map(({ route, Component, title }, index) => {
       const prevDoc = docs[index - 1];
       const nextDoc = docs[index + 1];
@@ -39,5 +39,5 @@ export default () => (
         />
       );
     })}
-  </Box>
+  </Fragment>
 );

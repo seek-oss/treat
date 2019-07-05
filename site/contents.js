@@ -1,5 +1,5 @@
 module.exports = [
-  { fileName: 'introduction.md', id: 'introduction' },
+  { fileName: 'introduction.md', id: 'introduction', route: '' },
   { fileName: 'setup.md', id: 'setup' },
   { fileName: 'data-types.md', id: 'data-types' },
   { fileName: 'styling-api.md', id: 'styling-api' },

@@ -48,7 +48,7 @@ export default () => {
         >
           <div className={styles.links}>
             {docs.map(({ title, route }) => (
-              <NavLink key={route} to={route} onClick={handleLinkClick}>
+              <NavLink exact key={route} to={route} onClick={handleLinkClick}>
                 {title}
               </NavLink>
             ))}

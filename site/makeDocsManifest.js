@@ -5,7 +5,7 @@ const contents = require('./contents');
 
 (async () => {
   const manifest = await Promise.all(
-    contents.map(async ({ fileName, id }) => {
+    contents.map(async ({ fileName, id, route }) => {
       const fileContents = await promises.readFile(
         join(__dirname, '../docs', fileName),
       );
@@ -13,7 +13,7 @@ const contents = require('./contents');
       return {
         fileName,
         id,
-        route: `/${id}`,
+        route: `/${typeof route === 'string' ? route : id}`,
         sections: makeDocumentIndex(fileContents),
       };
     }),

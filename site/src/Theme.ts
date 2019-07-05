@@ -28,7 +28,8 @@ export interface Theme {
     code: string;
   };
   background: {
-    screen: string;
+    body: string;
+    menu: string;
     code: string;
     note: string;
   };

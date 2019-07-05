@@ -73,7 +73,8 @@ const theme: Theme = {
     code: '#fff',
   },
   background: {
-    screen: '#fff',
+    body: '#fff',
+    menu: '#fafafa',
     code: '#1f1f1f',
     note: '#fafafa',
   },

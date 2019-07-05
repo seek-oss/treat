@@ -24,12 +24,9 @@ export default () => {
 
   return (
     <Box
-      paddingTop="large"
+      paddingTop={{ mobile: 'large', desktop: 'xlarge' }}
       paddingBottom="large"
-      className={classnames(
-        styles.root,
-        isSticky || menuOpen ? styles.shadow : null,
-      )}
+      className={classnames(styles.root)}
     >
       <Section>
         <Box
@@ -45,7 +42,8 @@ export default () => {
         </Box>
 
         <Box
-          paddingTop="large"
+          paddingTop={{ mobile: 'large', desktop: 'xlarge' }}
+          className={styles.linksContainer}
           style={{ display: menuOpen ? 'block' : 'none' }}
         >
           <div className={styles.links}>

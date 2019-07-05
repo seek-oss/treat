@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, Fragment } from 'react';
 import { useStyles } from 'react-treat';
 import classnames from 'classnames';
 import { Box, Section } from '../system';
@@ -8,6 +8,8 @@ import logo from '../../../logo.png';
 import docs from '../docs-store';
 import * as styleRefs from './Header.treat';
 import { useSticky } from './useSticky';
+import { Route } from 'react-router';
+import Link from '../Typography/Link';
 
 export default () => {
   const styles = useStyles(styleRefs);
@@ -47,10 +49,25 @@ export default () => {
           style={{ display: menuOpen ? 'block' : 'none' }}
         >
           <div className={styles.links}>
-            {docs.map(({ title, route }) => (
-              <NavLink exact key={route} to={route} onClick={handleLinkClick}>
-                {title}
-              </NavLink>
+            {docs.map(({ title, route, sections }) => (
+              <Fragment key={route}>
+                <NavLink exact to={route} onClick={handleLinkClick}>
+                  {title}
+                </NavLink>
+                <Route
+                  exact
+                  path={route}
+                  render={() =>
+                    sections
+                      .filter(({ level }) => level === 2)
+                      .map(({ hash, name }) => (
+                        <Box key={hash} paddingLeft="small">
+                          <Link to={`#${hash}`}>{name}</Link>
+                        </Box>
+                      ))
+                  }
+                />
+              </Fragment>
             ))}
           </div>
         </Box>

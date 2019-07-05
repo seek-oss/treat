@@ -1,6 +1,6 @@
 import docsManifest from '../docs-manifest.json';
 
-export default docsManifest.map(({ fileName, route, id }, index) => {
+export default docsManifest.map(({ fileName, route, id, sections }, index) => {
   const { frontMatter, default: component } = require(`../../docs/${fileName}`);
 
   return {
@@ -9,5 +9,6 @@ export default docsManifest.map(({ fileName, route, id }, index) => {
     route,
     index,
     id,
+    sections,
   };
 });

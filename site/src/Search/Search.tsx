@@ -1,11 +1,26 @@
-import React, { useState, useCallback, ChangeEvent } from 'react';
+import React, { useState, useCallback, ChangeEvent, ReactNode } from 'react';
 import { HashLink } from 'react-router-hash-link';
+import { useStyles } from 'react-treat';
 
 import { search, SearchResult as SearchResultType } from './search-client';
 import { Box } from '../system';
 import Text from '../Typography/Text';
+import HighlighWords from 'react-highlight-words';
+import * as styleRefs from './Search.treat';
 
-const SearchResult = ({ route, hash, breadcrumbs }: SearchResultType) => {
+const HighlightedWord = ({ children }: { children: ReactNode }) => (
+  <Box component="mark" style={{ fontWeight: 600 }}>
+    {children}
+  </Box>
+);
+
+const SearchResult = ({
+  route,
+  hash,
+  breadcrumbs,
+  content,
+  matches,
+}: SearchResultType) => {
   return (
     <HashLink
       to={{
@@ -14,17 +29,21 @@ const SearchResult = ({ route, hash, breadcrumbs }: SearchResultType) => {
       }}
     >
       <Box>
-        <Text weight="strong">{breadcrumbs[0]}</Text>
-        {breadcrumbs.slice(1).map(crumb => (
-          <Text key={crumb}>> {crumb}</Text>
-        ))}
+        <Text weight="strong">{breadcrumbs.map(crumb => `> ${crumb} `)}</Text>
+        <Text size="small">
+          <HighlighWords
+            searchWords={matches}
+            textToHighlight={content.substring(0, 200)}
+            highlightTag={HighlightedWord}
+          />
+        </Text>
       </Box>
-      <hr />
     </HashLink>
   );
 };
 
 export default () => {
+  const styles = useStyles(styleRefs);
   const [searchTerm, setSearchTerm] = useState('');
 
   const handleChange = useCallback(
@@ -37,11 +56,13 @@ export default () => {
   return (
     <div>
       <input type="text" value={searchTerm} onChange={handleChange} />
-      {results.length
-        ? results.map(result => (
-            <SearchResult key={result.route + result.hash} {...result} />
-          ))
-        : null}
+      <Box className={styles.resultsContainer}>
+        {results.length
+          ? results.map(result => (
+              <SearchResult key={result.route + result.hash} {...result} />
+            ))
+          : null}
+      </Box>
     </div>
   );
 };

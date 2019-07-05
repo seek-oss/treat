@@ -80,6 +80,7 @@
     "puppeteer": "^1.14.0",
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
+    "react-head": "^3.1.1",
     "react-router-dom": "^5.0.0",
     "react-router-hash-link": "^1.2.1",
     "remove-markdown": "^0.3.0",

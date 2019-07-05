@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useStyles } from 'react-treat';
 import classnames from 'classnames';
 import { Box, Section } from '../system';
-import { Chevron } from './Chevron';
+import { Chevron } from '../Chevron/Chevron';
 import NavLink from '../Typography/NavLink';
 import logo from '../../../logo.png';
 import docs from '../docs-store';
@@ -40,7 +40,7 @@ export default () => {
         >
           <img src={logo} height="40" />
           <div className={styles.chevron}>
-            <Chevron active={menuOpen} />
+            <Chevron direction={menuOpen ? 'up' : 'down'} />
           </div>
         </Box>
 

@@ -742,6 +742,13 @@
     "@babel/helper-plugin-utils" "^7.0.0"
     "@babel/plugin-transform-typescript" "^7.3.2"
 
+"@babel/runtime@^7.0.0":
+  version "7.5.0"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.5.0.tgz#49dcbcd637099a55d3a61e590a00d6861393b1b5"
+  integrity sha512-2xsuyZ0R0RBFwjgae5NpXk8FcfH4qovj5cEM5VEeB7KXnKqzaisIu2HSV/mCEISolJJuR4wkViUGYujA8MH9tw==
+  dependencies:
+    regenerator-runtime "^0.13.2"
+
 "@babel/runtime@^7.1.2":
   version "7.4.5"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.4.5.tgz#582bb531f5f9dc67d2fcb682979894f75e253f12"
@@ -9591,6 +9598,14 @@ react-dom@^16.8.3:
     prop-types "^15.6.2"
     scheduler "^0.13.6"
 
+react-head@^3.1.1:
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/react-head/-/react-head-3.1.1.tgz#9587a9261960c66e81c98a4ea365422f9c4ab4ca"
+  integrity sha512-mazFkea4439J8wk0MJL0k9OV97AZUMJzf8pDE6VRgK94SYYhbuUusCvQYVeMpltz5qsVvdOCa9qhd3IPW5yfaA==
+  dependencies:
+    "@babel/runtime" "^7.0.0"
+    tiny-invariant "^1.0.0"
+
 react-is@^16.6.0, react-is@^16.7.0, react-is@^16.8.1, react-is@^16.8.4:
   version "16.8.6"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.8.6.tgz#5bbc1e2d29141c9fbdfed456343fe2bc430a6a16"
@@ -11165,7 +11180,7 @@ tiny-emitter@^2.0.0:
   resolved "https://registry.yarnpkg.com/tiny-emitter/-/tiny-emitter-2.1.0.tgz#1d1a56edfc51c43e863cbb5382a72330e3555423"
   integrity sha512-NB6Dk1A9xgQPMoGqC5CVXn123gWyte215ONT5Pp5a0yt4nlEoO1ZWeCwpncaekPHXO60i47ihFnZPiRPjRMq4Q==
 
-tiny-invariant@^1.0.2:
+tiny-invariant@^1.0.0, tiny-invariant@^1.0.2:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/tiny-invariant/-/tiny-invariant-1.0.4.tgz#346b5415fd93cb696b0c4e8a96697ff590f92463"
   integrity sha512-lMhRd/djQJ3MoaHEBrw8e2/uM4rs9YMNk0iOr8rHQ0QdbM7D4l0gFl3szKdeixrlyfm9Zqi4dxHCM2qVG8ND5g==

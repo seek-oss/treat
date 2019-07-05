@@ -1,13 +1,17 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom';
-
+import { HeadProvider } from 'react-head';
 import App from './App';
 
-const render = (route: string) =>
+type HeadTags = React.ReactElement<unknown>[];
+
+const render = (route: string, headTags: HeadTags) =>
   renderToString(
     <StaticRouter location={route}>
-      <App />
+      <HeadProvider headTags={headTags}>
+        <App />
+      </HeadProvider>
     </StaticRouter>,
   );
 
@@ -25,14 +29,18 @@ export default ({ route, clientStats }: RenderParams) => {
     .filter(asset => asset.endsWith('.js'))
     .map(asset => `<script src="${asset}"></script>`);
 
+  const headTags: HeadTags = [];
+  const html = render(route, headTags);
+
   return `<html>
     <head>
       <link href="https://fonts.googleapis.com/css?family=DM+Sans:700&display=swap" rel="stylesheet">
       ${cssAssets.join('\n')}
+      ${renderToString(<Fragment>{headTags}</Fragment>)}
       <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
     <body>
-        <div id="app">${render(route)}</div>
+        <div id="app">${html}</div>
         ${jsAssets.join('\n')}
     </body>
   </html>`;

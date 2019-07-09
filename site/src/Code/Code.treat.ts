@@ -2,7 +2,7 @@ import { style, globalStyle } from 'treat';
 import { Theme } from '../Theme';
 
 export const root = style((theme: Theme) => ({
-  backgroundColor: theme.color.neutral,
+  backgroundColor: theme.background.code,
   borderRadius: 10,
   overflowX: 'auto',
 }));

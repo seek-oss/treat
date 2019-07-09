@@ -28,7 +28,11 @@ const Th = (props: Children) => (
 
 const Td = (props: Children) => <Text component="td">{props.children}</Text>;
 
-const A = ({ href, ...restProps }: AllHTMLAttributes<HTMLAnchorElement>) =>
+const A = ({
+  href,
+  size, // Omit
+  ...restProps
+}: AllHTMLAttributes<HTMLAnchorElement>) =>
   href ? <Link to={href} {...restProps} /> : <a {...restProps} />;
 
 export default {

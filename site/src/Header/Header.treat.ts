@@ -12,6 +12,7 @@ export const root = style((theme: Theme) => ({
     'screen and (min-width: 1024px)': {
       width: theme.columnWidth * 65,
       height: '100vh',
+      overflow: 'auto',
     },
   },
 }));
@@ -48,4 +49,8 @@ export const linksContainer = style({
 export const links = style({
   display: 'flex',
   flexDirection: 'column',
+});
+
+export const subLink = style({
+  textDecoration: 'none',
 });

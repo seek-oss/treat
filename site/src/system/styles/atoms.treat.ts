@@ -15,7 +15,7 @@ const tokens = {
   },
   breakpoints: {
     mobile: 0,
-    desktop: 768,
+    desktop: 1024,
   },
 };
 

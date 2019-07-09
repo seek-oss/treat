@@ -14,7 +14,7 @@ const Content = () => {
   return (
     <div className={styles.content}>
       <Section>
-        <Box paddingTop="xxxlarge">
+        <Box paddingTop={{ mobile: 'xxxlarge', desktop: 'xxlarge' }}>
           <DocsPage />
         </Box>
       </Section>

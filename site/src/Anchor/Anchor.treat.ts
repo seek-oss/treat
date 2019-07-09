@@ -5,4 +5,9 @@ export const root = style({
   position: 'relative',
   top: -80,
   visibility: 'hidden',
+  '@media': {
+    'screen and (min-width: 1024px)': {
+      top: 0,
+    },
+  },
 });

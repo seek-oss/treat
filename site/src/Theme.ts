@@ -18,18 +18,20 @@ export interface Theme {
   bodyFont: string;
   bodyDescenderHeightScale: number;
   heading: Record<'h1' | 'h2' | 'h3', TextDefinition>;
-  text: Record<'standard' | 'small', TextDefinition>;
+  text: Record<'standard' | 'small' | 'xsmall', TextDefinition>;
   weight: {
     strong: number;
     regular: number;
   };
   color: {
+    strong: string;
     neutral: string;
     code: string;
   };
   background: {
     body: string;
     menu: string;
+    divider: string;
     code: string;
     note: string;
   };

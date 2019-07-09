@@ -7,8 +7,14 @@ import * as linkStyleRefs from './NavLink.treat';
 
 interface LinkProps extends NavLinkProps {
   baseline?: boolean;
+  size?: 'standard' | 'small' | 'xsmall';
 }
-export default ({ baseline, children, ...restProps }: LinkProps) => {
+export default ({
+  baseline,
+  size = 'standard',
+  children,
+  ...restProps
+}: LinkProps) => {
   const typeStyles = useStyles(typeStyleRefs);
   const linkStyles = useStyles(linkStyleRefs);
 
@@ -18,9 +24,9 @@ export default ({ baseline, children, ...restProps }: LinkProps) => {
       className={classnames(
         linkStyles.link,
         typeStyles.font.body,
-        typeStyles.text.standard.fontSize,
+        typeStyles.text[size].fontSize,
         {
-          [typeStyles.text.standard.transform]: baseline,
+          [typeStyles.text[size].transform]: baseline,
         },
       )}
       activeClassName={linkStyles.active}

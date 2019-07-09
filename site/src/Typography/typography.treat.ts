@@ -13,6 +13,7 @@ export const weight = styleMap((theme: Theme) => ({
 }));
 
 export const color = styleMap((theme: Theme) => ({
+  strong: { color: theme.color.strong },
   neutral: { color: theme.color.neutral },
   code: { color: theme.color.code },
 }));
@@ -84,6 +85,9 @@ export const text = {
   ),
   small: styleMap((theme: Theme) =>
     makeTypographyRules('body', theme.text.small, theme),
+  ),
+  xsmall: styleMap((theme: Theme) =>
+    makeTypographyRules('body', theme.text.xsmall, theme),
   ),
 };
 

@@ -20,9 +20,7 @@ Your project must be using [webpack](webpack) with the supplied [webpack plugin]
 
 The core runtime makes use of [`Map`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map), so you may need to provide a [polyfill](https://www.npmjs.com/package/es6-map) for [pre-ES2015 browsers.](https://caniuse.com/#feat=es6)
 
-## Example Usage
-
-### Basic Usage
+## Basic Usage
 
 First, define and export [styles](data-types#styles) from a treat file.
 
@@ -51,7 +49,7 @@ export default ({ text }) => (
 );
 ```
 
-### Themed Usage
+## Themed Usage
 
 > Note: React is [not required](runtime-api) to use treat.
 

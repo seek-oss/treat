@@ -59,8 +59,18 @@ const theme: Theme = {
         rows: 7,
       },
       desktop: {
-        size: 18,
+        size: 16,
         rows: 8,
+      },
+    },
+    xsmall: {
+      mobile: {
+        size: 14,
+        rows: 6,
+      },
+      desktop: {
+        size: 14,
+        rows: 6,
       },
     },
   },
@@ -69,14 +79,16 @@ const theme: Theme = {
     strong: 700,
   },
   color: {
-    neutral: '#1f1f1f',
+    strong: '#26232c',
+    neutral: '#46444b',
     code: '#fff',
   },
   background: {
     body: '#fff',
-    menu: '#fafafa',
-    code: '#1f1f1f',
-    note: '#fafafa',
+    menu: 'linear-gradient(45deg, #dbeeff, #f5efff)',
+    divider: '#d9d9d9',
+    code: '#1c1724',
+    note: '#f9f8fa',
   },
   border: {
     standard: 3,

@@ -37,7 +37,7 @@ const Heading = ({ level, children, id }: HeadingProps) => {
         {
           className: classnames(
             styles.font.heading,
-            styles.color.neutral,
+            styles.color.strong,
             styles.heading[level].fontSize,
             styles.heading[level].transform,
           ),

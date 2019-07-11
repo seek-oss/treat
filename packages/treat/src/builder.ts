@@ -286,14 +286,22 @@ export function styleTree<ReturnType>(
   makeStyleTree: MakeStyleTree<ReturnType>,
 ): ReturnType {
   const themedClassRefs = new Map<ClassRef, ThemeStyleMap>();
-  const startingScope = getNextScope();
+  const assignedScopes: Array<number> = [];
+
+  const getNodeScope = (scopeIndex: number) => {
+    if (typeof assignedScopes[scopeIndex] !== 'number') {
+      assignedScopes[scopeIndex] = getNextScope();
+    }
+
+    return assignedScopes[scopeIndex];
+  };
 
   const themedTrees = getThemes().map(({ tokens, themeRef }) => {
-    let scopeCount = startingScope;
+    let scopeIndex = 0;
 
     const makeStyle = (style: Style, localDebugName?: string) => {
       const localName = localDebugName || 'styleNode';
-      const classRef = getIdentName(localName, scopeCount++);
+      const classRef = getIdentName(localName, getNodeScope(scopeIndex++));
 
       const themedClassRefValue = themedClassRefs.get(classRef) || {};
 

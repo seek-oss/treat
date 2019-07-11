@@ -1119,7 +1119,7 @@ exports[`Stylesheet Themed - Autoprefixer (iOS 8) - should create a deterministi
 ._3EiJS {
     z-index: 2
 }
-._1ecu3 {
+._2J3Fc {
     z-index: 3
 }
 ._3vi0Y_2ywy {
@@ -1131,15 +1131,18 @@ exports[`Stylesheet Themed - Autoprefixer (iOS 8) - should create a deterministi
 .yEYY9_2ywy {
     line-height: 6
 }
-._3fD_0_2ywy {
+._1ecu3_2ywy {
     border-bottom-width: 6px;
     border-bottom-style: solid;
     border-bottom-color: pink
 }
-._1ezv1_2ywy {
+._3fD_0_2ywy {
     border-bottom-width: 12px;
     border-bottom-style: solid;
     border-bottom-color: pink
+}
+._1ezv1_2ywy {
+    color: yellow
 }
 ._3vi0Y_1c8Y {
     background-color: red
@@ -1150,15 +1153,18 @@ exports[`Stylesheet Themed - Autoprefixer (iOS 8) - should create a deterministi
 .yEYY9_1c8Y {
     line-height: 4
 }
-._3fD_0_1c8Y {
+._1ecu3_1c8Y {
     border-bottom-width: 4px;
     border-bottom-style: solid;
     border-bottom-color: pink
 }
-._1ezv1_1c8Y {
+._3fD_0_1c8Y {
     border-bottom-width: 8px;
     border-bottom-style: solid;
     border-bottom-color: pink
+}
+._1ezv1_1c8Y {
+    color: red
 }
 "
 `;
@@ -1171,7 +1177,7 @@ exports[`Stylesheet Themed - Custom idents - should create a deterministic style
 .stylesTwo-regularStyle_3EiJS {
     z-index: 2
 }
-.stylesThree-regularStyle_1ecu3 {
+.stylesThree-regularStyle_2J3Fc {
     z-index: 3
 }
 .stylesOne-themeStyle_3vi0Y-themeOne_2y {
@@ -1183,15 +1189,18 @@ exports[`Stylesheet Themed - Custom idents - should create a deterministic style
 .stylesThree-themeStyle_yEYY9-themeOne_2y {
     line-height: 6
 }
-.stylesThree-styleNode_3fD_0-themeOne_2y {
+.stylesThree-styleNode_1ecu3-themeOne_2y {
     border-bottom-width: 6px;
     border-bottom-style: solid;
     border-bottom-color: pink
 }
-.stylesThree-styleNode_1ezv1-themeOne_2y {
+.stylesThree-styleNode_3fD_0-themeOne_2y {
     border-bottom-width: 12px;
     border-bottom-style: solid;
     border-bottom-color: pink
+}
+.stylesThree-styleNode_1ezv1-themeOne_2y {
+    color: yellow
 }
 .stylesOne-themeStyle_3vi0Y-themeTwo_1c {
     background-color: red
@@ -1202,15 +1211,18 @@ exports[`Stylesheet Themed - Custom idents - should create a deterministic style
 .stylesThree-themeStyle_yEYY9-themeTwo_1c {
     line-height: 4
 }
-.stylesThree-styleNode_3fD_0-themeTwo_1c {
+.stylesThree-styleNode_1ecu3-themeTwo_1c {
     border-bottom-width: 4px;
     border-bottom-style: solid;
     border-bottom-color: pink
 }
-.stylesThree-styleNode_1ezv1-themeTwo_1c {
+.stylesThree-styleNode_3fD_0-themeTwo_1c {
     border-bottom-width: 8px;
     border-bottom-style: solid;
     border-bottom-color: pink
+}
+.stylesThree-styleNode_1ezv1-themeTwo_1c {
+    color: red
 }
 "
 `;
@@ -1223,7 +1235,7 @@ exports[`Stylesheet Themed - Development mode - should create a deterministic st
 .stylesTwo-regularStyle_3EiJS {
     z-index: 2
 }
-.stylesThree-regularStyle_1ecu3 {
+.stylesThree-regularStyle_2J3Fc {
     z-index: 3
 }
 .stylesOne-themeStyle_3vi0Y_themeOne-themeOne_2ywy {
@@ -1235,15 +1247,18 @@ exports[`Stylesheet Themed - Development mode - should create a deterministic st
 .stylesThree-themeStyle_yEYY9_themeOne-themeOne_2ywy {
     line-height: 6
 }
-.stylesThree-styleNode_3fD_0_themeOne-themeOne_2ywy {
+.stylesThree-styleNode_1ecu3_themeOne-themeOne_2ywy {
     border-bottom-width: 6px;
     border-bottom-style: solid;
     border-bottom-color: pink
 }
-.stylesThree-styleNode_1ezv1_themeOne-themeOne_2ywy {
+.stylesThree-styleNode_3fD_0_themeOne-themeOne_2ywy {
     border-bottom-width: 12px;
     border-bottom-style: solid;
     border-bottom-color: pink
+}
+.stylesThree-styleNode_1ezv1_themeOne-themeOne_2ywy {
+    color: yellow
 }
 .stylesOne-themeStyle_3vi0Y_themeTwo-themeTwo_1c8Y {
     background-color: red
@@ -1254,15 +1269,18 @@ exports[`Stylesheet Themed - Development mode - should create a deterministic st
 .stylesThree-themeStyle_yEYY9_themeTwo-themeTwo_1c8Y {
     line-height: 4
 }
-.stylesThree-styleNode_3fD_0_themeTwo-themeTwo_1c8Y {
+.stylesThree-styleNode_1ecu3_themeTwo-themeTwo_1c8Y {
     border-bottom-width: 4px;
     border-bottom-style: solid;
     border-bottom-color: pink
 }
-.stylesThree-styleNode_1ezv1_themeTwo-themeTwo_1c8Y {
+.stylesThree-styleNode_3fD_0_themeTwo-themeTwo_1c8Y {
     border-bottom-width: 8px;
     border-bottom-style: solid;
     border-bottom-color: pink
+}
+.stylesThree-styleNode_1ezv1_themeTwo-themeTwo_1c8Y {
+    color: red
 }
 "
 `;
@@ -1270,13 +1288,13 @@ exports[`Stylesheet Themed - Development mode - should create a deterministic st
 exports[`Stylesheet Themed - Production mode - should create a deterministic stylesheet 1`] = `
 ".H4Gfx{z-index:1;display:flex}
 ._3EiJS{z-index:2}
-._1ecu3{z-index:3}
+._2J3Fc{z-index:3}
 ._3vi0Y_2ywy{background-color:#ff0}
 ._1qrIM_2ywy{height:12px}
-.yEYY9_2ywy{line-height:6}._3fD_0_2ywy{border-bottom:6px solid pink}._1ezv1_2ywy{border-bottom:12px solid pink}
+.yEYY9_2ywy{line-height:6}._1ecu3_2ywy{border-bottom:6px solid pink}._3fD_0_2ywy{border-bottom:12px solid pink}._1ezv1_2ywy{color:#ff0}
 ._3vi0Y_1c8Y{background-color:red}
 ._1qrIM_1c8Y{height:8px}
-.yEYY9_1c8Y{line-height:4}._3fD_0_1c8Y{border-bottom:4px solid pink}._1ezv1_1c8Y{border-bottom:8px solid pink}
+.yEYY9_1c8Y{line-height:4}._1ecu3_1c8Y{border-bottom:4px solid pink}._3fD_0_1c8Y{border-bottom:8px solid pink}._1ezv1_1c8Y{color:red}
 "
 `;
 
@@ -1288,7 +1306,7 @@ exports[`Stylesheet Themed - Theme function ident - should create a deterministi
 ._3EiJS {
     z-index: 2
 }
-._1ecu3 {
+._2J3Fc {
     z-index: 3
 }
 ._3vi0Y_theme_one_2y {
@@ -1300,15 +1318,18 @@ exports[`Stylesheet Themed - Theme function ident - should create a deterministi
 .yEYY9_theme_one_2y {
     line-height: 6
 }
-._3fD_0_theme_one_2y {
+._1ecu3_theme_one_2y {
     border-bottom-width: 6px;
     border-bottom-style: solid;
     border-bottom-color: pink
 }
-._1ezv1_theme_one_2y {
+._3fD_0_theme_one_2y {
     border-bottom-width: 12px;
     border-bottom-style: solid;
     border-bottom-color: pink
+}
+._1ezv1_theme_one_2y {
+    color: yellow
 }
 ._3vi0Y_theme_two_1c {
     background-color: red
@@ -1319,15 +1340,18 @@ exports[`Stylesheet Themed - Theme function ident - should create a deterministi
 .yEYY9_theme_two_1c {
     line-height: 4
 }
-._3fD_0_theme_two_1c {
+._1ecu3_theme_two_1c {
     border-bottom-width: 4px;
     border-bottom-style: solid;
     border-bottom-color: pink
 }
-._1ezv1_theme_two_1c {
+._3fD_0_theme_two_1c {
     border-bottom-width: 8px;
     border-bottom-style: solid;
     border-bottom-color: pink
+}
+._1ezv1_theme_two_1c {
+    color: red
 }
 "
 `;

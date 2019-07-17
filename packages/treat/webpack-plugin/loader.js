@@ -273,7 +273,7 @@ const serializeTreatModule = (loader, cssRequests, exports) => {
   const moduleExports = Object.keys(exports).map(key =>
     key === 'default'
       ? `export default ${stringifyExports(exports[key])};`
-      : `export const ${key} = ${stringifyExports(exports[key])};`,
+      : `export var ${key} = ${stringifyExports(exports[key])};`,
   );
 
   return [...sortedCssImports, ...moduleExports].join('\n');

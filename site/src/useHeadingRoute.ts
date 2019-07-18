@@ -39,6 +39,13 @@ export const useHeadingRouteUpdates = (headingHashes: Array<string>) => {
   useEffect(() => {
     const onScroll = throttle(
       () => {
+        const offset = window.scrollY + window.innerHeight;
+        const height = document.documentElement.offsetHeight;
+
+        if (offset >= height) {
+          return updateActiveRoute(headingHashes[headingHashes.length - 1]);
+        }
+
         const results = headingHashes
           .map(hash => {
             const headingElement = document.querySelector(`#${hash}`);

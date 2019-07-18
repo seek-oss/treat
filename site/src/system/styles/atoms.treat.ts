@@ -22,6 +22,7 @@ const tokens = {
 export default {
   ...createSpacing(tokens),
   display: createProperty(tokens, 'display', [
+    'none',
     'block',
     'inline',
     'inline-block',

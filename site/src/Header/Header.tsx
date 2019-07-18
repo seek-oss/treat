@@ -8,6 +8,7 @@ import logo from '../../../logo.png';
 import docs from '../docs-store';
 import * as styleRefs from './Header.treat';
 import Link from '../Typography/Link';
+import { useActiveHash } from '../useHeadingRoute';
 
 export default () => {
   const styles = useStyles(styleRefs);
@@ -15,6 +16,7 @@ export default () => {
   const closeMenu = () => {
     setMenuOpen(false);
   };
+  const activeHash = useActiveHash();
 
   const closeMenuAndScrollToTop = () => {
     window.scrollTo(0, 0);
@@ -70,6 +72,13 @@ export default () => {
                           to={`${route}#${hash}`}
                           onClick={closeMenu}
                           className={styles.subLink}
+                          style={
+                            activeHash === hash
+                              ? {
+                                  fontWeight: 'bold',
+                                }
+                              : undefined
+                          }
                         >
                           {name}
                         </Link>

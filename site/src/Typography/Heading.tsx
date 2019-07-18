@@ -32,18 +32,20 @@ const Heading = ({ level, children, id }: HeadingProps) => {
   return (
     <Fragment>
       <Anchor id={id} />
-      {createElement(
-        getHeadingComponent(level),
-        {
-          className: classnames(
-            styles.font.heading,
-            styles.color.strong,
-            styles.heading[level].fontSize,
-            styles.heading[level].transform,
-          ),
-        },
-        children,
-      )}
+      <a style={{ textDecoration: 'none' }} href={`#${id}`}>
+        {createElement(
+          getHeadingComponent(level),
+          {
+            className: classnames(
+              styles.font.heading,
+              styles.color.strong,
+              styles.heading[level].fontSize,
+              styles.heading[level].transform,
+            ),
+          },
+          children,
+        )}
+      </a>
     </Fragment>
   );
 };

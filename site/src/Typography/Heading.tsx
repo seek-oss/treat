@@ -29,24 +29,28 @@ export interface HeadingProps {
 const Heading = ({ level, children, id }: HeadingProps) => {
   const styles = useStyles(styleRefs);
 
-  return (
+  const headingElement = createElement(
+    getHeadingComponent(level),
+    {
+      className: classnames(
+        styles.font.heading,
+        styles.color.strong,
+        styles.heading[level].fontSize,
+        styles.heading[level].transform,
+      ),
+    },
+    children,
+  );
+
+  return level === '2' ? (
     <Fragment>
       <Anchor id={id} />
       <a style={{ textDecoration: 'none' }} href={`#${id}`}>
-        {createElement(
-          getHeadingComponent(level),
-          {
-            className: classnames(
-              styles.font.heading,
-              styles.color.strong,
-              styles.heading[level].fontSize,
-              styles.heading[level].transform,
-            ),
-          },
-          children,
-        )}
+        {headingElement}
       </a>
     </Fragment>
+  ) : (
+    headingElement
   );
 };
 

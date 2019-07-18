@@ -45,8 +45,8 @@ const theme: Theme = {
   text: {
     standard: {
       mobile: {
-        size: 17,
-        rows: 7,
+        size: 18,
+        rows: 8,
       },
       desktop: {
         size: 20,
@@ -55,8 +55,8 @@ const theme: Theme = {
     },
     small: {
       mobile: {
-        size: 16,
-        rows: 7,
+        size: 18,
+        rows: 8,
       },
       desktop: {
         size: 16,
@@ -65,8 +65,8 @@ const theme: Theme = {
     },
     xsmall: {
       mobile: {
-        size: 14,
-        rows: 6,
+        size: 16,
+        rows: 7,
       },
       desktop: {
         size: 14,
@@ -85,7 +85,8 @@ const theme: Theme = {
   },
   background: {
     body: '#fff',
-    menu: 'linear-gradient(45deg, #dbeeff, #f5efff)',
+    menu: 'linear-gradient(0deg, #f5efff, #dbeeff)',
+    overlay: '#101011',
     divider: '#d9d9d9',
     code: '#1c1724',
     note: '#f9f8fa',

@@ -8,6 +8,6 @@ export const divider = style((theme: Theme) => ({
   top: 0,
   left: 0,
   width: '100%',
-  height: 2,
+  height: 1,
   background: theme.background.divider,
 }));

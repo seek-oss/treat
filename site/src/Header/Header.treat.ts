@@ -9,9 +9,9 @@ export const fab = style({
   width: fabSize,
   borderRadius: fabSize,
   position: 'fixed',
-  zIndex: 2,
-  top: 12,
-  right: 18,
+  zIndex: 3,
+  top: 16,
+  right: 16,
   boxShadow: '0 2px 4px rgba(0,0,0,0.2)',
   '@media': {
     'screen and (min-width: 1024px)': {
@@ -63,16 +63,24 @@ export const fab__bar = style({
 
 export const menu = style((theme: Theme) => ({
   background: theme.background.menu,
+  backgroundAttachment: 'fixed',
+  backgroundSize: 'cover',
   position: 'fixed',
-  left: 0,
+  right: 0,
   bottom: 0,
   top: 0,
-  width: '100%',
-  zIndex: 1,
+  width: '40vw',
+  minWidth: '300px',
+  zIndex: 2,
   overflow: 'auto',
+  boxShadow: '0 0 20px rgba(0,0,0,0.2)',
   transition: 'transform .15s ease, opacity .15s ease',
   '@media': {
     'screen and (min-width: 1024px)': {
+      boxShadow: 'none',
+      left: 0,
+      right: 'auto',
+      minWidth: 'auto',
       width: theme.columnWidth * 65,
     },
   },
@@ -81,7 +89,7 @@ export const menu = style((theme: Theme) => ({
 export const menu_isClosed = style({
   opacity: 0,
   pointerEvents: 'none',
-  transform: 'translateY(-8px)',
+  transform: 'translateX(12px)',
   '@media': {
     'screen and (min-width: 1024px)': {
       transform: 'none',
@@ -95,6 +103,33 @@ export const menu_isOpen = style({
   opacity: 1,
   pointerEvents: 'auto',
   transform: 'none',
+});
+
+export const backdrop = style((theme: Theme) => ({
+  position: 'fixed',
+  top: 0,
+  bottom: 0,
+  left: 0,
+  right: 0,
+  background: theme.background.overlay,
+  zIndex: 1,
+  transition: 'opacity 0.1s ease',
+  '@media': {
+    'screen and (min-width: 1024px)': {
+      pointerEvents: 'none',
+      display: 'none',
+    },
+  },
+}));
+
+export const backdrop_isHidden = style({
+  opacity: 0,
+  pointerEvents: 'none',
+});
+
+export const backdrop_isVisible = style({
+  opacity: 0,
+  pointerEvents: 'auto',
 });
 
 export const logoContainer = style({

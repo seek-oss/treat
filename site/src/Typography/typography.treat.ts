@@ -62,7 +62,7 @@ const makeTypographyRules = (
       fontSize: mobile.fontSize,
       lineHeight: mobile.lineHeight,
       '@media': {
-        'screen and (min-width: 768px)': {
+        'screen and (min-width: 1024px)': {
           fontSize: desktop.fontSize,
           lineHeight: desktop.lineHeight,
         },

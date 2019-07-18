@@ -50,7 +50,7 @@ const DocsRoute = ({
 
 export default () => (
   <Box paddingBottom="xxxlarge">
-    <img src={logo} height="32" />
+    <img src={logo} height="36" style={{ position: 'relative', left: -6 }} />
 
     <Box display={{ mobile: 'none', desktop: 'block' }}>
       <Divider />

@@ -31,6 +31,7 @@ export interface Theme {
   background: {
     body: string;
     menu: string;
+    overlay: string;
     divider: string;
     code: string;
     note: string;

@@ -41,7 +41,14 @@ export default () => {
     <Fragment>
       <Fab open={menuOpen} onClick={toggleMenu} />
       <Box
-        paddingTop={{ mobile: 'large', desktop: 'xlarge' }}
+        className={classnames(
+          styles.backdrop,
+          menuOpen ? styles.backdrop_isVisible : styles.backdrop_isHidden,
+        )}
+        onClick={closeMenu}
+      />
+      <Box
+        paddingTop={{ mobile: 'medium', desktop: 'xlarge' }}
         paddingBottom="large"
         className={classnames(
           styles.menu,

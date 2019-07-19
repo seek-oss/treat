@@ -69,7 +69,7 @@ module.exports = [
       htmlRenderPlugin,
       new CopyPlugin([
         {
-          from: join(__dirname, 'src/favicon'),
+          from: join(__dirname, 'src/assets'),
         },
       ]),
     ],

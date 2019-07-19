@@ -226,8 +226,6 @@ export function styleMap<ClassName extends string>(
   return classRefs;
 }
 
-export const css = styleMap; // Backwards compatibility
-
 export function createTheme(tokens: Theme, localDebugName?: string): ThemeRef {
   const theme = {
     themeRef: getIdentName(localDebugName || 'theme', getNextScope(), tokens),

@@ -1,7 +1,5 @@
 import React, { createContext, useContext, ReactNode } from 'react';
 import {
-  resolveClassNames,
-  ResolveClassNamesArgs,
   resolveClassName,
   resolveStyles,
   ThemeRef,
@@ -36,6 +34,3 @@ export const useStyles = <UserStyles extends TreatModule>(styles: UserStyles) =>
 
 export const useClassName = (classRef: ClassRef) =>
   resolveClassName(useTheme(), classRef);
-
-export const useClassNames = (...args: ResolveClassNamesArgs) =>
-  resolveClassNames(useTheme(), ...args);

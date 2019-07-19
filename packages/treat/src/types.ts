@@ -36,9 +36,6 @@ export interface StyleWithSelectors extends CSSPropertiesAndPseudos {
 
 export type Style = StyleWithSelectors & MediaQueries<StyleWithSelectors>;
 
-// backwards compat
-export type Styles = Style;
-
 export type GlobalStyle = CSSProperties & MediaQueries<CSSProperties>;
 
 export type StyleMap<ClassName extends string, StyleType> = Record<

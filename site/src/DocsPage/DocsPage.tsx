@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Route } from 'react-router-dom';
-import { Title } from 'react-head';
+import { Title, Meta } from 'react-head';
 import docs from '../docs-store';
 import SiblingDoc from './SiblingDoc/SiblingDoc';
 import logo from '../../../logo.png';
@@ -9,7 +9,6 @@ import { useHeadingRouteUpdates } from '../useHeadingRoute';
 import { Box } from '../system';
 
 interface DocsRouteProps {
-  pageTitle: string;
   component: (props: any) => JSX.Element;
   prevDoc?: {
     title: string;
@@ -22,7 +21,6 @@ interface DocsRouteProps {
   hashes: Array<string>;
 }
 const DocsRoute = ({
-  pageTitle,
   component: Component,
   prevDoc,
   nextDoc,
@@ -32,7 +30,6 @@ const DocsRoute = ({
 
   return (
     <div>
-      <Title>{pageTitle}</Title>
       <Component />
       {prevDoc && (
         <div style={{ float: 'left' }}>
@@ -59,7 +56,11 @@ export default () => (
     {docs.map(({ route, Component, title, sections }, index) => {
       const prevDoc = docs[index - 1];
       const nextDoc = docs[index + 1];
-      const pageTitle = `treat${index ? ` – ${title} ` : ''}`;
+      const pageTitle = `treat${index ? ` – ${title} ` : ''}`.trim();
+      const description =
+        index > 0
+          ? null
+          : 'Themeable, typed CSS-in-JS with (basically) zero runtime. What a treat.';
       const hashes = sections.map(({ hash }) => hash);
 
       return (
@@ -68,13 +69,18 @@ export default () => (
           path={route}
           exact
           render={() => (
-            <DocsRoute
-              pageTitle={pageTitle}
-              nextDoc={nextDoc}
-              prevDoc={prevDoc}
-              hashes={hashes}
-              component={Component}
-            />
+            <Fragment>
+              <Title>{pageTitle}</Title>
+              {description ? (
+                <Meta name="description" content={description} />
+              ) : null}
+              <DocsRoute
+                nextDoc={nextDoc}
+                prevDoc={prevDoc}
+                hashes={hashes}
+                component={Component}
+              />
+            </Fragment>
           )}
         />
       );

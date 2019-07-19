@@ -79,21 +79,12 @@ export default () => {
                       .filter(({ level }) => level === 2)
                       .map(({ hash, name }) => (
                         <Box
+                          className={styles.subLinkContainer}
                           paddingLeft="medium"
                           key={hash}
-                          style={{ position: 'relative' }}
                         >
                           {activeHash === hash ? (
-                            <div
-                              style={{
-                                position: 'absolute',
-                                left: 0,
-                                top: 4,
-                                bottom: 4,
-                                width: 3,
-                                backgroundColor: 'black',
-                              }}
-                            />
+                            <div className={styles.activeSubLinkBar} />
                           ) : null}
                           <Link
                             size="small"

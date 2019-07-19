@@ -169,3 +169,16 @@ export const links = style({
 export const subLink = style({
   textDecoration: 'none',
 });
+
+export const subLinkContainer = style({
+  position: 'relative',
+});
+
+export const activeSubLinkBar = style({
+  position: 'absolute',
+  left: 0,
+  top: 4,
+  bottom: 4,
+  width: 3,
+  backgroundColor: 'black',
+});

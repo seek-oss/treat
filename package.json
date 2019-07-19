@@ -60,6 +60,7 @@
     "commitizen": "^3.1.1",
     "commitlint-config-seek": "^1.0.0",
     "concurrently": "^4.1.0",
+    "copy-webpack-plugin": "^5.0.3",
     "cz-conventional-changelog": "^2.1.0",
     "express": "^4.16.4",
     "fast-glob": "^2.2.7",

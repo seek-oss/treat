@@ -1,11 +1,10 @@
 const { join } = require('path');
 const HtmlRenderWebpackPlugin = require('html-render-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 const TreatPlugin = require('treat/webpack-plugin');
 const nodeExternals = require('webpack-node-externals');
-
 const docs = require('./docs-manifest.json');
-
 const targetDirectory = join(__dirname, 'dist');
 
 const htmlRenderPlugin = new HtmlRenderWebpackPlugin({
@@ -68,6 +67,11 @@ module.exports = [
       }),
       new MiniCssExtractPlugin(),
       htmlRenderPlugin,
+      new CopyPlugin([
+        {
+          from: join(__dirname, 'src/favicon'),
+        },
+      ]),
     ],
     stats: 'errors-only',
   },

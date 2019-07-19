@@ -59,7 +59,7 @@ export default () => (
     {docs.map(({ route, Component, title, sections }, index) => {
       const prevDoc = docs[index - 1];
       const nextDoc = docs[index + 1];
-      const pageTitle = `Treat${index ? ` – ${title} ` : ''}`;
+      const pageTitle = `treat${index ? ` – ${title} ` : ''}`;
       const hashes = sections.map(({ hash }) => hash);
 
       return (

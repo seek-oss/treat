@@ -24,7 +24,7 @@ export default (props: CodeProps) => {
         paddingLeft={padding}
         paddingRight={padding}
       >
-        <Text size="small" component="div" color="code" baseline={false}>
+        <Text size="code" component="div" color="code" baseline={false}>
           <code {...props} />
         </Text>
       </Box>

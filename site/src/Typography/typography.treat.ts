@@ -89,6 +89,9 @@ export const text = {
   xsmall: styleMap((theme: Theme) =>
     makeTypographyRules('body', theme.text.xsmall, theme),
   ),
+  code: styleMap((theme: Theme) =>
+    makeTypographyRules('body', theme.text.code, theme),
+  ),
 };
 
 export const heading = {

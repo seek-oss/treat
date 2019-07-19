@@ -9,7 +9,7 @@ const tokens = {
     small: 2,
     medium: 3,
     large: 5,
-    xlarge: 8,
+    xlarge: 9,
     xxlarge: 12,
     xxxlarge: 20,
   },

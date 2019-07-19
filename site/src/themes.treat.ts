@@ -53,10 +53,20 @@ const theme: Theme = {
         rows: 9,
       },
     },
+    code: {
+      mobile: {
+        size: 14,
+        rows: 6,
+      },
+      desktop: {
+        size: 16,
+        rows: 8,
+      },
+    },
     small: {
       mobile: {
         size: 18,
-        rows: 8,
+        rows: 9,
       },
       desktop: {
         size: 16,
@@ -65,12 +75,12 @@ const theme: Theme = {
     },
     xsmall: {
       mobile: {
-        size: 16,
+        size: 15,
         rows: 7,
       },
       desktop: {
-        size: 14,
-        rows: 6,
+        size: 15,
+        rows: 7,
       },
     },
   },
@@ -86,7 +96,7 @@ const theme: Theme = {
   background: {
     body: '#fff',
     menu: 'linear-gradient(0deg, #f5efff, #dbeeff)',
-    overlay: '#101011',
+    overlay: '#e6eeff',
     divider: '#d9d9d9',
     code: '#1c1724',
     note: '#f9f8fa',

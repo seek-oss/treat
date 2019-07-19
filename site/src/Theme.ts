@@ -18,7 +18,7 @@ export interface Theme {
   bodyFont: string;
   bodyDescenderHeightScale: number;
   heading: Record<'h1' | 'h2' | 'h3', TextDefinition>;
-  text: Record<'standard' | 'small' | 'xsmall', TextDefinition>;
+  text: Record<'standard' | 'small' | 'xsmall' | 'code', TextDefinition>;
   weight: {
     strong: number;
     regular: number;

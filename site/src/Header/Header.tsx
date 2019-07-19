@@ -58,6 +58,7 @@ export default () => {
         <Section>
           <Box
             paddingTop={{ mobile: 'large', desktop: 'medium' }}
+            paddingLeft={{ mobile: 'medium', desktop: 'none' }}
             className={styles.linksContainer}
           >
             <div className={styles.links}>
@@ -77,7 +78,23 @@ export default () => {
                     {sections
                       .filter(({ level }) => level === 2)
                       .map(({ hash, name }) => (
-                        <Box key={hash}>
+                        <Box
+                          paddingLeft="medium"
+                          key={hash}
+                          style={{ position: 'relative' }}
+                        >
+                          {activeHash === hash ? (
+                            <div
+                              style={{
+                                position: 'absolute',
+                                left: 0,
+                                top: 4,
+                                bottom: 4,
+                                width: 3,
+                                backgroundColor: 'black',
+                              }}
+                            />
+                          ) : null}
                           <Link
                             size="small"
                             to={`${route}#${hash}`}

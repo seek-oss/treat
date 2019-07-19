@@ -12,7 +12,7 @@ export const fab = style({
   zIndex: 3,
   top: 16,
   right: 16,
-  boxShadow: '0 2px 4px rgba(0,0,0,0.2)',
+  boxShadow: '0 4px 8px rgba(14, 14, 33, 0.2)',
   '@media': {
     'screen and (min-width: 1024px)': {
       display: 'none',
@@ -70,10 +70,10 @@ export const menu = style((theme: Theme) => ({
   bottom: 0,
   top: 0,
   width: '40vw',
-  minWidth: '300px',
+  minWidth: '320px',
   zIndex: 2,
   overflow: 'auto',
-  boxShadow: '0 0 20px rgba(0,0,0,0.2)',
+  boxShadow: '0 0 40px rgba(14, 14, 33, 0.2)',
   transition: 'transform .15s ease, opacity .15s ease',
   '@media': {
     'screen and (min-width: 1024px)': {
@@ -81,7 +81,7 @@ export const menu = style((theme: Theme) => ({
       left: 0,
       right: 'auto',
       minWidth: 'auto',
-      width: theme.columnWidth * 65,
+      width: theme.columnWidth * 67,
     },
   },
 }));
@@ -128,7 +128,7 @@ export const backdrop_isHidden = style({
 });
 
 export const backdrop_isVisible = style({
-  opacity: 0,
+  opacity: 0.8,
   pointerEvents: 'auto',
 });
 

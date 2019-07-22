@@ -119,6 +119,49 @@ export const margin = {
 // etc...
 ```
 
+## styleTree
+
+Type: `function`
+
+> Note: This is an advanced feature that you _probably_ don't need. It can only create themed styles. Only use this if you've exhausted all other options.
+
+The `styleTree` function allows you to create complex, nested data structures based on your theme.
+
+For example, if you wanted to create a nested atomic CSS structure (e.g. `atoms.padding.top.desktop`), which requires iterating over _both_ your white space scale _and_ your breakpoints:
+
+```js
+// atoms.treat.js
+
+import { styleTree } from 'treat';
+import { mapValues } from 'lodash';
+
+const responsiveSpacingStyles = property =>
+  styleTree((theme, styleNode) =>
+    mapValues(theme.spacing, space =>
+      mapValues(theme.breakpoints, minWidth =>
+        styleNode({
+          '@media': {
+            [`screen and (min-width: ${minWidth}px)`]: {
+              [property]: space * theme.grid
+            }
+          }
+        })
+      )
+    )
+  );
+
+export const padding = {
+  top: responsiveSpacingStyles('paddingTop'),
+  bottom: responsiveSpacingStyles('paddingBottom'),
+  left: responsiveSpacingStyles('paddingLeft'),
+  right: responsiveSpacingStyles('paddingRight')
+};
+
+// etc...
+```
+
+> Note: When using `styleTree`, the [babel-plugin](setup#babel-setup) does not add a local debug name for you, as it is too complex to infer in most cases. However, you can still manually pass a local debug name to the `styleNode` function you receive.
+
 ## globalStyle
 
 Type: `function`

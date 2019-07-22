@@ -118,6 +118,6 @@ export function Button(props) {
 
 There's a lot of CSS-in-JS solutions available, however, `treat` has taken quite a different approach. The primary goals of treat are full static extraction, minimal runtime code and type safety. While a great developer experience is important to us, it will never come at the cost of those goals.
 
-If you're used to a library like [styled-components](https://www.styled-components.com) than `treat` might seem like a step backwards, [styled-components](https://www.styled-components.com) can easily create a lot styles bound to components quickly. However, `treat` requires a few more steps to bind styles to your components. It is also unable to generate styles at runtime, and therefore can not handle dynamic themeing.
+If you're used to a library like [styled-components](https://www.styled-components.com) than `treat` might seem like a step backwards. [styled-components](https://www.styled-components.com) can easily create a lot styles bound to components quickly. However, `treat` requires a few more steps to bind styles to your components. It is also unable to generate styles at runtime, and therefore can not handle dynamic themeing.
 
 The upside of `treat` is it allows you to craft highly re-usable utilty CSS using JavaScript, adding next to zero to bundle size and a negligible runtime performance cost. Checkout [tailwindcss](https://tailwindcss.com/) for a great example of this style of CSS, or our component library [Braid](https://github.com/seek-oss/braid-design-system) for a `treat` specific example.

@@ -4,10 +4,6 @@ const themeStyle = style(theme => ({
   lineHeight: theme.row,
 }));
 
-const regularStyle = style({
-  zIndex: 3,
-});
-
 const tree = styleTree((theme, styleNode) => ({
   border: {
     small: [
@@ -27,8 +23,23 @@ const tree = styleTree((theme, styleNode) => ({
   },
 }));
 
+const secondTree = styleTree((theme, styleNode) => ({
+  textColor: {
+    primary: [
+      styleNode({
+        color: theme.primaryColor,
+      }),
+    ],
+  },
+}));
+
+const regularStyle = style({
+  zIndex: 3,
+});
+
 export default {
   themeStyle,
   regularStyle,
   tree,
+  secondTree,
 };

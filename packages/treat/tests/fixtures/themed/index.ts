@@ -21,6 +21,7 @@ nodeOne.setAttribute(
     stylesThree.regularStyle,
     stylesThree.themeStyle,
     stylesThree.tree.border.small[0],
+    stylesThree.secondTree.textColor.primary,
   ),
 );
 
@@ -36,6 +37,7 @@ nodeTwo.setAttribute(
     stylesThree.regularStyle,
     stylesThree.themeStyle,
     stylesThree.tree.border.large[0],
+    stylesThree.secondTree.textColor.primary,
   ),
 );
 

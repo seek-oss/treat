@@ -73,3 +73,19 @@ To fix this, you can pass in a debug name as the last argument:
 ```js
 export const green = style({ color: 'green' }, 'green');
 ```
+
+## Server side rendering
+
+SSR apps will likely be running two webpack builds (one targetting the browser, and one for node). The server config should disable CSS output by passing "`outputCSS: false`".
+
+```js
+const TreatPlugin = require('treat/webpack-plugin');
+
+module.exports = {
+  plugins: [
+    new TreatPlugin({
+      outputCSS: false
+    })
+  ]
+};
+```

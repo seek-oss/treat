@@ -100,7 +100,9 @@ Typically, if both of these classes were applied simultaneously to the same elem
 }
 ```
 
-Note that the style order has changed, with the non-themed styles rising to the top of the file. As a result, the `inactive` class won't take effect the `active` class is also being used. To avoid this issue, while authoring styles, you should be mindful not to rely on style overrides, or at the very least, avoid overriding themed styles with non-themed styles.
+Note that the style order has changed, with the non-themed styles rising to the top of the file. As a result, the `inactive` class won't take effect when the `active` class is also being used.
+
+To avoid this issue, while authoring styles, you should be mindful not to rely on style overrides, or at the very least, avoid overriding themed styles with non-themed styles.
 
 ## Runtime
 

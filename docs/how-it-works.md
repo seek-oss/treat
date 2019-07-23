@@ -48,7 +48,7 @@ export const greenTheme = createTheme({ text: 'green' });
 export const redTheme = createTheme({ text: 'red' });
 ```
 
-If you write the following styles:
+Then, let's assume you've written the following treat file:
 
 ```js
 // text.treat.js
@@ -68,7 +68,9 @@ This will generate the following CSS:
 }
 ```
 
-Once we've generated styles for each theme, the [runtime API](runtime-api) can be used to resolve the correct class for the desired theme. Theming in this way allows full static extraction of themed styles. However, it comes with an important trade-off.
+Now that we've generated styles for each theme, the [runtime API](runtime-api) can be used to resolve the correct class for the desired theme.
+
+Theming in this way allows full static extraction of themed styles. However, it comes with an important trade-off.
 
 In order to ensure consistent specificity across different themes, themed styles are generated with higher precedence than non-themed styles. As a result, you need to be careful when mixing themed and non-themed styles in a single treat file.
 

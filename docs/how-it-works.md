@@ -86,4 +86,8 @@ To avoid duplicating all classes (whether themed or not) `treat` pushes all unth
 
 ## Runtime
 
-Blah blah
+> If you're not using any themeing, the runtime is **not** required.
+
+Currently, the treat runtime only performs one task, resolving themed styles to the requested themed class.
+
+It does this by walking the exports of your treat file and returning a new structure that has the same type definition. As module exports are static, the runtime will cache the result in memory so the walk only needs to be performed once per treat file. This means you can import a single treat file many times across your app but only perform the transform once. If you switch theme at runtime the transform will run again.

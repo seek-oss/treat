@@ -44,14 +44,14 @@ Then, import the styles.
 
 import * as styles from './Button.treat.js';
 
-export default ({ text }) => (
+export default ({ text }) => `
   <button class="${styles.button}">${text}</button>
-);
+`;
 ```
 
 ## Themed Usage
 
-> Note: React is [not required](runtime-api) to use treat.
+> React is [not required](runtime-api) to use treat.
 
 First, create and export a theme from a treat file. Normally, you'd define multiple themes, but let's keep it short.
 
@@ -97,6 +97,8 @@ export const button = style(theme => ({
   height: theme.grid * 11
 }));
 ```
+
+> Themed styles have higher precedence than non-themed styles, regardless of document order. For more information, read the [theming](how-it-works#theming) guide.
 
 Then import and resolve themed styles via the [`useStyles` Hook.](react-api#usestyles)
 

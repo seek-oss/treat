@@ -89,3 +89,28 @@ module.exports = {
   ]
 };
 ```
+
+## Bundle splitting
+
+`treat` supports bundle splitting via [webpack dynamic imports](https://webpack.js.org/guides/code-splitting/#dynamic-imports) with no special setup. It's likely you'll want to split your themes into separate CSS files. This is achieved by dynamic importing your treat files that call [`createTheme`](styling-api#createtheme).
+
+```js
+// mainTheme.treat.js
+
+import { createTheme } from 'treat';
+
+export default createTheme({
+  // theme stuff
+});
+```
+
+```js
+import { resolveStyles } from 'treat';
+import styleRefs from './styles.treat';
+
+import(`./${theme}.treat`).then(theme => {
+  const styles = resolveStyles(theme.default, styleRefs);
+
+  // Style away
+});
+```

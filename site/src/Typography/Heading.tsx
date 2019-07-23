@@ -4,6 +4,7 @@ import { Anchor } from '../Anchor/Anchor';
 import classnames from 'classnames';
 
 import * as styleRefs from './typography.treat';
+import { Box } from '../system';
 
 type Omit<T, K> = Pick<T, Exclude<keyof T, K>>;
 
@@ -55,7 +56,9 @@ const Heading = ({ level, children, id }: HeadingProps) => {
 };
 
 export const H1 = (props: Omit<HeadingProps, 'level'>) => (
-  <Heading level="1" {...props} />
+  <Box marginTop="medium" marginBottom="xxlarge">
+    <Heading level="1" {...props} />
+  </Box>
 );
 
 export const H2 = (props: Omit<HeadingProps, 'level'>) => (

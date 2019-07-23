@@ -97,7 +97,6 @@ const theme: Theme = {
     body: '#fff',
     menu: 'linear-gradient(0deg, #f5efff, #dbeeff)',
     overlay: '#fff',
-    divider: '#d9d9d9',
     code: '#1c1724',
     note: '#f9f8fa',
   },

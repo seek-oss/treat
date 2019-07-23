@@ -2,7 +2,7 @@
 
 [![Build Status](https://img.shields.io/travis/seek-oss/treat/master.svg?logo=travis&style=for-the-badge)](http://travis-ci.org/seek-oss/treat) [![treat@next](https://img.shields.io/npm/v/treat/next.svg?label=treat@next&logo=npm&style=for-the-badge)](https://www.npmjs.com/package/treat) [![Spectrum Community](https://img.shields.io/badge/community-spectrum-a36ae4.svg?style=for-the-badge)](https://spectrum.chat/treatcss)
 
-Themeable, typed CSS-in-JS with (basically) zero runtime. What a treat.
+Themeable, statically extracted CSS-in-JS with near-zero runtime.
 
 ```bash
 $ yarn add treat@next

@@ -2,7 +2,7 @@
 title: Introduction
 ---
 
-# Introduction
+# Themeable, statically extracted CSS-in-JS with near-zero runtime.
 
 Write your styles in JavaScript/TypeScript within **_treat files_** (e.g. `Button.treat.js`) that get **_executed at build time_**.
 

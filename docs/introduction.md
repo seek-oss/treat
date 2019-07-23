@@ -41,10 +41,9 @@ Then, import the styles.
 
 ```js
 // Button.js
-
 import * as styles from './Button.treat.js';
 
-export default ({ text }) => `
+export const Button = ({ text }) => `
   <button class="${styles.button}">${text}</button>
 `;
 ```
@@ -72,24 +71,21 @@ Then, import the desired theme and pass it to [`TreatProvider`](react-api#treatp
 
 ```js
 // App.js
-
 import React from 'react';
 import { TreatProvider } from 'react-treat';
 
 import theme from './theme.treat.js';
 
-export function App() {
-  return <TreatProvider theme={theme}>...</TreatProvider>;
-}
+export const App = () => (
+  <TreatProvider theme={theme}>...</TreatProvider>
+);
 ```
 
 Now that you've configured the theming system, define and export [themed styles](data-types#themedstyles) from a treat file.
 
 ```js
 // Button.treat.js
-
 // ** THIS CODE WON'T END UP IN YOUR BUNDLE EITHER! **
-
 import { style } from 'treat';
 
 export const button = style(theme => ({
@@ -104,16 +100,15 @@ Then import and resolve themed styles via the [`useStyles` Hook.](react-api#uses
 
 ```js
 // Button.js
-
 import React from 'react';
 import { useStyles } from 'react-treat';
 import * as styleRefs from './Button.treat.js';
 
-export function Button(props) {
+export const Button = props => {
   const styles = useStyles(styleRefs);
 
   return <button {...props} className={styles.button} />;
-}
+};
 ```
 
 ## Trade-offs

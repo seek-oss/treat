@@ -6,7 +6,33 @@ title: How it works
 
 ## Static extraction
 
-Blah blah
+In order to support static extraction of CSS from JavaScript code, styles are authored in JavaScript files with a special extension (`.treat.js`/`.treat.ts` by default). We refer to these files as _treat files._
+
+These treat files are separated from regular JavaScript files so that they can be compiled and executed at build time rather than being executed in the browser.
+
+Conceptually, this is no different to preprocessors like Sass and Less. The difference is that, rather than using a custom domain-specific language, treat lets you use _JavaScript_ as your preprocessor.
+
+Within treat files, treat exposes a set of [styling APIs](styling-api) for generating CSS. Calling these APIs will result in styles being added to your application bundle. In order to expose these styles to your application code, they must be explicitly exported:
+
+```js
+// Button.treat.js
+import { style } from 'treat';
+
+export const button = style({
+  backgroundColor: 'blue',
+  height: 48
+}));
+```
+
+When treat files are executed at build time, all of the exports are inlined into your bundle. For example, the treat file above would turn into this:
+
+```js
+export var button = 'GENERATED_CLASS_NAME';
+```
+
+Generated styles are separately passed through the webpack loader pipeline, which allows you to create static CSS files via [mini-css-extract-plugin](https://github.com/webpack-contrib/mini-css-extract-plugin).
+
+_For more details, see our [webpack setup](setup#webpack-setup) guide._
 
 ## Theming
 

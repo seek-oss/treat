@@ -1,12 +1,12 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState, Fragment, MouseEvent, ReactNode } from 'react';
 import { useStyles } from 'react-treat';
 import classnames from 'classnames';
 import { Box, Section } from '../system';
 import NavLink from '../Typography/NavLink';
 import docs from '../docs-store';
-import * as styleRefs from './Header.treat';
 import Link from '../Typography/Link';
 import { useActiveHash } from '../useHeadingRoute';
+import * as styleRefs from './Header.treat';
 
 const Fab = ({ open, onClick }: { open: boolean; onClick: () => void }) => {
   const styles = useStyles(styleRefs);
@@ -19,6 +19,64 @@ const Fab = ({ open, onClick }: { open: boolean; onClick: () => void }) => {
       <Box className={styles.fab__bar} />
       <Box className={styles.fab__bar} />
       <Box className={styles.fab__bar} />
+    </Box>
+  );
+};
+
+const NavSection = ({
+  href,
+  title,
+  children,
+  onClick,
+}: {
+  href: string;
+  title: string;
+  children: ReactNode;
+  onClick?: (event: MouseEvent<HTMLAnchorElement>) => void;
+}) => (
+  <Fragment>
+    <Box paddingBottom="xsmall">
+      <NavLink size="xsmall" to={href} exact onClick={onClick}>
+        {title}
+      </NavLink>
+    </Box>
+    <Box paddingBottom="large">{children}</Box>
+  </Fragment>
+);
+
+const SubLink = ({
+  children,
+  to,
+  hash,
+  active,
+  onClick,
+}: {
+  children: ReactNode;
+  to: string;
+  hash?: string;
+  active?: boolean;
+  onClick?: (event: MouseEvent<HTMLAnchorElement>) => void;
+}) => {
+  const styles = useStyles(styleRefs);
+
+  return (
+    <Box className={styles.subLinkContainer} paddingLeft="medium" key={hash}>
+      {active ? <div className={styles.activeSubLinkBar} /> : null}
+      <Link
+        size="small"
+        to={`${to}${hash ? `#${hash}` : ''}`}
+        onClick={onClick}
+        className={styles.subLink}
+        style={
+          active
+            ? {
+                fontWeight: 'bold',
+              }
+            : undefined
+        }
+      >
+        {children}
+      </Link>
     </Box>
   );
 };
@@ -62,48 +120,37 @@ export default () => {
             className={styles.linksContainer}
           >
             <div className={styles.links}>
+              <NavSection
+                title="Community"
+                href="https://www.github.com/seek-oss/treat"
+              >
+                <SubLink to="https://www.github.com/seek-oss/treat">
+                  GitHub
+                </SubLink>
+                <SubLink to="https://spectrum.chat/treatcss">Spectrum</SubLink>
+              </NavSection>
+
               {docs.map(({ title, route, sections }) => (
                 <Fragment key={route}>
-                  <Box paddingBottom="xsmall">
-                    <NavLink
-                      size="xsmall"
-                      exact
-                      to={route}
-                      onClick={closeMenuAndScrollToTop}
-                    >
-                      {title}
-                    </NavLink>
-                  </Box>
-                  <Box paddingBottom="large">
+                  <NavSection
+                    title={title}
+                    href={route}
+                    onClick={closeMenuAndScrollToTop}
+                  >
                     {sections
                       .filter(({ level }) => level === 2)
                       .map(({ hash, name }) => (
-                        <Box
-                          className={styles.subLinkContainer}
-                          paddingLeft="medium"
-                          key={hash}
+                        <SubLink
+                          key={name}
+                          to={route}
+                          hash={hash}
+                          active={hash === activeHash}
+                          onClick={closeMenu}
                         >
-                          {activeHash === hash ? (
-                            <div className={styles.activeSubLinkBar} />
-                          ) : null}
-                          <Link
-                            size="small"
-                            to={`${route}#${hash}`}
-                            onClick={closeMenu}
-                            className={styles.subLink}
-                            style={
-                              activeHash === hash
-                                ? {
-                                    fontWeight: 'bold',
-                                  }
-                                : undefined
-                            }
-                          >
-                            {name}
-                          </Link>
-                        </Box>
+                          {name}
+                        </SubLink>
                       ))}
-                  </Box>
+                  </NavSection>
                 </Fragment>
               ))}
             </div>

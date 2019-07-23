@@ -73,7 +73,6 @@ export const menu = style((theme: Theme) => ({
   minWidth: '320px',
   zIndex: 2,
   overflow: 'auto',
-  boxShadow: '0 0 40px rgba(14, 14, 33, 0.2)',
   transition: 'transform .15s ease, opacity .15s ease',
   '@media': {
     'screen and (min-width: 1024px)': {

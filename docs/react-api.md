@@ -1,8 +1,8 @@
 ---
-title: React
+title: React API
 ---
 
-# React
+# React API
 
 > Note: React is [not required](runtime-api) to use treat.
 

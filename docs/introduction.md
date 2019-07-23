@@ -14,7 +14,7 @@ Because theming is achieved by generating multiple classes, **_legacy browsers a
 
 ## Requirements
 
-Your project must be using [webpack](webpack) with the supplied [webpack plugin](webpack), but that's it.
+Your project must be using [webpack](webpack-options) with the supplied [webpack plugin](webpack-options), but that's it.
 
 **First-class support is provided for [React](https://reactjs.org/) and [TypeScript](https://www.typescriptlang.org/),** but those layers are _entirely optional._ The core [runtime API](runtime-api) can also be integrated into other frameworks, if needed.
 

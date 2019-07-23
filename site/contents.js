@@ -5,5 +5,5 @@ module.exports = [
   { fileName: 'styling-api.md', id: 'styling-api' },
   { fileName: 'runtime-api.md', id: 'runtime-api' },
   { fileName: 'react-api.md', id: 'react-api' },
-  { fileName: 'webpack.md', id: 'webpack' },
+  { fileName: 'webpack-options.md', id: 'webpack-options' },
 ];

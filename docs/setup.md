@@ -34,7 +34,7 @@ module.exports = {
 };
 ```
 
-For more configuration options, view the full [webpack plugin API](webpack#webpack-plugin-api).
+For more configuration options, view the full list of [webpack options](webpack-options).
 
 ## Babel Setup
 

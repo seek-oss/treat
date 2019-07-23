@@ -120,16 +120,6 @@ export default () => {
             className={styles.linksContainer}
           >
             <div className={styles.links}>
-              <NavSection
-                title="Community"
-                href="https://www.github.com/seek-oss/treat"
-              >
-                <SubLink to="https://www.github.com/seek-oss/treat">
-                  GitHub
-                </SubLink>
-                <SubLink to="https://spectrum.chat/treatcss">Spectrum</SubLink>
-              </NavSection>
-
               {docs.map(({ title, route, sections }) => (
                 <Fragment key={route}>
                   <NavSection
@@ -153,6 +143,15 @@ export default () => {
                   </NavSection>
                 </Fragment>
               ))}
+              <NavSection
+                title="Community"
+                href="https://www.github.com/seek-oss/treat"
+              >
+                <SubLink to="https://www.github.com/seek-oss/treat">
+                  GitHub
+                </SubLink>
+                <SubLink to="https://spectrum.chat/treatcss">Spectrum</SubLink>
+              </NavSection>
             </div>
           </Box>
         </Section>

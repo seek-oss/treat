@@ -13,7 +13,7 @@ globalStyle(tokenSelector('comment'), {
   color: '#60646f',
 });
 
-globalStyle(tokenSelector('keyword'), {
+globalStyle(['keyword', 'selector'].map(tokenSelector).join(', '), {
   color: '#c1d8fd',
 });
 

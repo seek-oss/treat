@@ -78,7 +78,10 @@ For example, let's assume you've defined the following styles:
 export const inactive = style(theme => ({
   color: theme.text
 }));
-export const active = style({ color: 'white' });
+
+export const active = style({
+  color: 'white'
+});
 ```
 
 Typically, if both of these classes were applied simultaneously to the same element, you would expect the `active` styles to override the `inactive` styles. However, in treat, this is not the case. The resulting style sheet would actually look something like this:
@@ -89,11 +92,11 @@ Typically, if both of these classes were applied simultaneously to the same elem
 }
 
 .inactive_greenTheme {
-  color: 'green';
+  color: green;
 }
 
 .inactive_redTheme {
-  color: 'red';
+  color: red;
 }
 ```
 

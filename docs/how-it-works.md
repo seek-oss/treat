@@ -60,10 +60,10 @@ export const text = style(theme => ({ color: theme.text }));
 This will generate the following CSS:
 
 ```css
-.GENERATED_CLASS_NAME_greenTheme {
+.text_greenTheme {
   color: green;
 }
-.GENERATED_CLASS_NAME_redTheme {
+.text_redTheme {
   color: red;
 }
 ```
@@ -72,7 +72,7 @@ Now that we've generated styles for each theme, the [runtime API](runtime-api) c
 
 Theming in this way allows full static extraction of themed styles. However, it comes with an important trade-off.
 
-In order to ensure consistent specificity across different themes, themed styles are generated with higher precedence than non-themed styles. As a result, you need to be careful when mixing themed and non-themed styles in a single treat file.
+In order to ensure consistent specificity across different themes, themed styles are generated with higher precedence than non-themed styles. As a result, you need to be mindful when attempting to override themed styles with non-themed styles within a single treat file.
 
 For example, let's assume you've defined the following styles:
 
@@ -102,14 +102,62 @@ Typically, if both of these classes were applied simultaneously to the same elem
 }
 ```
 
-Note that the style order has changed, with the non-themed styles rising to the top of the file. As a result, the `inactive` class won't take effect when the `active` class is also being used.
+Note that the style order has changed, with the non-themed styles rising to the top of the file, which means that the `inactive` class will take precedence over the `active` class if both are used simultaneously.
 
-To avoid this issue, while authoring styles, you should be mindful not to rely on style overrides, or at the very least, avoid overriding themed styles with non-themed styles.
+To avoid this issue, it's recommended that you try not to rely on style overrides across multiple classes.
 
 ## Runtime
 
-> If you're not using any themeing, the runtime is **not** required.
+> If you're not using themed styles, the runtime is **not** required.
 
-Currently, the treat runtime only performs one task, resolving themed styles to the requested themed class.
+The treat runtime is extremely lightweight, only needing to perform a simple lookup to figure out which pre-generated CSS class belongs to which theme.
 
-It does this by walking the exports of your treat file and returning a new structure that has the same type definition. As module exports are static, the runtime will cache the result in memory so the walk only needs to be performed once per treat file. This means you can import a single treat file many times across your app but only perform the transform once. If you switch theme at runtime the transform will run again.
+The core API for performing this task is the `resolveStyles` function (or `useStyles` if you're using React).
+
+Let's assume we have a treat file with some complex exports:
+
+```js
+// styles.treat.js
+export const topLevelExport = style(theme => ({
+  color: theme.red
+}));
+
+export const objectExport = {
+  key: style(theme => ({ color: theme.blue }))
+};
+
+export const arrayExport = [
+  style(theme => ({ color: theme.aqua })),
+  style(theme => ({ color: theme.pink }))
+];
+```
+
+We can then import this module and deeply resolve all styles with a single `resolveStyles` call.
+
+> This is obviously a contrived example since we're hard-coding the desired theme. Typically, you'd want to inject themes dynamcally so that they can be configured at an application level. To see a good example of this pattern, see our [React API](react-api).
+
+```js
+import * as styleRefs from './styles.treat.js';
+import { greenTheme } from './themes.treat.js';
+
+const styles = resolveStyles(greenTheme, styleRefs);
+```
+
+In this case, the `styles` object is a deep clone of the `styleRefs` object, with all themed classes resolved relative to `greenTheme`:
+
+```js
+{
+  topLevelExport: 'GENERATED_CLASS_NAME_1_greenTheme',
+  objectExport: {
+    key: 'GENERATED_CLASS_NAME_2_greenTheme'
+  },
+  arrayExport: [
+    'GENERATED_CLASS_NAME_3_greenTheme',
+    'GENERATED_CLASS_NAME_4_greenTheme'
+  ]
+}
+```
+
+Because module exports are static, the treat runtime caches the resolved `styles` object in memory so this cloning process only happens once per treat file.
+
+It's important to note that this resolved `styles` object has the same type signature as the original `styleRefs` object, which means that themed styles remain type safe.

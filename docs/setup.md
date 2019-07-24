@@ -58,7 +58,7 @@ Then, add it to your Babel config. For example, in `.babelrc`:
 
 > Note: This can be automated via our [Babel plugin](#babel-setup).
 
-All styling APIs (except for `globalStyle`) have an optional argument that allows you to provide a local debug name.
+All styling APIs (except for [`globalStyle`](styling-api#globalstyle)) have an optional argument that allows you to provide a local debug name.
 
 For example, the local name for the following style will be `style` by default because treat doesn't have access to your variable name at runtime.
 
@@ -76,7 +76,7 @@ export const green = style({ color: 'green' }, 'green');
 
 ## Server side rendering
 
-SSR apps will likely be running two webpack builds (one targetting the browser, and one for node). The server config should disable CSS output by passing "`outputCSS: false`".
+Server-rendered apps will likely be running two webpack builds (one for the browser code, and one for the server code). The server config should disable CSS output by setting `outputCSS` to `false`.
 
 ```js
 const TreatPlugin = require('treat/webpack-plugin');
@@ -92,25 +92,34 @@ module.exports = {
 
 ## Bundle splitting
 
-`treat` supports bundle splitting via [webpack dynamic imports](https://webpack.js.org/guides/code-splitting/#dynamic-imports) with no special setup. It's likely you'll want to split your themes into separate CSS files. This is achieved by dynamic importing your treat files that call [`createTheme`](styling-api#createtheme).
+If you'd like to dynamically load themes, treat supports bundle splitting via [webpack dynamic imports](https://webpack.js.org/guides/code-splitting/#dynamic-imports) with no special setup.
+
+In practice, it's likely you'll want to split your themes into separate CSS files. This is achieved by dynamic importing your treat files that call [`createTheme`](styling-api#createtheme).
+
+Let's assume you have a set of theme files that look like this:
 
 ```js
 // mainTheme.treat.js
-
 import { createTheme } from 'treat';
 
 export default createTheme({
-  // theme stuff
+  // Theme variables...
 });
 ```
+
+You can then dynamically load the desired theme and use it to resolve styles.
 
 ```js
 import { resolveStyles } from 'treat';
 import styleRefs from './styles.treat';
 
-import(`./${theme}.treat`).then(theme => {
-  const styles = resolveStyles(theme.default, styleRefs);
+// Inject the theme name somehow:
+const themeName = getThemeName();
 
-  // Style away
+import(`../themes/${themeName}.treat`).then(theme => {
+  const styles = resolveStyles(theme.default, styleRefs);
+  // You now have access to themed styles!
 });
 ```
+
+If you're using the [React API](react-api), you'll want to provide the theme to your [`TreatProvider`](react-api#treatprovider).

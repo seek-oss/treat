@@ -2,6 +2,7 @@ import React from 'react';
 import { useStyles } from 'react-treat';
 import { Box } from '../system';
 import Text from '../Typography/Text';
+import InlineCode from '../InlineCode/InlineCode';
 import * as styleRefs from './Code.treat';
 
 export interface CodeProps {
@@ -25,7 +26,9 @@ export default (props: CodeProps) => {
         paddingRight={padding}
       >
         <Text size="code" component="div" color="code" baseline={false}>
-          <code {...props} />
+          <InlineCode>
+            <span {...props} />
+          </InlineCode>
         </Text>
       </Box>
     </Box>

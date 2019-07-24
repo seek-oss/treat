@@ -6,13 +6,13 @@ title: How it works
 
 ## Static extraction
 
-In order to support static extraction of CSS from JavaScript code, styles are authored in JavaScript files with a special extension (`.treat.js`/`.treat.ts` by default). We refer to these files as _treat files._
+In order to support static extraction of CSS from JavaScript code, styles are authored in JavaScript files with a special extension (`.treat.js` / `.treat.ts` by default). We refer to these files as _treat files._
 
 These treat files are separated from regular JavaScript files so that they can be compiled and executed at build time rather than being executed in the browser.
 
-Conceptually, this is no different to preprocessors like Sass and Less. The difference is that, rather than using a custom domain-specific language, treat lets you use _JavaScript_ as your preprocessor.
+Conceptually, this is no different to preprocessors like [Sass](https://sass-lang.com/) and [Less](http://lesscss.org/). The difference is that, rather than using a custom domain-specific language, treat lets you use _JavaScript_ as your preprocessor.
 
-Within treat files, treat exposes a set of [styling APIs](styling-api) for generating CSS. Calling these APIs will result in styles being added to your application bundle. In order to expose these styles to your application code, they must be explicitly exported:
+Within treat files, treat provides a set of [styling APIs](styling-api) for generating CSS. Calling these APIs will result in styles being added to your application bundle. In order to expose these styles to your application code, they must be explicitly exported:
 
 ```js
 // Button.treat.js
@@ -72,7 +72,7 @@ Now that we've generated styles for each theme, the [runtime API](runtime-api) c
 
 Theming in this way allows full static extraction of themed styles. However, it comes with an important trade-off.
 
-In order to ensure consistent specificity across different themes, themed styles are generated with higher precedence than non-themed styles. As a result, you need to be mindful when attempting to override themed styles with non-themed styles within a single treat file.
+In order to ensure consistent specificity across different themes, **themed styles are generated with higher precedence than non-themed styles.** As a result, you need to be mindful when attempting to override themed styles with non-themed styles within a single treat file.
 
 For example, let's assume you've defined the following styles:
 
@@ -104,7 +104,7 @@ Typically, if both of these classes were applied simultaneously to the same elem
 
 Note that the style order has changed, with the non-themed styles rising to the top of the file, which means that the `inactive` class will take precedence over the `active` class if both are used simultaneously.
 
-To avoid this issue, it's recommended that you try not to rely on style overrides across multiple classes.
+To avoid this issue, **it's recommended that you try not to rely on style overrides across multiple classes.**
 
 ## Runtime
 
@@ -112,7 +112,7 @@ To avoid this issue, it's recommended that you try not to rely on style override
 
 The treat runtime is extremely lightweight, only needing to perform a simple lookup to figure out which pre-generated CSS class belongs to which theme.
 
-The core API for performing this task is the `resolveStyles` function (or `useStyles` if you're using React).
+The core API for performing this task is the [`resolveStyles`](runtime-api#resolvestyles) function (or [`useStyles`](react-api#usestyles) if you're using React).
 
 Let's assume we have a treat file with some complex exports:
 
@@ -132,7 +132,7 @@ export const arrayExport = [
 ];
 ```
 
-We can then import this module and deeply resolve all styles with a single `resolveStyles` call.
+We can then import this module and deeply resolve all styles with a single [`resolveStyles`](runtime-api#resolvestyles) call.
 
 > This is obviously a contrived example since we're hard-coding the desired theme. Typically, you'd want to inject themes dynamcally so that they can be configured at an application level. To see a good example of this pattern, see our [React API](react-api).
 
@@ -158,6 +158,6 @@ In this case, the `styles` object is a deep clone of the `styleRefs` object, wit
 }
 ```
 
-Because module exports are static, the treat runtime caches the resolved `styles` object in memory so this cloning process only happens once per treat file.
+Because module exports are static, the treat runtime caches the resolved `styles` object in memory, which means that this cloning and class resolution process only happens once per treat file and theme, for the lifetime of your application.
 
 It's important to note that this resolved `styles` object has the same type signature as the original `styleRefs` object, which means that themed styles remain type safe.

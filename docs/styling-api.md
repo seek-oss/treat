@@ -127,7 +127,7 @@ Type: `function`
 
 The `styleTree` function allows you to create complex, nested data structures based on your theme.
 
-For example, if you wanted to create a nested atomic CSS structure (e.g. `atoms.padding.top.desktop`), which requires iterating over _both_ your white space scale _and_ your breakpoints:
+For example, if you wanted to create a nested atomic CSS structure (e.g. `atoms.padding.top.desktop`), which requires iterating over _both_ your white space scale _and_ your breakpoints, you could do the following:
 
 ```js
 // atoms.treat.js

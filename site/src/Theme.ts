@@ -16,6 +16,7 @@ export interface Theme {
   headingFont: string;
   headingDescenderHeightScale: number;
   bodyFont: string;
+  codeFont: string;
   bodyDescenderHeightScale: number;
   heading: Record<'h1' | 'h2' | 'h3', TextDefinition>;
   text: Record<'standard' | 'small' | 'xsmall' | 'code', TextDefinition>;

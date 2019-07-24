@@ -10,7 +10,7 @@ const targetDirectory = join(__dirname, 'dist');
 const isProduction = process.env.NODE_ENV === 'production';
 
 const htmlRenderPlugin = new HtmlRenderWebpackPlugin({
-  routes: [{ route: '/' }, ...docs],
+  routes: docs,
   renderConcurrency: 'parralel',
   renderDirectory: targetDirectory,
   mapStatsToParams: ({ webpackStats }) => ({

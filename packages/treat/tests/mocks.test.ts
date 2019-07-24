@@ -2,7 +2,7 @@ import {
   createTheme,
   style,
   styleMap,
-  resolveClassNames,
+  resolveClassName,
   resolveStyles,
 } from 'treat';
 
@@ -19,7 +19,7 @@ describe('Mocks', () => {
     describe('Unthemed', () => {
       it('Should support unthemed styles', () => {
         const themedStyleRef = style({ color: 'red' }, 'unthemedStyle');
-        const className = resolveClassNames(testTheme1, themedStyleRef);
+        const className = resolveClassName(testTheme1, themedStyleRef);
         expect(className).toBe('unthemedStyle');
       });
 
@@ -40,10 +40,10 @@ describe('Mocks', () => {
       it('Should support themed styles', () => {
         const themedStyleRef = style(() => ({ color: 'red' }), 'themedStyle');
 
-        const className1 = resolveClassNames(testTheme1, themedStyleRef);
+        const className1 = resolveClassName(testTheme1, themedStyleRef);
         expect(className1).toBe('themedStyle_testTheme1');
 
-        const className2 = resolveClassNames(testTheme2, themedStyleRef);
+        const className2 = resolveClassName(testTheme2, themedStyleRef);
         expect(className2).toBe('themedStyle_testTheme2');
       });
 
@@ -76,7 +76,7 @@ describe('Mocks', () => {
     describe('Unthemed', () => {
       it('Should support unthemed styles', () => {
         const themedStyleRef = style({ color: 'red' });
-        const className = resolveClassNames(testTheme1, themedStyleRef);
+        const className = resolveClassName(testTheme1, themedStyleRef);
         expect(className).toBe('style');
       });
 
@@ -94,10 +94,10 @@ describe('Mocks', () => {
       it('Should support themed styles', () => {
         const themedStyleRef = style(() => ({ color: 'red' }));
 
-        const className1 = resolveClassNames(testTheme1, themedStyleRef);
+        const className1 = resolveClassName(testTheme1, themedStyleRef);
         expect(className1).toBe('style_theme');
 
-        const className2 = resolveClassNames(testTheme2, themedStyleRef);
+        const className2 = resolveClassName(testTheme2, themedStyleRef);
         expect(className2).toBe('style_theme');
       });
 

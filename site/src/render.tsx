@@ -25,10 +25,10 @@ export default ({ route, clientStats }: RenderParams) => {
   const assets = clientStats.entrypoints.main.assets as Array<string>;
   const cssAssets = assets
     .filter(asset => asset.endsWith('.css'))
-    .map(asset => `<link rel="stylesheet" href="${asset}"></link>`);
+    .map(asset => `<link rel="stylesheet" href="${assetPath(asset)}"></link>`);
   const jsAssets = assets
     .filter(asset => asset.endsWith('.js'))
-    .map(asset => `<script src="${asset}"></script>`);
+    .map(asset => `<script src="${assetPath(asset)}"></script>`);
 
   const headTags: HeadTags = [];
   const html = render(route, headTags);

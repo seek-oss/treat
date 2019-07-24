@@ -7,6 +7,8 @@ const nodeExternals = require('webpack-node-externals');
 const docs = require('./docs-manifest.json');
 const targetDirectory = join(__dirname, 'dist');
 
+const isProduction = process.env.NODE_ENV === 'production';
+
 const htmlRenderPlugin = new HtmlRenderWebpackPlugin({
   routes: [{ route: '/' }, ...docs],
   renderConcurrency: 'parralel',
@@ -18,15 +20,26 @@ const htmlRenderPlugin = new HtmlRenderWebpackPlugin({
   }),
 });
 
+const sharedTreatOptions = isProduction
+  ? {
+      localIdentName: '[hash:base64:5]',
+      themeIdentName: '[hash:base64:2]',
+    }
+  : {
+      localIdentName: '[name]-[local]_[hash:base64:5]',
+      themeIdentName: '-theme-[hash:base64:2]',
+    };
+
 module.exports = [
   {
     name: 'client',
     output: {
       filename: 'client.js',
       path: targetDirectory,
+      publicPath: isProduction ? '/treat/' : '/',
     },
     entry: require.resolve('./src/client.tsx'),
-    mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
+    mode: isProduction ? 'production' : 'development',
     resolve: {
       extensions: ['.js', '.json', '.ts', '.tsx'],
     },
@@ -61,8 +74,7 @@ module.exports = [
     },
     plugins: [
       new TreatPlugin({
-        localIdentName: '[name]-[local]_[hash:base64:5]',
-        themeIdentName: '-theme-[hash:base64:2]',
+        ...sharedTreatOptions,
         outputLoaders: [MiniCssExtractPlugin.loader],
       }),
       new MiniCssExtractPlugin(),
@@ -122,9 +134,7 @@ module.exports = [
     },
     plugins: [
       new TreatPlugin({
-        localIdentName: '[name]-[local]_[hash:base64:5]',
-        themeIdentName: '-theme-[hash:base64:2]',
-        outputLoaders: [MiniCssExtractPlugin.loader],
+        ...sharedTreatOptions,
         outputCSS: false,
       }),
       new MiniCssExtractPlugin(),

@@ -20,15 +20,29 @@ Your project must be using [webpack](webpack-options) with the supplied [webpack
 
 The core runtime makes use of [`Map`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map), so you may need to provide a [polyfill](https://www.npmjs.com/package/es6-map) for [pre-ES2015 browsers.](https://caniuse.com/#feat=es6)
 
-## Basic Usage
+## Basic usage
 
-First, define and export [styles](data-types#styles) from a treat file.
+First, add the [webpack plugin](setup#webpack-setup) to your project. In this case, we're using [mini-css-extract-plugin](https://github.com/webpack-contrib/mini-css-extract-plugin) to generate a static CSS file.
+
+```js
+const TreatPlugin = require('treat/webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
+module.exports = {
+  plugins: [
+    new TreatPlugin({
+      outputLoaders: [MiniCssExtractPlugin.loader]
+    }),
+    new MiniCssExtractPlugin()
+  ]
+};
+```
+
+Then, define and export [styles](data-types#styles) from a treat file.
 
 ```js
 // Button.treat.js
-
 // ** THIS CODE WON'T END UP IN YOUR BUNDLE! **
-
 import { style } from 'treat';
 
 export const button = style({
@@ -48,17 +62,15 @@ export const Button = ({ text }) => `
 `;
 ```
 
-## Themed Usage
+## Themed usage
 
 > React is [not required](runtime-api) to use treat.
 
-First, create and export a theme from a treat file. Normally, you'd define multiple themes, but let's keep it short.
+Assuming you've already set up the [webpack plugin](setup#webpack-setup), start by creating and exporting a theme from a treat file. Normally, you'd define multiple themes, but let's keep it short.
 
 ```js
 // theme.treat.js
-
 // ** THIS CODE WON'T END UP IN YOUR BUNDLE! **
-
 import { createTheme } from 'treat';
 
 export default createTheme({
@@ -110,11 +122,3 @@ export const Button = props => {
   return <button {...props} className={styles.button} />;
 };
 ```
-
-## Trade-offs
-
-There's a lot of CSS-in-JS solutions available, however, `treat` has taken quite a different approach. The primary goals of treat are full static extraction, minimal runtime code and type safety. While a great developer experience is important to us, it will never come at the cost of those goals.
-
-If you're used to a library like [styled-components](https://www.styled-components.com) than `treat` might seem like a step backwards. [styled-components](https://www.styled-components.com) can easily create a lot styles bound to components quickly. However, `treat` requires a few more steps to bind styles to your components. It is also unable to generate styles at runtime, and therefore can not handle dynamic themeing.
-
-The upside of `treat` is it allows you to craft highly re-usable utilty CSS using JavaScript, adding next to zero to bundle size and a negligible runtime performance cost. Checkout [tailwindcss](https://tailwindcss.com/) for a great example of this style of CSS, or our component library [Braid](https://github.com/seek-oss/braid-design-system) for a `treat` specific example.

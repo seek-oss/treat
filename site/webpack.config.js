@@ -30,13 +30,15 @@ const sharedTreatOptions = isProduction
       themeIdentName: '-theme-[hash:base64:2]',
     };
 
+const publicPath = isProduction ? '/treat/' : '/';
+
 module.exports = [
   {
     name: 'client',
     output: {
       filename: 'client.js',
       path: targetDirectory,
-      publicPath: isProduction ? '/treat/' : '/',
+      publicPath,
     },
     entry: require.resolve('./src/client.tsx'),
     mode: isProduction ? 'production' : 'development',
@@ -97,6 +99,7 @@ module.exports = [
       libraryExport: 'default',
       library: 'static',
       libraryTarget: 'umd2',
+      publicPath,
     },
     entry: require.resolve('./src/render.tsx'),
     mode: 'development',

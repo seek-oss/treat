@@ -21,7 +21,7 @@ interface RenderParams {
 }
 export default ({ route, clientStats }: RenderParams) => {
   const assetPath = (filename: string) =>
-    `${clientStats.publicPath || '/'}${filename}`;
+    `${clientStats.publicPath}${filename}`;
   const assets = clientStats.entrypoints.main.assets as Array<string>;
   const cssAssets = assets
     .filter(asset => asset.endsWith('.css'))
@@ -29,6 +29,9 @@ export default ({ route, clientStats }: RenderParams) => {
   const jsAssets = assets
     .filter(asset => asset.endsWith('.js'))
     .map(asset => `<script src="${assetPath(asset)}"></script>`);
+  const baseUrlScript = `<script>window.BASE_URL = ${JSON.stringify(
+    clientStats.publicPath,
+  )};</script>`;
 
   const headTags: HeadTags = [];
   const html = render(route, headTags);
@@ -51,6 +54,7 @@ export default ({ route, clientStats }: RenderParams) => {
     </head>
     <body>
         <div id="app">${html}</div>
+        ${baseUrlScript}
         ${jsAssets.join('\n')}
     </body>
   </html>`;

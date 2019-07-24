@@ -34,4 +34,4 @@ deploy:
     keep_history: true
     local_dir: ./site/dist
     on:
-      branch: docs-site
+      branch: master

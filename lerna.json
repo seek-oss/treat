@@ -1,9 +1,15 @@
 {
-  "packages": ["packages/*"],
-  "version": "1.0.0-beta.2",
+  "packages": [
+    "packages/*"
+  ],
+  "version": "1.0.0",
   "npmClient": "yarn",
   "useWorkspaces": true,
-  "ignoreChanges": ["**/tests/**", "**/*.test.{js,ts,tsx}", "**/*.md"],
+  "ignoreChanges": [
+    "**/tests/**",
+    "**/*.test.{js,ts,tsx}",
+    "**/*.md"
+  ],
   "command": {
     "version": {
       "allowBranch": "master",

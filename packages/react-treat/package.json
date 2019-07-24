@@ -1,7 +1,7 @@
 {
   "name": "react-treat",
   "description": "React library for integrating with treat",
-  "version": "1.0.0-beta.2",
+  "version": "1.0.0",
   "main": "lib/commonjs",
   "module": "lib/module",
   "sideEffects": false,
@@ -21,6 +21,6 @@
     "react": ">=16.8.0"
   },
   "devDependencies": {
-    "treat": "^1.0.0-beta.2"
+    "treat": "^1.0.0"
   }
 }

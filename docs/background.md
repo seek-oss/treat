@@ -60,7 +60,7 @@ TypeScript made this particularly painful because we also had to maintain type d
 
 **Potential solution: Runtime CSS-in-JS?**
 
-At this point we talked about migrating to a runtime CSS-in-JS library like [styled-components](https://www.styled-components.com) or [Emotion](https://emotion.sh/). In fact, if we were starting from scratch, it's likely we would have simply reached for one of these (probably Emotion). That certainly would have solved our immediate problems.
+At this point we talked about migrating to a runtime CSS-in-JS library like [styled-components](https://www.styled-components.com) or [Emotion](https://emotion.sh/). In fact, if we were starting from scratch, it's likely we would have simply reached for one of these libraries. That certainly would have solved our immediate problems.
 
 However, we weren't starting from scratch. Instead, we were beginning to roll out our new design system to an existing, well-established ecosystem that had grown accustomed to the technical tradeoffs and runtime characteristics of CSS Modules.
 

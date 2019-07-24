@@ -92,25 +92,34 @@ module.exports = {
 
 ## Bundle splitting
 
-`treat` supports bundle splitting via [webpack dynamic imports](https://webpack.js.org/guides/code-splitting/#dynamic-imports) with no special setup. It's likely you'll want to split your themes into separate CSS files. This is achieved by dynamic importing your treat files that call [`createTheme`](styling-api#createtheme).
+If you'd like to dynamically load themes, treat supports bundle splitting via [webpack dynamic imports](https://webpack.js.org/guides/code-splitting/#dynamic-imports) with no special setup.
+
+In practice, it's likely you'll want to split your themes into separate CSS files. This is achieved by dynamic importing your treat files that call [`createTheme`](styling-api#createtheme).
+
+Let's assume you have a set of theme files that look like this:
 
 ```js
 // mainTheme.treat.js
-
 import { createTheme } from 'treat';
 
 export default createTheme({
-  // theme stuff
+  // Theme variables...
 });
 ```
+
+You can then dynamically load the desired theme and use it to resolve styles.
 
 ```js
 import { resolveStyles } from 'treat';
 import styleRefs from './styles.treat';
 
-import(`./${theme}.treat`).then(theme => {
-  const styles = resolveStyles(theme.default, styleRefs);
+// Inject the theme name somehow:
+const themeName = getThemeName();
 
-  // Style away
+import(`../themes/${themeName}.treat`).then(theme => {
+  const styles = resolveStyles(theme.default, styleRefs);
+  // You now have access to themed styles!
 });
 ```
+
+If you're using the [React API](react-api), you'll want to provide the theme to your [`TreatProvider`](react-api#treatprovider).

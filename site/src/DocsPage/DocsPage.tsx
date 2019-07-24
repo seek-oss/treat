@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Link } from 'react-router-dom';
 import { Title, Meta } from 'react-head';
 import docs from '../docs-store';
 import SiblingDoc from './SiblingDoc/SiblingDoc';
@@ -46,7 +46,14 @@ const DocsRoute = ({
 
 export default () => (
   <Box paddingBottom="xxxlarge">
-    <img src={logo} height="36" style={{ position: 'relative', left: -6 }} />
+    <Link to="">
+      <img
+        src={logo}
+        height="36"
+        style={{ position: 'relative', left: -6 }}
+        alt="treat"
+      />
+    </Link>
 
     {docs.map(({ route, Component, title, sections }, index) => {
       const prevDoc = docs[index - 1];

@@ -5,7 +5,7 @@
   Themeable, statically extracted CSS&#8209;in&#8209;JS with near&#8209;zero runtime.
   <hr />
 
-[![Build Status](https://img.shields.io/travis/seek-oss/treat/master.svg?logo=travis&style=flat-square)](http://travis-ci.org/seek-oss/treat) [![treat@next](https://img.shields.io/npm/v/treat/next.svg?label=treat@next&logo=npm&style=flat-square)](https://www.npmjs.com/package/treat) [![Spectrum Community](https://img.shields.io/badge/community-spectrum-a36ae4.svg?style=flat-square)](https://spectrum.chat/treatcss)
+[![Build Status](https://img.shields.io/travis/seek-oss/treat/master.svg?logo=travis&style=flat-square)](http://travis-ci.org/seek-oss/treat) [![treat](https://img.shields.io/npm/v/treat.svg?label=treat&logo=npm&style=flat-square)](https://www.npmjs.com/package/treat) [![Spectrum Community](https://img.shields.io/badge/community-spectrum-a36ae4.svg?style=flat-square)](https://spectrum.chat/treatcss)
 
   <hr />
 </div>

@@ -16,13 +16,19 @@ Because theming is achieved by generating multiple classes, **_legacy browsers a
 
 Your project must be using [webpack](webpack-options) with the supplied [webpack plugin](webpack-options), but that's it.
 
-**First-class support is provided for [React](https://reactjs.org/) and [TypeScript](https://www.typescriptlang.org/),** but those layers are _entirely optional._ The core [runtime API](runtime-api) can also be integrated into other frameworks, if needed.
+**First-class support is provided for [React](https://reactjs.org/) and [TypeScript](https://www.typescriptlang.org/),** but those layers are _entirely optional._ The core [runtime API](runtime-api) can be integrated into other frameworks, if needed.
 
-The core runtime makes use of [`Map`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map), so you may need to provide a [polyfill](https://www.npmjs.com/package/es6-map) for [pre-ES2015 browsers.](https://caniuse.com/#feat=es6)
+The runtime makes use of [`Map`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map), so you may need a [polyfill](https://www.npmjs.com/package/es6-map) for [pre-ES2015 browsers.](https://caniuse.com/#feat=es6)
 
 ## Basic usage
 
-First, add the [webpack plugin](setup#webpack-setup) to your project. In this case, we're using [mini-css-extract-plugin](https://github.com/webpack-contrib/mini-css-extract-plugin) to generate a static CSS file.
+First, install the core libary.
+
+```bash
+$ yarn add treat
+```
+
+Then, add the [webpack plugin](setup#webpack-setup) to your project. In this case, we're using [mini-css-extract-plugin](https://github.com/webpack-contrib/mini-css-extract-plugin) to generate a static CSS file.
 
 ```js
 const TreatPlugin = require('treat/webpack-plugin');
@@ -38,7 +44,7 @@ module.exports = {
 };
 ```
 
-Then, define and export [styles](data-types#styles) from a treat file.
+Next, define and export [styles](data-types#styles) from a treat file.
 
 ```js
 // Button.treat.js
@@ -51,7 +57,7 @@ export const button = style({
 }));
 ```
 
-Then, import the styles.
+Finally, import the styles.
 
 ```js
 // Button.js
@@ -64,7 +70,13 @@ export const Button = ({ text }) => `
 
 ## Themed usage
 
-> React is [not required](runtime-api) to use treat.
+> This themed usage example makes use of [react-treat](react-api) to keep things simple. React is [not required](runtime-api) to use treat.
+
+First, install react-treat.
+
+```bash
+$ yarn add react-treat
+```
 
 Assuming you've already set up the [webpack plugin](setup#webpack-setup), start by creating and exporting a theme from a treat file. Normally, you'd define multiple themes, but let's keep it short.
 

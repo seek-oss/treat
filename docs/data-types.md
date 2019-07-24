@@ -10,7 +10,7 @@ While not an exhaustive list of all types defined in the library, this section c
 
 Type: `object`
 
-When passing styles to the [`style`](styling-api#style) and [`styleMap`](styling-api#stylemap) functions, or returning styles from a [`ThemedStyles` function](#themedstyles), you'll need to define them in the following format.
+When passing styles to the [`style`](styling-api#style), [`styleMap`](styling-api#stylemap) and [`styleTree`](styling-api#styletree) functions, or returning styles from a [`ThemedStyles` function](#themedstyles), you'll need to define them in the following format.
 
 ```js
 {
@@ -47,7 +47,7 @@ Media queries are also supported via the `@media` key.
 }
 ```
 
-For anything more advanced, you can provide a set of custom selectors. Within each selector, you must provide the ampersand character (`&`), which refers to the generated class name.
+For anything more advanced, you can provide a set of custom selectors. Within each selector, you must target the ampersand character (`&`), which refers to the element currently being styled.
 
 ```js
 {
@@ -60,7 +60,7 @@ For anything more advanced, you can provide a set of custom selectors. Within ea
 }
 ```
 
-Within selectors, existing treat classes can be referenced.
+Within selectors, existing treat classes can be referenced with standard string interpolation.
 
 ```js
 {

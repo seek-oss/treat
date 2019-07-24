@@ -58,7 +58,7 @@ Then, add it to your Babel config. For example, in `.babelrc`:
 
 > Note: This can be automated via our [Babel plugin](#babel-setup).
 
-All styling APIs (except for `globalStyle`) have an optional argument that allows you to provide a local debug name.
+All styling APIs (except for [`globalStyle`](styling-api#globalstyle)) have an optional argument that allows you to provide a local debug name.
 
 For example, the local name for the following style will be `style` by default because treat doesn't have access to your variable name at runtime.
 
@@ -76,7 +76,7 @@ export const green = style({ color: 'green' }, 'green');
 
 ## Server side rendering
 
-SSR apps will likely be running two webpack builds (one targetting the browser, and one for node). The server config should disable CSS output by passing "`outputCSS: false`".
+Server-rendered apps will likely be running two webpack builds (one for the browser code, and one for the server code). The server config should disable CSS output by setting `outputCSS` to `false`.
 
 ```js
 const TreatPlugin = require('treat/webpack-plugin');

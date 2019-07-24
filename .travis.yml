@@ -33,5 +33,5 @@ deploy:
     github_token: $GH_TOKEN
     keep_history: true
     local_dir: ./site/dist
-    # on:
-    #   branch: master
+    on:
+      branch: docs-site

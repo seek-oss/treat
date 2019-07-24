@@ -8,6 +8,7 @@
     "test": "jest",
     "make-docs-manifest": "node ./site/makeDocsManifest.js",
     "prestart-docs": "yarn make-docs-manifest",
+    "prebuild-docs": "yarn make-docs-manifest",
     "start-docs": "webpack-dev-server --config ./site/webpack.config.js",
     "build-docs": "NODE_ENV=production webpack --config ./site/webpack.config.js",
     "build": "lerna run build",

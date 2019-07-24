@@ -19,6 +19,7 @@ script:
 before_deploy:
   - git config --global user.name "seek-oss-ci";
   - git config --global user.email "opensource@seek.com.au";
+  - git checkout master
   - npm config set //registry.npmjs.org/:_authToken $NPM_TOKEN
   - yarn build-docs
 

@@ -3,6 +3,7 @@ import Text from './Typography/Text';
 import { H1, H2, H3 } from './Typography/Heading';
 import { Box } from './system';
 import Code from './Code/Code';
+import InlineCode from './InlineCode/InlineCode';
 import Link from './Typography/Link';
 import Blockquote from './Blockquote/Blockquote';
 
@@ -42,6 +43,7 @@ export default {
   h3: H3,
   pre: Pre,
   code: Code,
+  inlineCode: InlineCode,
   th: Th,
   td: Td,
   a: A,

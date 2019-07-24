@@ -2,11 +2,13 @@ import { createTheme } from 'treat';
 import { Theme } from './Theme';
 
 const theme: Theme = {
-  headingFont: '"DM Sans", sans-serif',
+  headingFont:
+    '"DM Sans", "Helvetica Neue", HelveticaNeue, Helvetica, sans-serif',
   headingDescenderHeightScale: 0.12,
   bodyFont:
-    'Roboto, "Helvetica Neue", HelveticaNeue, Helvetica, Arial, sans- serif',
+    'Roboto, "Helvetica Neue", HelveticaNeue, Helvetica, Arial, sans-serif',
   bodyDescenderHeightScale: 0.16,
+  codeFont: '"Roboto Mono", Menlo, monospace',
   rowHeight: 4,
   columnWidth: 4,
   contentWidth: 860,

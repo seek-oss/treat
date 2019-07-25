@@ -6,9 +6,9 @@ import App from './App';
 
 type HeadTags = React.ReactElement<unknown>[];
 
-const render = (route: string, headTags: HeadTags) =>
+const render = (route: string, headTags: HeadTags, baseUrl: string) =>
   renderToString(
-    <StaticRouter location={route}>
+    <StaticRouter location={route} basename={baseUrl}>
       <HeadProvider headTags={headTags}>
         <App />
       </HeadProvider>
@@ -20,21 +20,18 @@ interface RenderParams {
   clientStats: any;
 }
 export default ({ route, clientStats }: RenderParams) => {
-  const assetPath = (filename: string) =>
-    `${clientStats.publicPath}${filename}`;
-  const assets = clientStats.entrypoints.main.assets as Array<string>;
+  const { publicPath, entrypoints } = clientStats;
+  const assetPath = (filename: string) => `${publicPath}${filename}`;
+  const assets = entrypoints.main.assets as Array<string>;
   const cssAssets = assets
     .filter(asset => asset.endsWith('.css'))
     .map(asset => `<link rel="stylesheet" href="${assetPath(asset)}"></link>`);
   const jsAssets = assets
     .filter(asset => asset.endsWith('.js'))
     .map(asset => `<script src="${assetPath(asset)}"></script>`);
-  const baseUrlScript = `<script>window.BASE_URL = ${JSON.stringify(
-    clientStats.publicPath,
-  )};</script>`;
 
   const headTags: HeadTags = [];
-  const html = render(route, headTags);
+  const html = render(route, headTags, publicPath);
 
   const favicon = (size: number) =>
     `<link rel="icon" type="image/png" sizes="${size}x${size}" href="${assetPath(
@@ -54,7 +51,7 @@ export default ({ route, clientStats }: RenderParams) => {
     </head>
     <body>
         <div id="app">${html}</div>
-        ${baseUrlScript}
+        <script>window.BASE_URL = ${JSON.stringify(publicPath)};</script>
         ${jsAssets.join('\n')}
     </body>
   </html>`;

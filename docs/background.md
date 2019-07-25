@@ -12,7 +12,7 @@ The primary goals of treat are **full static extraction, minimal runtime code, t
 
 Unlike a lot of CSS-in-JS approaches, treat is much more similar to [CSS Modules](https://github.com/css-modules/css-modules), requiring a bit more work to bind styles to your components. It's also unable to generate styles at runtime, which means it cannot handle dynamic theming. The upside of treat is that it allows you to craft themeable, statically extracted CSS using JavaScript (or TypeScript) with little impact to bundle size and negligible runtime performance cost.
 
-If you're used to a libraries like [styled-components](https://www.styled-components.com) or [Emotion](https://emotion.sh/), treat might seem like a step backwards. These libraries can quickly and easily create dynamic component-oriented styles. However, they come with a bundle size and performance cost. For plenty of applications, this is a worthwhile tradeoff—and these libraries are a great choice if this isn't an issue for you.
+If you're used to libraries like [styled-components](https://www.styled-components.com) or [Emotion](https://emotion.sh/), treat might seem like a step backwards. These libraries can quickly and easily create dynamic component-oriented styles. However, they come with a bundle size and performance cost. For plenty of applications, this is a worthwhile tradeoff — and these libraries are a great choice if this isn't an issue for you.
 
 If you're familiar with static CSS-in-JS libraries like [Linaria](https://linaria.now.sh/) and [Astroturf](https://github.com/4Catalyzer/astroturf), treat is very similar but with a couple of notable differences. Firstly, treat's theming mechanism doesn't require CSS custom property support (i.e. CSS variables), which means that legacy browsers like IE11 are supported. Secondly, styles are written as objects rather than template literals, to both ensure type safety, and to encourage you to think of your styles as data rather than strings of CSS.
 
@@ -32,7 +32,7 @@ For example, let's assume we have the following style sheet:
 
 ```js
 export default {
-  someClass: {
+  '.someClass': {
     color: 'red'
   }
 };

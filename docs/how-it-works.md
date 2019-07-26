@@ -134,7 +134,7 @@ export const arrayExport = [
 
 We can then import this module and deeply resolve all styles with a single [`resolveStyles`](runtime-api#resolvestyles) call.
 
-> This is obviously a contrived example since we're hard-coding the desired theme. Typically, you'd want to inject themes dynamcally so that they can be configured at an application level. To see a good example of this pattern, see our [React API](react-api).
+> This is obviously a contrived example since we're hard-coding the desired theme. Typically, you'd want to inject themes dynamically so that they can be configured at an application level. To see a good example of this pattern, see our [React API](react-api).
 
 ```js
 import * as styleRefs from './styles.treat.js';

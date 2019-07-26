@@ -20,7 +20,7 @@ When passing styles to the [`style`](styling-api#style), [`styleMap`](styling-ap
 }
 ```
 
-Simple psuedo selectors are supported at the top level.
+Simple pseudo selectors are supported at the top level.
 
 ```js
 {

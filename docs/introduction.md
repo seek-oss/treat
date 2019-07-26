@@ -22,7 +22,7 @@ The runtime makes use of [`Map`](https://developer.mozilla.org/en-US/docs/Web/Ja
 
 ## Basic usage
 
-First, install the core libary.
+First, install the core library.
 
 ```bash
 $ yarn add treat

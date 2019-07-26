@@ -48,6 +48,12 @@ export default ({ route, clientStats }: RenderParams) => {
       ${favicon(32)}
       ${favicon(96)}
       <meta property="og:image" content="${assetPath('og-image.png')}" />
+      <meta property="og:image:width" content="1200">
+      <meta property="og:image:height" content="1200">
+      <meta property="og:type" content="website">
+      <meta property="og:site_name" content="treat">
+      <meta name="twitter:card" content="summary">
+      <meta name="twitter:image" content="${assetPath('og-image.png')}" />
     </head>
     <body>
         <div id="app">${html}</div>

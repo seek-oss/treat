@@ -13,6 +13,7 @@ export const fab = style({
   top: 16,
   right: 16,
   boxShadow: '0 4px 8px rgba(14, 14, 33, 0.2)',
+  WebkitTapHighlightColor: 'rgba(0, 0, 0, 0)',
   '@media': {
     'screen and (min-width: 1024px)': {
       display: 'none',
@@ -166,7 +167,11 @@ export const links = style({
 });
 
 export const subLink = style({
-  textDecoration: 'none',
+  selectors: {
+    ['&:not(:hover)']: {
+      textDecoration: 'none',
+    },
+  },
 });
 
 export const subLinkContainer = style({

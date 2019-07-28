@@ -73,8 +73,14 @@ export default () => (
           render={() => (
             <Fragment>
               <Title>{pageTitle}</Title>
+              <Meta property="og:title" content={pageTitle} />
+              <Meta property="twitter:title" content={pageTitle} />
               {description ? (
-                <Meta name="description" content={description} />
+                <Fragment>
+                  <Meta name="description" content={description} />
+                  <Meta property="og:description" content={description} />
+                  <Meta property="twitter:description" content={description} />
+                </Fragment>
               ) : null}
               <DocsRoute
                 nextDoc={nextDoc}

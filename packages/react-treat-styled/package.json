@@ -7,7 +7,7 @@
   "sideEffects": false,
   "author": "SEEK",
   "license": "MIT",
-  "repository": "https://github.com/seek-oss/treat/tree/master/packages/react-treat",
+  "repository": "https://github.com/seek-oss/treat/tree/master/packages/react-treat-styled",
   "scripts": {
     "build:module": "tsc --module es2015 --outDir lib/module",
     "build:commonjs": "tsc --module commonjs --outDir lib/commonjs",

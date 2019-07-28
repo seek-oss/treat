@@ -30,7 +30,7 @@ const sharedTreatOptions = isProduction
       themeIdentName: '-theme-[hash:base64:2]',
     };
 
-const publicPath = isProduction ? '/treat/' : '/';
+const publicPath = isProduction ? '/treat' : '/';
 
 module.exports = [
   {

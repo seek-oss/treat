@@ -74,12 +74,12 @@ export default () => (
             <Fragment>
               <Title>{pageTitle}</Title>
               <Meta property="og:title" content={pageTitle} />
-              <Meta property="twitter:title" content={pageTitle} />
+              <Meta name="twitter:title" content={pageTitle} />
               {description ? (
                 <Fragment>
                   <Meta name="description" content={description} />
                   <Meta property="og:description" content={description} />
-                  <Meta property="twitter:description" content={description} />
+                  <Meta name="twitter:description" content={description} />
                 </Fragment>
               ) : null}
               <DocsRoute

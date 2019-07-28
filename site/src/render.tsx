@@ -15,6 +15,8 @@ const render = (route: string, headTags: HeadTags, baseUrl: string) =>
     </StaticRouter>,
   );
 
+const fullyQualifiedUrl = (path: string) => `https://seek-oss.github.io${path}`;
+
 interface RenderParams {
   route: string;
   clientStats: any;
@@ -47,13 +49,17 @@ export default ({ route, clientStats }: RenderParams) => {
       ${favicon(16)}
       ${favicon(32)}
       ${favicon(96)}
-      <meta property="og:image" content="${assetPath('og-image.png')}" />
+      <meta property="og:image" content="${fullyQualifiedUrl(
+        assetPath('og-image.png'),
+      )}" />
       <meta property="og:image:width" content="1200">
-      <meta property="og:image:height" content="1200">
+      <meta property="og:image:height" content="600">
       <meta property="og:type" content="website">
       <meta property="og:site_name" content="treat">
-      <meta name="twitter:card" content="summary">
-      <meta name="twitter:image" content="${assetPath('og-image.png')}" />
+      <meta name="twitter:card" content="summary_large_image">
+      <meta name="twitter:image" content="${fullyQualifiedUrl(
+        assetPath('og-image.png'),
+      )}" />
     </head>
     <body>
         <div id="app">${html}</div>

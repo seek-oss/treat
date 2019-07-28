@@ -1,0 +1,33 @@
+{
+  "name": "react-treat-styled",
+  "description": "React library for styled-components for treat",
+  "version": "1.0.0",
+  "main": "lib/commonjs",
+  "module": "lib/module",
+  "sideEffects": false,
+  "author": "SEEK",
+  "license": "MIT",
+  "repository": "https://github.com/seek-oss/treat/tree/master/packages/react-treat",
+  "scripts": {
+    "build:module": "tsc --module es2015 --outDir lib/module",
+    "build:commonjs": "tsc --module commonjs --outDir lib/commonjs",
+    "build": "concurrently 'yarn build:module' 'yarn build:commonjs'",
+    "watch": "concurrently 'tsc --module commonjs --watch' 'tsc --module module --watch'"
+  },
+  "keywords": [
+    "treat"
+  ],
+  "dependencies": {
+    "treat": "^1.0.0",
+    "react-treat": "^1.0.0"
+  },
+  "peerDependencies": {
+    "react": ">=16.8.0",
+    "@emotion/styled": "*"
+  },
+  "devDependencies": {
+    "react": ">=16.8.0",
+    "treat": "^1.0.0",
+    "@emotion/styled": "*"
+  }
+}

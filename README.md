@@ -1,13 +1,13 @@
 <div align="center" >
   <img src="./logo.png" alt="treat" width="160px" />
-  <br/>
-  <br/>
+  <br />
+  <br />
   Themeable, statically extracted CSS&#8209;in&#8209;JS with near&#8209;zero runtime.
-  <hr />
+  <br />
+  <br />
 
 [![Build Status](https://img.shields.io/travis/seek-oss/treat/master.svg?logo=travis&style=flat-square)](http://travis-ci.org/seek-oss/treat) [![treat](https://img.shields.io/npm/v/treat.svg?label=treat&logo=npm&style=flat-square)](https://www.npmjs.com/package/treat) [![Spectrum Community](https://img.shields.io/badge/community-spectrum-a36ae4.svg?style=flat-square)](https://spectrum.chat/treatcss)
 
-  <hr />
 </div>
 
 
@@ -20,6 +20,8 @@ All CSS rules are created ahead of time, so the runtime is _very_ lightweight—
 _**Because theming is achieved by generating multiple classes, legacy browsers are supported.**_
 
 ---
+
+<br />
 
 ## [Documentation](https://seek-oss.github.io/treat)
 

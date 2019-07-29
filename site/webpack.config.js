@@ -11,7 +11,7 @@ const isProduction = process.env.NODE_ENV === 'production';
 
 const htmlRenderPlugin = new HtmlRenderWebpackPlugin({
   routes: docs,
-  renderConcurrency: 'parralel',
+  renderConcurrency: 'parallel',
   renderDirectory: targetDirectory,
   mapStatsToParams: ({ webpackStats }) => ({
     clientStats: webpackStats
@@ -30,7 +30,8 @@ const sharedTreatOptions = isProduction
       themeIdentName: '-theme-[hash:base64:2]',
     };
 
-const publicPath = isProduction ? '/treat/' : '/';
+const publicPath = '/treat/';
+const mode = isProduction ? 'production' : 'development';
 
 module.exports = [
   {
@@ -41,7 +42,13 @@ module.exports = [
       publicPath,
     },
     entry: require.resolve('./src/client.tsx'),
-    mode: isProduction ? 'production' : 'development',
+    devServer: {
+      open: !isProduction,
+      openPage: publicPath.startsWith('/')
+        ? publicPath.substr(1, publicPath.length)
+        : publicPath,
+    },
+    mode,
     resolve: {
       extensions: ['.js', '.json', '.ts', '.tsx'],
     },
@@ -102,7 +109,7 @@ module.exports = [
       publicPath,
     },
     entry: require.resolve('./src/render.tsx'),
-    mode: 'development',
+    mode,
     resolve: {
       extensions: ['.js', '.json', '.ts', '.tsx'],
     },

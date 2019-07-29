@@ -10,7 +10,6 @@
   <hr />
 </div>
 
-# Themeable, statically extracted CSS‑in‑JS with near‑zero runtime.
 
 Write your styles in JavaScript/TypeScript within **treat files** (e.g. `Button.treat.js`) that get executed at build time.
 
@@ -19,6 +18,14 @@ All CSS rules are created ahead of time, so the runtime is _very_ lightweight—
 **All CSS logic, including its dependencies, will not be included in your final bundle.**
 
 _**Because theming is achieved by generating multiple classes, legacy browsers are supported.**_
+
+---
+
+## [Documentation](https://seek-oss.github.io/treat)
+
+See the documentation at [seek-oss.github.io/treat](https://seek-oss.github.io/treat) for more information about using treat.
+
+---
 
 ## Requirements
 
@@ -78,7 +85,7 @@ export const Button = ({ text }) => `
 
 ## Themed usage
 
-_**This themed usage example makes use of [react-treat](https://seek-oss.github.io/treat/react-api) to keep things simple. React is [not required](https://seek-oss.github.io/treat/runtime-api) to use treat.**_
+>This themed usage example makes use of [react-treat](https://seek-oss.github.io/treat/react-api) to keep things simple. React is [not required](https://seek-oss.github.io/treat/runtime-api) to use treat.
 
 First, install react-treat.
 
@@ -126,7 +133,7 @@ export const button = style(theme => ({
 }));
 ```
 
-_**Themed styles have higher precedence than non-themed styles, regardless of document order. For more information, read the [theming](https://seek-oss.github.io/treat/how-it-works#theming) guide.**_
+> Themed styles have higher precedence than non-themed styles, regardless of document order. For more information, read the [theming](https://seek-oss.github.io/treat/how-it-works#theming) guide.
 
 Then import and resolve themed styles via the [`useStyles` Hook](https://seek-oss.github.io/treat//react-api#usestyles).
 
@@ -142,6 +149,10 @@ export const Button = props => {
   return <button {...props} className={styles.button} />;
 };
 ```
+
+## [Documentation](https://seek-oss.github.io/treat)
+
+See the documentation at [seek-oss.github.io/treat](https://seek-oss.github.io/treat) for more information about using treat.
 
 ## License
 

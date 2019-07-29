@@ -6,14 +6,26 @@ import App from './App';
 
 type HeadTags = React.ReactElement<unknown>[];
 
-const render = (route: string, headTags: HeadTags, baseUrl: string) =>
+const render = (route: string, headTags: HeadTags, basename: string) =>
   renderToString(
-    <StaticRouter location={route} basename={baseUrl}>
+    <StaticRouter location={route} basename={basename}>
       <HeadProvider headTags={headTags}>
         <App />
       </HeadProvider>
     </StaticRouter>,
   );
+
+const fullyQualifiedUrl = (path: string) =>
+  `${
+    process.env.NODE_ENV === 'production'
+      ? 'https://seek-oss.github.io'
+      : 'http://localhost:8080'
+  }${path}`;
+
+const getBasePath = (publicPath: string) =>
+  publicPath.endsWith('/')
+    ? publicPath.substr(0, publicPath.length - 1)
+    : publicPath;
 
 interface RenderParams {
   route: string;
@@ -21,6 +33,8 @@ interface RenderParams {
 }
 export default ({ route, clientStats }: RenderParams) => {
   const { publicPath, entrypoints } = clientStats;
+  const basePath = getBasePath(publicPath);
+
   const assetPath = (filename: string) => `${publicPath}${filename}`;
   const assets = entrypoints.main.assets as Array<string>;
   const cssAssets = assets
@@ -31,12 +45,14 @@ export default ({ route, clientStats }: RenderParams) => {
     .map(asset => `<script src="${assetPath(asset)}"></script>`);
 
   const headTags: HeadTags = [];
-  const html = render(route, headTags, publicPath);
+  const html = render(route, headTags, basePath);
 
   const favicon = (size: number) =>
-    `<link rel="icon" type="image/png" sizes="${size}x${size}" href="${assetPath(
-      `favicon-${size}x${size}.png`,
+    `<link rel="icon" type="image/png" sizes="${size}x${size}" href="${fullyQualifiedUrl(
+      assetPath(`favicon-${size}x${size}.png`),
     )}" />`;
+
+  const shareImageUrl = fullyQualifiedUrl(assetPath('og-image.png'));
 
   return `<html>
     <head>
@@ -47,17 +63,17 @@ export default ({ route, clientStats }: RenderParams) => {
       ${favicon(16)}
       ${favicon(32)}
       ${favicon(96)}
-      <meta property="og:image" content="${assetPath('og-image.png')}" />
+      <meta property="og:image" content="${shareImageUrl}" />
       <meta property="og:image:width" content="1200">
-      <meta property="og:image:height" content="1200">
+      <meta property="og:image:height" content="600">
       <meta property="og:type" content="website">
       <meta property="og:site_name" content="treat">
-      <meta name="twitter:card" content="summary">
-      <meta name="twitter:image" content="${assetPath('og-image.png')}" />
+      <meta name="twitter:card" content="summary_large_image">
+      <meta name="twitter:image" content="${shareImageUrl}" />
     </head>
     <body>
         <div id="app">${html}</div>
-        <script>window.BASE_URL = ${JSON.stringify(publicPath)};</script>
+        <script>window.BASE_URL = ${JSON.stringify(basePath)};</script>
         ${jsAssets.join('\n')}
     </body>
   </html>`;

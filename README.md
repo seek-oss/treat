@@ -8,6 +8,8 @@
 
 [![Build Status](https://img.shields.io/travis/seek-oss/treat/master.svg?logo=travis&style=flat-square)](http://travis-ci.org/seek-oss/treat) [![treat](https://img.shields.io/npm/v/treat.svg?label=treat&logo=npm&style=flat-square)](https://www.npmjs.com/package/treat) [![Spectrum Community](https://img.shields.io/badge/community-spectrum-a36ae4.svg?style=flat-square)](https://spectrum.chat/treatcss)
 
+  <br />
+  <br />
 </div>
 
 
@@ -19,15 +21,13 @@ All CSS rules are created ahead of time, so the runtime is _very_ lightweight—
 
 _**Because theming is achieved by generating multiple classes, legacy browsers are supported.**_
 
----
-
 <br />
 
 ## [Documentation](https://seek-oss.github.io/treat)
 
 See the documentation at [seek-oss.github.io/treat](https://seek-oss.github.io/treat) for more information about using treat.
 
----
+<br />
 
 ## Requirements
 

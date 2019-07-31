@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@hapi/joi": "^15.0.3",
-    "autoprefixer": "^9.5.0",
+    "autoprefixer": "^9.6.0",
     "bluebird": "^3.5.4",
     "chalk": "^2.4.2",
     "css-loader": "^2.1.0",

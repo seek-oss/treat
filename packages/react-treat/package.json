@@ -18,7 +18,8 @@
     "treat"
   ],
   "peerDependencies": {
-    "react": ">=16.8.0"
+    "react": ">=16.8.0",
+    "treat": "^1.0.0"
   },
   "devDependencies": {
     "treat": "^1.0.0"

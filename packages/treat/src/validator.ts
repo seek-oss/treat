@@ -31,11 +31,11 @@ const makeMediaQuerySchema = (valueSchema: ObjectSchema) =>
     '@media': joi.object().pattern(joi.string(), valueSchema),
   });
 
-const fullStyleWithMedia = makeMediaQuerySchema(fullStyle);
+const fullStyleWithMedia = makeMediaQuerySchema(fullStyle).required();
 
 const globalStyleWithMedia = makeMediaQuerySchema(
   fullStyle.forbiddenKeys('selectors', ...simplePseudos),
-);
+).required();
 
 const validate = (handler: Schema) => (value: any) => {
   const { error } = handler.validate(value);

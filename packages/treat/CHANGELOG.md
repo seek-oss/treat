@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.2](https://github.com/seek-oss/treat/tree/master/packages/treat/compare/v1.0.1...v1.0.2) (2019-08-01)
+
+
+### Bug Fixes
+
+* **deps:** Update Autoprefixer, suppresses browserslist warning ([#54](https://github.com/seek-oss/treat/tree/master/packages/treat/issues/54)) ([dde0281](https://github.com/seek-oss/treat/tree/master/packages/treat/commit/dde0281))
+
+
+
+
+
 # [1.0.0](https://github.com/seek-oss/treat/tree/master/packages/treat/compare/v1.0.0-beta.2...v1.0.0) (2019-07-24)
 
 

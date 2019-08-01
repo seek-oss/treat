@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.1](https://github.com/seek-oss/treat/compare/v1.0.0...v1.0.1) (2019-08-01)
+
+
+### Bug Fixes
+
+* **react-treat:** Add peerDependency on treat ([#53](https://github.com/seek-oss/treat/issues/53)) ([b9498cf](https://github.com/seek-oss/treat/commit/b9498cf))
+
+
+
+
+
 # [1.0.0](https://github.com/seek-oss/treat/compare/v1.0.0-beta.2...v1.0.0) (2019-07-24)
 
 

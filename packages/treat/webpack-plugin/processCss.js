@@ -13,7 +13,7 @@ const processCss = async (styles, { minify, browsers, from }) => {
     return null;
   }
 
-  const postcssPlugins = [autoprefixer({ browsers })];
+  const postcssPlugins = [autoprefixer({ overrideBrowserslist: browsers })];
 
   if (minify) {
     postcssPlugins.push(cssnano());

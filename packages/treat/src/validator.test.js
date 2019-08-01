@@ -43,6 +43,8 @@ describe('validator', () => {
     });
 
     const invalidTests = [
+      undefined,
+      null,
       2,
       {
         '@media': { color: 'blue' },
@@ -170,6 +172,8 @@ describe('validator', () => {
     });
 
     const invalidTests = [
+      undefined,
+      null,
       2,
       {
         '@media': { color: 'blue' },

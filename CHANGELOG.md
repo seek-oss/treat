@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.3](https://github.com/seek-oss/treat/compare/v1.0.2...v1.0.3) (2019-08-01)
+
+
+### Bug Fixes
+
+* Fail validation for undefined styles ([#55](https://github.com/seek-oss/treat/issues/55)) ([b8399d9](https://github.com/seek-oss/treat/commit/b8399d9))
+
+
+
+
+
 ## [1.0.2](https://github.com/seek-oss/treat/compare/v1.0.1...v1.0.2) (2019-08-01)
 
 

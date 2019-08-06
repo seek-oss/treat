@@ -86,7 +86,7 @@ describe('babel plugin', () => {
             `);
   });
 
-  it('should handle style returned from function', () => {
+  it('should handle style returned from an arrow function', () => {
     const source = `
         import { style } from 'treat';
 
@@ -105,6 +105,28 @@ describe('babel plugin', () => {
           color: 'red'
         }, \\"test\\");
       };"
+    `);
+  });
+
+  it('should handle style returned from a function', () => {
+    const source = `
+        import { style } from 'treat';
+
+        function test() {
+          return style({
+            color: 'red'
+          });
+        }
+    `;
+
+    expect(transform(source)).toMatchInlineSnapshot(`
+      "import { style } from 'treat';
+      
+      function test() {
+        return style({
+          color: 'red'
+        }, \\"test\\");
+      }"
     `);
   });
 

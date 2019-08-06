@@ -5,7 +5,10 @@ const treatExports = ['style', 'styleMap', 'css', 'createTheme'];
 const extractName = (t, parent, fileIdentifier) => {
   if (t.isObjectProperty(parent) && t.isIdentifier(parent.key)) {
     return parent.key.name;
-  } else if (t.isVariableDeclarator(parent)) {
+  } else if (
+    t.isVariableDeclarator(parent) ||
+    t.isFunctionDeclaration(parent)
+  ) {
     return parent.id.name;
   } else if (t.isExportDefaultDeclaration(parent)) {
     return fileIdentifier;
@@ -49,15 +52,13 @@ module.exports = function({ types: t }) {
           if (node.arguments.length === 1) {
             let debugIdent;
 
-            if (t.isObjectProperty(parent)) {
+            if (t.isObjectProperty(parent) || t.isReturnStatement(parent)) {
               const names = [];
 
               path.findParent(({ node: parentNode }) => {
-                if (
-                  t.isVariableDeclarator(parentNode) ||
-                  t.isObjectProperty(parentNode)
-                ) {
-                  names.unshift(extractName(t, parentNode));
+                const name = extractName(t, parentNode);
+                if (name) {
+                  names.unshift(name);
                 }
               });
 

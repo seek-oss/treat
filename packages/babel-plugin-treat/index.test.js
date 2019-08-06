@@ -86,6 +86,28 @@ describe('babel plugin', () => {
             `);
   });
 
+  it('should handle style returned from function', () => {
+    const source = `
+        import { style } from 'treat';
+
+        const test = () => {
+          return style({
+            color: 'red'
+          });
+        };
+    `;
+
+    expect(transform(source)).toMatchInlineSnapshot(`
+      "import { style } from 'treat';
+      
+      const test = () => {
+        return style({
+          color: 'red'
+        }, \\"test\\");
+      };"
+    `);
+  });
+
   it('should handle styleMap assigned to const', () => {
     const source = `
        import { styleMap } from 'treat';

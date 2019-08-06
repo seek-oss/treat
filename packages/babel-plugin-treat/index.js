@@ -49,7 +49,7 @@ module.exports = function({ types: t }) {
           if (node.arguments.length === 1) {
             let debugIdent;
 
-            if (t.isObjectProperty(parent)) {
+            if (t.isObjectProperty(parent) || t.isReturnStatement(parent)) {
               const names = [];
 
               path.findParent(({ node: parentNode }) => {

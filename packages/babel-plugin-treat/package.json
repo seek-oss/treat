@@ -1,7 +1,7 @@
 {
   "name": "babel-plugin-treat",
   "description": "Babel plugin for treat",
-  "version": "1.0.0",
+  "version": "1.0.4",
   "main": "index.js",
   "author": "SEEK",
   "license": "MIT",

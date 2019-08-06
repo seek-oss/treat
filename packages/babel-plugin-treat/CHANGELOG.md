@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.4](https://github.com/seek-oss/treat/tree/master/packages/babel-plugin-treat/compare/v1.0.3...v1.0.4) (2019-08-06)
+
+
+### Bug Fixes
+
+* **babel-plugin-treat:** Support return statements ([#56](https://github.com/seek-oss/treat/tree/master/packages/babel-plugin-treat/issues/56)) ([db47969](https://github.com/seek-oss/treat/tree/master/packages/babel-plugin-treat/commit/db47969))
+
+
+
+
+
 # [1.0.0](https://github.com/seek-oss/treat/tree/master/packages/babel-plugin-treat/compare/v1.0.0-beta.2...v1.0.0) (2019-07-24)
 
 

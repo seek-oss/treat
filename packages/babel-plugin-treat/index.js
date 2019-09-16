@@ -15,6 +15,34 @@ const extractName = (t, parent, fileIdentifier) => {
   }
 };
 
+const getDebugIdent = (t, path, fileIdentifier) => {
+  const { parent } = path;
+
+  if (t.isObjectProperty(parent) || t.isReturnStatement(parent)) {
+    const names = [];
+
+    path.findParent(({ node: parentNode }) => {
+      const name = extractName(t, parentNode);
+      if (name) {
+        names.unshift(name);
+      }
+    });
+
+    return names.join('_');
+  }
+  if (t.isArrayExpression(parent) || t.isSpreadElement(parent)) {
+    const variableDeclarator = path.findParent(parentPath =>
+      parentPath.isVariableDeclarator(),
+    );
+
+    if (variableDeclarator) {
+      return variableDeclarator.node.id.name;
+    }
+  } else {
+    return extractName(t, parent, fileIdentifier);
+  }
+};
+
 module.exports = function({ types: t }) {
   return {
     pre(state) {
@@ -47,25 +75,10 @@ module.exports = function({ types: t }) {
             t.isIdentifier(callee, { name: identifier }),
           )
         ) {
-          const { parent, node } = path;
+          const { node } = path;
 
           if (node.arguments.length === 1) {
-            let debugIdent;
-
-            if (t.isObjectProperty(parent) || t.isReturnStatement(parent)) {
-              const names = [];
-
-              path.findParent(({ node: parentNode }) => {
-                const name = extractName(t, parentNode);
-                if (name) {
-                  names.unshift(name);
-                }
-              });
-
-              debugIdent = names.join('_');
-            } else {
-              debugIdent = extractName(t, parent, this.fileIdentifier);
-            }
+            const debugIdent = getDebugIdent(t, path, this.fileIdentifier);
 
             if (debugIdent) {
               node.arguments.push(t.stringLiteral(debugIdent));

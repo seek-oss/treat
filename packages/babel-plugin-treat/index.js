@@ -18,26 +18,22 @@ const extractName = (t, parent, fileIdentifier) => {
 const getDebugIdent = (t, path, fileIdentifier) => {
   const { parent } = path;
 
-  if (t.isObjectProperty(parent) || t.isReturnStatement(parent)) {
+  if (
+    t.isObjectProperty(parent) ||
+    t.isReturnStatement(parent) ||
+    t.isArrayExpression(parent) ||
+    t.isSpreadElement(parent)
+  ) {
     const names = [];
 
     path.findParent(({ node: parentNode }) => {
-      const name = extractName(t, parentNode);
+      const name = extractName(t, parentNode, fileIdentifier);
       if (name) {
         names.unshift(name);
       }
     });
 
     return names.join('_');
-  }
-  if (t.isArrayExpression(parent) || t.isSpreadElement(parent)) {
-    const variableDeclarator = path.findParent(parentPath =>
-      parentPath.isVariableDeclarator(),
-    );
-
-    if (variableDeclarator) {
-      return variableDeclarator.node.id.name;
-    }
   } else {
     return extractName(t, parent, fileIdentifier);
   }

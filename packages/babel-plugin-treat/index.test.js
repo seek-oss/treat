@@ -279,4 +279,25 @@ describe('babel plugin', () => {
       }, \\"height\\")];"
     `);
   });
+
+  it('should handle object key with anonymous style in arrays', () => {
+    const source = `
+       import { style } from 'treat';
+
+       export const height = {
+        full: [style({
+          zIndex: 2,  
+        })]
+       };
+    `;
+
+    expect(transform(source)).toMatchInlineSnapshot(`
+      "import { style } from 'treat';
+      export const height = {
+        full: [style({
+          zIndex: 2
+        }, \\"height_full\\")]
+      };"
+    `);
+  });
 });

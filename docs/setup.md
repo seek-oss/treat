@@ -123,3 +123,13 @@ import(`../themes/${themeName}.treat`).then(theme => {
 ```
 
 If you're using the [React API](react-api), you'll want to provide the theme to your [`TreatProvider`](react-api#treatprovider).
+
+## Gatsby Setup
+
+To use `treat` in a `gatsby` project, install `gatsby-plugin-treat` and add it to your `gatsby-config.js` file like this:
+
+```
+module.exports = {
+  plugins: [`gatsby-plugin-treat`],
+};
+```

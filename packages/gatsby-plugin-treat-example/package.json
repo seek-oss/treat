@@ -1,0 +1,19 @@
+{
+  "name": "gatsby-plugin-treat-example",
+  "private": true,
+  "version": "0.1.0",
+  "devDependencies": {
+    "babel-preset-gatsby": "^0.2.26",
+    "gatsby": "^2.18.11",
+    "gatsby-plugin-treat": "^0.1.0"
+  },
+  "scripts": {
+    "clean": "gatsby clean && rm -rf node_modules/.cache",
+    "start": "gatsby develop",
+    "build": "gatsby build",
+    "serve": "gatsby serve"
+  },
+  "dependencies": {
+    "@babel/core": "^7.7.5"
+  }
+}

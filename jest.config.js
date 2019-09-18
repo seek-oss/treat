@@ -6,4 +6,8 @@ module.exports = {
     '<rootDir>/packages/treat/webpack-plugin',
     '<rootDir>/packages/*/tests/fixtures',
   ],
+  testPathIgnorePatterns: [
+    '/node_modules/',
+    '/packages/gatsby-plugin-treat-example/\\.cache/'
+  ]
 };

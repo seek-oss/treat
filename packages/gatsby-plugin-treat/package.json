@@ -1,0 +1,25 @@
+{
+  "name": "gatsby-plugin-treat",
+  "description": "Gatsby plugin for treat",
+  "version": "0.1.0",
+  "keywords": [
+    "gatsby",
+    "gatsby-plugin",
+    "treat"
+  ],
+  "repository": "https://github.com/seek-oss/treat/tree/master/packages/gatsby-plugin-treat",
+  "main": "index.js",
+  "peerDependencies": {
+    "gatsby": "^2.18.11",
+    "treat": "^1.1.7"
+  },
+  "dependencies": {
+    "babel-plugin-treat": "^1.1.0",
+    "mini-css-extract-plugin": "^0.8.0"
+  },
+  "devDependencies": {
+    "execa": "^3.4.0",
+    "wait-for-localhost": "^3.2.0"
+  },
+  "license": "MIT"
+}

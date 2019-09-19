@@ -5,10 +5,6 @@
   "main": "lib/commonjs",
   "module": "lib/module",
   "browser": "lib/module/browser",
-  "files": [
-    "lib",
-    "theme.d.ts"
-  ],
   "sideEffects": false,
   "scripts": {
     "build:module": "tsc --module es2015 --outDir lib/module",

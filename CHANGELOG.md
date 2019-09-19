@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.1](https://github.com/seek-oss/treat/compare/v1.1.0...v1.1.1) (2019-09-19)
+
+
+### Bug Fixes
+
+* Handle tree shaking of themes ([#60](https://github.com/seek-oss/treat/issues/60)) ([26ebcd8](https://github.com/seek-oss/treat/commit/26ebcd8))
+
+
+
+
+
 # [1.1.0](https://github.com/seek-oss/treat/compare/v1.0.4...v1.1.0) (2019-09-16)
 
 

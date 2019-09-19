@@ -246,24 +246,30 @@ Object {
 
 exports[`Styling and specificity Unused modules - development mode (style-loader) should be styled correctly 1`] = `
 Object {
+  "bottom": "100px",
   "display": "block",
   "height": "100px",
+  "top": "100px",
   "width": "100px",
 }
 `;
 
 exports[`Styling and specificity Unused modules - mini-css-extract-loader should be styled correctly 1`] = `
 Object {
+  "bottom": "100px",
   "display": "block",
   "height": "100px",
+  "top": "100px",
   "width": "100px",
 }
 `;
 
 exports[`Styling and specificity Unused modules - style-loader should be styled correctly 1`] = `
 Object {
+  "bottom": "100px",
   "display": "block",
   "height": "100px",
+  "top": "100px",
   "width": "100px",
 }
 `;

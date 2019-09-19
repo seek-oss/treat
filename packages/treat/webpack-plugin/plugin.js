@@ -180,8 +180,24 @@ module.exports = class TreatWebpackPlugin {
           // Some modules may not be used and their css can be safely be removed from the chunks
           const [usedCssModules, modulesToRemove] = partition(
             allCssModules,
-            ({ owner }) =>
-              typeof owner.used === 'boolean' ? owner.used : true,
+            ({ identifier, owner, themeModule }) => {
+              const used = m => (typeof m.used === 'boolean' ? m.used : true);
+
+              const ownerIsUsed = used(owner);
+              const themeIsUsed = !themeModule || used(themeModule);
+
+              const cssModuleIsUsed = ownerIsUsed && themeIsUsed;
+
+              if (!cssModuleIsUsed) {
+                this.trace(
+                  'CSS Module marked for removal due to unused',
+                  chalk.yellow(ownerIsUsed ? 'theme' : 'owner'),
+                  debugIdent(identifier),
+                );
+              }
+
+              return cssModuleIsUsed;
+            },
           );
 
           if (modulesToRemove.length > 0) {

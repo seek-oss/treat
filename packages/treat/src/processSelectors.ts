@@ -1,4 +1,4 @@
-import { Theme } from 'treat/theme';
+import { ThemeOrAny } from 'treat/theme';
 import mapKeys from 'lodash/mapKeys';
 import flatMap from 'lodash/flatMap';
 import uniq from 'lodash/uniq';
@@ -48,7 +48,7 @@ export const interpolateSelector = (selector: string, themeRef?: ThemeRef) => {
 
 export const combinedThemeSelector = (
   selector: string,
-  themes: Array<TreatTheme<Theme>>,
+  themes: Array<TreatTheme<ThemeOrAny>>,
 ) => {
   if (isThemedSelector(selector)) {
     return uniq(
@@ -65,7 +65,7 @@ export const combinedThemeSelector = (
 
 interface ProcessSelectorsParams {
   style: Style;
-  themes: Array<TreatTheme<Theme>>;
+  themes: Array<TreatTheme<ThemeOrAny>>;
   themeRef?: ThemeRef;
 }
 export const processSelectors = ({

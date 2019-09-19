@@ -1,5 +1,5 @@
 import { Properties } from 'csstype';
-import { Theme } from 'treat/theme';
+import { ThemeOrAny } from 'treat/theme';
 import { SimplePseudos } from './transformCSS';
 
 export type PostCSS = object;
@@ -76,7 +76,7 @@ export type TreatModule = TreatModuleObject | TreatModuleArray;
 export interface WebpackTreat {
   addLocalCss: (css: object) => void;
   addThemedCss: (themeRef: ThemeRef, css: object) => void;
-  addTheme: (theme: TreatTheme<Theme>) => void;
-  getThemes: () => Array<TreatTheme<Theme>>;
-  getIdentName: (local: string, scopeId: number, theme?: Theme) => string;
+  addTheme: (theme: TreatTheme<ThemeOrAny>) => void;
+  getThemes: () => Array<TreatTheme<ThemeOrAny>>;
+  getIdentName: (local: string, scopeId: number, theme?: ThemeOrAny) => string;
 }

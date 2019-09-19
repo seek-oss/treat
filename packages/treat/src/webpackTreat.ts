@@ -1,9 +1,9 @@
-import { Theme } from 'treat/theme';
+import { ThemeOrAny } from 'treat/theme';
 import { WebpackTreat, TreatTheme } from './types';
 
 let scopeCount = 0;
 
-const mockThemes: Array<TreatTheme<Theme>> = [];
+const mockThemes: Array<TreatTheme<ThemeOrAny>> = [];
 let webpackTreat: WebpackTreat = {
   addLocalCss: () => {},
   addThemedCss: () => {},

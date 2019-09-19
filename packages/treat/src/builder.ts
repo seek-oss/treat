@@ -2,7 +2,7 @@ import { fromPairs, isEqual } from 'lodash';
 import dedent from 'dedent';
 import { stringify } from 'javascript-stringify';
 
-import { Theme } from 'treat/theme';
+import { ThemeOrAny } from 'treat/theme';
 import {
   ClassRef,
   Style,
@@ -126,7 +126,7 @@ const createThemedCss = (classRef: ClassRef, style: ThemeStyleMap) => {
 };
 
 export function style(
-  style: ThemedStyle<Style, Theme>,
+  style: ThemedStyle<Style, ThemeOrAny>,
   localDebugName?: string,
 ): ClassRef {
   const localName = localDebugName || 'style';
@@ -161,7 +161,7 @@ export function style(
 
 type StyleMapParam<ClassName extends string> = ThemedStyle<
   StyleMap<ClassName, Style>,
-  Theme
+  ThemeOrAny
 >;
 export function styleMap<ClassName extends string>(
   stylesheet: StyleMapParam<ClassName>,
@@ -226,7 +226,7 @@ export function styleMap<ClassName extends string>(
   return classRefs;
 }
 
-export function createTheme(tokens: Theme, localDebugName?: string): ThemeRef {
+export function createTheme(tokens: ThemeOrAny, localDebugName?: string): ThemeRef {
   const theme = {
     themeRef: getIdentName(localDebugName || 'theme', getNextScope(), tokens),
     tokens,
@@ -239,7 +239,7 @@ export function createTheme(tokens: Theme, localDebugName?: string): ThemeRef {
 
 export function globalStyle(
   selector: string,
-  style: ThemedStyle<GlobalStyle, Theme>,
+  style: ThemedStyle<GlobalStyle, ThemeOrAny>,
 ): void {
   if (isThemedSelector(selector)) {
     getThemes().forEach(theme => {
@@ -276,7 +276,7 @@ export function globalStyle(
 }
 
 type MakeStyleTree<ReturnType> = (
-  theme: Theme,
+  theme: ThemeOrAny,
   styleNode: (style: Style, localDebugName?: string) => ClassRef,
 ) => ReturnType;
 

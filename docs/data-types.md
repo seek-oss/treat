@@ -139,7 +139,8 @@ If your `Theme` type is already defined elsewhere in your application, you'll ne
 
 ```tsx
 declare module 'treat/theme' {
-  export type Theme = import('./types').Theme;
+  type MyTheme = import('./types').Theme;
+  export interface Theme extends MyTheme {}
 }
 ```
 

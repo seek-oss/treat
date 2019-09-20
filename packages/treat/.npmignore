@@ -2,4 +2,3 @@ node_modules
 src
 tests
 tsconfig.json
-theme.d.ts

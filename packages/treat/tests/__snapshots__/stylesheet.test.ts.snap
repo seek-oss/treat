@@ -1361,6 +1361,10 @@ exports[`Stylesheet Unused modules - Autoprefixer (iOS 8) - should create a dete
     height: 100px;
     width: 100px
 }
+._2dq_B_1KLs {
+    top: 100px;
+    bottom: 100px
+}
 "
 `;
 
@@ -1368,6 +1372,10 @@ exports[`Stylesheet Unused modules - Custom idents - should create a determinist
 ".used-used_1tscQ {
     height: 100px;
     width: 100px
+}
+.usedThemeStyle-usedThemeStyle_2dq_B-theme_1K {
+    top: 100px;
+    bottom: 100px
 }
 "
 `;
@@ -1381,11 +1389,20 @@ exports[`Stylesheet Unused modules - Development mode - should create a determin
     height: 100px;
     width: 100px
 }
+.usedThemeStyle-usedThemeStyle_2dq_B_theme-theme_1KLs {
+    top: 100px;
+    bottom: 100px
+}
+.usedThemeStyle-usedThemeStyle_2dq_B_unusedTheme-unusedTheme_1oZa {
+    top: 100px;
+    bottom: 100px
+}
 "
 `;
 
 exports[`Stylesheet Unused modules - Production mode - should create a deterministic stylesheet 1`] = `
 "._1tscQ{height:100px;width:100px}
+._2dq_B_1KLs{top:100px;bottom:100px}
 "
 `;
 
@@ -1393,6 +1410,10 @@ exports[`Stylesheet Unused modules - Theme function ident - should create a dete
 "._1tscQ {
     height: 100px;
     width: 100px
+}
+._2dq_B_empty-theme_1K {
+    top: 100px;
+    bottom: 100px
 }
 "
 `;

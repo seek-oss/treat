@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.2](https://github.com/seek-oss/treat/compare/v1.1.1...v1.1.2) (2019-09-20)
+
+
+### Bug Fixes
+
+* Add theme.d.ts to npm package ([#59](https://github.com/seek-oss/treat/issues/59)) ([39a7c63](https://github.com/seek-oss/treat/commit/39a7c63))
+
+
+
+
+
 ## [1.1.1](https://github.com/seek-oss/treat/compare/v1.1.0...v1.1.1) (2019-09-19)
 
 

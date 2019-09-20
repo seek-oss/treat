@@ -98,12 +98,14 @@ async function produce(loader, request) {
     });
 
     if (css) {
-      const virtualCssLocation = loaderUtils.interpolateName(
-        loader,
-        '[path][name].[hash:base64:7].css',
-        {
-          content: css,
-        },
+      const virtualCssLocation = path.normalize(
+        loaderUtils.interpolateName(
+          loader,
+          '[path][name].[hash:base64:7].css',
+          {
+            content: css,
+          },
+        ),
       );
 
       // Create virtual css file for style created in this module

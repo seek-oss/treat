@@ -9,8 +9,8 @@
   "scripts": {
     "build:module": "tsc --module es2015 --outDir lib/module",
     "build:commonjs": "tsc --module commonjs --outDir lib/commonjs",
-    "build": "concurrently 'yarn build:module' 'yarn build:commonjs'",
-    "watch": "concurrently 'tsc --module commonjs --watch' 'tsc --module module --watch'"
+    "build": "concurrently \"yarn build:module\" \"yarn build:commonjs\"",
+    "watch": "concurrently \"tsc --module commonjs --watch\" \"tsc --module module --watch\""
   },
   "author": "SEEK",
   "license": "MIT",

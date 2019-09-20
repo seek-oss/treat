@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.3](https://github.com/seek-oss/treat/tree/master/packages/react-treat/compare/v1.1.2...v1.1.3) (2019-09-20)
+
+
+### Bug Fixes
+
+* Normalize CSS file paths for Windows ([#61](https://github.com/seek-oss/treat/tree/master/packages/react-treat/issues/61)) ([0c96664](https://github.com/seek-oss/treat/tree/master/packages/react-treat/commit/0c96664))
+
+
+
+
+
 ## [1.1.2](https://github.com/seek-oss/treat/tree/master/packages/react-treat/compare/v1.1.1...v1.1.2) (2019-09-20)
 
 **Note:** Version bump only for package react-treat

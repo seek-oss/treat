@@ -21,7 +21,7 @@ import { style } from 'treat';
 export const button = style({
   backgroundColor: 'blue',
   height: 48
-}));
+});
 ```
 
 When treat files are executed at build time, all of the exports are inlined into your bundle. For example, the treat file above would turn into this:

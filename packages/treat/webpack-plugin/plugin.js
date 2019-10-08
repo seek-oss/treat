@@ -112,6 +112,17 @@ module.exports = class TreatWebpackPlugin {
           this.trace('Rebuiling stale module: ', debugIdent(moduleIdentifier));
           const treatModule = compilation.findModule(moduleIdentifier);
 
+          if (!treatModule) {
+            // In cases where the build fails, sometimes modules are not present
+            // on the compilation object. Skip rebuilding in these cases.
+            this.trace(
+              'Bail on rebuild of stale module: ',
+              debugIdent(moduleIdentifier),
+              `Module doesn't exist on compilation`,
+            );
+            return;
+          }
+
           await rebuildModule(treatModule);
         });
 
@@ -129,6 +140,17 @@ module.exports = class TreatWebpackPlugin {
               );
 
               const treatModule = compilation.findModule(themeModuleIdentifier);
+
+              if (!treatModule) {
+                // In cases where the build fails, sometimes modules are not present
+                // on the compilation object. Skip rebuilding in these cases.
+                this.trace(
+                  'Bail on rebuild of theme module: ',
+                  debugIdent(themeModuleIdentifier),
+                  `Module doesn't exist on compilation`,
+                );
+                return;
+              }
 
               await rebuildModule(treatModule);
             },

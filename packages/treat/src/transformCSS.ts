@@ -53,7 +53,6 @@ export const simplePseudos = [
   '::placeholder',
   '::selection',
   '::spelling-error',
-  ':active',
   ':after',
   ':any-link',
   ':before',
@@ -73,14 +72,12 @@ export const simplePseudos = [
   ':focus-visible',
   ':focus-within',
   ':fullscreen',
-  ':hover',
   ':in-range',
   ':indeterminate',
   ':invalid',
   ':last-child',
   ':last-of-type',
   ':left',
-  ':link',
   ':only-child',
   ':only-of-type',
   ':optional',
@@ -94,7 +91,12 @@ export const simplePseudos = [
   ':scope',
   ':target',
   ':valid',
+
+  // LVHA order
+  ':link',
   ':visited',
+  ':hover',
+  ':active',
 ] as const;
 
 export type SimplePseudos = typeof simplePseudos;

@@ -1,7 +1,7 @@
 import merge from 'lodash/merge';
 import mapKeys from 'lodash/mapKeys';
 import each from 'lodash/each';
-import pick from 'lodash/pick';
+import pickBy from 'lodash/pickBy';
 import omit from 'lodash/omit';
 import isEqual from 'lodash/isEqual';
 import { validateSelector } from './validateSelector';
@@ -99,11 +99,13 @@ export const simplePseudos = [
 
 export type SimplePseudos = typeof simplePseudos;
 
+const simplePseudoSet = new Set<string>(simplePseudos);
+
 const normalizeStyles = (className: string, styles: any) => {
   const omitThese = [...simplePseudos, '@media', 'selectors'];
 
   const pseudoStyles = mapKeys(
-    pick(styles, simplePseudos),
+    pickBy(styles, (_, key) => simplePseudoSet.has(key)),
     (_, pseudo) => `${className}${pseudo}`,
   );
 

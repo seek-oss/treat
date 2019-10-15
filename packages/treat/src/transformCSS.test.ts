@@ -118,6 +118,63 @@ describe('transformCSS', () => {
                 `);
   });
 
+  it('should honour input order for simple pseudos', () => {
+    expect(
+      Object.entries(
+        transformCSS({
+          '.testClass': {
+            color: 'red',
+            ':link': {
+              color: 'orange',
+            },
+            ':visited': {
+              color: 'yellow',
+            },
+            ':hover': {
+              color: 'green',
+            },
+            ':active': {
+              color: 'blue',
+            },
+          },
+        }),
+      ),
+    ).toMatchInlineSnapshot(`
+      Array [
+        Array [
+          ".testClass",
+          Object {
+            "color": "red",
+          },
+        ],
+        Array [
+          ".testClass:link",
+          Object {
+            "color": "orange",
+          },
+        ],
+        Array [
+          ".testClass:visited",
+          Object {
+            "color": "yellow",
+          },
+        ],
+        Array [
+          ".testClass:hover",
+          Object {
+            "color": "green",
+          },
+        ],
+        Array [
+          ".testClass:active",
+          Object {
+            "color": "blue",
+          },
+        ],
+      ]
+    `);
+  });
+
   it('should handle complex selectors', () => {
     expect(
       transformCSS({

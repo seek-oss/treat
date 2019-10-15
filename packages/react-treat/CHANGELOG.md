@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.5](https://github.com/seek-oss/treat/tree/master/packages/react-treat/compare/v1.1.4...v1.1.5) (2019-10-15)
+
+**Note:** Version bump only for package react-treat
+
+
+
+
+
 ## [1.1.4](https://github.com/seek-oss/treat/tree/master/packages/react-treat/compare/v1.1.3...v1.1.4) (2019-10-08)
 
 **Note:** Version bump only for package react-treat

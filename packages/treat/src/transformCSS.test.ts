@@ -118,23 +118,23 @@ describe('transformCSS', () => {
                 `);
   });
 
-  it('should respect LVHA order for simple pseudos', () => {
+  it('should honour input order for simple pseudos', () => {
     expect(
       Object.entries(
         transformCSS({
           '.testClass': {
             color: 'red',
+            ':link': {
+              color: 'orange',
+            },
+            ':visited': {
+              color: 'yellow',
+            },
             ':hover': {
               color: 'green',
             },
             ':active': {
               color: 'blue',
-            },
-            ':visited': {
-              color: 'yellow',
-            },
-            ':link': {
-              color: 'orange',
             },
           },
         }),

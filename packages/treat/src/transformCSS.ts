@@ -1,7 +1,7 @@
 import merge from 'lodash/merge';
 import mapKeys from 'lodash/mapKeys';
 import each from 'lodash/each';
-import pick from 'lodash/pick';
+import pickBy from 'lodash/pickBy';
 import omit from 'lodash/omit';
 import isEqual from 'lodash/isEqual';
 import { validateSelector } from './validateSelector';
@@ -53,6 +53,7 @@ export const simplePseudos = [
   '::placeholder',
   '::selection',
   '::spelling-error',
+  ':active',
   ':after',
   ':any-link',
   ':before',
@@ -63,21 +64,23 @@ export const simplePseudos = [
   ':disabled',
   ':empty',
   ':enabled',
-  ':first',
   ':first-child',
   ':first-letter',
   ':first-line',
   ':first-of-type',
-  ':focus',
+  ':first',
   ':focus-visible',
   ':focus-within',
+  ':focus',
   ':fullscreen',
+  ':hover',
   ':in-range',
   ':indeterminate',
   ':invalid',
   ':last-child',
   ':last-of-type',
   ':left',
+  ':link',
   ':only-child',
   ':only-of-type',
   ':optional',
@@ -91,21 +94,18 @@ export const simplePseudos = [
   ':scope',
   ':target',
   ':valid',
-
-  // LVHA order
-  ':link',
   ':visited',
-  ':hover',
-  ':active',
 ] as const;
 
 export type SimplePseudos = typeof simplePseudos;
+
+const simplePseudoSet = new Set<string>(simplePseudos);
 
 const normalizeStyles = (className: string, styles: any) => {
   const omitThese = [...simplePseudos, '@media', 'selectors'];
 
   const pseudoStyles = mapKeys(
-    pick(styles, simplePseudos),
+    pickBy(styles, (_, key) => simplePseudoSet.has(key)),
     (_, pseudo) => `${className}${pseudo}`,
   );
 

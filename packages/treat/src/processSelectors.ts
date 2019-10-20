@@ -33,7 +33,7 @@ export const interpolateSelector = (selector: string, themeRef?: ThemeRef) => {
   }
 
   const themeClassRefsRegex = RegExp(
-    `\\${themePlaceholder}([a-zA-Z1-9_-]+)`,
+    `\\${themePlaceholder}([a-zA-Z0-9_-]+)`,
     'g',
   );
 

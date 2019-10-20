@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.6](https://github.com/seek-oss/treat/compare/v1.1.5...v1.1.6) (2019-10-20)
+
+
+### Bug Fixes
+
+* Handle zeroes in treat class selectors ([#66](https://github.com/seek-oss/treat/issues/66)) ([2d44b72](https://github.com/seek-oss/treat/commit/2d44b72))
+
+
+
+
+
 ## [1.1.5](https://github.com/seek-oss/treat/compare/v1.1.4...v1.1.5) (2019-10-15)
 
 

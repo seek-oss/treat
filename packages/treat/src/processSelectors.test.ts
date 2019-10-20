@@ -7,6 +7,7 @@ describe('combinedThemeSelector', () => {
       ['html', 'html'],
       ['html .someClass', 'html .someClass'],
       ['$themedClass *', '.themedClass_singleTheme *'],
+      ['$themedClass_aZ-90 *', '.themedClass_aZ-90_singleTheme *'],
       [
         '$themedClass .someClass, h1',
         '.themedClass_singleTheme .someClass, h1',

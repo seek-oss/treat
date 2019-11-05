@@ -4,14 +4,16 @@
   "version": "1.1.6",
   "main": "lib/commonjs",
   "module": "lib/module",
+  "types": "lib/types",
   "sideEffects": false,
   "author": "SEEK",
   "license": "MIT",
   "repository": "https://github.com/seek-oss/treat/tree/master/packages/react-treat",
   "scripts": {
-    "build:module": "tsc --module es2015 --outDir lib/module",
-    "build:commonjs": "tsc --module commonjs --outDir lib/commonjs",
-    "build": "concurrently \"yarn build:module\" \"yarn build:commonjs\"",
+    "build:module": "tsc --module es2015 --outDir lib/module --declaration false",
+    "build:commonjs": "tsc --module commonjs --outDir lib/commonjs --declaration false",
+    "build:types": "tsc --emitDeclarationOnly --declaration true --declarationDir lib/types",
+    "build": "concurrently \"yarn:build:module\" \"yarn:build:commonjs\" \"yarn:build:types\"",
     "watch": "concurrently \"tsc --module commonjs --watch\" \"tsc --module module --watch\""
   },
   "keywords": [

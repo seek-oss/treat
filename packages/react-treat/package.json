@@ -14,7 +14,7 @@
     "build:commonjs": "tsc --module commonjs --outDir lib/commonjs --declaration false",
     "build:types": "tsc --emitDeclarationOnly --declaration true --declarationDir lib/types",
     "build": "concurrently \"yarn:build:module\" \"yarn:build:commonjs\" \"yarn:build:types\"",
-    "watch": "concurrently \"tsc --module commonjs --watch\" \"tsc --module module --watch\""
+    "watch": "concurrently \"tsc --module commonjs --watch\" \"tsc --module module --watch\" \"yarn:build:types --watch\""
   },
   "keywords": [
     "treat"

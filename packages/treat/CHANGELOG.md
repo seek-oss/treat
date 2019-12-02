@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.7](https://github.com/seek-oss/treat/tree/master/packages/treat/compare/v1.1.6...v1.1.7) (2019-12-02)
+
+
+### Bug Fixes
+
+* Produce single type definitions ([#70](https://github.com/seek-oss/treat/tree/master/packages/treat/issues/70)) ([b60aebd](https://github.com/seek-oss/treat/tree/master/packages/treat/commit/b60aebd))
+
+
+
+
+
 ## [1.1.6](https://github.com/seek-oss/treat/tree/master/packages/treat/compare/v1.1.5...v1.1.6) (2019-10-20)
 
 

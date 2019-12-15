@@ -14,7 +14,7 @@ install:
   - yarn --frozen-lockfile
 
 script:
-  - yarn test
+  - yarn test --detectOpenHandles
 
 before_deploy:
   - git config --global user.name "seek-oss-ci";

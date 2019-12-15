@@ -3,8 +3,18 @@ import * as path from 'path';
 import waitForLocalhost from 'wait-for-localhost';
 import getStyles from '../../../test-helpers/getStyles';
 
+const resolveBin = (packageName, binName) => {
+  const packageJson = require(`${packageName}/package.json`);
+  const binPath =
+    typeof packageJson.bin === 'string'
+      ? packageJson.bin
+      : packageJson.bin[binName || packageName];
+
+  return require.resolve(path.join(packageName, binPath));
+};
+
 const gatsbyServerPort = 9999;
-const gatsbyBinaryPath = path.resolve(__dirname, '../../../node_modules/.bin/gatsby');
+const gatsbyBinaryPath = resolveBin('gatsby', 'gatsby');
 const gatsbyFixturePath = path.resolve(__dirname, '../../gatsby-plugin-treat-example');
 const gatsbyExecArgs = {
   shell: true, 

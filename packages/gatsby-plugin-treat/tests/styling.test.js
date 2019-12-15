@@ -2,16 +2,7 @@ import execa from 'execa';
 import * as path from 'path';
 import waitForLocalhost from 'wait-for-localhost';
 import getStyles from '../../../test-helpers/getStyles';
-
-const resolveBin = (packageName, binName) => {
-  const packageJson = require(`${packageName}/package.json`);
-  const binPath =
-    typeof packageJson.bin === 'string'
-      ? packageJson.bin
-      : packageJson.bin[binName || packageName];
-
-  return require.resolve(path.join(packageName, binPath));
-};
+import resolveBin from '../../../test-helpers/resolveBin';
 
 const gatsbyServerPort = 9999;
 const gatsbyBinaryPath = resolveBin('gatsby', 'gatsby');

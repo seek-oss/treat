@@ -42,7 +42,7 @@ async function stopServer() {
   await Promise.race(gatsbyProcess, gatsbyProcess.kill());
 }
 
-describe('gatsby', () => {
+describe.skip('gatsby', () => {
 
   describe('develop', () => {
 

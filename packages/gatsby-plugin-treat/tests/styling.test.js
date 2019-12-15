@@ -39,8 +39,7 @@ async function startProdServer() {
 }
 
 async function stopServer() {
-  gatsbyProcess.kill();
-  await gatsbyProcess;
+  await Promise.race(gatsbyProcess, gatsbyProcess.kill());
 }
 
 describe('gatsby', () => {

@@ -1,9 +1,8 @@
 import * as path from 'path';
-import execa from 'execa';
 import waitForLocalhost from 'wait-for-localhost';
-import gracefulSpawn from '../../../test-helpers/gracefulSpawn';
 import getStyles from '../../../test-helpers/getStyles';
 import resolveBin from '../../../test-helpers/resolveBin';
+import gracefulSpawn from '../../../test-helpers/gracefulSpawn';
 
 const gatsbyBinaryPath = resolveBin('gatsby', 'gatsby');
 const gatsbyFixturePath = path.resolve(
@@ -28,22 +27,21 @@ describe('gatsby', () => {
   describe('develop', () => {
     const port = 5678;
 
-    let kill;
+    let gatsbyProcess;
 
     beforeAll(async () => {
       console.log('startDevServer');
-      const result = gracefulSpawn(
+      gatsbyProcess = gracefulSpawn(
         `${gatsbyBinaryPath} develop -p ${port}`,
         gatsbyExecArgs,
       );
-      kill = result.kill;
-      result.childProcess.stdout.pipe(process.stdout);
-      result.childProcess.stderr.pipe(process.stdout);
+      gatsbyProcess.stdout.pipe(process.stdout);
+      gatsbyProcess.stderr.pipe(process.stdout);
       await navigateToServerWhenReady(port);
     });
 
-    afterAll(async () => {
-      await kill();
+    afterAll(() => {
+      gatsbyProcess.end();
     });
 
     test('it renders some global styles', async () => {
@@ -68,24 +66,21 @@ describe('gatsby', () => {
 
   describe('build', () => {
     const port = 5688;
-    let kill;
+    let gatsbyProcess;
 
     beforeAll(async () => {
-      await execa(`${gatsbyBinaryPath} build`, gatsbyExecArgs);
-
-      const result = gracefulSpawn(`${gatsbyBinaryPath} serve -p ${port}`, {
+      await gracefulSpawn(`${gatsbyBinaryPath} build`, gatsbyExecArgs);
+      gatsbyProcess = gracefulSpawn(`${gatsbyBinaryPath} serve -p ${port}`, {
         shell: true,
         cwd: gatsbyFixturePath,
       });
-      kill = result.kill;
-      result.childProcess.stdout.pipe(process.stdout);
-      result.childProcess.stderr.pipe(process.stdout);
-
+      gatsbyProcess.stdout.pipe(process.stdout);
+      gatsbyProcess.stderr.pipe(process.stdout);
       await navigateToServerWhenReady(port);
     });
 
-    afterAll(async () => {
-      await kill();
+    afterAll(() => {
+      gatsbyProcess.end();
     });
 
     test('it renders some global styles', async () => {

@@ -5,7 +5,7 @@ const treeKillAsync = promisify(require('tree-kill'));
 module.exports = (...args) => {
   const childProcess = execa(...args);
 
-  const kill = async signal => {
+  childProcess.end = async signal => {
     await treeKillAsync(childProcess.pid, signal);
 
     // Needs a bit more time, for some reason :(
@@ -14,5 +14,5 @@ module.exports = (...args) => {
     await new Promise(resolve => setTimeout(resolve, 100));
   };
 
-  return { childProcess, kill };
+  return childProcess;
 };

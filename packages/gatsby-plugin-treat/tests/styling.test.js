@@ -4,7 +4,6 @@ import waitForLocalhost from 'wait-for-localhost';
 import getStyles from '../../../test-helpers/getStyles';
 import resolveBin from '../../../test-helpers/resolveBin';
 
-const gatsbyServerPort = 9999;
 const gatsbyBinaryPath = resolveBin('gatsby', 'gatsby');
 const gatsbyFixturePath = path.resolve(
   __dirname,
@@ -20,32 +19,29 @@ const gatsbyExecArgs = {
 };
 let gatsbyProcess;
 
-async function navigateToServerWhenReady() {
-  await waitForLocalhost({ port: gatsbyServerPort });
-  await page.goto(`http://localhost:${gatsbyServerPort}/`);
+async function navigateToServerWhenReady(port) {
+  await waitForLocalhost({ port });
+  await page.goto(`http://localhost:${port}/`);
 }
 
 async function startDevServer() {
   console.log('startDevServer');
-  gatsbyProcess = execa(
-    `${gatsbyBinaryPath} develop -p ${gatsbyServerPort}`,
-    gatsbyExecArgs,
-  );
+  gatsbyProcess = execa(`${gatsbyBinaryPath} develop -p 5678`, gatsbyExecArgs);
   gatsbyProcess.stdout.pipe(process.stdout);
   gatsbyProcess.stderr.pipe(process.stdout);
-  await navigateToServerWhenReady();
+  await navigateToServerWhenReady(5678);
 }
 
 async function startProdServer() {
   console.log('startProdServer');
   await execa(`${gatsbyBinaryPath} build`, gatsbyExecArgs);
-  gatsbyProcess = execa(`${gatsbyBinaryPath} serve -p ${gatsbyServerPort}`, {
+  gatsbyProcess = execa(`${gatsbyBinaryPath} serve -p 5688`, {
     shell: true,
     cwd: gatsbyFixturePath,
   });
   gatsbyProcess.stdout.pipe(process.stdout);
   gatsbyProcess.stderr.pipe(process.stdout);
-  await navigateToServerWhenReady();
+  await navigateToServerWhenReady(5688);
 }
 
 async function stopServer() {

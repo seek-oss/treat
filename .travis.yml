@@ -14,7 +14,7 @@ install:
   - yarn --frozen-lockfile
 
 script:
-  - yarn test --maxWorkers=10
+  - yarn test
 
 before_deploy:
   - git config --global user.name "seek-oss-ci";

@@ -1,3 +1,6 @@
+/**
+ * @jest-environment node
+ */
 import execa from 'execa';
 import * as path from 'path';
 import waitForLocalhost from 'wait-for-localhost';
@@ -24,22 +27,26 @@ async function navigateToServerWhenReady() {
 }
 
 async function startDevServer() {
+  console.log('startDevServer');
   gatsbyProcess = execa(`${gatsbyBinaryPath} develop -p ${gatsbyServerPort}`, gatsbyExecArgs);
-  // gatsbyProcess.stdout.pipe(process.stdout);
-  // gatsbyProcess.stderr.pipe(process.stdout);
+  gatsbyProcess.stdout.pipe(process.stdout);
+  gatsbyProcess.stderr.pipe(process.stdout);
   await navigateToServerWhenReady();
 }
 
 async function startProdServer() {
+  console.log('startProdServer');
   await execa(`${gatsbyBinaryPath} build`, gatsbyExecArgs);
   gatsbyProcess = execa(`${gatsbyBinaryPath} serve -p ${gatsbyServerPort}`, {shell: true, cwd: gatsbyFixturePath});
-  // gatsbyProcess.stdout.pipe(process.stdout);
-  // gatsbyProcess.stderr.pipe(process.stdout);
+  gatsbyProcess.stdout.pipe(process.stdout);
+  gatsbyProcess.stderr.pipe(process.stdout);
   await navigateToServerWhenReady();
 }
 
 async function stopServer() {
+  console.log('stopServer')
   await Promise.race(gatsbyProcess, gatsbyProcess.kill());
+  console.log('server stopped')
 }
 
 describe.skip('gatsby', () => {

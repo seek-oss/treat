@@ -88,6 +88,7 @@
     "react-router-dom": "^5.0.0",
     "react-router-hash-link": "^1.2.1",
     "remove-markdown": "^0.3.0",
+    "tree-kill": "^1.2.2",
     "typescript": "^3.4.1",
     "use-react-router": "^1.0.7",
     "webpack": "^4.30.0",

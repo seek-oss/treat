@@ -17,43 +17,32 @@ const gatsbyExecArgs = {
   },
   extendEnv: true,
 };
-let gatsbyProcess;
 
 async function navigateToServerWhenReady(port) {
   await waitForLocalhost({ port });
   await page.goto(`http://localhost:${port}/`);
 }
 
-async function startDevServer() {
-  console.log('startDevServer');
-  gatsbyProcess = execa(`${gatsbyBinaryPath} develop -p 5678`, gatsbyExecArgs);
-  gatsbyProcess.stdout.pipe(process.stdout);
-  gatsbyProcess.stderr.pipe(process.stdout);
-  await navigateToServerWhenReady(5678);
-}
-
-async function startProdServer() {
-  console.log('startProdServer');
-  await execa(`${gatsbyBinaryPath} build`, gatsbyExecArgs);
-  gatsbyProcess = execa(`${gatsbyBinaryPath} serve -p 5688`, {
-    shell: true,
-    cwd: gatsbyFixturePath,
-  });
-  gatsbyProcess.stdout.pipe(process.stdout);
-  gatsbyProcess.stderr.pipe(process.stdout);
-  await navigateToServerWhenReady(5688);
-}
-
-async function stopServer() {
-  console.log('stopServer');
-  gatsbyProcess.kill({ forceKillAfterTimeout: 1000 });
-  console.log('server stopped');
-}
-
 describe('gatsby', () => {
   describe('develop', () => {
-    beforeAll(() => startDevServer());
-    afterAll(() => stopServer());
+    const port = 5678;
+
+    let gatsbyProcess;
+
+    beforeAll(async () => {
+      console.log('startDevServer');
+      gatsbyProcess = execa(
+        `${gatsbyBinaryPath} develop -p ${port}`,
+        gatsbyExecArgs,
+      );
+      gatsbyProcess.stdout.pipe(process.stdout);
+      gatsbyProcess.stderr.pipe(process.stdout);
+      await navigateToServerWhenReady(port);
+    });
+
+    afterAll(() => {
+      gatsbyProcess.kill({ forceKillAfterTimeout: 1000 });
+    });
 
     test('it renders some global styles', async () => {
       const styles = await getStyles(page, 'body');
@@ -76,8 +65,23 @@ describe('gatsby', () => {
   });
 
   describe('build', () => {
-    beforeAll(() => startProdServer());
-    afterAll(() => stopServer());
+    const port = 5688;
+    let gatsbyProcess;
+
+    beforeAll(async () => {
+      await execa(`${gatsbyBinaryPath} build`, gatsbyExecArgs);
+      gatsbyProcess = execa(`${gatsbyBinaryPath} serve -p ${port}`, {
+        shell: true,
+        cwd: gatsbyFixturePath,
+      });
+      // gatsbyProcess.stdout.pipe(process.stdout);
+      // gatsbyProcess.stderr.pipe(process.stdout);
+      await navigateToServerWhenReady(port);
+    });
+
+    afterAll(() => {
+      gatsbyProcess.kill({ forceKillAfterTimeout: 1000 });
+    });
 
     test('it renders some global styles', async () => {
       const styles = await getStyles(page, 'body');

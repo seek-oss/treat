@@ -43,7 +43,7 @@ In order to improve the [debugging](#debugging) experience, treat also provides 
 First, install the plugin:
 
 ```bash
-$ yarn add --dev babel-plugin-treat@next
+$ yarn add --dev babel-plugin-treat
 ```
 
 Then, add it to your Babel config. For example, in `.babelrc`:

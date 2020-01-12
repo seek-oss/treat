@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.1](https://github.com/seek-oss/treat/tree/master/packages/treat/compare/v1.2.0...v1.2.1) (2020-01-12)
+
+
+### Bug Fixes
+
+* Handle undefined watcher error ([#82](https://github.com/seek-oss/treat/tree/master/packages/treat/issues/82)) ([c3b44e9](https://github.com/seek-oss/treat/tree/master/packages/treat/commit/c3b44e9))
+
+
+
+
+
 ## [1.1.7](https://github.com/seek-oss/treat/tree/master/packages/treat/compare/v1.1.6...v1.1.7) (2019-12-02)
 
 

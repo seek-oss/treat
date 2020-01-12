@@ -63,13 +63,12 @@ module.exports = class TreatWebpackPlugin {
     }
 
     compiler.hooks.watchRun.tap(TWP, watchCompiler => {
-      // watchCompiler.watchFileSystem.watcher is undefined in node environment
-      // will fix this by a fallback to watching.compiler.watchFileSystem.wfs
-      // that seems to be a more modern way to access watcher
+      // watchCompiler.watchFileSystem.watcher is undefined in some node environments.
+      // Allow fallback to watchCompiler.watchFileSystem.wfs
       // https://github.com/s-panferov/awesome-typescript-loader/commit/c7da9ac82d105cdaf9b124ccc4c130648e59168a
       const watcher =
-        watching.compiler.watchFileSystem.watcher ||
-        watching.compiler.watchFileSystem.wfs.watcher;
+        watchCompiler.watchFileSystem.watcher ||
+        watchCompiler.watchFileSystem.wfs.watcher;
       this.treatCompiler.expireCache(Object.keys(watcher.mtimes));
     });
 

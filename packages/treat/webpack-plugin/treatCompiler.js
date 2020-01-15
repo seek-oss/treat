@@ -1,4 +1,5 @@
 const intersection = require('lodash/intersection');
+const once = require('lodash/once');
 const loaderUtils = require('loader-utils');
 const NodeTemplatePlugin = require('webpack/lib/node/NodeTemplatePlugin');
 const NodeTargetPlugin = require('webpack/lib/node/NodeTargetPlugin');
@@ -7,10 +8,25 @@ const SingleEntryPlugin = require('webpack/lib/SingleEntryPlugin');
 const LimitChunkCountPlugin = require('webpack/lib/optimize/LimitChunkCountPlugin');
 const ExternalsPlugin = require('webpack/lib/ExternalsPlugin');
 const Promise = require('bluebird');
+const chalk = require('chalk');
+const dedent = require('dedent');
 
 const { debugIdent } = require('./utils');
 
 const TWL = 'treat-webpack-loader';
+
+const logMultiWebpackError = once(() => {
+  console.log(
+    chalk.red(dedent`
+  TreatWebpackPlugin: Error occured during treat file compilation.
+  
+  This error is usually caused by having multiple versions of webpack installed. 
+  Ensure you only have a single version of webpack by running: '${chalk.bold(
+    'yarn why webpack',
+  )}' or '${chalk.bold('npm ls webpack')}'.
+  `),
+  );
+});
 
 module.exports = trace => {
   const cache = new Map();
@@ -142,21 +158,33 @@ function compileTreatSource(loader, request) {
       callback();
     });
 
-    childCompiler.runAsChild((err, entries, compilation) => {
-      if (err) return reject(err);
+    try {
+      childCompiler.runAsChild((err, entries, compilation) => {
+        if (err) return reject(err);
 
-      if (compilation.errors.length > 0) {
-        return reject(compilation.errors[0]);
-      }
-      if (!source) {
-        return reject(new Error("Didn't get a result from child compiler"));
-      }
+        if (compilation.errors.length > 0) {
+          return reject(compilation.errors[0]);
+        }
+        if (!source) {
+          return reject(new Error("Didn't get a result from child compiler"));
+        }
 
-      resolve({
-        source,
-        fileDependencies: Array.from(compilation.fileDependencies),
-        contextDependencies: Array.from(compilation.contextDependencies),
+        resolve({
+          source,
+          fileDependencies: Array.from(compilation.fileDependencies),
+          contextDependencies: Array.from(compilation.contextDependencies),
+        });
       });
-    });
+    } catch (e) {
+      if (
+        e.message.indexOf(
+          'No dependency factory available for this dependency type: SingleEntryDependency',
+        ) > -1
+      ) {
+        logMultiWebpackError();
+      }
+
+      reject(e);
+    }
   });
 }

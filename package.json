@@ -29,7 +29,7 @@
   },
   "volta": {
     "node": "10.15.2",
-    "yarn": "1.16.0"
+    "yarn": "1.21.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.4.4",
@@ -63,6 +63,7 @@
     "concurrently": "^4.1.0",
     "copy-webpack-plugin": "^5.0.3",
     "cz-conventional-changelog": "^2.1.0",
+    "execa": "^3.4.0",
     "express": "^4.16.4",
     "fast-glob": "^2.2.7",
     "file-loader": "^3.0.1",
@@ -90,6 +91,7 @@
     "remove-markdown": "^0.3.0",
     "typescript": "^3.4.1",
     "use-react-router": "^1.0.7",
+    "wait-for-localhost": "^3.2.0",
     "webpack": "^4.30.0",
     "webpack-cli": "^3.2.3",
     "webpack-dev-server": "^3.4.1",

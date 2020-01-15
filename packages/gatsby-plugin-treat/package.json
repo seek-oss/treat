@@ -8,6 +8,10 @@
     "treat"
   ],
   "repository": "https://github.com/seek-oss/treat/tree/master/packages/gatsby-plugin-treat",
+  "files": [
+    "index.js",
+    "gatsby-node.js"
+  ],
   "main": "index.js",
   "peerDependencies": {
     "gatsby": "^2.18.11",
@@ -16,10 +20,6 @@
   "dependencies": {
     "babel-plugin-treat": "^1.1.0",
     "mini-css-extract-plugin": "^0.8.0"
-  },
-  "devDependencies": {
-    "execa": "^3.4.0",
-    "wait-for-localhost": "^3.2.0"
   },
   "license": "MIT"
 }

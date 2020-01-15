@@ -8,10 +8,6 @@
     "treat"
   ],
   "repository": "https://github.com/seek-oss/treat/tree/master/packages/gatsby-plugin-treat",
-  "files": [
-    "index.js",
-    "gatsby-node.js"
-  ],
   "main": "index.js",
   "peerDependencies": {
     "gatsby": "^2.18.11",

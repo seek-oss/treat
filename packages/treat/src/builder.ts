@@ -159,14 +159,14 @@ export function style(
   }
 }
 
-type StyleMapParam<ClassName extends string> = ThemedStyle<
-  StyleMap<ClassName, Style>,
+type StyleMapParam<StyleName extends string | number> = ThemedStyle<
+  StyleMap<StyleName, Style>,
   ThemeOrAny
 >;
-export function styleMap<ClassName extends string>(
-  stylesheet: StyleMapParam<ClassName>,
+export function styleMap<StyleName extends string | number>(
+  stylesheet: StyleMapParam<StyleName>,
   localDebugName?: string,
-): StylesMap<ClassName> {
+): StylesMap<StyleName> {
   const classRefs: { [className: string]: ClassRef } = {};
   const createLocalName = (classIdentifier: string) => {
     if (localDebugName) {

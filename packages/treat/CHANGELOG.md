@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.4](https://github.com/seek-oss/treat/tree/master/packages/treat/compare/v1.2.3...v1.2.4) (2020-01-31)
+
+
+### Bug Fixes
+
+* **styleMap:** Support numbers as keys on 'styleMap' objects ([#88](https://github.com/seek-oss/treat/tree/master/packages/treat/issues/88)) ([1fd5f1f](https://github.com/seek-oss/treat/tree/master/packages/treat/commit/1fd5f1f))
+
+
+
+
+
 ## [1.2.2](https://github.com/seek-oss/treat/tree/master/packages/treat/compare/v1.2.1...v1.2.2) (2020-01-15)
 
 

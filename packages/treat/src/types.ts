@@ -38,8 +38,8 @@ export type Style = StyleWithSelectors & MediaQueries<StyleWithSelectors>;
 
 export type GlobalStyle = CSSProperties & MediaQueries<CSSProperties>;
 
-export type StyleMap<ClassName extends string, StyleType> = Record<
-  ClassName,
+export type StyleMap<StyleName extends string | number, StyleType> = Record<
+  StyleName,
   StyleType
 >;
 
@@ -54,7 +54,10 @@ export interface TreatTheme<Tokens> {
 
 export type ClassRef = string;
 
-export type StylesMap<ClassName extends string> = Record<ClassName, ClassRef>;
+export type StylesMap<StyleName extends string | number> = Record<
+  StyleName,
+  ClassRef
+>;
 
 type TreatModuleValue =
   | string

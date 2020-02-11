@@ -2,9 +2,12 @@
   "name": "treat",
   "version": "1.2.4",
   "description": "Themeable, statically extracted CSS-in-JS with near-zero runtime",
-  "main": "lib/commonjs",
-  "module": "lib/module",
-  "browser": "lib/module/browser",
+  "main": "dist/treat.cjs.js",
+  "module": "dist/treat.esm.js",
+  "browser": {
+    "./dist/treat.cjs.js": "./dist/treat.browser.cjs.js",
+    "./dist/treat.esm.js": "./dist/treat.browser.esm.js"
+  },
   "types": "lib/types",
   "sideEffects": false,
   "scripts": {

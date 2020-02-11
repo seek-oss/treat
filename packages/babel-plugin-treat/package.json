@@ -2,11 +2,14 @@
   "name": "babel-plugin-treat",
   "description": "Babel plugin for treat",
   "version": "1.1.0",
-  "main": "index.js",
+  "main": "dist/babel-plugin-treat.cjs.js",
   "author": "SEEK",
   "license": "MIT",
   "repository": "https://github.com/seek-oss/treat/tree/master/packages/babel-plugin-treat",
   "keywords": [
     "treat"
-  ]
+  ],
+  "preconstruct": {
+    "source": "index.js"
+  }
 }

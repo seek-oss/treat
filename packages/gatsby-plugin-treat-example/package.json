@@ -6,8 +6,8 @@
     "@babel/core": "^7.7.5",
     "babel-preset-gatsby": "^0.2.26",
     "gatsby": "^2.18.11",
-    "gatsby-plugin-treat": "^1.2.3",
-    "treat": "^1.2.4"
+    "gatsby-plugin-treat": "*",
+    "treat": "*"
   },
   "scripts": {
     "clean": "gatsby clean && rm -rf node_modules/.cache",

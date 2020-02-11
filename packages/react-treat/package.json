@@ -23,6 +23,7 @@
     "treat": "^1.0.0"
   },
   "devDependencies": {
-    "treat": "^1.2.4"
+    "react": "^16.8.3",
+    "treat": "*"
   }
 }

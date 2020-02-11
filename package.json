@@ -1,4 +1,5 @@
 {
+  "name": "treat",
   "private": true,
   "workspaces": [
     "packages/*"
@@ -15,7 +16,8 @@
     "watch": "lerna run watch",
     "release": "lerna publish --conventional-commits",
     "commit": "git-cz",
-    "debug-fixture": "node ./test-helpers/debugFixture.js"
+    "debug-fixture": "node ./test-helpers/debugFixture.js",
+    "postinstall": "manypkg check"
   },
   "config": {
     "commitizen": {
@@ -31,14 +33,18 @@
     "node": "10.15.2",
     "yarn": "1.21.1"
   },
-  "devDependencies": {
+  "resolutions": {
+    "@types/react": "^16.8.17"
+  },
+  "dependencies": {
     "@babel/cli": "^7.4.4",
-    "@babel/core": "^7.4.4",
+    "@babel/core": "^7.7.5",
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "@babel/preset-env": "^7.3.4",
     "@babel/preset-react": "^7.0.0",
     "@babel/preset-typescript": "^7.3.3",
     "@commitlint/cli": "^7.6.1",
+    "@manypkg/cli": "^0.9.0",
     "@mdx-js/react": "^1.0.16",
     "@types/classnames": "^2.2.7",
     "@types/dedent": "^0.7.0",
@@ -79,7 +85,7 @@
     "lunr": "^2.3.6",
     "mdx-loader": "^2.2.1",
     "mime-types": "^2.1.22",
-    "mini-css-extract-plugin": "^0.6.0",
+    "mini-css-extract-plugin": "^0.8.0",
     "prettier": "^1.16.4",
     "puppeteer": "^1.14.0",
     "react": "^16.8.3",
@@ -97,8 +103,5 @@
     "webpack-dev-server": "^3.4.1",
     "webpack-merge": "^4.2.1",
     "webpack-node-externals": "^1.7.2"
-  },
-  "resolutions": {
-    "@types/react": "^16.8.17"
   }
 }

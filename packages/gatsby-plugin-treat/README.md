@@ -10,6 +10,21 @@ module.exports = {
 };
 ```
 
+## Theming
+
+The default theme can be customized by shadowing the file at `src/gatsby-plugin-treat/theme.treat.js`, e.g. with:
+
+```ts
+import { createTheme } from 'treat';
+
+export default createTheme({
+  colors: {
+    red: '#f8485e',
+    darkgray: '#3d3d3d'
+  }
+});
+```
+
 ## [Docs](https://seek-oss.github.io/treat)
 
 See the documentation at seek-oss.github.io/treat for more information about using treat.

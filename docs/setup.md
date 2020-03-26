@@ -128,8 +128,27 @@ If you're using the [React API](react-api), you'll want to provide the theme to 
 
 To use `treat` in a `gatsby` project, install `gatsby-plugin-treat` and add it to your `gatsby-config.js` file like this:
 
-```
+```js
 module.exports = {
   plugins: [`gatsby-plugin-treat`],
 };
+```
+
+## Next.js Setup
+
+To use `treat` in a `next` project, install `next-plugin-treat` and add it to your `next.config.js` file like this:
+
+```js
+const withTreat = require('next-plugin-treat')(/* Extra TreatPlugin options */);
+
+module.exports = withTreat(/* Additional Next.js configuration */);
+```
+
+Debugging experience can be improved by [setting up the Babel plugin](#babel-setup) with the `.babelrc` below:
+
+```js
+{
+  "presets": ["next/babel"],
+  "plugins": ["babel-plugin-treat"]
+}
 ```

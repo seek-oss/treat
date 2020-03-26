@@ -3,16 +3,20 @@ const TreatPlugin = require('treat/webpack-plugin');
 
 module.exports = (pluginOptions = {}) => (nextConfig = {}) => {
   return Object.assign({}, nextConfig, {
-    webpack(config, { isServer }) {
+    webpack(config, options) {
       config.plugins.push(
         new TreatPlugin(
           Object.assign({}, pluginOptions, {
             outputLoaders: [MiniCssExtractPlugin.loader],
-            outputCSS: !isServer,
+            outputCSS: !options.isServer,
           }),
         ),
-        new MiniCssExtractPlugin(),
       );
+
+      if (typeof nextConfig.webpack === 'function') {
+        return nextConfig.webpack(config, options);
+      }
+
       return config;
     },
   });

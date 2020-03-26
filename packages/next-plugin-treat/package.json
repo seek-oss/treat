@@ -13,10 +13,8 @@
     "directory": "packages/next-plugin-treat"
   },
   "license": "MIT",
-  "dependencies": {
-    "mini-css-extract-plugin": "^0.9.0"
-  },
   "peerDependencies": {
+    "mini-css-extract-plugin": "*",
     "treat": "^1.1.7"
   }
 }

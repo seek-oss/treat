@@ -1,4 +1,3 @@
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TreatPlugin = require('treat/webpack-plugin');
 
 module.exports = (pluginOptions = {}) => (nextConfig = {}) => {
@@ -7,7 +6,6 @@ module.exports = (pluginOptions = {}) => (nextConfig = {}) => {
       config.plugins.push(
         new TreatPlugin(
           Object.assign({}, pluginOptions, {
-            outputLoaders: [MiniCssExtractPlugin.loader],
             outputCSS: !options.isServer,
           }),
         ),

@@ -79,7 +79,7 @@
     "lunr": "^2.3.6",
     "mdx-loader": "^2.2.1",
     "mime-types": "^2.1.22",
-    "mini-css-extract-plugin": "^0.6.0",
+    "mini-css-extract-plugin": "^0.8.0",
     "prettier": "^1.16.4",
     "puppeteer": "^1.14.0",
     "react": "^16.8.3",

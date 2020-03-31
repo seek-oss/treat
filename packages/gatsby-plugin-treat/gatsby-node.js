@@ -8,10 +8,10 @@ exports.onCreateBabelConfig = ({ stage, actions }) => {
 };
 
 exports.onCreateWebpackConfig = ({ stage, actions }) => {
-  let config = {};
+  if (stage === `develop-html`) return;
 
   const identNameConfig =
-    stage === `develop` || stage === `develop-html`
+    stage === `develop`
       ? {
           localIdentName: '[name]-[local]_[hash:base64:5]',
           themeIdentName: '_[name]-[local]_[hash:base64:4]',
@@ -21,42 +21,27 @@ exports.onCreateWebpackConfig = ({ stage, actions }) => {
           themeIdentName: '[hash:base64:4]',
         };
 
+  let pluginOptions;
+
   switch (stage) {
     case `develop`:
-      config = {
-        plugins: [
-          new TreatPlugin({
-            ...identNameConfig,
-          }),
-        ],
-      };
-      break;
-
-    case `develop-html`:
+      pluginOptions = identNameConfig;
       break;
 
     case `build-javascript`:
-      config = {
-        plugins: [
-          new TreatPlugin({
-            ...identNameConfig,
-            outputLoaders: [MiniCssExtractPlugin.loader],
-          }),
-        ],
+      pluginOptions = {
+        ...identNameConfig,
+        outputLoaders: [MiniCssExtractPlugin.loader],
       };
       break;
 
     case `build-html`:
-      config = {
-        plugins: [
-          new TreatPlugin({
-            ...identNameConfig,
-            outputCSS: false,
-          }),
-        ],
+      pluginOptions = {
+        ...identNameConfig,
+        outputCSS: false,
       };
       break;
   }
 
-  actions.setWebpackConfig(config);
+  actions.setWebpackConfig({ plugins: [new TreatPlugin(pluginOptions)] });
 };

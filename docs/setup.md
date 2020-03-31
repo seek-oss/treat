@@ -128,8 +128,30 @@ If you're using the [React API](react-api), you'll want to provide the theme to 
 
 To use `treat` in a `gatsby` project, install `gatsby-plugin-treat` and add it to your `gatsby-config.js` file like this:
 
-```
+```js
 module.exports = {
-  plugins: [`gatsby-plugin-treat`],
+  plugins: [`gatsby-plugin-treat`]
+};
+```
+
+Additionally, the naming convention for CSS classes and themes can be overrided:
+
+```js
+module.exports = {
+  plugins: [
+    {
+      resolve: `gatsby-plugin-treat`,
+      options: {
+        // Useful for atomic styles with filename-independent class names
+        localIdentName:
+          process.env.NODE_ENV !== `production`
+            ? `[local]_[hash:base64:5]`
+            : `[hash:base64:5]`,
+
+        // Useful when only a single theme is applied
+        themeIdentName: ``
+      }
+    }
+  ]
 };
 ```

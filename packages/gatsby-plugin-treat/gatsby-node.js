@@ -7,10 +7,10 @@ exports.onCreateBabelConfig = ({ stage, actions }) => {
   });
 };
 
-exports.onCreateWebpackConfig = ({ stage, actions }) => {
+exports.onCreateWebpackConfig = ({ stage, actions }, pluginOptions) => {
   if (stage === `develop-html`) return;
 
-  const identNameConfig =
+  const defaultPluginOptions =
     stage === `develop`
       ? {
           localIdentName: '[name]-[local]_[hash:base64:5]',
@@ -20,27 +20,19 @@ exports.onCreateWebpackConfig = ({ stage, actions }) => {
           localIdentName: '[hash:base64:5]',
           themeIdentName: '[hash:base64:4]',
         };
+  pluginOptions = {
+    ...defaultPluginOptions,
+    ...pluginOptions,
+  };
 
-  let pluginOptions;
+  // Only the properties destructured below should be overridable from outside
+  const { localIdentName, themeIdentName } = pluginOptions;
+  pluginOptions = { localIdentName, themeIdentName };
 
-  switch (stage) {
-    case `develop`:
-      pluginOptions = identNameConfig;
-      break;
-
-    case `build-javascript`:
-      pluginOptions = {
-        ...identNameConfig,
-        outputLoaders: [MiniCssExtractPlugin.loader],
-      };
-      break;
-
-    case `build-html`:
-      pluginOptions = {
-        ...identNameConfig,
-        outputCSS: false,
-      };
-      break;
+  if (stage === `build-javascript`) {
+    pluginOptions.outputLoaders = [MiniCssExtractPlugin.loader];
+  } else if (stage === `build-html`) {
+    pluginOptions.outputCSS = false;
   }
 
   actions.setWebpackConfig({ plugins: [new TreatPlugin(pluginOptions)] });

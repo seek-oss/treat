@@ -1,13 +1,13 @@
 const TreatPlugin = require('treat/webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-exports.onCreateBabelConfig = ({stage, actions}) => {
+exports.onCreateBabelConfig = ({ stage, actions }) => {
   actions.setBabelPlugin({
     name: `babel-plugin-treat`,
   });
-}
+};
 
-exports.onCreateWebpackConfig = ({stage, actions}) => {
+exports.onCreateWebpackConfig = ({ stage, actions }) => {
   let config = {};
 
   const identNameConfig =
@@ -26,23 +26,23 @@ exports.onCreateWebpackConfig = ({stage, actions}) => {
       config = {
         plugins: [
           new TreatPlugin({
-            ...identNameConfig
+            ...identNameConfig,
           }),
-        ]
+        ],
       };
       break;
 
     case `develop-html`:
-      break;  
-    
+      break;
+
     case `build-javascript`:
       config = {
         plugins: [
           new TreatPlugin({
             ...identNameConfig,
-            outputLoaders: [MiniCssExtractPlugin.loader]
-          })
-        ]
+            outputLoaders: [MiniCssExtractPlugin.loader],
+          }),
+        ],
       };
       break;
 
@@ -51,13 +51,12 @@ exports.onCreateWebpackConfig = ({stage, actions}) => {
         plugins: [
           new TreatPlugin({
             ...identNameConfig,
-            outputCSS: false
+            outputCSS: false,
           }),
-        ]
+        ],
       };
       break;
-
   }
 
   actions.setWebpackConfig(config);
- }
+};

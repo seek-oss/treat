@@ -7,6 +7,7 @@ import {
   ClassRef,
   Style,
   GlobalStyle,
+  GlobalStyleMap,
   StylesMap,
   PostCSS,
   ThemeRef,
@@ -272,6 +273,23 @@ export function globalStyle(
     validateGlobalStyle(style);
 
     addLocalCss({ [normalisedSelector]: style });
+  }
+}
+
+export function globalStyleMap(
+  stylesheet: ThemedStyle<GlobalStyleMap, ThemeOrAny>,
+) {
+  if (typeof stylesheet === 'function') {
+    getThemes().forEach(theme => {
+      const style = stylesheet(theme);
+      Object.keys(style).forEach(selector =>
+        globalStyle(selector, style[selector]),
+      );
+    });
+  } else {
+    Object.keys(stylesheet).forEach(selector =>
+      globalStyle(selector, stylesheet[selector]),
+    );
   }
 }
 

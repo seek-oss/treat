@@ -38,6 +38,11 @@ export type Style = StyleWithSelectors & MediaQueries<StyleWithSelectors>;
 
 export type GlobalStyle = CSSProperties & MediaQueries<CSSProperties>;
 
+export type GlobalStyleMap = Record<
+  string,
+  CSSProperties & MediaQueries<CSSProperties>
+>;
+
 export type StyleMap<StyleName extends string | number, StyleType> = Record<
   StyleName,
   StyleType

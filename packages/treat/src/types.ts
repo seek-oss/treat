@@ -38,7 +38,7 @@ export type Style = StyleWithSelectors & MediaQueries<StyleWithSelectors>;
 
 export type GlobalStyle = CSSProperties & MediaQueries<CSSProperties>;
 
-export type GlobalStyleMap = Record<
+export type GlobalStyleSheet = Record<
   string,
   CSSProperties & MediaQueries<CSSProperties>
 >;

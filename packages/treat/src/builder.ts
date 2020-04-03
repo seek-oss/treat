@@ -7,7 +7,7 @@ import {
   ClassRef,
   Style,
   GlobalStyle,
-  GlobalStyleMap,
+  GlobalStyleSheet,
   StylesMap,
   PostCSS,
   ThemeRef,
@@ -276,8 +276,8 @@ export function globalStyle(
   }
 }
 
-export function globalStyleMap(
-  stylesheet: ThemedStyle<GlobalStyleMap, ThemeOrAny>,
+export function globalStyleSheet(
+  stylesheet: ThemedStyle<GlobalStyleSheet, ThemeOrAny>,
 ) {
   if (typeof stylesheet === 'function') {
     getThemes().forEach(theme => {

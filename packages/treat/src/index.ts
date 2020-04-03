@@ -4,7 +4,7 @@ export {
   styleMap,
   styleTree,
   globalStyle,
-  globalStyleMap,
+  globalStyleSheet,
 } from './builder';
 export { resolveStyles } from './resolveStyles';
 export { resolveClassName } from './resolveClassName';
@@ -12,7 +12,7 @@ export { resolveClassName } from './resolveClassName';
 export {
   Style,
   GlobalStyle,
-  GlobalStyleMap,
+  GlobalStyleSheet,
   CSSProperties,
   ThemeRef,
   ClassRef,

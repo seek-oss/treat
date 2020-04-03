@@ -555,40 +555,6 @@ html .bZ2kF {
         position: relative
     }
 }
-._1-2GZ_p20:focus {
-    color: purple
-}
-._2t1sd ._1-2GZ_p20 {
-    background-color: red
-}
-._3dbtz_p20 ._1-2GZ_p20 {
-    background-color: blue
-}
-._3dbtz_p20 ._2t1sd ._1-2GZ_p20 {
-    background-color: black
-}
-html ._1-2GZ_p20 {
-    position: absolute
-}
-@media screen and (min-width: 700px) {
-    ._1-2GZ_p20 {
-        color: green
-    }
-    ._2t1sd ._1-2GZ_p20 {
-        color: red
-    }
-    ._3dbtz_p20 ._1-2GZ_p20 {
-        color: blue
-    }
-    ._3dbtz_p20 ._2t1sd ._1-2GZ_p20 {
-        color: black
-    }
-}
-@media screen and (min-width: 701px) {
-    html ._1-2GZ_p20 {
-        position: relative
-    }
-}
 ._1-2GZ_1lKd:focus {
     color: purple
 }
@@ -601,8 +567,20 @@ html ._1-2GZ_p20 {
 ._3dbtz_1lKd ._2t1sd ._1-2GZ_1lKd {
     background-color: black
 }
+._3FOUy_1lKd {
+    color: red
+}
+._3pWjZ_1lKd {
+    color: magenta
+}
 html ._1-2GZ_1lKd {
     position: absolute
+}
+._3FOUy_1lKd svg {
+    color: red
+}
+._3pWjZ_1lKd svg {
+    color: magenta
 }
 @media screen and (min-width: 1000px) {
     ._1-2GZ_1lKd {
@@ -620,6 +598,52 @@ html ._1-2GZ_1lKd {
 }
 @media screen and (min-width: 1001px) {
     html ._1-2GZ_1lKd {
+        position: relative
+    }
+}
+._1-2GZ_p20:focus {
+    color: purple
+}
+._2t1sd ._1-2GZ_p20 {
+    background-color: red
+}
+._3dbtz_p20 ._1-2GZ_p20 {
+    background-color: blue
+}
+._3dbtz_p20 ._2t1sd ._1-2GZ_p20 {
+    background-color: black
+}
+._3FOUy_p20 {
+    color: blue
+}
+._3pWjZ_p20 {
+    color: cyan
+}
+html ._1-2GZ_p20 {
+    position: absolute
+}
+._3FOUy_p20 svg {
+    color: red
+}
+._3pWjZ_p20 svg {
+    color: magenta
+}
+@media screen and (min-width: 700px) {
+    ._1-2GZ_p20 {
+        color: green
+    }
+    ._2t1sd ._1-2GZ_p20 {
+        color: red
+    }
+    ._3dbtz_p20 ._1-2GZ_p20 {
+        color: blue
+    }
+    ._3dbtz_p20 ._2t1sd ._1-2GZ_p20 {
+        color: black
+    }
+}
+@media screen and (min-width: 701px) {
+    html ._1-2GZ_p20 {
         position: relative
     }
 }
@@ -673,8 +697,20 @@ html .complexSelectors-styles_blue_bZ2kF {
 .complexSelectors-themedStyle_3dbtz-big__p .complexSelectors-unthemedClassStyle_2t1sd .complexSelectors-red_1-2GZ-big__p {
     background-color: black
 }
+.complexSelectors-palette_primary_3FOUy-big__p {
+    color: blue
+}
+.complexSelectors-palette_secondary_3pWjZ-big__p {
+    color: cyan
+}
 html .complexSelectors-red_1-2GZ-big__p {
     position: absolute
+}
+.complexSelectors-palette_primary_3FOUy-big__p svg {
+    color: red
+}
+.complexSelectors-palette_secondary_3pWjZ-big__p svg {
+    color: magenta
 }
 @media screen and (min-width: 700px) {
     .complexSelectors-red_1-2GZ-big__p {
@@ -707,8 +743,20 @@ html .complexSelectors-red_1-2GZ-big__p {
 .complexSelectors-themedStyle_3dbtz-small_1l .complexSelectors-unthemedClassStyle_2t1sd .complexSelectors-red_1-2GZ-small_1l {
     background-color: black
 }
+.complexSelectors-palette_primary_3FOUy-small_1l {
+    color: red
+}
+.complexSelectors-palette_secondary_3pWjZ-small_1l {
+    color: magenta
+}
 html .complexSelectors-red_1-2GZ-small_1l {
     position: absolute
+}
+.complexSelectors-palette_primary_3FOUy-small_1l svg {
+    color: red
+}
+.complexSelectors-palette_secondary_3pWjZ-small_1l svg {
+    color: magenta
 }
 @media screen and (min-width: 1000px) {
     .complexSelectors-red_1-2GZ-small_1l {
@@ -779,8 +827,20 @@ html .complexSelectors-styles_blue_bZ2kF {
 .complexSelectors-themedStyle_3dbtz_complexSelectors-big__p20 .complexSelectors-unthemedClassStyle_2t1sd .complexSelectors-red_1-2GZ_complexSelectors-big__p20 {
     background-color: black
 }
+.complexSelectors-palette_primary_3FOUy_complexSelectors-big__p20 {
+    color: blue
+}
+.complexSelectors-palette_secondary_3pWjZ_complexSelectors-big__p20 {
+    color: cyan
+}
 html .complexSelectors-red_1-2GZ_complexSelectors-big__p20 {
     position: absolute
+}
+.complexSelectors-palette_primary_3FOUy_complexSelectors-big__p20 svg {
+    color: red
+}
+.complexSelectors-palette_secondary_3pWjZ_complexSelectors-big__p20 svg {
+    color: magenta
 }
 @media screen and (min-width: 700px) {
     .complexSelectors-red_1-2GZ_complexSelectors-big__p20 {
@@ -813,8 +873,20 @@ html .complexSelectors-red_1-2GZ_complexSelectors-big__p20 {
 .complexSelectors-themedStyle_3dbtz_complexSelectors-small_1lKd .complexSelectors-unthemedClassStyle_2t1sd .complexSelectors-red_1-2GZ_complexSelectors-small_1lKd {
     background-color: black
 }
+.complexSelectors-palette_primary_3FOUy_complexSelectors-small_1lKd {
+    color: red
+}
+.complexSelectors-palette_secondary_3pWjZ_complexSelectors-small_1lKd {
+    color: magenta
+}
 html .complexSelectors-red_1-2GZ_complexSelectors-small_1lKd {
     position: absolute
+}
+.complexSelectors-palette_primary_3FOUy_complexSelectors-small_1lKd svg {
+    color: red
+}
+.complexSelectors-palette_secondary_3pWjZ_complexSelectors-small_1lKd svg {
+    color: magenta
 }
 @media screen and (min-width: 1000px) {
     .complexSelectors-red_1-2GZ_complexSelectors-small_1lKd {
@@ -840,8 +912,8 @@ html .complexSelectors-red_1-2GZ_complexSelectors-small_1lKd {
 
 exports[`Stylesheet Complex selectors - Production mode - should create a deterministic stylesheet 1`] = `
 ".bZ2kF:focus{color:purple}._2t1sd .bZ2kF{background-color:red}._3dbtz_1lKd .bZ2kF,._3dbtz_p20 .bZ2kF{background-color:#00f}._3dbtz_1lKd ._2t1sd .bZ2kF,._3dbtz_p20 ._2t1sd .bZ2kF{background-color:#000}html .bZ2kF{position:absolute}@media screen and (min-width:300px){.bZ2kF{color:green}._2t1sd .bZ2kF{color:red}._3dbtz_1lKd .bZ2kF,._3dbtz_p20 .bZ2kF{color:#00f}._3dbtz_1lKd ._2t1sd .bZ2kF,._3dbtz_p20 ._2t1sd .bZ2kF{color:#000}}@media screen and (min-width:700px){html .bZ2kF{position:relative}}
-._1-2GZ_p20:focus{color:purple}._2t1sd ._1-2GZ_p20{background-color:red}._3dbtz_p20 ._1-2GZ_p20{background-color:#00f}._3dbtz_p20 ._2t1sd ._1-2GZ_p20{background-color:#000}html ._1-2GZ_p20{position:absolute}@media screen and (min-width:700px){._1-2GZ_p20{color:green}._2t1sd ._1-2GZ_p20{color:red}._3dbtz_p20 ._1-2GZ_p20{color:#00f}._3dbtz_p20 ._2t1sd ._1-2GZ_p20{color:#000}}@media screen and (min-width:701px){html ._1-2GZ_p20{position:relative}}
-._1-2GZ_1lKd:focus{color:purple}._2t1sd ._1-2GZ_1lKd{background-color:red}._3dbtz_1lKd ._1-2GZ_1lKd{background-color:#00f}._3dbtz_1lKd ._2t1sd ._1-2GZ_1lKd{background-color:#000}html ._1-2GZ_1lKd{position:absolute}@media screen and (min-width:1000px){._1-2GZ_1lKd{color:green}._2t1sd ._1-2GZ_1lKd{color:red}._3dbtz_1lKd ._1-2GZ_1lKd{color:#00f}._3dbtz_1lKd ._2t1sd ._1-2GZ_1lKd{color:#000}}@media screen and (min-width:1001px){html ._1-2GZ_1lKd{position:relative}}
+._1-2GZ_1lKd:focus{color:purple}._2t1sd ._1-2GZ_1lKd{background-color:red}._3dbtz_1lKd ._1-2GZ_1lKd{background-color:#00f}._3dbtz_1lKd ._2t1sd ._1-2GZ_1lKd{background-color:#000}._3FOUy_1lKd{color:red}._3pWjZ_1lKd{color:#f0f}html ._1-2GZ_1lKd{position:absolute}._3FOUy_1lKd svg{color:red}._3pWjZ_1lKd svg{color:#f0f}@media screen and (min-width:1000px){._1-2GZ_1lKd{color:green}._2t1sd ._1-2GZ_1lKd{color:red}._3dbtz_1lKd ._1-2GZ_1lKd{color:#00f}._3dbtz_1lKd ._2t1sd ._1-2GZ_1lKd{color:#000}}@media screen and (min-width:1001px){html ._1-2GZ_1lKd{position:relative}}
+._1-2GZ_p20:focus{color:purple}._2t1sd ._1-2GZ_p20{background-color:red}._3dbtz_p20 ._1-2GZ_p20{background-color:#00f}._3dbtz_p20 ._2t1sd ._1-2GZ_p20{background-color:#000}._3FOUy_p20{color:#00f}._3pWjZ_p20{color:#0ff}html ._1-2GZ_p20{position:absolute}._3FOUy_p20 svg{color:red}._3pWjZ_p20 svg{color:#f0f}@media screen and (min-width:700px){._1-2GZ_p20{color:green}._2t1sd ._1-2GZ_p20{color:red}._3dbtz_p20 ._1-2GZ_p20{color:#00f}._3dbtz_p20 ._2t1sd ._1-2GZ_p20{color:#000}}@media screen and (min-width:701px){html ._1-2GZ_p20{position:relative}}
 "
 `;
 
@@ -880,40 +952,6 @@ html .bZ2kF {
         position: relative
     }
 }
-._1-2GZ_big_theme__p:focus {
-    color: purple
-}
-._2t1sd ._1-2GZ_big_theme__p {
-    background-color: red
-}
-._3dbtz_big_theme__p ._1-2GZ_big_theme__p {
-    background-color: blue
-}
-._3dbtz_big_theme__p ._2t1sd ._1-2GZ_big_theme__p {
-    background-color: black
-}
-html ._1-2GZ_big_theme__p {
-    position: absolute
-}
-@media screen and (min-width: 700px) {
-    ._1-2GZ_big_theme__p {
-        color: green
-    }
-    ._2t1sd ._1-2GZ_big_theme__p {
-        color: red
-    }
-    ._3dbtz_big_theme__p ._1-2GZ_big_theme__p {
-        color: blue
-    }
-    ._3dbtz_big_theme__p ._2t1sd ._1-2GZ_big_theme__p {
-        color: black
-    }
-}
-@media screen and (min-width: 701px) {
-    html ._1-2GZ_big_theme__p {
-        position: relative
-    }
-}
 ._1-2GZ_small_theme_1l:focus {
     color: purple
 }
@@ -926,8 +964,20 @@ html ._1-2GZ_big_theme__p {
 ._3dbtz_small_theme_1l ._2t1sd ._1-2GZ_small_theme_1l {
     background-color: black
 }
+._3FOUy_small_theme_1l {
+    color: red
+}
+._3pWjZ_small_theme_1l {
+    color: magenta
+}
 html ._1-2GZ_small_theme_1l {
     position: absolute
+}
+._3FOUy_small_theme_1l svg {
+    color: red
+}
+._3pWjZ_small_theme_1l svg {
+    color: magenta
 }
 @media screen and (min-width: 1000px) {
     ._1-2GZ_small_theme_1l {
@@ -945,6 +995,52 @@ html ._1-2GZ_small_theme_1l {
 }
 @media screen and (min-width: 1001px) {
     html ._1-2GZ_small_theme_1l {
+        position: relative
+    }
+}
+._1-2GZ_big_theme__p:focus {
+    color: purple
+}
+._2t1sd ._1-2GZ_big_theme__p {
+    background-color: red
+}
+._3dbtz_big_theme__p ._1-2GZ_big_theme__p {
+    background-color: blue
+}
+._3dbtz_big_theme__p ._2t1sd ._1-2GZ_big_theme__p {
+    background-color: black
+}
+._3FOUy_big_theme__p {
+    color: blue
+}
+._3pWjZ_big_theme__p {
+    color: cyan
+}
+html ._1-2GZ_big_theme__p {
+    position: absolute
+}
+._3FOUy_big_theme__p svg {
+    color: red
+}
+._3pWjZ_big_theme__p svg {
+    color: magenta
+}
+@media screen and (min-width: 700px) {
+    ._1-2GZ_big_theme__p {
+        color: green
+    }
+    ._2t1sd ._1-2GZ_big_theme__p {
+        color: red
+    }
+    ._3dbtz_big_theme__p ._1-2GZ_big_theme__p {
+        color: blue
+    }
+    ._3dbtz_big_theme__p ._2t1sd ._1-2GZ_big_theme__p {
+        color: black
+    }
+}
+@media screen and (min-width: 701px) {
+    html ._1-2GZ_big_theme__p {
         position: relative
     }
 }

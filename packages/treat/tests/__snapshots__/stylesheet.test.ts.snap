@@ -1007,6 +1007,12 @@ body ._1WwEN {
 html ._3_dn5 {
     position: absolute
 }
+strong._3_dn5 {
+    opacity: 0.8
+}
+strong._1WwEN {
+    font-weight: bolder
+}
 @media screen and (min-width: 700px) {
     ._1WwEN {
         color: green
@@ -1036,6 +1042,12 @@ body .simple-mainStyles_red_1WwEN {
 }
 html .simple-mainStyles_blue_3_dn5 {
     position: absolute
+}
+strong.simple-mainStyles_blue_3_dn5 {
+    opacity: 0.8
+}
+strong.simple-mainStyles_red_1WwEN {
+    font-weight: bolder
 }
 @media screen and (min-width: 700px) {
     .simple-mainStyles_red_1WwEN {
@@ -1067,6 +1079,12 @@ body .simple-mainStyles_red_1WwEN {
 html .simple-mainStyles_blue_3_dn5 {
     position: absolute
 }
+strong.simple-mainStyles_blue_3_dn5 {
+    opacity: 0.8
+}
+strong.simple-mainStyles_red_1WwEN {
+    font-weight: bolder
+}
 @media screen and (min-width: 700px) {
     .simple-mainStyles_red_1WwEN {
         color: green
@@ -1076,7 +1094,7 @@ html .simple-mainStyles_blue_3_dn5 {
 `;
 
 exports[`Stylesheet Simple - Production mode - should create a deterministic stylesheet 1`] = `
-"body,html{background-color:pink}._3_dn5{height:100px;width:100px;color:#00f;display:flex}._3_dn5:hover{background-color:purple}._1WwEN{color:red}body ._1WwEN{z-index:2}html ._3_dn5{position:absolute}@media screen and (min-width:700px){._1WwEN{color:green}}
+"body,html{background-color:pink}._3_dn5{height:100px;width:100px;color:#00f;display:flex}._3_dn5:hover{background-color:purple}._1WwEN{color:red}body ._1WwEN{z-index:2}html ._3_dn5{position:absolute}strong._3_dn5{opacity:.8}strong._1WwEN{font-weight:bolder}@media screen and (min-width:700px){._1WwEN{color:green}}
 "
 `;
 
@@ -1101,6 +1119,12 @@ body ._1WwEN {
 }
 html ._3_dn5 {
     position: absolute
+}
+strong._3_dn5 {
+    opacity: 0.8
+}
+strong._1WwEN {
+    font-weight: bolder
 }
 @media screen and (min-width: 700px) {
     ._1WwEN {

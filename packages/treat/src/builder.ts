@@ -281,7 +281,7 @@ export function globalStyleSheet(
 ) {
   if (typeof stylesheet === 'function') {
     getThemes().forEach(theme => {
-      const style = stylesheet(theme);
+      const style = stylesheet(theme.tokens);
       Object.keys(style).forEach(selector =>
         globalStyle(selector, style[selector]),
       );

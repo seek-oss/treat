@@ -176,3 +176,27 @@ globalStyle('html, body', {
   padding: 0
 });
 ```
+
+> Note: If you want to use themed styles, your selector string **must** include a reference to an existing themed class, otherwise the theming system has no way to target each theme individually.
+
+## globalStyleSheet
+
+Type: `function`
+
+The `globalStyleSheet` function allows you to define a set of selector-based styles. This function is purely a side effect and does not create a new class.
+
+```js
+import { globalStyleSheet } from 'treat';
+
+globalStyleSheet({
+  'html, body': {
+    margin: 0,
+    padding: 0
+  },
+  'ol, ul': {
+    listStyle: 'none'
+  }
+});
+```
+
+> Note: If you want to use themed styles, **every** selector string within a global style sheet object **must** include a reference to an existing themed class, otherwise the theming system has no way to target each theme individually.

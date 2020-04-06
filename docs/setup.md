@@ -58,7 +58,7 @@ Then, add it to your Babel config. For example, in `.babelrc`:
 
 > Note: This can be automated via our [Babel plugin](#babel-setup).
 
-All styling APIs (except for [`globalStyle`](styling-api#globalstyle)) have an optional argument that allows you to provide a local debug name.
+All styling APIs (except for [`globalStyle`](styling-api#globalstyle) and [`globalStyleSheet`](styling-api#globalstylesheet)) have an optional argument that allows you to provide a local debug name.
 
 For example, the local name for the following style will be `style` by default because treat doesn't have access to your variable name at runtime.
 

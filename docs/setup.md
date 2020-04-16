@@ -134,7 +134,7 @@ module.exports = {
 };
 ```
 
-Additionally, the naming convention for CSS classes and themes can be overrided:
+Additionally, the naming convention for CSS classes and themes can be overridden.
 
 ```js
 module.exports = {

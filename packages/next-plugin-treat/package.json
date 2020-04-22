@@ -13,9 +13,6 @@
     "directory": "packages/next-plugin-treat"
   },
   "license": "MIT",
-  "dependencies": {
-    "@types/webpack": "*"
-  },
   "peerDependencies": {
     "treat": "^1.1.7"
   }

@@ -130,16 +130,16 @@ To use `treat` in a `gatsby` project, install `gatsby-plugin-treat` and add it t
 
 ```js
 module.exports = {
-  plugins: [`gatsby-plugin-treat`],
+  plugins: [`gatsby-plugin-treat`]
 };
 ```
 
 ## Next.js Setup
 
-To use `treat` in a `next` project, install `next-plugin-treat` and add it to your `next.config.js` file like this:
+To use `treat` in a `next` project, install `next-treat` and add it to your `next.config.js` file like this:
 
 ```js
-const withTreat = require('next-plugin-treat')(/* Extra TreatPlugin options */);
+const withTreat = require('next-treat')(/* Extra TreatPlugin options */);
 
 module.exports = withTreat(/* Additional Next.js configuration */);
 ```

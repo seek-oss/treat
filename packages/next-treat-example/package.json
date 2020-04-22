@@ -1,11 +1,11 @@
 {
-  "name": "next-plugin-treat-example",
+  "name": "next-treat-example",
   "private": true,
   "version": "1.0.0",
   "dependencies": {
     "babel-plugin-treat": "^1.1.0",
     "next": "9.2.2",
-    "next-plugin-treat": "^1.0.0",
+    "next-treat": "^1.0.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "treat": "^1.2.4"

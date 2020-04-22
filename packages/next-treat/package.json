@@ -1,5 +1,5 @@
 {
-  "name": "next-plugin-treat",
+  "name": "next-treat",
   "version": "1.0.0",
   "description": "Next.js plugin for treat",
   "keywords": [
@@ -10,7 +10,7 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/seek-oss/treat.git",
-    "directory": "packages/next-plugin-treat"
+    "directory": "packages/next-treat"
   },
   "license": "MIT",
   "peerDependencies": {

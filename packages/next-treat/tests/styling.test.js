@@ -4,26 +4,29 @@ import waitForLocalhost from 'wait-for-localhost';
 import getStyles from '../../../test-helpers/getStyles';
 import resolveBin from '../../../test-helpers/resolveBin';
 
-const nextjsServerPort = 9999;
+const nextjsServerPort = 9998;
 const nextjsBinaryPath = resolveBin('next', 'next');
-const nextjsFixturePath = path.resolve(__dirname, '../../next-plugin-treat-example');
+const nextjsFixturePath = path.resolve(__dirname, '../../next-treat-example');
 const nextjsExecArgs = {
-  shell: '/bin/bash', 
+  shell: '/bin/bash',
   cwd: nextjsFixturePath,
   env: {
-    NODE_ENV: 'development'
+    NODE_ENV: 'development',
   },
-  extendEnv: true
+  extendEnv: true,
 };
 let nextjsProcess;
 
 async function navigateToServerWhenReady() {
-  await waitForLocalhost({port: nextjsServerPort});
+  await waitForLocalhost({ port: nextjsServerPort });
   await page.goto(`http://localhost:${nextjsServerPort}/`);
 }
 
 async function startDevServer() {
-  nextjsProcess = execa(`${nextjsBinaryPath} -p ${nextjsServerPort}`, nextjsExecArgs);
+  nextjsProcess = execa(
+    `${nextjsBinaryPath} -p ${nextjsServerPort}`,
+    nextjsExecArgs,
+  );
   nextjsProcess.stdout.pipe(process.stdout);
   nextjsProcess.stderr.pipe(process.stdout);
   await navigateToServerWhenReady();
@@ -31,7 +34,10 @@ async function startDevServer() {
 
 async function startProdServer() {
   await execa(`${nextjsBinaryPath} build`, nextjsExecArgs);
-  nextjsProcess = execa(`${nextjsBinaryPath} start -p ${nextjsServerPort}`, nextjsExecArgs);
+  nextjsProcess = execa(
+    `${nextjsBinaryPath} start -p ${nextjsServerPort}`,
+    nextjsExecArgs,
+  );
   nextjsProcess.stdout.pipe(process.stdout);
   nextjsProcess.stderr.pipe(process.stdout);
   await navigateToServerWhenReady();
@@ -43,9 +49,7 @@ async function stopServer() {
 }
 
 describe('nextjs', () => {
-
   describe('develop', () => {
-
     beforeAll(() => startDevServer());
     afterAll(() => stopServer());
 
@@ -53,13 +57,13 @@ describe('nextjs', () => {
       const styles = await getStyles(page, 'body');
       expect(styles).toMatchSnapshot();
     });
-    
+
     test('it renders some button styles', async () => {
       await page.waitForSelector('button');
       const styles = await getStyles(page, 'button');
       expect(styles).toMatchSnapshot();
     });
-    
+
     test('it loads and renders some span styles', async () => {
       await page.waitForSelector('button');
       await page.click('button');
@@ -67,11 +71,9 @@ describe('nextjs', () => {
       const styles = await getStyles(page, 'span');
       expect(styles).toMatchSnapshot();
     });
-
   });
-  
+
   describe('build', () => {
-    
     beforeAll(() => startProdServer());
     afterAll(() => stopServer());
 
@@ -79,13 +81,13 @@ describe('nextjs', () => {
       const styles = await getStyles(page, 'body');
       expect(styles).toMatchSnapshot();
     });
-    
+
     test('it renders some button styles', async () => {
       await page.waitForSelector('button');
       const styles = await getStyles(page, 'button');
       expect(styles).toMatchSnapshot();
     });
-    
+
     test('it loads and renders some span styles', async () => {
       await page.waitForSelector('button');
       await page.click('button');
@@ -93,7 +95,5 @@ describe('nextjs', () => {
       const styles = await getStyles(page, 'span');
       expect(styles).toMatchSnapshot();
     });
-
   });
-
 });

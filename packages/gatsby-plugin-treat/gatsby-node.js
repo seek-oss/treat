@@ -13,6 +13,17 @@ exports.onCreateWebpackConfig = (
 ) => {
   if (stage === 'develop-html') return;
 
+  const defaultPluginOptions =
+    stage === 'develop'
+      ? {
+          localIdentName: '[name]-[local]_[hash:base64:5]',
+          themeIdentName: '_[name]-[local]_[hash:base64:4]',
+        }
+      : {
+          localIdentName: '[hash:base64:5]',
+          themeIdentName: '[hash:base64:4]',
+        };
+
   if (stage === 'build-javascript') {
     pluginOptions.outputLoaders = [MiniCssExtractPlugin.loader];
   } else if (stage === 'build-html') {
@@ -22,6 +33,7 @@ exports.onCreateWebpackConfig = (
   actions.setWebpackConfig({
     plugins: [
       new TreatPlugin({
+        ...defaultPluginOptions,
         ...pluginOptions,
       }),
     ],

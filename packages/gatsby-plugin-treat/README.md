@@ -2,7 +2,7 @@
 
 ## Setup
 
-To use `treat` in a `gatsby` project, install `gatsby-plugin-treat` and add it to your `gatsby-config.js` file like this:
+To use `treat` in a [Gatsby](https://www.gatsbyjs.org) project, install `gatsby-plugin-treat` and add it to your `gatsby-config.js` file like this:
 
 ```
 module.exports = {

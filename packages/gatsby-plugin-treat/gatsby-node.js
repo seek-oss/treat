@@ -7,7 +7,10 @@ exports.onCreateBabelConfig = ({ actions }) => {
   });
 };
 
-exports.onCreateWebpackConfig = ({ stage, actions }, pluginOptions) => {
+exports.onCreateWebpackConfig = (
+  { stage, actions },
+  { plugins, ...pluginOptions },
+) => {
   if (stage === 'develop-html') return;
 
   actions.setWebpackConfig({

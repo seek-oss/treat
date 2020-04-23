@@ -20,7 +20,7 @@ exports.onCreateWebpackConfig = (
         outputCSS: stage !== 'build-html',
         outputLoaders: [
           // Logic adopted from https://github.com/gatsbyjs/gatsby/blob/73eb53b18a2e8e7cf451312d74f6c07ed3bf35bc/packages/gatsby/src/utils/webpack-utils.ts#L185-L193
-          stage === 'build-javascript'
+          !stage.includes('develop')
             ? MiniCssExtractPlugin.loader
             : require.resolve('style-loader'),
         ],

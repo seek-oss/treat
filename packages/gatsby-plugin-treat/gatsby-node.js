@@ -1,22 +1,22 @@
 const TreatPlugin = require('treat/webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-exports.onCreateBabelConfig = ({ stage, actions }) => {
+exports.onCreateBabelConfig = ({ actions }) => {
   actions.setBabelPlugin({
-    name: `babel-plugin-treat`,
+    name: 'babel-plugin-treat',
   });
 };
 
 exports.onCreateWebpackConfig = ({ stage, actions }, pluginOptions) => {
-  if (stage === `develop-html`) return;
+  if (stage === 'develop-html') return;
 
   actions.setWebpackConfig({
     plugins: [
       new TreatPlugin({
         ...pluginOptions,
-        outputCSS: stage !== `build-html`,
+        outputCSS: stage !== 'build-html',
         outputLoaders:
-          stage === `build-javascript`
+          stage === 'build-javascript'
             ? [MiniCssExtractPlugin.loader]
             : ['style-loader'],
       }),

@@ -1,0 +1,19 @@
+{
+  "name": "next-treat",
+  "version": "1.0.0",
+  "description": "Next.js plugin for treat",
+  "keywords": [
+    "nextjs",
+    "nextjs-plugin",
+    "treat"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/seek-oss/treat.git",
+    "directory": "packages/next-treat"
+  },
+  "license": "MIT",
+  "peerDependencies": {
+    "treat": "^1.1.7"
+  }
+}

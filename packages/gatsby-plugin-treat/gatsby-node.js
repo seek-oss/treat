@@ -31,10 +31,12 @@ exports.onCreateWebpackConfig = (
         ...defaultPluginOptions,
         ...pluginOptions,
         outputCSS: !isSSR,
-        outputLoaders: [
-          // Logic adopted from https://github.com/gatsbyjs/gatsby/blob/7bc6af46e5bd4cdde76be3fa4a857e00fc2e4635/packages/gatsby/src/utils/webpack-utils.ts#L185-L193
-          !isDev ? MiniCssExtractPlugin.loader : 'style-loader',
-        ],
+        outputLoaders: !isDev
+          ? [
+              // Logic adopted from https://github.com/gatsbyjs/gatsby/blob/7bc6af46e5bd4cdde76be3fa4a857e00fc2e4635/packages/gatsby/src/utils/webpack-utils.ts#L185-L193
+              MiniCssExtractPlugin.loader,
+            ]
+          : undefined,
       }),
     ],
   });

@@ -134,7 +134,7 @@ module.exports = {
 };
 ```
 
-You can also provide [webpack options](webpack-options) to the plugin, for example:
+You can also provide [webpack options](webpack-options) to the plugin:
 
 ```js
 module.exports = {
@@ -142,15 +142,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-treat',
       options: {
-        localIdentName:
-          process.env.NODE_ENV !== 'production'
-            ? '[name]-[local]_[hash:base64:5]'
-            : '[hash:base64:5]',
-
-        themeIdentName:
-          process.env.NODE_ENV !== 'production'
-            ? '_[name]-[local]_[hash:base64:4]'
-            : '[hash:base64:4]'
+        // Plugin options go here...
       }
     }
   ]

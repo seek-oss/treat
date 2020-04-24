@@ -13,7 +13,6 @@ exports.onCreateWebpackConfig = (
 ) => {
   if (stage === 'develop-html') return;
 
-  const isSSR = stage.includes('html');
   const isDev = stage.includes('develop');
   const defaultPluginOptions = isDev
     ? {
@@ -30,7 +29,7 @@ exports.onCreateWebpackConfig = (
       new TreatPlugin({
         ...defaultPluginOptions,
         ...pluginOptions,
-        outputCSS: !isSSR,
+        outputCSS: !stage.includes('html'),
         outputLoaders: !isDev
           ? [
               // Logic adopted from https://github.com/gatsbyjs/gatsby/blob/7bc6af46e5bd4cdde76be3fa4a857e00fc2e4635/packages/gatsby/src/utils/webpack-utils.ts#L185-L193

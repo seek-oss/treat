@@ -134,7 +134,7 @@ module.exports = {
 };
 ```
 
-Additionally, the naming convention for CSS classes and themes can be overridden.
+You can also provide [webpack options](webpack-options) to the plugin, for example:
 
 ```js
 module.exports = {

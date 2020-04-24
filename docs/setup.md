@@ -130,7 +130,22 @@ To use `treat` in a [Gatsby](https://www.gatsbyjs.org) project, install `gatsby-
 
 ```js
 module.exports = {
-  plugins: [`gatsby-plugin-treat`]
+  plugins: ['gatsby-plugin-treat']
+};
+```
+
+You can also provide [webpack options](webpack-options) to the plugin:
+
+```js
+module.exports = {
+  plugins: [
+    {
+      resolve: 'gatsby-plugin-treat',
+      options: {
+        // Plugin options go here...
+      }
+    }
+  ]
 };
 ```
 

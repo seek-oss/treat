@@ -28,7 +28,7 @@ exports.onCreateWebpackConfig = (
         ...defaultPluginOptions,
         ...pluginOptions,
         outputCSS: !stage.includes('html'),
-        outputLoaders: loaders.miniCssExtract(),
+        outputLoaders: [loaders.miniCssExtract()],
       }),
     ],
   });

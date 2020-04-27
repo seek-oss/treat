@@ -1,7 +1,8 @@
 const postcss = require('postcss');
 const postcssJs = require('postcss-js');
 const cssnano = require('cssnano');
-const autoprefixer = require('autoprefixer');
+const flexbugsFixes = require("postcss-flexbugs-fixes");
+const presetEnv = require("postcss-preset-env");
 
 // Import from compiled code
 const transformCSS = require('../lib/commonjs/transformCSS').default;
@@ -13,7 +14,16 @@ const processCss = async (styles, { minify, browsers, from }) => {
     return null;
   }
 
-  const postcssPlugins = [autoprefixer({ overrideBrowserslist: browsers })];
+  const postcssPlugins = [
+    flexbugsFixes(),
+    presetEnv({
+      autoprefixer: {
+        flexbox: "no-2009",
+      },
+      browsers,
+      stage: 2,
+    }),
+  ];
 
   if (minify) {
     postcssPlugins.push(cssnano());

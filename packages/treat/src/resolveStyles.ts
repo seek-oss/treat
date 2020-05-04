@@ -1,3 +1,4 @@
+import klona from 'klona';
 import { resolveClassName } from './resolveClassName';
 import { ThemeRef, TreatModule } from './types';
 
@@ -31,7 +32,7 @@ const walkTreatModule = <UserStyles extends TreatModule>(
   themeRef: ThemeRef,
   styles: UserStyles,
 ): UserStyles => {
-  const clone = styles.constructor();
+  const clone = klona(styles);
 
   for (let key in styles) {
     const value = styles[key];

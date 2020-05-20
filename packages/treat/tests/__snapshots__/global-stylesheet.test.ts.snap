@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Global stylesheet should not accept themed styles within the plain global style sheet 1`] = `
+"Unthemeable selector: div
+
+Global styles cannot be themed unless the selector references a themed class.
+
+For example, you could add a themed class to the start of your selector (e.g. \`\${themedClass} h1\`).
+
+Without a reference to a themed class, there is no way to selectively apply styles based on the current theme."
+`;

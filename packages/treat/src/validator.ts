@@ -33,15 +33,13 @@ const makeMediaQuerySchema = (valueSchema: ObjectSchema) =>
 
 const fullStyleWithMedia = makeMediaQuerySchema(fullStyle).required();
 
-const globalStyleWithMedia = makeMediaQuerySchema(
-  fullStyle.forbiddenKeys('selectors', ...simplePseudos),
-).required();
+const globalStyleWithMedia = makeMediaQuerySchema(fullStyle).required();
 
 const validate = (handler: Schema) => (value: any) => {
   const { error } = handler.validate(value);
 
   if (error !== null) {
-    throw error;
+    console.error(error);
   }
 };
 

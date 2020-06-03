@@ -11,7 +11,8 @@
     "build:module": "tsc --module es2015 --outDir lib/module --declaration false",
     "build:commonjs": "tsc --module commonjs --outDir lib/commonjs --declaration false",
     "build:types": "tsc --emitDeclarationOnly --declaration true --declarationDir lib/types",
-    "build": "concurrently \"yarn:build:module\" \"yarn:build:commonjs\" \"yarn:build:types\""
+    "build": "concurrently \"yarn:build:module\" \"yarn:build:commonjs\" \"yarn:build:types\"",
+    "watch": "tsc --watch --module es2015 --outDir lib/module --declaration false"
   },
   "author": "SEEK",
   "license": "MIT",
@@ -20,7 +21,7 @@
     "webpack": "^4.30.0"
   },
   "dependencies": {
-    "@hapi/joi": "^15.0.3",
+    "@hapi/joi": "^17.1.1",
     "autoprefixer": "^9.6.0",
     "bluebird": "^3.5.4",
     "chalk": "^2.4.2",

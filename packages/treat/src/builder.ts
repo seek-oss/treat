@@ -203,6 +203,7 @@ export function styleMap<StyleName extends string | number>(
   } else {
     const postCss: PostCSS = fromPairs(
       Object.entries(stylesheet).map(
+        // @ts-expect-error
         ([classIdentifier, style]: [ClassRef, Style]) => {
           validateStyle(style);
 
@@ -223,10 +224,14 @@ export function styleMap<StyleName extends string | number>(
     addLocalCss(postCss);
   }
 
+  // @ts-expect-error
   return classRefs;
 }
 
-export function createTheme(tokens: ThemeOrAny, localDebugName?: string): ThemeRef {
+export function createTheme(
+  tokens: ThemeOrAny,
+  localDebugName?: string,
+): ThemeRef {
   const theme = {
     themeRef: getIdentName(localDebugName || 'theme', getNextScope(), tokens),
     tokens,

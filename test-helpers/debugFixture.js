@@ -33,7 +33,10 @@ const config = {
             options: {
               babelrc: false,
               presets: [
-                ['@babel/preset-env', { modules: false }],
+                [
+                  '@babel/preset-env',
+                  { modules: false, targets: { chrome: 80 } },
+                ],
                 '@babel/preset-typescript',
                 '@babel/preset-react',
               ],

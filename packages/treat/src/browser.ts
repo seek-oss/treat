@@ -50,7 +50,8 @@ setWebpackTreat({
     });
   },
   getThemes: () => Array.from(themes.values()).map(({ theme }) => theme),
-  getIdentName: (local, _, theme) => `${theme ? '_' : ''}${local}`,
+  getIdentName: (local, scopeId, theme) =>
+    `${theme ? '_' : ''}${local}${scopeId}`,
 });
 
 export {

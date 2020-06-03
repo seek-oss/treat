@@ -51,10 +51,10 @@ const config = {
     ],
   },
   plugins: [
-    new TreatPlugin({
-      outputLoaders: [MiniCssExtractPlugin.loader],
-      verbose: true,
-    }),
+    // new TreatPlugin({
+    //   outputLoaders: [MiniCssExtractPlugin.loader],
+    //   verbose: true,
+    // }),
     new MiniCssExtractPlugin(),
     new HtmlWebpackPlugin(),
   ],

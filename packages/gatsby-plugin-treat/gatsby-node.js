@@ -1,5 +1,4 @@
 const TreatPlugin = require('treat/webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 exports.onCreateBabelConfig = ({ actions }) => {
   actions.setBabelPlugin({
@@ -8,13 +7,12 @@ exports.onCreateBabelConfig = ({ actions }) => {
 };
 
 exports.onCreateWebpackConfig = (
-  { stage, actions },
+  { stage, loaders, actions },
   { plugins, ...pluginOptions },
 ) => {
   if (stage === 'develop-html') return;
 
-  const isDev = stage.includes('develop');
-  const defaultPluginOptions = isDev
+  const defaultPluginOptions = stage.includes('develop')
     ? {
         localIdentName: '[name]-[local]_[hash:base64:5]',
         themeIdentName: '_[name]-[local]_[hash:base64:4]',
@@ -30,12 +28,7 @@ exports.onCreateWebpackConfig = (
         ...defaultPluginOptions,
         ...pluginOptions,
         outputCSS: !stage.includes('html'),
-        outputLoaders: !isDev
-          ? [
-              // Logic adopted from https://github.com/gatsbyjs/gatsby/blob/7bc6af46e5bd4cdde76be3fa4a857e00fc2e4635/packages/gatsby/src/utils/webpack-utils.ts#L185-L193
-              MiniCssExtractPlugin.loader,
-            ]
-          : undefined,
+        outputLoaders: [loaders.miniCssExtract()],
       }),
     ],
   });

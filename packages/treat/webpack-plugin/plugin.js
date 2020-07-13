@@ -32,7 +32,7 @@ module.exports = class TreatWebpackPlugin {
     optionValidator(options);
 
     const {
-      test = /\.treat.(js|ts)$/,
+      test = /\.treat\.(js|ts)$/,
       outputCSS = true,
       outputLoaders = ['style-loader'],
       localIdentName,

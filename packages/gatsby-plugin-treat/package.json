@@ -1,7 +1,7 @@
 {
   "name": "gatsby-plugin-treat",
   "description": "Gatsby plugin for treat",
-  "version": "1.4.0",
+  "version": "1.4.2",
   "keywords": [
     "gatsby",
     "gatsby-plugin",
@@ -14,8 +14,7 @@
     "treat": "^1.1.7"
   },
   "dependencies": {
-    "babel-plugin-treat": "^1.1.0",
-    "mini-css-extract-plugin": "^0.8.0"
+    "babel-plugin-treat": "^1.1.0"
   },
   "license": "MIT"
 }

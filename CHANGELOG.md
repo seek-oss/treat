@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.2](https://github.com/seek-oss/treat/compare/v1.4.1...v1.4.2) (2020-04-26)
+
+
+### Bug Fixes
+
+* **gatsby-plugin:** Idiomatic SSR setup ([#108](https://github.com/seek-oss/treat/issues/108)) ([4dc6d9c](https://github.com/seek-oss/treat/commit/4dc6d9c))
+
+
+
+
+
+## [1.4.1](https://github.com/seek-oss/treat/compare/v1.4.0...v1.4.1) (2020-04-26)
+
+
+### Bug Fixes
+
+* **webpack-plugin:** Checking treat file extension ([#107](https://github.com/seek-oss/treat/issues/107)) ([5f5e838](https://github.com/seek-oss/treat/commit/5f5e838))
+
+
+
+
+
 # [1.4.0](https://github.com/seek-oss/treat/compare/v1.3.0...v1.4.0) (2020-04-24)
 
 

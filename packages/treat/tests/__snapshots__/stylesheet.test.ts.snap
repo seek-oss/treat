@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Stylesheet Animations - Autoprefixer (iOS 8) - should create a deterministic stylesheet 1`] = `
-"@-webkit-keyframes Xxm1J {
+"@-webkit-keyframes _0afb7 {
     from {
         opacity: 0
     }
@@ -9,7 +9,7 @@ exports[`Stylesheet Animations - Autoprefixer (iOS 8) - should create a determin
         opacity: 1
     }
 }
-@keyframes Xxm1J {
+@keyframes _0afb7 {
     from {
         opacity: 0
     }
@@ -17,7 +17,7 @@ exports[`Stylesheet Animations - Autoprefixer (iOS 8) - should create a determin
         opacity: 1
     }
 }
-@-webkit-keyframes Yuc9Q {
+@-webkit-keyframes _92d6d {
     from {
         color: rgba(255,255,255,0);
         -webkit-transform: scale(1);
@@ -41,7 +41,7 @@ exports[`Stylesheet Animations - Autoprefixer (iOS 8) - should create a determin
         color: rgba(255,255,255,1)
     }
 }
-@keyframes Yuc9Q {
+@keyframes _92d6d {
     from {
         color: rgba(255,255,255,0);
         -webkit-transform: scale(1);
@@ -65,7 +65,7 @@ exports[`Stylesheet Animations - Autoprefixer (iOS 8) - should create a determin
         color: rgba(255,255,255,1)
     }
 }
-@-webkit-keyframes ULbBx {
+@-webkit-keyframes _78cfa {
     from {
         -webkit-transform: rotate(0deg);
                 transform: rotate(0deg)
@@ -75,7 +75,7 @@ exports[`Stylesheet Animations - Autoprefixer (iOS 8) - should create a determin
                 transform: rotate(359deg)
     }
 }
-@keyframes ULbBx {
+@keyframes _78cfa {
     from {
         -webkit-transform: rotate(0deg);
                 transform: rotate(0deg)
@@ -103,13 +103,13 @@ exports[`Stylesheet Animations - Autoprefixer (iOS 8) - should create a determin
             animation-duration: 3s;
     -webkit-animation-fill-mode: both;
             animation-fill-mode: both;
-    -webkit-animation-name: Xxm1J;
-            animation-name: Xxm1J
+    -webkit-animation-name: _0afb7;
+            animation-name: _0afb7
 }
 @media (min-width: 700px) {
     ._1aUDE:hover {
-        -webkit-animation: Yuc9Q 1.5s ease-out forwards;
-                animation: Yuc9Q 1.5s ease-out forwards
+        -webkit-animation: _92d6d 1.5s ease-out forwards;
+                animation: _92d6d 1.5s ease-out forwards
     }
 }
 @media (max-width: 699px) {
@@ -120,45 +120,11 @@ exports[`Stylesheet Animations - Autoprefixer (iOS 8) - should create a determin
                 animation-duration: 1.5s;
         -webkit-animation-iteration-count: infinite;
                 animation-iteration-count: infinite;
-        -webkit-animation-name: ULbBx;
-                animation-name: ULbBx
+        -webkit-animation-name: _78cfa;
+                animation-name: _78cfa
     }
 }
-@-webkit-keyframes _0Mv05 {
-    from {
-        background-color: white
-    }
-    to {
-        background-color: red
-    }
-}
-@keyframes _0Mv05 {
-    from {
-        background-color: white
-    }
-    to {
-        background-color: red
-    }
-}
-.tjufO_3XPt {
-    height: 200px;
-    width: 200px
-}
-._1aUDE ~ .tjufO_3XPt {
-    -webkit-animation-timing-function: linear;
-            animation-timing-function: linear;
-    -webkit-animation-duration: 1s;
-            animation-duration: 1s;
-    -webkit-animation-direction: alternate;
-            animation-direction: alternate;
-    -webkit-animation-fill-mode: both;
-            animation-fill-mode: both;
-    -webkit-animation-iteration-count: infinite;
-            animation-iteration-count: infinite;
-    -webkit-animation-name: _0Mv05;
-            animation-name: _0Mv05
-}
-@-webkit-keyframes _3W3VQ {
+@-webkit-keyframes b0ae1 {
     from {
         background-color: white
     }
@@ -166,7 +132,7 @@ exports[`Stylesheet Animations - Autoprefixer (iOS 8) - should create a determin
         background-color: blue
     }
 }
-@keyframes _3W3VQ {
+@keyframes b0ae1 {
     from {
         background-color: white
     }
@@ -189,14 +155,48 @@ exports[`Stylesheet Animations - Autoprefixer (iOS 8) - should create a determin
             animation-fill-mode: both;
     -webkit-animation-iteration-count: infinite;
             animation-iteration-count: infinite;
-    -webkit-animation-name: _3W3VQ;
-            animation-name: _3W3VQ
+    -webkit-animation-name: b0ae1;
+            animation-name: b0ae1
+}
+@-webkit-keyframes _9dba8 {
+    from {
+        background-color: white
+    }
+    to {
+        background-color: red
+    }
+}
+@keyframes _9dba8 {
+    from {
+        background-color: white
+    }
+    to {
+        background-color: red
+    }
+}
+.tjufO_3XPt {
+    height: 200px;
+    width: 200px
+}
+._1aUDE ~ .tjufO_3XPt {
+    -webkit-animation-timing-function: linear;
+            animation-timing-function: linear;
+    -webkit-animation-duration: 1s;
+            animation-duration: 1s;
+    -webkit-animation-direction: alternate;
+            animation-direction: alternate;
+    -webkit-animation-fill-mode: both;
+            animation-fill-mode: both;
+    -webkit-animation-iteration-count: infinite;
+            animation-iteration-count: infinite;
+    -webkit-animation-name: _9dba8;
+            animation-name: _9dba8
 }
 "
 `;
 
 exports[`Stylesheet Animations - Custom idents - should create a deterministic stylesheet 1`] = `
-"@keyframes Xxm1J {
+"@keyframes _0afb7 {
     from {
         opacity: 0
     }
@@ -204,7 +204,7 @@ exports[`Stylesheet Animations - Custom idents - should create a deterministic s
         opacity: 1
     }
 }
-@keyframes Yuc9Q {
+@keyframes _92d6d {
     from {
         color: rgba(255,255,255,0);
         transform: scale(1)
@@ -223,7 +223,7 @@ exports[`Stylesheet Animations - Custom idents - should create a deterministic s
         color: rgba(255,255,255,1)
     }
 }
-@keyframes ULbBx {
+@keyframes _78cfa {
     from {
         transform: rotate(0deg)
     }
@@ -243,11 +243,11 @@ exports[`Stylesheet Animations - Custom idents - should create a deterministic s
     animation-timing-function: linear;
     animation-duration: 3s;
     animation-fill-mode: both;
-    animation-name: Xxm1J
+    animation-name: _0afb7
 }
 @media (min-width: 700px) {
     .animations-unthemedAnimation_1aUDE:hover {
-        animation: Yuc9Q 1.5s ease-out forwards
+        animation: _92d6d 1.5s ease-out forwards
     }
 }
 @media (max-width: 699px) {
@@ -255,10 +255,10 @@ exports[`Stylesheet Animations - Custom idents - should create a deterministic s
         animation-timing-function: linear;
         animation-duration: 1.5s;
         animation-iteration-count: infinite;
-        animation-name: ULbBx
+        animation-name: _78cfa
     }
 }
-@keyframes _0Mv05 {
+@keyframes _9dba8 {
     from {
         background-color: white
     }
@@ -276,9 +276,9 @@ exports[`Stylesheet Animations - Custom idents - should create a deterministic s
     animation-direction: alternate;
     animation-fill-mode: both;
     animation-iteration-count: infinite;
-    animation-name: _0Mv05
+    animation-name: _9dba8
 }
-@keyframes _3W3VQ {
+@keyframes b0ae1 {
     from {
         background-color: white
     }
@@ -296,13 +296,13 @@ exports[`Stylesheet Animations - Custom idents - should create a deterministic s
     animation-direction: alternate;
     animation-fill-mode: both;
     animation-iteration-count: infinite;
-    animation-name: _3W3VQ
+    animation-name: b0ae1
 }
 "
 `;
 
 exports[`Stylesheet Animations - Development mode - should create a deterministic stylesheet 1`] = `
-"@keyframes Xxm1J {
+"@keyframes _0afb7 {
     from {
         opacity: 0
     }
@@ -310,7 +310,7 @@ exports[`Stylesheet Animations - Development mode - should create a deterministi
         opacity: 1
     }
 }
-@keyframes Yuc9Q {
+@keyframes _92d6d {
     from {
         color: rgba(255,255,255,0);
         transform: scale(1)
@@ -329,7 +329,7 @@ exports[`Stylesheet Animations - Development mode - should create a deterministi
         color: rgba(255,255,255,1)
     }
 }
-@keyframes ULbBx {
+@keyframes _78cfa {
     from {
         transform: rotate(0deg)
     }
@@ -349,11 +349,11 @@ exports[`Stylesheet Animations - Development mode - should create a deterministi
     animation-timing-function: linear;
     animation-duration: 3s;
     animation-fill-mode: both;
-    animation-name: Xxm1J
+    animation-name: _0afb7
 }
 @media (min-width: 700px) {
     .animations-unthemedAnimation_1aUDE:hover {
-        animation: Yuc9Q 1.5s ease-out forwards
+        animation: _92d6d 1.5s ease-out forwards
     }
 }
 @media (max-width: 699px) {
@@ -361,10 +361,10 @@ exports[`Stylesheet Animations - Development mode - should create a deterministi
         animation-timing-function: linear;
         animation-duration: 1.5s;
         animation-iteration-count: infinite;
-        animation-name: ULbBx
+        animation-name: _78cfa
     }
 }
-@keyframes _3W3VQ {
+@keyframes b0ae1 {
     from {
         background-color: white
     }
@@ -382,9 +382,9 @@ exports[`Stylesheet Animations - Development mode - should create a deterministi
     animation-direction: alternate;
     animation-fill-mode: both;
     animation-iteration-count: infinite;
-    animation-name: _3W3VQ
+    animation-name: b0ae1
 }
-@keyframes _0Mv05 {
+@keyframes _9dba8 {
     from {
         background-color: white
     }
@@ -402,20 +402,20 @@ exports[`Stylesheet Animations - Development mode - should create a deterministi
     animation-direction: alternate;
     animation-fill-mode: both;
     animation-iteration-count: infinite;
-    animation-name: _0Mv05
+    animation-name: _9dba8
 }
 "
 `;
 
 exports[`Stylesheet Animations - Production mode - should create a deterministic stylesheet 1`] = `
-"@keyframes Xxm1J{0%{opacity:0}to{opacity:1}}@keyframes Yuc9Q{0%{color:hsla(0,0%,100%,0);transform:scale(1)}25%{transform:scale(2,3)}50%{transform:scale(5)}75%{transform:scale(4,.5)}to{transform:scale(1);color:#fff}}@keyframes ULbBx{0%{transform:rotate(0deg)}to{transform:rotate(359deg)}}._1aUDE{margin-left:300px;display:flex;justify-content:center;align-items:center;height:200px;width:200px;background-color:#ff0;color:hsla(0,0%,100%,0);animation-timing-function:linear;animation-duration:3s;animation-fill-mode:both;animation-name:Xxm1J}@media (min-width:700px){._1aUDE:hover{animation:Yuc9Q 1.5s ease-out forwards}}@media (max-width:699px){._1aUDE{animation-timing-function:linear;animation-duration:1.5s;animation-iteration-count:infinite;animation-name:ULbBx}}
-@keyframes _0Mv05{0%{background-color:#fff}to{background-color:red}}.tjufO_3XPt{height:200px;width:200px}._1aUDE~.tjufO_3XPt{animation-timing-function:linear;animation-duration:1s;animation-direction:alternate;animation-fill-mode:both;animation-iteration-count:infinite;animation-name:_0Mv05}
-@keyframes _3W3VQ{0%{background-color:#fff}to{background-color:#00f}}.tjufO_6Iw9{height:200px;width:200px}._1aUDE~.tjufO_6Iw9{animation-timing-function:linear;animation-duration:3s;animation-direction:alternate;animation-fill-mode:both;animation-iteration-count:infinite;animation-name:_3W3VQ}
+"@keyframes _0afb7{0%{opacity:0}to{opacity:1}}@keyframes _92d6d{0%{color:hsla(0,0%,100%,0);transform:scale(1)}25%{transform:scale(2,3)}50%{transform:scale(5)}75%{transform:scale(4,.5)}to{transform:scale(1);color:#fff}}@keyframes _78cfa{0%{transform:rotate(0deg)}to{transform:rotate(359deg)}}._1aUDE{margin-left:300px;display:flex;justify-content:center;align-items:center;height:200px;width:200px;background-color:#ff0;color:hsla(0,0%,100%,0);animation-timing-function:linear;animation-duration:3s;animation-fill-mode:both;animation-name:_0afb7}@media (min-width:700px){._1aUDE:hover{animation:_92d6d 1.5s ease-out forwards}}@media (max-width:699px){._1aUDE{animation-timing-function:linear;animation-duration:1.5s;animation-iteration-count:infinite;animation-name:_78cfa}}
+@keyframes b0ae1{0%{background-color:#fff}to{background-color:#00f}}.tjufO_6Iw9{height:200px;width:200px}._1aUDE~.tjufO_6Iw9{animation-timing-function:linear;animation-duration:3s;animation-direction:alternate;animation-fill-mode:both;animation-iteration-count:infinite;animation-name:b0ae1}
+@keyframes _9dba8{0%{background-color:#fff}to{background-color:red}}.tjufO_3XPt{height:200px;width:200px}._1aUDE~.tjufO_3XPt{animation-timing-function:linear;animation-duration:1s;animation-direction:alternate;animation-fill-mode:both;animation-iteration-count:infinite;animation-name:_9dba8}
 "
 `;
 
 exports[`Stylesheet Animations - Theme function ident - should create a deterministic stylesheet 1`] = `
-"@keyframes Xxm1J {
+"@keyframes _0afb7 {
     from {
         opacity: 0
     }
@@ -423,7 +423,7 @@ exports[`Stylesheet Animations - Theme function ident - should create a determin
         opacity: 1
     }
 }
-@keyframes Yuc9Q {
+@keyframes _92d6d {
     from {
         color: rgba(255,255,255,0);
         transform: scale(1)
@@ -442,7 +442,7 @@ exports[`Stylesheet Animations - Theme function ident - should create a determin
         color: rgba(255,255,255,1)
     }
 }
-@keyframes ULbBx {
+@keyframes _78cfa {
     from {
         transform: rotate(0deg)
     }
@@ -462,11 +462,11 @@ exports[`Stylesheet Animations - Theme function ident - should create a determin
     animation-timing-function: linear;
     animation-duration: 3s;
     animation-fill-mode: both;
-    animation-name: Xxm1J
+    animation-name: _0afb7
 }
 @media (min-width: 700px) {
     ._1aUDE:hover {
-        animation: Yuc9Q 1.5s ease-out forwards
+        animation: _92d6d 1.5s ease-out forwards
     }
 }
 @media (max-width: 699px) {
@@ -474,30 +474,10 @@ exports[`Stylesheet Animations - Theme function ident - should create a determin
         animation-timing-function: linear;
         animation-duration: 1.5s;
         animation-iteration-count: infinite;
-        animation-name: ULbBx
+        animation-name: _78cfa
     }
 }
-@keyframes _0Mv05 {
-    from {
-        background-color: white
-    }
-    to {
-        background-color: red
-    }
-}
-.tjufO_fast_3X {
-    height: 200px;
-    width: 200px
-}
-._1aUDE ~ .tjufO_fast_3X {
-    animation-timing-function: linear;
-    animation-duration: 1s;
-    animation-direction: alternate;
-    animation-fill-mode: both;
-    animation-iteration-count: infinite;
-    animation-name: _0Mv05
-}
-@keyframes _3W3VQ {
+@keyframes b0ae1 {
     from {
         background-color: white
     }
@@ -515,7 +495,27 @@ exports[`Stylesheet Animations - Theme function ident - should create a determin
     animation-direction: alternate;
     animation-fill-mode: both;
     animation-iteration-count: infinite;
-    animation-name: _3W3VQ
+    animation-name: b0ae1
+}
+@keyframes _9dba8 {
+    from {
+        background-color: white
+    }
+    to {
+        background-color: red
+    }
+}
+.tjufO_fast_3X {
+    height: 200px;
+    width: 200px
+}
+._1aUDE ~ .tjufO_fast_3X {
+    animation-timing-function: linear;
+    animation-duration: 1s;
+    animation-direction: alternate;
+    animation-fill-mode: both;
+    animation-iteration-count: infinite;
+    animation-name: _9dba8
 }
 "
 `;

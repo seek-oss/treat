@@ -285,7 +285,7 @@ const serializeTreatModule = (loader, cssRequests, exports, hmr) => {
   if (hmr) {
     outputCode.push(`
     if (module.hot) {
-      const exportHash = '${loaderUtils.interpolateName(
+      var exportHash = '${loaderUtils.interpolateName(
         loader,
         '[contenthash]',
         {

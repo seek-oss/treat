@@ -76,7 +76,7 @@ _Type: `boolean`_
 
 Enable hot module reloading for treat modules. 
 
-**Note:** This only enables HMR for the generated JavaScript. As treat forwards CSS to your `outputLoaders` (e.g. MiniCSSExtractPlugin) you'll need to refer to their docs for how to setup HMR for your CSS.
+**Note:** This only enables HMR for the generated JavaScript. As treat forwards CSS to your `outputLoaders` (e.g. MiniCssExtractPlugin) you'll need to refer to their docs for how to set up HMR for your CSS.
 
 ```js
 // Example setup for MiniCSSExtractPlugin

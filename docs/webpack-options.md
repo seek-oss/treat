@@ -68,4 +68,33 @@ _Type: `boolean`_
 
 Configures whether to output CSS in the resulting bundle. Useful for server rendered apps that have separate webpack builds for client and server code, only one of which needs to generate styles.
 
+## hmr
+_Default: `false`_<br />
+_Type: `boolean`_
+
+> Requires at least webpack v4.43.0
+
+Enable hot module reloading for treat modules. 
+
+**Note:** This only enables HMR for the generated JavaScript. As treat forwards CSS to your `outputLoaders` (e.g. MiniCSSExtractPlugin) you'll need to refer to their docs for how to setup HMR for your CSS.
+
+```js
+// Example setup for MiniCSSExtractPlugin
+module.exports = {
+  plugins: [
+    new TreatPlugin({
+      hmr: process.env.NODE_ENV === 'development',
+      outputLoaders: [{
+        loader: MiniCssExtractPlugin.loader,
+        options: {
+          hmr: process.env.NODE_ENV === 'development',
+          reloadAll: true, // Required for treat HMR to work
+        },
+      }]
+    }),
+    new MiniCssExtractPlugin()
+  ]
+};
+```
+
 <!-- prettier-ignore-end -->

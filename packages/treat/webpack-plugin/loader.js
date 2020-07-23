@@ -293,7 +293,7 @@ const serializeTreatModule = (loader, cssRequests, exports, hmr) => {
         },
       )}';
             
-      if(module.hot.data && typeof module.hot.data.oldExportHash === 'string' && module.hot.data.oldExportHash !== exportHash) {
+      if (module.hot.data && typeof module.hot.data.oldExportHash === 'string' && module.hot.data.oldExportHash !== exportHash) {
         module.hot.invalidate();
       } else {
         module.hot.dispose(function(data) {

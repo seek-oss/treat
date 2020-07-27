@@ -106,11 +106,10 @@ function getRootCompilation(loader) {
   return compilation;
 }
 
-function compileTreatSource(loader, request) {
+function compileTreatSource(loader) {
   return new Promise((resolve, reject) => {
     // Child compiler will compile treat files to be evaled during compilation
-    const childFilename = loaderUtils.interpolateName(loader, '[name]', {});
-    const outputOptions = { filename: childFilename };
+    const outputOptions = { filename: loader.resourcePath };
 
     const childCompiler = getRootCompilation(loader).createChildCompiler(
       TWL,
@@ -119,13 +118,13 @@ function compileTreatSource(loader, request) {
         new NodeTemplatePlugin(outputOptions),
         new LibraryTemplatePlugin(null, 'commonjs2'),
         new NodeTargetPlugin(),
-        new SingleEntryPlugin(loader.context, `!!${request}`),
+        new SingleEntryPlugin(loader.context, loader.resourcePath),
         new LimitChunkCountPlugin({ maxChunks: 1 }),
         new ExternalsPlugin('commonjs', 'treat'),
       ],
     );
 
-    const subCache = 'subcache ' + __dirname + ' ' + request;
+    const subCache = 'subcache ' + __dirname + ' ' + loader.resourcePath;
     childCompiler.hooks.compilation.tap(TWL, compilation => {
       if (compilation.cache) {
         if (!compilation.cache[subCache]) compilation.cache[subCache] = {};
@@ -133,20 +132,12 @@ function compileTreatSource(loader, request) {
       }
     });
 
-    // We set loaderContext[__dirname] = false to indicate we already in
-    // a child compiler so we don't spawn another child compilers from there.
-    childCompiler.hooks.thisCompilation.tap(TWL, compilation => {
-      compilation.hooks.normalModuleLoader.tap(TWL, loaderContext => {
-        loaderContext[__dirname] = false;
-      });
-    });
-
     let source;
 
     childCompiler.hooks.afterCompile.tapAsync(TWL, (compilation, callback) => {
       source =
-        compilation.assets[childFilename] &&
-        compilation.assets[childFilename].source();
+        compilation.assets[loader.resourcePath] &&
+        compilation.assets[loader.resourcePath].source();
 
       // Remove all chunk assets
       compilation.chunks.forEach(chunk => {

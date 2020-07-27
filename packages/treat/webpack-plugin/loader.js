@@ -28,18 +28,40 @@ module.exports = function(source) {
   return source;
 };
 
-module.exports.pitch = function(request) {
+module.exports.pitch = function() {
   this.cacheable(true);
+
+  const compiler = this._compiler;
+
+  if (compiler.name === 'treat-webpack-loader') {
+    if (compiler.options.output.filename !== this.resourcePath) {
+      const message = dedent`Treat file import detected within treat file.
+
+        '${compiler.options.output.filename}'
+        is attempting to import 
+        '${this.resourcePath}'
+
+        If we didn't throw this error, we'd actually be generating new treat styles 
+        rather than referencing the existing styles, leading to broken UI.
+      `;
+
+      this.callback(new Error(message));
+    }
+
+    // Skip treat loader as we are already within a treat child compiler
+    return;
+  }
+
   const callback = this.async();
 
-  produce(this, request)
+  produce(this)
     .then(result => callback(null, result))
     .catch(e => {
       callback(e);
     });
 };
 
-async function produce(loader, request) {
+async function produce(loader) {
   const {
     outputCSS,
     localIdentName,
@@ -59,7 +81,6 @@ async function produce(loader, request) {
 
   const { source, dependencies } = await treatCompiler.getCompiledSource(
     loader,
-    request,
   );
 
   const relativeResourcePath = normalizePath(
@@ -285,13 +306,9 @@ const serializeTreatModule = (loader, cssRequests, exports, hmr) => {
   if (hmr) {
     outputCode.push(`
     if (module.hot) {
-      var exportHash = '${loaderUtils.interpolateName(
-        loader,
-        '[contenthash]',
-        {
-          content: moduleExports.join(),
-        },
-      )}';
+      var exportHash = '${loaderUtils.interpolateName(loader, '[contenthash]', {
+        content: moduleExports.join(),
+      })}';
             
       if (module.hot.data && typeof module.hot.data.oldExportHash === 'string' && module.hot.data.oldExportHash !== exportHash) {
         module.hot.invalidate();

@@ -41,11 +41,11 @@ module.exports.pitch = function() {
         is attempting to import 
         '${this.resourcePath}'
 
-        If we didn't throw this error, we'd actually be generating new treat styles 
-        rather than referencing the existing styles, leading to broken UI.
+        Rather than referencing existing styles, this will actually generate new treat styles, 
+        potentially leading to a broken UI.
       `;
 
-      this.callback(new Error(message));
+      this.emitWarning(new Error(message));
     }
 
     // Skip treat loader as we are already within a treat child compiler

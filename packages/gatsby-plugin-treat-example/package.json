@@ -1,13 +1,13 @@
 {
   "name": "gatsby-plugin-treat-example",
   "private": true,
-  "version": "1.5.0",
+  "version": "1.5.1",
   "devDependencies": {
     "@babel/core": "^7.7.5",
     "babel-preset-gatsby": "^0.2.26",
     "gatsby": "^2.18.11",
     "gatsby-plugin-treat": "^1.4.2",
-    "treat": "^1.5.0"
+    "treat": "^1.5.1"
   },
   "scripts": {
     "clean": "gatsby clean && rm -rf node_modules/.cache",

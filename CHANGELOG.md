@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.1](https://github.com/seek-oss/treat/compare/v1.5.0...v1.5.1) (2020-07-27)
+
+
+### Bug Fixes
+
+* Allow custom treat file module rules ([#128](https://github.com/seek-oss/treat/issues/128)) ([a0f1bad](https://github.com/seek-oss/treat/commit/a0f1bad))
+
+
+
+
+
 # [1.5.0](https://github.com/seek-oss/treat/compare/v1.4.3...v1.5.0) (2020-07-23)
 
 

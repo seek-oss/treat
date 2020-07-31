@@ -1,6 +1,5 @@
 const intersection = require('lodash/intersection');
 const once = require('lodash/once');
-const loaderUtils = require('loader-utils');
 const NodeTemplatePlugin = require('webpack/lib/node/NodeTemplatePlugin');
 const NodeTargetPlugin = require('webpack/lib/node/NodeTargetPlugin');
 const LibraryTemplatePlugin = require('webpack/lib/LibraryTemplatePlugin');
@@ -28,8 +27,9 @@ const logMultiWebpackError = once(() => {
   );
 });
 
-module.exports = trace => {
+module.exports = (trace, externals) => {
   const cache = new Map();
+  const pendingRequests = new Map();
 
   const expireCache = changedFiles => {
     trace('Expire cache for files dependendent on:', changedFiles);
@@ -50,7 +50,7 @@ module.exports = trace => {
     );
   };
 
-  const getSource = async (loader, request) => {
+  const getSource = loader => {
     const identifier = loader._module.identifier();
     const debugIdentifier = debugIdent(identifier);
     trace('Get compiled source:', debugIdentifier);
@@ -62,18 +62,32 @@ module.exports = trace => {
       return cachedValue;
     }
 
-    trace('No cached source. Compiling:', debugIdentifier);
-    const compilationResult = await compileTreatSource(loader, request);
+    const pendingRequest = pendingRequests.get(identifier);
 
-    cache.set(identifier, compilationResult);
+    if (pendingRequest) {
+      trace('Return pending request:', debugIdentifier);
+      return pendingRequest;
+    }
 
-    return compilationResult;
+    trace('No pending request, compiling source:', debugIdentifier);
+    const pendingCompile = compileTreatSource(loader, externals)
+      .then(compilationResult => {
+        cache.set(identifier, compilationResult);
+
+        return compilationResult;
+      })
+      .finally(() => {
+        pendingRequests.delete(identifier);
+      });
+
+    pendingRequests.set(identifier, pendingCompile);
+
+    return pendingCompile;
   };
 
-  const getCompiledSource = async (loader, request) => {
+  const getCompiledSource = async loader => {
     const { source, fileDependencies, contextDependencies } = await getSource(
       loader,
-      request,
     );
 
     // Set loader dependencies to dependecies of the child compiler
@@ -106,22 +120,28 @@ function getRootCompilation(loader) {
   return compilation;
 }
 
-function compileTreatSource(loader) {
+function compileTreatSource(loader, externals) {
   return new Promise((resolve, reject) => {
     // Child compiler will compile treat files to be evaled during compilation
     const outputOptions = { filename: loader.resourcePath };
 
+    const plugins = [
+      new NodeTemplatePlugin(outputOptions),
+      new LibraryTemplatePlugin(null, 'commonjs2'),
+      new NodeTargetPlugin(),
+      new SingleEntryPlugin(loader.context, loader.resourcePath),
+      new LimitChunkCountPlugin({ maxChunks: 1 }),
+      new ExternalsPlugin('commonjs', 'treat'),
+    ];
+
+    if (externals) {
+      plugins.push(new ExternalsPlugin('commonjs', externals));
+    }
+
     const childCompiler = getRootCompilation(loader).createChildCompiler(
       TWL,
       outputOptions,
-      [
-        new NodeTemplatePlugin(outputOptions),
-        new LibraryTemplatePlugin(null, 'commonjs2'),
-        new NodeTargetPlugin(),
-        new SingleEntryPlugin(loader.context, loader.resourcePath),
-        new LimitChunkCountPlugin({ maxChunks: 1 }),
-        new ExternalsPlugin('commonjs', 'treat'),
-      ],
+      plugins,
     );
 
     const subCache = 'subcache ' + __dirname + ' ' + loader.resourcePath;

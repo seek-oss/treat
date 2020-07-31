@@ -27,6 +27,9 @@ const trace = (...params) => {
   console.log(chalk.green('TreatWebpackPlugin:'), ...params);
 };
 
+let sharedTreatCompiler;
+let pluginCount = 0;
+
 module.exports = class TreatWebpackPlugin {
   constructor(options = {}) {
     optionValidator(options);
@@ -41,11 +44,22 @@ module.exports = class TreatWebpackPlugin {
       browsers,
       verbose = false,
       hmr = false,
+      sharedCompiler = false,
+      externals,
     } = options;
 
+    this.isSharedCompiler = sharedCompiler;
+    this.pluginNum = pluginCount++;
     this.trace = verbose ? trace : () => {};
     this.store = store();
-    this.treatCompiler = makeTreatCompiler(this.trace);
+
+    if (this.isSharedCompiler && !sharedTreatCompiler) {
+      sharedTreatCompiler = makeTreatCompiler(this.trace, externals);
+    }
+
+    this.treatCompiler = sharedCompiler
+      ? sharedTreatCompiler
+      : makeTreatCompiler(this.trace, externals);
 
     this.test = test;
     this.minify = minify;
@@ -64,15 +78,17 @@ module.exports = class TreatWebpackPlugin {
       virtualModules.apply(compiler);
     }
 
-    compiler.hooks.watchRun.tap(TWP, watchCompiler => {
-      // watchCompiler.watchFileSystem.watcher is undefined in some node environments.
-      // Allow fallback to watchCompiler.watchFileSystem.wfs
-      // https://github.com/s-panferov/awesome-typescript-loader/commit/c7da9ac82d105cdaf9b124ccc4c130648e59168a
-      const watcher =
-        watchCompiler.watchFileSystem.watcher ||
-        watchCompiler.watchFileSystem.wfs.watcher;
-      this.treatCompiler.expireCache(Object.keys(watcher.mtimes));
-    });
+    if (!this.isSharedCompiler || this.pluginNum === 0) {
+      compiler.hooks.watchRun.tap(TWP, watchCompiler => {
+        // watchCompiler.watchFileSystem.watcher is undefined in some node environments.
+        // Allow fallback to watchCompiler.watchFileSystem.wfs
+        // https://github.com/s-panferov/awesome-typescript-loader/commit/c7da9ac82d105cdaf9b124ccc4c130648e59168a
+        const watcher =
+          watchCompiler.watchFileSystem.watcher ||
+          watchCompiler.watchFileSystem.wfs.watcher;
+        this.treatCompiler.expireCache(Object.keys(watcher.mtimes));
+      });
+    }
 
     compiler.hooks.thisCompilation.tap(TWP, compilation => {
       const cssModules = new Map();

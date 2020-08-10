@@ -40,6 +40,7 @@ module.exports = class TreatWebpackPlugin {
       minify,
       browsers,
       verbose = false,
+      hmr = false,
     } = options;
 
     this.trace = verbose ? trace : () => {};
@@ -54,6 +55,7 @@ module.exports = class TreatWebpackPlugin {
       outputCSS,
       outputLoaders,
       browsers,
+      hmr,
     };
   }
 

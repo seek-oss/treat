@@ -3,6 +3,39 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.1](https://github.com/seek-oss/treat/compare/v1.5.0...v1.5.1) (2020-07-27)
+
+
+### Bug Fixes
+
+* Allow custom treat file module rules ([#128](https://github.com/seek-oss/treat/issues/128)) ([a0f1bad](https://github.com/seek-oss/treat/commit/a0f1bad))
+
+
+
+
+
+# [1.5.0](https://github.com/seek-oss/treat/compare/v1.4.3...v1.5.0) (2020-07-23)
+
+
+### Features
+
+* Add hot module reloading support ([#127](https://github.com/seek-oss/treat/issues/127)) ([ce5b667](https://github.com/seek-oss/treat/commit/ce5b667))
+
+
+
+
+
+## [1.4.3](https://github.com/seek-oss/treat/compare/v1.4.2...v1.4.3) (2020-07-13)
+
+
+### Bug Fixes
+
+* Ensure consistent and valid content hashes ([#111](https://github.com/seek-oss/treat/issues/111)) ([d6993a4](https://github.com/seek-oss/treat/commit/d6993a4)), closes [#121](https://github.com/seek-oss/treat/issues/121)
+
+
+
+
+
 ## [1.4.2](https://github.com/seek-oss/treat/compare/v1.4.1...v1.4.2) (2020-04-26)
 
 

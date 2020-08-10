@@ -9,6 +9,7 @@ const schema = joi.object({
   minify: joi.boolean(),
   browsers: [joi.string(), joi.array().items(joi.string())],
   verbose: joi.boolean(),
+  hmr: joi.boolean(),
 });
 
 class ValidationError extends Error {

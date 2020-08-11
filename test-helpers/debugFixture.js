@@ -11,6 +11,8 @@ if (!fixture) {
   throw new Error('No fixture provided');
 }
 
+const hot = true;
+
 const config = {
   entry: join(
     __dirname,
@@ -49,11 +51,18 @@ const config = {
   },
   plugins: [
     new TreatPlugin({
-      outputLoaders: [MiniCssExtractPlugin.loader],
+      outputLoaders: [
+        {
+          loader: MiniCssExtractPlugin.loader,
+          options: { hmr: hot, reloadAll: true },
+        },
+      ],
       verbose: true,
+      hmr: hot,
     }),
     new MiniCssExtractPlugin(),
     new HtmlWebpackPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
   ],
 };
 
@@ -61,6 +70,7 @@ const compiler = webpack(config);
 
 const devServer = new WebpackDevServer(compiler, {
   overlay: true,
+  hot,
 });
 
 devServer.listen(8080);

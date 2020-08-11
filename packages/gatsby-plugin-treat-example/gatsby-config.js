@@ -1,7 +1,3 @@
 module.exports = {
-  plugins: [
-    {
-      resolve: 'gatsby-plugin-treat'
-    },
-  ],
+  plugins: ['gatsby-plugin-treat'],
 };

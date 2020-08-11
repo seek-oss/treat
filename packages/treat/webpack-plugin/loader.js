@@ -28,18 +28,40 @@ module.exports = function(source) {
   return source;
 };
 
-module.exports.pitch = function(request) {
+module.exports.pitch = function() {
   this.cacheable(true);
+
+  const compiler = this._compiler;
+
+  if (compiler.name === 'treat-webpack-loader') {
+    if (compiler.options.output.filename !== this.resourcePath) {
+      const message = dedent`Treat file import detected within treat file.
+
+        '${compiler.options.output.filename}'
+        is attempting to import 
+        '${this.resourcePath}'
+
+        Rather than referencing existing styles, this will actually generate new treat styles, 
+        potentially leading to a broken UI.
+      `;
+
+      this.emitWarning(new Error(message));
+    }
+
+    // Skip treat loader as we are already within a treat child compiler
+    return;
+  }
+
   const callback = this.async();
 
-  produce(this, request)
+  produce(this)
     .then(result => callback(null, result))
     .catch(e => {
       callback(e);
     });
 };
 
-async function produce(loader, request) {
+async function produce(loader) {
   const {
     outputCSS,
     localIdentName,
@@ -49,6 +71,7 @@ async function produce(loader, request) {
     browsers,
     store,
     treatCompiler,
+    hmr,
   } = loaderUtils.getOptions(loader);
   let hasThemedCss = false;
   let localStyles = null;
@@ -58,7 +81,6 @@ async function produce(loader, request) {
 
   const { source, dependencies } = await treatCompiler.getCompiledSource(
     loader,
-    request,
   );
 
   const relativeResourcePath = normalizePath(
@@ -214,6 +236,7 @@ async function produce(loader, request) {
     loader,
     Array.from(ownedCssRequests.values()),
     result,
+    hmr,
   );
 }
 
@@ -258,7 +281,7 @@ const stringifyExports = value =>
     },
   );
 
-const serializeTreatModule = (loader, cssRequests, exports) => {
+const serializeTreatModule = (loader, cssRequests, exports, hmr) => {
   const cssImports =
     cssRequests.length > 0
       ? cssRequests.map(({ request }) => {
@@ -278,5 +301,27 @@ const serializeTreatModule = (loader, cssRequests, exports) => {
       : `export var ${key} = ${stringifyExports(exports[key])};`,
   );
 
-  return [...sortedCssImports, ...moduleExports].join('\n');
+  const outputCode = [...sortedCssImports, ...moduleExports];
+
+  if (hmr) {
+    outputCode.push(`
+    if (module.hot) {
+      var exportHash = '${loaderUtils.interpolateName(loader, '[contenthash]', {
+        content: moduleExports.join(),
+      })}';
+            
+      if (module.hot.data && typeof module.hot.data.oldExportHash === 'string' && module.hot.data.oldExportHash !== exportHash) {
+        module.hot.invalidate();
+      } else {
+        module.hot.dispose(function(data) {
+          data.oldExportHash = exportHash;
+        });
+  
+        module.hot.accept();
+      }
+    }
+  `);
+  }
+
+  return outputCode.join('\n');
 };

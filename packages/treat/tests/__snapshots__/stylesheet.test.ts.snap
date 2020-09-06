@@ -951,6 +951,80 @@ html ._1-2GZ_small_theme_1l {
 "
 `;
 
+exports[`Stylesheet Feature queries - Autoprefixer (iOS 8) - should create a deterministic stylesheet 1`] = `
+"._3rC2M {
+    display: block
+}
+@supports (display: grid) {
+    ._3rC2M {
+        display: grid
+    }
+}
+@supports not (display: grid) {
+    ._3rC2M {
+        display: -webkit-flex;
+        display: flex
+    }
+}
+"
+`;
+
+exports[`Stylesheet Feature queries - Custom idents - should create a deterministic stylesheet 1`] = `
+".feature-queries-feature-queries_3rC2M {
+    display: block
+}
+@supports (display: grid) {
+    .feature-queries-feature-queries_3rC2M {
+        display: grid
+    }
+}
+@supports not (display: grid) {
+    .feature-queries-feature-queries_3rC2M {
+        display: flex
+    }
+}
+"
+`;
+
+exports[`Stylesheet Feature queries - Development mode - should create a deterministic stylesheet 1`] = `
+".feature-queries-feature-queries_3rC2M {
+    display: block
+}
+@supports (display: grid) {
+    .feature-queries-feature-queries_3rC2M {
+        display: grid
+    }
+}
+@supports not (display: grid) {
+    .feature-queries-feature-queries_3rC2M {
+        display: flex
+    }
+}
+"
+`;
+
+exports[`Stylesheet Feature queries - Production mode - should create a deterministic stylesheet 1`] = `
+"._3rC2M{display:block}@supports (display:grid){._3rC2M{display:grid}}@supports not (display:grid){._3rC2M{display:flex}}
+"
+`;
+
+exports[`Stylesheet Feature queries - Theme function ident - should create a deterministic stylesheet 1`] = `
+"._3rC2M {
+    display: block
+}
+@supports (display: grid) {
+    ._3rC2M {
+        display: grid
+    }
+}
+@supports not (display: grid) {
+    ._3rC2M {
+        display: flex
+    }
+}
+"
+`;
+
 exports[`Stylesheet Multi file - Autoprefixer (iOS 8) - should create a deterministic stylesheet 1`] = `
 "._3jirG {
     color: blue

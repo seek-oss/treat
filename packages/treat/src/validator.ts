@@ -27,9 +27,13 @@ const fullStyle = cssWithSimplePseudos.append({
 });
 
 const makeMediaQuerySchema = (valueSchema: ObjectSchema) =>
-  valueSchema.append({
-    '@media': joi.object().pattern(joi.string(), valueSchema),
-  });
+  valueSchema
+    .append({
+      '@media': joi.object().pattern(joi.string(), valueSchema),
+    })
+    .append({
+      '@supports': joi.object().pattern(joi.string(), valueSchema),
+    });
 
 const fullStyleWithMedia = makeMediaQuerySchema(fullStyle).required();
 

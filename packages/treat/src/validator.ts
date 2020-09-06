@@ -14,7 +14,7 @@ const cssWithKeyframesSchema = cssPropertiesSchema.append({
 const cssWithSimplePseudos = cssWithKeyframesSchema.append(
   Object.assign(
     {},
-    ...simplePseudos.map(pseudo => ({ [pseudo]: cssWithKeyframesSchema })),
+    ...simplePseudos.map((pseudo) => ({ [pseudo]: cssWithKeyframesSchema })),
   ),
 );
 
@@ -26,7 +26,7 @@ const fullStyle = cssWithSimplePseudos.append({
   selectors: selectorsSchema,
 });
 
-const makeMediaQuerySchema = (valueSchema: ObjectSchema) =>
+const makeQuerySchema = (valueSchema: ObjectSchema) =>
   valueSchema
     .append({
       '@media': joi.object().pattern(joi.string(), valueSchema),
@@ -35,9 +35,9 @@ const makeMediaQuerySchema = (valueSchema: ObjectSchema) =>
       '@supports': joi.object().pattern(joi.string(), valueSchema),
     });
 
-const fullStyleWithMedia = makeMediaQuerySchema(fullStyle).required();
+const fullStyleWithMedia = makeQuerySchema(fullStyle).required();
 
-const globalStyleWithMedia = makeMediaQuerySchema(
+const globalStyleWithMedia = makeQuerySchema(
   fullStyle.forbiddenKeys('selectors', ...simplePseudos),
 ).required();
 

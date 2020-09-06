@@ -107,6 +107,10 @@ const fixtureEntries = [
     fixtureName: 'Animations',
     entry: './fixtures/animations/index.ts',
   },
+  {
+    fixtureName: 'Feature queries',
+    entry: './fixtures/feature-queries/index.ts',
+  },
 ];
 
 describe('Stylesheet', () => {

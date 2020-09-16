@@ -198,4 +198,56 @@ describe('transformCSS', () => {
                         }
                 `);
   });
+
+  it('should handle @supports queries', () => {
+    expect(
+      transformCSS({
+        '.testClass': {
+          display: 'flex',
+          '@supports': {
+            '(display: grid)': {
+              display: 'grid',
+            },
+          },
+        },
+      }),
+    ).toMatchInlineSnapshot(`
+      Object {
+        ".testClass": Object {
+          "display": "flex",
+        },
+        "@supports (display: grid)": Object {
+          ".testClass": Object {
+            "display": "grid",
+          },
+        },
+      }
+    `);
+  });
+
+  it('should handle @supports negation queries', () => {
+    expect(
+      transformCSS({
+        '.testClass': {
+          display: 'grid',
+          '@supports': {
+            'not (display: grid)': {
+              display: 'flex',
+            },
+          },
+        },
+      }),
+    ).toMatchInlineSnapshot(`
+      Object {
+        ".testClass": Object {
+          "display": "grid",
+        },
+        "@supports not (display: grid)": Object {
+          ".testClass": Object {
+            "display": "flex",
+          },
+        },
+      }
+    `);
+  });
 });

@@ -30,13 +30,23 @@ export interface MediaQueries<StyleType> {
   };
 }
 
+export interface FeatureQueries<StyleType> {
+  '@supports'?: {
+    [query: string]: StyleType;
+  };
+}
+
 export interface StyleWithSelectors extends CSSPropertiesAndPseudos {
   selectors?: SelectorMap;
 }
 
-export type Style = StyleWithSelectors & MediaQueries<StyleWithSelectors>;
+export type Style = StyleWithSelectors &
+  MediaQueries<StyleWithSelectors> &
+  FeatureQueries<StyleWithSelectors>;
 
-export type GlobalStyle = CSSProperties & MediaQueries<CSSProperties>;
+export type GlobalStyle = CSSProperties &
+  MediaQueries<CSSProperties> &
+  FeatureQueries<CSSProperties>;
 
 export type StyleMap<StyleName extends string | number, StyleType> = Record<
   StyleName,

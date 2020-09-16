@@ -102,7 +102,7 @@ export type SimplePseudos = typeof simplePseudos;
 const simplePseudoSet = new Set<string>(simplePseudos);
 
 const normalizeStyles = (className: string, styles: any) => {
-  const omitThese = [...simplePseudos, '@media', 'selectors'];
+  const omitThese = [...simplePseudos, '@media', '@supports', 'selectors'];
 
   const pseudoStyles = mapKeys(
     pickBy(styles, (_, key) => simplePseudoSet.has(key)),
@@ -167,6 +167,18 @@ export default (styles: any) => {
         if (!isEqual(defaultStyles, blockStyles)) {
           merge(responsiveStyles, {
             [`@media ${query}`]: blockStyles,
+          });
+        }
+      });
+    }
+
+    if (styles['@supports']) {
+      each(styles['@supports'], (mediaStyles, query) => {
+        const blockStyles = normalizeStyles(className, mediaStyles);
+
+        if (!isEqual(defaultStyles, blockStyles)) {
+          merge(responsiveStyles, {
+            [`@supports ${query}`]: blockStyles,
           });
         }
       });

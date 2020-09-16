@@ -36,6 +36,13 @@ describe('validator', () => {
           },
         },
       },
+      {
+        '@supports': {
+          '(display: grid)': {
+            display: 'flex',
+          },
+        },
+      },
     ];
 
     it.each(validTests)('valid', value => {
@@ -160,6 +167,17 @@ describe('validator', () => {
                     transform: 'scale(1)',
                   },
                 },
+              },
+            },
+          },
+        },
+      },
+      {
+        '@supports': {
+          '(display: grid)': {
+            selectors: {
+              ['.someClass &']: {
+                display: 'grid',
               },
             },
           },

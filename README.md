@@ -81,7 +81,7 @@ Finally, import the styles.
 import * as styles from './Button.treat.js';
 
 export const Button = ({ text }) => `
-  <button class="${styles.button}">${text}</button>
+  <button className={styles.button}>{text}</button>
 `;
 ```
 

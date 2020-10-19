@@ -106,6 +106,10 @@ exports[`Stylesheet Animations - Autoprefixer (iOS 8) - should create a determin
     -webkit-animation-name: _0afb7;
             animation-name: _0afb7
 }
+._2JtSi > div {
+    -webkit-animation-name: _0afb7;
+            animation-name: _0afb7
+}
 @media (min-width: 700px) {
     ._1aUDE:hover {
         -webkit-animation: _92d6d 1.5s ease-out forwards;
@@ -245,6 +249,9 @@ exports[`Stylesheet Animations - Custom idents - should create a deterministic s
     animation-fill-mode: both;
     animation-name: _0afb7
 }
+.animations-globalStyleRef_2JtSi > div {
+    animation-name: _0afb7
+}
 @media (min-width: 700px) {
     .animations-unthemedAnimation_1aUDE:hover {
         animation: _92d6d 1.5s ease-out forwards
@@ -351,6 +358,9 @@ exports[`Stylesheet Animations - Development mode - should create a deterministi
     animation-fill-mode: both;
     animation-name: _0afb7
 }
+.animations-globalStyleRef_2JtSi > div {
+    animation-name: _0afb7
+}
 @media (min-width: 700px) {
     .animations-unthemedAnimation_1aUDE:hover {
         animation: _92d6d 1.5s ease-out forwards
@@ -408,7 +418,7 @@ exports[`Stylesheet Animations - Development mode - should create a deterministi
 `;
 
 exports[`Stylesheet Animations - Production mode - should create a deterministic stylesheet 1`] = `
-"@keyframes _0afb7{0%{opacity:0}to{opacity:1}}@keyframes _92d6d{0%{color:hsla(0,0%,100%,0);transform:scale(1)}25%{transform:scale(2,3)}50%{transform:scale(5)}75%{transform:scale(4,.5)}to{transform:scale(1);color:#fff}}@keyframes _78cfa{0%{transform:rotate(0deg)}to{transform:rotate(359deg)}}._1aUDE{margin-left:300px;display:flex;justify-content:center;align-items:center;height:200px;width:200px;background-color:#ff0;color:hsla(0,0%,100%,0);animation-timing-function:linear;animation-duration:3s;animation-fill-mode:both;animation-name:_0afb7}@media (min-width:700px){._1aUDE:hover{animation:_92d6d 1.5s ease-out forwards}}@media (max-width:699px){._1aUDE{animation-timing-function:linear;animation-duration:1.5s;animation-iteration-count:infinite;animation-name:_78cfa}}
+"@keyframes _0afb7{0%{opacity:0}to{opacity:1}}@keyframes _92d6d{0%{color:hsla(0,0%,100%,0);transform:scale(1)}25%{transform:scale(2,3)}50%{transform:scale(5)}75%{transform:scale(4,.5)}to{transform:scale(1);color:#fff}}@keyframes _78cfa{0%{transform:rotate(0deg)}to{transform:rotate(359deg)}}._1aUDE{margin-left:300px;display:flex;justify-content:center;align-items:center;height:200px;width:200px;background-color:#ff0;color:hsla(0,0%,100%,0);animation-timing-function:linear;animation-duration:3s;animation-fill-mode:both}._1aUDE,._2JtSi>div{animation-name:_0afb7}@media (min-width:700px){._1aUDE:hover{animation:_92d6d 1.5s ease-out forwards}}@media (max-width:699px){._1aUDE{animation-timing-function:linear;animation-duration:1.5s;animation-iteration-count:infinite;animation-name:_78cfa}}
 @keyframes b0ae1{0%{background-color:#fff}to{background-color:#00f}}.tjufO_6Iw9{height:200px;width:200px}._1aUDE~.tjufO_6Iw9{animation-timing-function:linear;animation-duration:3s;animation-direction:alternate;animation-fill-mode:both;animation-iteration-count:infinite;animation-name:b0ae1}
 @keyframes _9dba8{0%{background-color:#fff}to{background-color:red}}.tjufO_3XPt{height:200px;width:200px}._1aUDE~.tjufO_3XPt{animation-timing-function:linear;animation-duration:1s;animation-direction:alternate;animation-fill-mode:both;animation-iteration-count:infinite;animation-name:_9dba8}
 "
@@ -462,6 +472,9 @@ exports[`Stylesheet Animations - Theme function ident - should create a determin
     animation-timing-function: linear;
     animation-duration: 3s;
     animation-fill-mode: both;
+    animation-name: _0afb7
+}
+._2JtSi > div {
     animation-name: _0afb7
 }
 @media (min-width: 700px) {

@@ -1,4 +1,4 @@
-import { style, createTheme } from 'treat';
+import { style, globalStyle, createTheme } from 'treat';
 
 interface Theme {
   name: string;
@@ -101,3 +101,15 @@ export const themedAnimation = style(({ duration, color }: Theme) => ({
     },
   },
 }));
+
+export const globalStyleRef = style({});
+globalStyle(`${globalStyleRef} > div`, {
+  '@keyframes': {
+    from: {
+      opacity: 0,
+    },
+    to: {
+      opacity: 1,
+    },
+  },
+});

@@ -271,6 +271,8 @@ export function globalStyle(
 
     validateGlobalStyle(style);
 
+    processAnimations(style);
+
     addLocalCss({ [normalisedSelector]: style });
   }
 }

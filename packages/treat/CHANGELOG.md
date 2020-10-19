@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.6.1](https://github.com/seek-oss/treat/tree/master/packages/treat/compare/v1.6.0...v1.6.1) (2020-10-19)
+
+
+### Bug Fixes
+
+* Process animations for globalStyle ([#138](https://github.com/seek-oss/treat/tree/master/packages/treat/issues/138)) ([819646d](https://github.com/seek-oss/treat/tree/master/packages/treat/commit/819646d))
+
+
+
+
+
 # [1.6.0](https://github.com/seek-oss/treat/tree/master/packages/treat/compare/v1.5.1...v1.6.0) (2020-09-16)
 
 

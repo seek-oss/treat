@@ -182,5 +182,33 @@ describe('Styling and specificity', () => {
         server.close();
       });
     });
+
+    describe(`gh-141 - ${label} - `, () => {
+      let server;
+
+      beforeAll(async () => {
+        server = await startFixture({
+          entry: require.resolve('./fixtures/gh-141/index.ts'),
+          ...config(),
+        });
+        await page.goto(server.url);
+      });
+
+      test('has themed style from style map', async () => {
+        const styles = await getStyles(page, mainSelector);
+
+        expect(styles.color).toBe('red');
+      });
+
+      test('has non-themed style from style map', async () => {
+        const styles = await getStyles(page, mainSelector);
+
+        expect(styles['font-size']).toBe('55px');
+      });
+
+      afterAll(() => {
+        server.close();
+      });
+    });
   });
 });

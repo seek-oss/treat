@@ -48,6 +48,11 @@ export type GlobalStyle = CSSProperties &
   MediaQueries<CSSProperties> &
   FeatureQueries<CSSProperties>;
 
+export type GlobalStyleSheet = Record<
+  string,
+  CSSProperties & MediaQueries<CSSProperties>
+>;
+
 export type StyleMap<StyleName extends string | number, StyleType> = Record<
   StyleName,
   StyleType

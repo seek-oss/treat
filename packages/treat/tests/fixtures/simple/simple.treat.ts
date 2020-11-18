@@ -1,4 +1,4 @@
-import { styleMap, globalStyle } from 'treat';
+import { styleMap, globalStyle, globalStyleSheet } from 'treat';
 
 globalStyle('html, body', {
   backgroundColor: 'pink',
@@ -34,6 +34,15 @@ const styles = styleMap(
 
 globalStyle(`html ${styles.blue}`, {
   position: 'absolute',
+});
+
+globalStyleSheet({
+  [`strong${styles.blue}`]: {
+    opacity: 0.8,
+  },
+  [`strong${styles.red}`]: {
+    fontWeight: 'bolder',
+  },
 });
 
 export default styles;

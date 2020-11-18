@@ -1,9 +1,9 @@
 {
   "name": "next-treat-example",
   "private": true,
-  "version": "1.6.1",
+  "version": "1.6.2",
   "dependencies": {
-    "babel-plugin-treat": "^1.1.0",
+    "babel-plugin-treat": "^1.6.2",
     "next": "9.2.2",
     "next-treat": "^1.3.0",
     "react": "^16.13.1",

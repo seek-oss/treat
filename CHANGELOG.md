@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.6.2](https://github.com/seek-oss/treat/compare/v1.6.1...v1.6.2) (2020-11-18)
+
+
+### Bug Fixes
+
+* Correctly handle namespace imports in treat files ([#145](https://github.com/seek-oss/treat/issues/145)) ([41ab3eb](https://github.com/seek-oss/treat/commit/41ab3eb))
+
+
+
+
+
 ## [1.6.1](https://github.com/seek-oss/treat/compare/v1.6.0...v1.6.1) (2020-10-19)
 
 

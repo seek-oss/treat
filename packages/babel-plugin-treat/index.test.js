@@ -300,4 +300,21 @@ describe('babel plugin', () => {
       };"
     `);
   });
+
+  it('should handle namespace imports', () => {
+    const source = `
+      import * as treat from 'treat';
+
+      const one = treat.style({
+          zIndex: 2,
+      });
+    `;
+
+    expect(transform(source)).toMatchInlineSnapshot(`
+      "import * as treat from 'treat';
+      const one = treat.style({
+        zIndex: 2
+      }, \\"one\\");"
+    `);
+  });
 });

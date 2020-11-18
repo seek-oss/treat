@@ -41,7 +41,12 @@ const getDebugIdent = (t, path, fileIdentifier) => {
 
 const isTreatCall = (t, node, namespaceImport, treatIdentifiers) => {
   if (namespaceImport && t.isMemberExpression(node)) {
-    return t.isIdentifier(node.object, { name: namespaceImport });
+    return (
+      t.isIdentifier(node.object, { name: namespaceImport }) &&
+      treatExports.some(exportName =>
+        t.isIdentifier(node.property, { name: exportName }),
+      )
+    );
   } else {
     return treatIdentifiers.some(identifier =>
       t.isIdentifier(node, { name: identifier }),

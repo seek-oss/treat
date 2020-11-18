@@ -39,6 +39,21 @@ const getDebugIdent = (t, path, fileIdentifier) => {
   }
 };
 
+const isTreatCall = (t, node, namespaceImport, treatIdentifiers) => {
+  if (namespaceImport && t.isMemberExpression(node)) {
+    return (
+      t.isIdentifier(node.object, { name: namespaceImport }) &&
+      treatExports.some(exportName =>
+        t.isIdentifier(node.property, { name: exportName }),
+      )
+    );
+  } else {
+    return treatIdentifiers.some(identifier =>
+      t.isIdentifier(node, { name: identifier }),
+    );
+  }
+};
+
 module.exports = function({ types: t }) {
   return {
     pre(state) {
@@ -51,15 +66,22 @@ module.exports = function({ types: t }) {
           : shortFilename;
 
       this.treatIdentifiers = [];
+      this.namespaceImport = '';
     },
     visitor: {
       ImportDeclaration(path, { opts }) {
         const treatImportIdentifier = opts.alias || 'treat';
 
         if (path.node.source.value === treatImportIdentifier) {
-          path.node.specifiers.forEach(({ imported, local }) => {
-            if (treatExports.includes(imported.name)) {
-              this.treatIdentifiers.push(local.name);
+          path.node.specifiers.forEach(specifier => {
+            if (specifier.type === 'ImportNamespaceSpecifier') {
+              this.namespaceImport = specifier.local.name;
+            } else {
+              const { imported, local } = specifier;
+
+              if (treatExports.includes(imported.name)) {
+                this.treatIdentifiers.push(local.name);
+              }
             }
           });
         }
@@ -67,9 +89,7 @@ module.exports = function({ types: t }) {
       CallExpression(path) {
         const { callee } = path.node;
         if (
-          this.treatIdentifiers.some(identifier =>
-            t.isIdentifier(callee, { name: identifier }),
-          )
+          isTreatCall(t, callee, this.namespaceImport, this.treatIdentifiers)
         ) {
           const { node } = path;
 

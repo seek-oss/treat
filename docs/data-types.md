@@ -124,7 +124,7 @@ theme => ({
 
 When [defining themes](styling-api#createtheme) and [consuming themes](#themedstyles), the provided theme object uses the `Theme` type, which is `any` by default. This means that any usage of a theme will not be type-safe.
 
-The simplest way to fix this is to override this type at a global level. For example, you could create a `treat.d.ts` file in your project with the following contents.
+The simplest way to fix this is to override this type at a global level. For example, you could create a `theme.d.ts` file in your project with the following contents.
 
 ```tsx
 declare module 'treat/theme' {

@@ -1,0 +1,8 @@
+{
+  "main": "dist/treat-webpack-plugin-loader.cjs.js",
+  "module": "dist/treat-webpack-plugin-loader.esm.js",
+  "browser": {
+    "./dist/treat-webpack-plugin-loader.cjs.js": "./dist/treat-webpack-plugin-loader.browser.cjs.js",
+    "./dist/treat-webpack-plugin-loader.esm.js": "./dist/treat-webpack-plugin-loader.browser.esm.js"
+  }
+}

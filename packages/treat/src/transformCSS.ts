@@ -4,6 +4,7 @@ import each from 'lodash/each';
 import pickBy from 'lodash/pickBy';
 import omit from 'lodash/omit';
 import isEqual from 'lodash/isEqual';
+
 import { validateSelector } from './validateSelector';
 
 export const simplePseudos = [
@@ -133,7 +134,7 @@ const normalizeStyles = (className: string, styles: any) => {
 
   const allStyles = Object.assign(rawStyles, pseudoStyles, selectorStyles);
 
-  Object.keys(allStyles).forEach(ident => {
+  Object.keys(allStyles).forEach((ident) => {
     if (allStyles[ident]['@keyframes']) {
       const { '@keyframes': keyframeRef, animation } = allStyles[ident];
 

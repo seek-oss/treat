@@ -23,7 +23,7 @@ const resultStore = new Map<
   }
 >();
 
-const searchIndex = lunr(function() {
+const searchIndex = lunr(function () {
   this.ref('id');
   this.field('content');
 

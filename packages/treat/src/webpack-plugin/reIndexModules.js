@@ -1,5 +1,5 @@
-const chalk = require('chalk');
-const { THEMED, debugIdent } = require('./utils');
+import chalk from 'chalk';
+import { THEMED, debugIdent } from './utils';
 
 const formatReindex = (currIndex, newIndex) =>
   currIndex > newIndex
@@ -50,7 +50,7 @@ const sortModules = (modules, { getIndex, getOwnerIndex, getThemeIndex }) => {
   });
 };
 
-module.exports = (
+export default (
   modules,
   { getIndex, getIndex2, getOwnerIndex, getThemeIndex, setIndex, setIndex2 },
   { trace, target },
@@ -68,10 +68,10 @@ module.exports = (
   });
 
   originalOrderModules
-    .map(module => {
+    .map((module) => {
       const swapModule =
         originalOrderModules[
-          sortedModules.findIndex(m => m.identifier === module.identifier)
+          sortedModules.findIndex((m) => m.identifier === module.identifier)
         ];
 
       return [module, swapModule];

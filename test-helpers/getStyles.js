@@ -14,7 +14,7 @@ export default async (page, selector) => {
 
   return styleForSingleNode.matchedCSSRules.reduce((prev, curr) => {
     const styles = Object.assign(
-      ...curr.rule.style.cssProperties.map(rule => ({
+      ...curr.rule.style.cssProperties.map((rule) => ({
         [rule.name]: rule.value,
       })),
     );

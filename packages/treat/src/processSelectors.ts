@@ -52,7 +52,7 @@ export const combinedThemeSelector = (
 ) => {
   if (isThemedSelector(selector)) {
     return uniq(
-      flatMap(selector.split(','), selectorPart =>
+      flatMap(selector.split(','), (selectorPart) =>
         themes.map(({ themeRef }) =>
           interpolateSelector(selectorPart.trim(), themeRef),
         ),
@@ -84,7 +84,7 @@ export const processSelectors = ({
   const media = style['@media'];
 
   if (media) {
-    Object.keys(media).forEach(mediaQuery => {
+    Object.keys(media).forEach((mediaQuery) => {
       processSelectors({
         style: media[mediaQuery],
         themeRef,

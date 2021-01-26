@@ -1,12 +1,11 @@
-const postcss = require('postcss');
-const postcssJs = require('postcss-js');
-const cssnano = require('cssnano');
-const autoprefixer = require('autoprefixer');
+import postcss from 'postcss';
+import postcssJs from 'postcss-js';
+import cssnano from 'cssnano';
+import autoprefixer from 'autoprefixer';
 
-// Import from compiled code
-const transformCSS = require('../lib/commonjs/transformCSS').default;
+import transformCSS from '../transformCSS';
 
-const isEmpty = obj => !obj || Object.keys(obj).length === 0;
+const isEmpty = (obj) => !obj || Object.keys(obj).length === 0;
 
 const processCss = async (styles, { minify, browsers, from }) => {
   if (isEmpty(styles)) {
@@ -27,4 +26,4 @@ const processCss = async (styles, { minify, browsers, from }) => {
   return css;
 };
 
-module.exports = processCss;
+export default processCss;

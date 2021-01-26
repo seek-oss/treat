@@ -9,7 +9,7 @@ const updateActiveRoute = (hash: string) => {
   if (hash != activeHash) {
     activeHash = hash;
 
-    listeners.forEach(listener => {
+    listeners.forEach((listener) => {
       listener(activeHash);
     });
   }
@@ -47,7 +47,7 @@ export const useHeadingRouteUpdates = (headingHashes: Array<string>) => {
         }
 
         const results = headingHashes
-          .map(hash => {
+          .map((hash) => {
             const headingElement = document.querySelector(`#${hash}`);
 
             if (headingElement) {

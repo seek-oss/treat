@@ -1,0 +1,8 @@
+{
+  "main": "dist/treat-adapter.cjs.js",
+  "module": "dist/treat-adapter.esm.js",
+  "browser": {
+    "./dist/treat-adapter.cjs.js": "./dist/treat-adapter.browser.cjs.js",
+    "./dist/treat-adapter.esm.js": "./dist/treat-adapter.browser.esm.js"
+  }
+}

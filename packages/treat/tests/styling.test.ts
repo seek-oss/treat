@@ -1,8 +1,7 @@
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
-
-import TreatPlugin from '../webpack-plugin';
-import startFixture from '../../../test-helpers/startServer';
-import getStyles from '../../../test-helpers/getStyles';
+import startFixture from 'treat-test-helpers/startServer';
+import getStyles from 'treat-test-helpers/getStyles';
+import TreatPlugin from 'treat/webpack-plugin';
 
 const mainSelector = '#main';
 

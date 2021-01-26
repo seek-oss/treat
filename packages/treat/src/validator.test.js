@@ -1,7 +1,4 @@
-const {
-  validateGlobalStyle,
-  validateStyle,
-} = require('../lib/commonjs/validator');
+import { validateGlobalStyle, validateStyle } from './validator';
 
 describe('validator', () => {
   describe('validateGlobalStyle', () => {
@@ -45,7 +42,7 @@ describe('validator', () => {
       },
     ];
 
-    it.each(validTests)('valid', value => {
+    it.each(validTests)('valid', (value) => {
       expect(() => validateGlobalStyle(value)).not.toThrow();
     });
 
@@ -87,7 +84,7 @@ describe('validator', () => {
       },
     ];
 
-    it.each(invalidTests)('invalid', value => {
+    it.each(invalidTests)('invalid', (value) => {
       expect(() => validateGlobalStyle(value)).toThrow();
     });
   });
@@ -185,7 +182,7 @@ describe('validator', () => {
       },
     ];
 
-    it.each(validTests)('valid', value => {
+    it.each(validTests)('valid', (value) => {
       expect(() => validateStyle(value)).not.toThrow();
     });
 
@@ -246,7 +243,7 @@ describe('validator', () => {
       },
     ];
 
-    it.each(invalidTests)('invalid', value => {
+    it.each(invalidTests)('invalid', (value) => {
       expect(() => validateStyle(value)).toThrow();
     });
   });

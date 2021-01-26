@@ -8,7 +8,7 @@ parser.registerAttrEqualityMods('^', '$', '*', '~');
 parser.enableSubstitutes();
 
 export const validateSelector = (selector: string) =>
-  selector.split(',').map(selectorPart => {
+  selector.split(',').map((selectorPart) => {
     if (selectorPart.indexOf('&') === -1) {
       throw new Error(
         dedent`

@@ -2,7 +2,7 @@ import { resolveStyles } from 'treat';
 import styleRefs from './styles.treat';
 
 Promise.all([import('./themeA.treat'), import('./themeB.treat')]).then(
-  themes => {
+  (themes) => {
     const themeA = themes[0].default;
     const themeB = themes[1].default;
 

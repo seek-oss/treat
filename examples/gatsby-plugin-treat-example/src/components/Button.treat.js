@@ -1,5 +1,5 @@
-import {style} from 'treat';
-import {fontStack} from './fontStack';
+import { style } from 'treat';
+import { fontStack } from './fontStack';
 
 const fg = 'deeppink';
 const bg = 'white';
@@ -14,10 +14,10 @@ export const button = style({
   backgroundColor: `${bg}`,
   padding: '0.5em 1em',
   ':hover': {
-    opacity: 0.75
+    opacity: 0.75,
   },
   ':disabled': {
     cursor: 'default',
-    opacity: 0.5
-  }
+    opacity: 0.5,
+  },
 });

@@ -1,9 +1,8 @@
-const flatten = require('lodash/flatten');
+import flatten from 'lodash/flatten';
 
-// Import from compiled code
-const { createContentHash } = require('../lib/commonjs/createContentHash');
+import { createContentHash } from '../createContentHash';
 
-module.exports = () => {
+export default () => {
   const treatModules = [];
   const themes = new Map();
   const themedCSSRequests = new Map();
@@ -21,7 +20,7 @@ module.exports = () => {
     }
   };
 
-  const deleteCssRequests = identifier => {
+  const deleteCssRequests = (identifier) => {
     const requests = themedCSSRequests.get(identifier);
     requests.forEach(({ resource }) => {
       cssResources.delete(resource);
@@ -35,7 +34,7 @@ module.exports = () => {
   const getAllThemedCssRequests = () =>
     flatten(Array.from(themedCSSRequests.values()));
 
-  const getThemedCssModuleInfo = cssResource => {
+  const getThemedCssModuleInfo = (cssResource) => {
     for (const [owner, requests] of themedCSSRequests.entries()) {
       for (const request of requests) {
         if (request.resource === cssResource) {
@@ -59,9 +58,9 @@ module.exports = () => {
     });
   };
 
-  const getTheme = themeRef => themes.get(themeRef);
+  const getTheme = (themeRef) => themes.get(themeRef);
 
-  const deleteModuleThemes = moduleIdentifier => {
+  const deleteModuleThemes = (moduleIdentifier) => {
     Array.from(themes.entries())
       .filter(([_, { identifier }]) => identifier === moduleIdentifier)
       .forEach(([themeRef]) => themes.delete(themeRef));
@@ -83,7 +82,7 @@ module.exports = () => {
 
   const popAllModules = () => treatModules.splice(0, treatModules.length);
 
-  const addModule = moduleIdentifier =>
+  const addModule = (moduleIdentifier) =>
     treatModules.push({ moduleIdentifier, themeHash: getThemesHash() });
 
   return {

@@ -1,4 +1,4 @@
-const joi = require('@hapi/joi');
+import joi from '@hapi/joi';
 
 const schema = joi.object({
   test: joi.any(),
@@ -24,7 +24,7 @@ class ValidationError extends Error {
   }
 }
 
-module.exports = options => {
+export default (options) => {
   const { error } = schema.validate(options);
 
   if (error !== null) {

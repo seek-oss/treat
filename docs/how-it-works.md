@@ -54,7 +54,9 @@ Then, let's assume you've written the following treat file:
 // text.treat.js
 import { style } from 'treat';
 
-export const text = style(theme => ({ color: theme.text }));
+export const text = style((theme) => ({
+  color: theme.text
+}));
 ```
 
 This will generate the following CSS:
@@ -77,7 +79,7 @@ In order to ensure consistent specificity across different themes, **themed styl
 For example, let's assume you've defined the following styles:
 
 ```js
-export const inactive = style(theme => ({
+export const inactive = style((theme) => ({
   color: theme.text
 }));
 
@@ -118,17 +120,17 @@ Let's assume we have a treat file with some complex exports:
 
 ```js
 // styles.treat.js
-export const topLevelExport = style(theme => ({
+export const topLevelExport = style((theme) => ({
   color: theme.red
 }));
 
 export const objectExport = {
-  key: style(theme => ({ color: theme.blue }))
+  key: style((theme) => ({ color: theme.blue }))
 };
 
 export const arrayExport = [
-  style(theme => ({ color: theme.aqua })),
-  style(theme => ({ color: theme.pink }))
+  style((theme) => ({ color: theme.aqua })),
+  style((theme) => ({ color: theme.pink }))
 ];
 ```
 

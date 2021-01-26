@@ -1,17 +1,16 @@
-const intersection = require('lodash/intersection');
-const once = require('lodash/once');
-const loaderUtils = require('loader-utils');
-const NodeTemplatePlugin = require('webpack/lib/node/NodeTemplatePlugin');
-const NodeTargetPlugin = require('webpack/lib/node/NodeTargetPlugin');
-const LibraryTemplatePlugin = require('webpack/lib/LibraryTemplatePlugin');
-const SingleEntryPlugin = require('webpack/lib/SingleEntryPlugin');
-const LimitChunkCountPlugin = require('webpack/lib/optimize/LimitChunkCountPlugin');
-const ExternalsPlugin = require('webpack/lib/ExternalsPlugin');
-const Promise = require('bluebird');
-const chalk = require('chalk');
-const dedent = require('dedent');
+import intersection from 'lodash/intersection';
+import once from 'lodash/once';
+import NodeTemplatePlugin from 'webpack/lib/node/NodeTemplatePlugin';
+import NodeTargetPlugin from 'webpack/lib/node/NodeTargetPlugin';
+import LibraryTemplatePlugin from 'webpack/lib/LibraryTemplatePlugin';
+import SingleEntryPlugin from 'webpack/lib/SingleEntryPlugin';
+import LimitChunkCountPlugin from 'webpack/lib/optimize/LimitChunkCountPlugin';
+import ExternalsPlugin from 'webpack/lib/ExternalsPlugin';
+import Promise from 'bluebird';
+import chalk from 'chalk';
+import dedent from 'dedent';
 
-const { debugIdent } = require('./utils');
+import { debugIdent } from './utils';
 
 const TWL = 'treat-webpack-loader';
 
@@ -28,10 +27,10 @@ const logMultiWebpackError = once(() => {
   );
 });
 
-module.exports = trace => {
+export default (trace) => {
   const cache = new Map();
 
-  const expireCache = changedFiles => {
+  const expireCache = (changedFiles) => {
     trace('Expire cache for files dependendent on:', changedFiles);
 
     Array.from(cache.entries()).forEach(
@@ -77,10 +76,10 @@ module.exports = trace => {
     );
 
     // Set loader dependencies to dependecies of the child compiler
-    fileDependencies.forEach(dep => {
+    fileDependencies.forEach((dep) => {
       loader.addDependency(dep);
     });
-    contextDependencies.forEach(dep => {
+    contextDependencies.forEach((dep) => {
       loader.addContextDependency(dep);
     });
 
@@ -125,7 +124,7 @@ function compileTreatSource(loader) {
     );
 
     const subCache = 'subcache ' + __dirname + ' ' + loader.resourcePath;
-    childCompiler.hooks.compilation.tap(TWL, compilation => {
+    childCompiler.hooks.compilation.tap(TWL, (compilation) => {
       if (compilation.cache) {
         if (!compilation.cache[subCache]) compilation.cache[subCache] = {};
         compilation.cache = compilation.cache[subCache];
@@ -140,8 +139,8 @@ function compileTreatSource(loader) {
         compilation.assets[loader.resourcePath].source();
 
       // Remove all chunk assets
-      compilation.chunks.forEach(chunk => {
-        chunk.files.forEach(file => {
+      compilation.chunks.forEach((chunk) => {
+        chunk.files.forEach((file) => {
           delete compilation.assets[file];
         });
       });

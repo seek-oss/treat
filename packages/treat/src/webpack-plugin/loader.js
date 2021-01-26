@@ -1,19 +1,20 @@
 const path = require('path');
-const eval = require('eval');
-const loaderUtils = require('loader-utils');
-const normalizePath = require('normalize-path');
-const Promise = require('bluebird');
-const sortBy = require('lodash/sortBy');
-const isPlainObject = require('lodash/isPlainObject');
-const dedent = require('dedent');
-const { stringify } = require('javascript-stringify');
 
-const virtualModules = require('./virtualModules');
-const processCss = require('./processCss');
-const { THEMED, LOCAL } = require('./utils');
-const TreatError = require('./TreatError');
+import evalCode from 'eval';
+import loaderUtils from 'loader-utils';
+import normalizePath from 'normalize-path';
+import Promise from 'bluebird';
+import sortBy from 'lodash/sortBy';
+import isPlainObject from 'lodash/isPlainObject';
+import dedent from 'dedent';
+import { stringify } from 'javascript-stringify';
 
-const stringifyLoaderRequest = loaderConfig => {
+import virtualModules from './virtualModules';
+import processCss from './processCss';
+import { THEMED, LOCAL } from './utils';
+import TreatError from './TreatError';
+
+const stringifyLoaderRequest = (loaderConfig) => {
   if (typeof loaderConfig === 'string') {
     return loaderConfig;
   }
@@ -23,12 +24,12 @@ const stringifyLoaderRequest = loaderConfig => {
   return `${loader}?${JSON.stringify(options)}`;
 };
 
-module.exports = function(source) {
+export default function (source) {
   this.cacheable(true);
   return source;
-};
+}
 
-module.exports.pitch = function() {
+export const pitch = function () {
   this.cacheable(true);
 
   const compiler = this._compiler;
@@ -55,8 +56,8 @@ module.exports.pitch = function() {
   const callback = this.async();
 
   produce(this)
-    .then(result => callback(null, result))
-    .catch(e => {
+    .then((result) => callback(null, result))
+    .catch((e) => {
       callback(e);
     });
 };
@@ -112,7 +113,7 @@ async function produce(loader) {
       .replace(/^((-?[0-9])|--)/, '_$1');
   };
 
-  const makeCssModule = async styles => {
+  const makeCssModule = async (styles) => {
     const css = await processCss(styles, {
       from: loader.resourcePath,
       minify,
@@ -142,7 +143,7 @@ async function produce(loader) {
     return null;
   };
 
-  const addLocalCss = styles => {
+  const addLocalCss = (styles) => {
     localStyles = Object.assign({}, localStyles, styles);
   };
 
@@ -160,7 +161,7 @@ async function produce(loader) {
     addLocalCss,
     addThemedCss,
     getThemes: store.getThemes,
-    addTheme: theme => {
+    addTheme: (theme) => {
       ownedThemes.push(theme.themeRef);
 
       store.addTheme(theme, loader._module.identifier(), dependencies);
@@ -168,10 +169,10 @@ async function produce(loader) {
     getIdentName,
   };
 
-  const sourceWithBoundLoaderInstance = `require('treat/lib/commonjs/webpackTreat').setWebpackTreat(__webpack_treat__);\n${source}`;
+  const sourceWithBoundLoaderInstance = `require('treat/adapter').setAdapter(__webpack_treat__);\n${source}`;
 
   try {
-    result = eval(
+    result = evalCode(
       sourceWithBoundLoaderInstance,
       loader.resourcePath,
       {
@@ -211,7 +212,7 @@ async function produce(loader) {
 
       return null;
     },
-  ).then(requests => requests.filter(Boolean));
+  ).then((requests) => requests.filter(Boolean));
 
   if (hasThemedCss) {
     // Rebuild this module when any themes change
@@ -221,15 +222,15 @@ async function produce(loader) {
   store.addCssRequests(loader._module.identifier(), cssRequests);
 
   if (store.getThemeCount() > 0) {
-    ownedThemes.forEach(theme => {
+    ownedThemes.forEach((theme) => {
       store
         .getAllThemedCssRequests()
-        .filter(request => request.type === LOCAL || request.theme === theme)
-        .forEach(request => ownedCssRequests.add(request));
+        .filter((request) => request.type === LOCAL || request.theme === theme)
+        .forEach((request) => ownedCssRequests.add(request));
     });
   } else {
     // No themes are registered so assign css to this module
-    cssRequests.forEach(request => ownedCssRequests.add(request));
+    cssRequests.forEach((request) => ownedCssRequests.add(request));
   }
 
   return serializeTreatModule(
@@ -251,7 +252,7 @@ const stringifyCssRequest = (cssLocation, outputLoaders) => {
   return `!${cssLoaders}!${cssLocation}`;
 };
 
-const stringifyExports = value =>
+const stringifyExports = (value) =>
   stringify(
     value,
     (value, indent, next) => {
@@ -295,7 +296,7 @@ const serializeTreatModule = (loader, cssRequests, exports, hmr) => {
   // Chunk ordering is fixed by the webpack plugin
   const sortedCssImports = sortBy(cssImports);
 
-  const moduleExports = Object.keys(exports).map(key =>
+  const moduleExports = Object.keys(exports).map((key) =>
     key === 'default'
       ? `export default ${stringifyExports(exports[key])};`
       : `export var ${key} = ${stringifyExports(exports[key])};`,

@@ -27,7 +27,7 @@ describe('validateSelector', () => {
       '.foo &:not(:disabled)',
       '.foo ~ .bar > &:not(:disabled)',
     ];
-    it.each(validSelectors)('should support %s', selector => {
+    it.each(validSelectors)('should support %s', (selector) => {
       expect(() => validateSelector(selector)).not.toThrow();
     });
   });
@@ -47,14 +47,14 @@ describe('validateSelector', () => {
       '.foo & > :hover',
       '.foo & ~ .foo > .bar + baz',
     ];
-    it.each(invalidSelectors)('should not support %s', selector => {
+    it.each(invalidSelectors)('should not support %s', (selector) => {
       expect(() => validateSelector(selector)).toThrow();
     });
   });
 
   describe('invalid selectors', () => {
     const invalidSelectors = ['!', '123', ' ', '=', '{}'];
-    it.each(invalidSelectors)('should not support %s', selector => {
+    it.each(invalidSelectors)('should not support %s', (selector) => {
       expect(() => validateSelector(selector)).toThrow();
     });
   });

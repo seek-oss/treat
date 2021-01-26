@@ -1,21 +1,22 @@
-const Promise = require('bluebird');
-const partition = require('lodash/partition');
-const chalk = require('chalk');
-const virtualModules = require('./virtualModules');
-const store = require('./store');
-const reIndexModules = require('./reIndexModules');
-const TreatError = require('./TreatError');
-const makeTreatCompiler = require('./treatCompiler');
-const optionValidator = require('./optionValidator');
-const { debugIdent } = require('./utils');
+import Promise from 'bluebird';
+import partition from 'lodash/partition';
+import chalk from 'chalk';
 
-const isProductionLikeMode = options => {
+import virtualModules from './virtualModules';
+import store from './store';
+import reIndexModules from './reIndexModules';
+import TreatError from './TreatError';
+import makeTreatCompiler from './treatCompiler';
+import optionValidator from './optionValidator';
+import { debugIdent } from './utils';
+
+const isProductionLikeMode = (options) => {
   return options.mode === 'production' || !options.mode;
 };
 
 const TWP = 'treat-webpack-plugin';
 
-const makeOptionDefaulter = prodLike => (option, { dev, prod }) => {
+const makeOptionDefaulter = (prodLike) => (option, { dev, prod }) => {
   if (typeof option !== 'undefined') {
     return option;
   }
@@ -27,7 +28,7 @@ const trace = (...params) => {
   console.log(chalk.green('TreatWebpackPlugin:'), ...params);
 };
 
-module.exports = class TreatWebpackPlugin {
+export default class TreatWebpackPlugin {
   constructor(options = {}) {
     optionValidator(options);
 
@@ -64,7 +65,7 @@ module.exports = class TreatWebpackPlugin {
       virtualModules.apply(compiler);
     }
 
-    compiler.hooks.watchRun.tap(TWP, watchCompiler => {
+    compiler.hooks.watchRun.tap(TWP, (watchCompiler) => {
       // watchCompiler.watchFileSystem.watcher is undefined in some node environments.
       // Allow fallback to watchCompiler.watchFileSystem.wfs
       // https://github.com/s-panferov/awesome-typescript-loader/commit/c7da9ac82d105cdaf9b124ccc4c130648e59168a
@@ -74,11 +75,11 @@ module.exports = class TreatWebpackPlugin {
       this.treatCompiler.expireCache(Object.keys(watcher.mtimes));
     });
 
-    compiler.hooks.thisCompilation.tap(TWP, compilation => {
+    compiler.hooks.thisCompilation.tap(TWP, (compilation) => {
       const cssModules = new Map();
 
-      const rebuildModule = module =>
-        new Promise(resolve => {
+      const rebuildModule = (module) =>
+        new Promise((resolve) => {
           compilation.rebuildModule(module, () => {
             resolve();
           });
@@ -88,16 +89,16 @@ module.exports = class TreatWebpackPlugin {
         // Filter out css modules that no longer exist (watch mode)
         this.store
           .getAllCssOwners()
-          .filter(identifier => !Boolean(compilation.findModule(identifier)))
-          .forEach(identifier => {
+          .filter((identifier) => !Boolean(compilation.findModule(identifier)))
+          .forEach((identifier) => {
             this.store.deleteCssRequests(identifier);
           });
 
         // Filter out theme treat modules that no longer exist (watch mode)
         this.store
           .getThemeIdentifiers()
-          .filter(identifier => !Boolean(compilation.findModule(identifier)))
-          .forEach(identifier => {
+          .filter((identifier) => !Boolean(compilation.findModule(identifier)))
+          .forEach((identifier) => {
             this.store.deleteModuleThemes(identifier);
           });
 
@@ -139,7 +140,7 @@ module.exports = class TreatWebpackPlugin {
           // Rebuild all theme modules to ensure they contain upto date css
           await Promise.map(
             this.store.getThemeIdentifiers(),
-            async themeModuleIdentifier => {
+            async (themeModuleIdentifier) => {
               this.trace(
                 'Rebuiling theme module: ',
                 debugIdent(themeModuleIdentifier),
@@ -189,7 +190,7 @@ module.exports = class TreatWebpackPlugin {
         }
       });
 
-      compilation.hooks.afterChunks.tap(TWP, chunks => {
+      compilation.hooks.afterChunks.tap(TWP, (chunks) => {
         try {
           // afterChunks hook means module/chunk order properties have been set
           // We can now correct those values by referencing the ordering of the owner treat file
@@ -209,7 +210,7 @@ module.exports = class TreatWebpackPlugin {
           const [usedCssModules, modulesToRemove] = partition(
             allCssModules,
             ({ identifier, owner, themeModule }) => {
-              const used = m => (typeof m.used === 'boolean' ? m.used : true);
+              const used = (m) => (typeof m.used === 'boolean' ? m.used : true);
 
               const ownerIsUsed = used(owner);
               const themeIsUsed = !themeModule || used(themeModule);
@@ -229,13 +230,13 @@ module.exports = class TreatWebpackPlugin {
           );
 
           if (modulesToRemove.length > 0) {
-            chunks.forEach(chunk => {
+            chunks.forEach((chunk) => {
               modulesToRemove.forEach(({ module, identifier }) => {
-                this.store.getThemeIdentifiers().forEach(themeIdentifier => {
+                this.store.getThemeIdentifiers().forEach((themeIdentifier) => {
                   const themeModule = compilation.findModule(themeIdentifier);
 
                   themeModule.dependencies = themeModule.dependencies.filter(
-                    dependency => {
+                    (dependency) => {
                       if (!dependency.module) {
                         return true;
                       }
@@ -250,7 +251,7 @@ module.exports = class TreatWebpackPlugin {
             });
           }
 
-          chunks.forEach(chunk => {
+          chunks.forEach((chunk) => {
             const cssModulesInChunk = usedCssModules.filter(({ module }) =>
               chunk.containsModule(module),
             );
@@ -291,17 +292,17 @@ module.exports = class TreatWebpackPlugin {
 
           this.store
             .getThemeIdentifiers()
-            .map(themeModuleIdentifier =>
+            .map((themeModuleIdentifier) =>
               compilation.findModule(themeModuleIdentifier),
             )
-            .forEach(themeModule => {
+            .forEach((themeModule) => {
               const { dependencies } = themeModule;
 
               const relevantDependencies = usedCssModules
-                .map(moduleInfo => ({
+                .map((moduleInfo) => ({
                   ...moduleInfo,
                   dependency: dependencies.find(
-                    d =>
+                    (d) =>
                       d.module &&
                       d.module.identifier() === moduleInfo.identifier,
                   ),
@@ -332,8 +333,8 @@ module.exports = class TreatWebpackPlugin {
       });
     });
 
-    compiler.hooks.normalModuleFactory.tap(TWP, nmf => {
-      nmf.hooks.afterResolve.tap(TWP, result => {
+    compiler.hooks.normalModuleFactory.tap(TWP, (nmf) => {
+      nmf.hooks.afterResolve.tap(TWP, (result) => {
         if (this.store.getCSSResources().has(result.resource)) {
           result.settings = Object.assign({}, result.settings, {
             sideEffects: true,
@@ -353,7 +354,7 @@ module.exports = class TreatWebpackPlugin {
       sideEffects: true,
       use: [
         {
-          loader: require.resolve('./loader'),
+          loader: require.resolve('treat/webpack-plugin/loader'),
           options: {
             ...this.loaderOptions,
             minify: optionDefaulter(this.minify, {
@@ -375,4 +376,4 @@ module.exports = class TreatWebpackPlugin {
       ],
     });
   }
-};
+}

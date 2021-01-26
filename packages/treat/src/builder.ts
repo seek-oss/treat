@@ -2,8 +2,16 @@ import { fromPairs, isEqual } from 'lodash';
 import dedent from 'dedent';
 import { stringify } from 'javascript-stringify';
 
-import { ThemeOrAny } from 'treat/theme';
 import {
+  addLocalCss,
+  addThemedCss,
+  addTheme,
+  getThemes,
+  getIdentName,
+  getNextScope,
+} from './adapter';
+import { ThemeOrAny } from './theme';
+import type {
   ClassRef,
   Style,
   GlobalStyle,
@@ -14,7 +22,6 @@ import {
   CSSProperties,
   ThemedStyle,
   StyleMap,
-  TreatModule,
 } from './types';
 import {
   makeThemedClassReference,
@@ -29,14 +36,6 @@ import {
   isThemedSelector,
 } from './processSelectors';
 import { validateStyle, validateGlobalStyle } from './validator';
-import {
-  addLocalCss,
-  addThemedCss,
-  addTheme,
-  getThemes,
-  getIdentName,
-  getNextScope,
-} from './webpackTreat';
 
 const createKeyframe = (
   keyframe: string | CSSKeyframes,
@@ -71,7 +70,7 @@ const processAnimations = (style: Style, themeRef?: ThemeRef) => {
 
   // handle keyframes in media queries
   if (media) {
-    Object.keys(media).forEach(mediaQuery => {
+    Object.keys(media).forEach((mediaQuery) => {
       processAnimations(media[mediaQuery]);
     });
   }
@@ -90,7 +89,7 @@ const processAnimations = (style: Style, themeRef?: ThemeRef) => {
 
   // handle keyframes in complex selectors
   if (style.selectors) {
-    Object.values(style.selectors).forEach(selectorStyle => {
+    Object.values(style.selectors).forEach((selectorStyle) => {
       if (selectorStyle['@keyframes']) {
         selectorStyle['@keyframes'] = createKeyframe(
           selectorStyle['@keyframes'],
@@ -203,6 +202,7 @@ export function styleMap<StyleName extends string | number>(
   } else {
     const postCss: PostCSS = fromPairs(
       Object.entries(stylesheet).map(
+        // @ts-expect-error
         ([classIdentifier, style]: [ClassRef, Style]) => {
           validateStyle(style);
 
@@ -223,10 +223,14 @@ export function styleMap<StyleName extends string | number>(
     addLocalCss(postCss);
   }
 
+  // @ts-expect-error
   return classRefs;
 }
 
-export function createTheme(tokens: ThemeOrAny, localDebugName?: string): ThemeRef {
+export function createTheme(
+  tokens: ThemeOrAny,
+  localDebugName?: string,
+): ThemeRef {
   const theme = {
     themeRef: getIdentName(localDebugName || 'theme', getNextScope(), tokens),
     tokens,
@@ -242,7 +246,7 @@ export function globalStyle(
   style: ThemedStyle<GlobalStyle, ThemeOrAny>,
 ): void {
   if (isThemedSelector(selector)) {
-    getThemes().forEach(theme => {
+    getThemes().forEach((theme) => {
       const themedSelector = interpolateSelector(selector, theme.themeRef);
 
       const themeStyle =
@@ -319,7 +323,7 @@ export function styleTree<ReturnType>(
   });
 
   const [referenceTree, ...restTrees] = themedTrees;
-  restTrees.forEach(tree => {
+  restTrees.forEach((tree) => {
     if (!isEqual(tree, referenceTree)) {
       throw new Error(dedent`
         Mismatching style trees.

@@ -1,5 +1,5 @@
-import TreatPlugin from '../webpack-plugin';
-import startFixture from '../../../test-helpers/startServer';
+import startFixture from 'treat-test-helpers/startServer';
+import TreatPlugin from 'treat/webpack-plugin';
 
 describe('Export types', () => {
   let server;
@@ -17,7 +17,7 @@ describe('Export types', () => {
   });
 
   it('should support objects, arrays, strings, numbers and null/undefined', async () => {
-    const html = await page.$eval('#main', el =>
+    const html = await page.$eval('#main', (el) =>
       el.innerHTML.replace(/<br>/g, '\n'),
     );
     expect(html).toMatchInlineSnapshot(`

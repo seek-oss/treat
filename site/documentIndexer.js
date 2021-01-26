@@ -2,7 +2,7 @@ const matter = require('gray-matter');
 const GithubSlugger = require('github-slugger');
 const removeMarkdown = require('remove-markdown');
 
-const stripMarkdown = content => {
+const stripMarkdown = (content) => {
   const strippedContent = content
     // Replace newlines with spaces
     .replace(/(\r\n|\n|\r)/gm, ' ')
@@ -21,12 +21,12 @@ const getBreadcrumbs = (headings, index, level = Infinity, value = []) => {
     : getBreadcrumbs(headings, index - 1, target.level, newValue);
 };
 
-const parseContents = rawContent => {
+const parseContents = (rawContent) => {
   const slugger = new GithubSlugger();
 
   const { content, data } = matter(rawContent);
 
-  const headings = content.match(/#{1,}( [ -\w\(\)\.]*)/g).map(heading => {
+  const headings = content.match(/#{1,}( [ -\w\(\)\.]*)/g).map((heading) => {
     const split = heading.split('#');
 
     return {

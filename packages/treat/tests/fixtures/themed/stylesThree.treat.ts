@@ -1,6 +1,6 @@
 import { style, styleTree } from 'treat';
 
-const themeStyle = style(theme => ({
+const themeStyle = style((theme) => ({
   lineHeight: theme.row,
 }));
 

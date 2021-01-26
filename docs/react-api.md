@@ -52,7 +52,7 @@ import React from 'react';
 import { useClassName } from 'react-treat';
 import * as styleRefs from './Button.treat.js';
 
-export const Button = props => (
+export const Button = (props) => (
   <button
     {...props}
     className={useClassName(styles.button)}

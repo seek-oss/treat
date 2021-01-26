@@ -1,6 +1,7 @@
-import { Properties } from 'csstype';
-import { ThemeOrAny } from 'treat/theme';
-import { SimplePseudos } from './transformCSS';
+import type { Properties } from 'csstype';
+import type { ThemeOrAny } from 'treat/theme';
+
+import type { SimplePseudos } from './transformCSS';
 
 export type PostCSS = object;
 
@@ -86,7 +87,7 @@ interface TreatModuleArray extends Array<TreatModuleValue> {}
 
 export type TreatModule = TreatModuleObject | TreatModuleArray;
 
-export interface WebpackTreat {
+export interface Adapter {
   addLocalCss: (css: object) => void;
   addThemedCss: (themeRef: ThemeRef, css: object) => void;
   addTheme: (theme: TreatTheme<ThemeOrAny>) => void;

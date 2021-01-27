@@ -22,6 +22,9 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
+      - name: Make docs manifest
+        run: yarn make-docs-manifest
+
       - name: Build
         run: yarn build
 

@@ -1,6 +1,5 @@
 import execa from 'execa';
 import * as path from 'path';
-import waitForLocalhost from 'wait-for-localhost';
 import getStyles from 'treat-test-helpers/getStyles';
 import resolveBin from 'treat-test-helpers/resolveBin';
 
@@ -19,9 +18,33 @@ const gatsbyExecArgs = {
 };
 let gatsbyProcess;
 
-async function navigateToServerWhenReady() {
-  await waitForLocalhost({ port: gatsbyServerPort });
-  await page.goto(`http://localhost:${gatsbyServerPort}/`);
+function navigateToServerWhenReady() {
+  return new Promise((resolve) => {
+    const retry = () => {
+      setTimeout(main, 1000);
+    };
+
+    const main = async () => {
+      try {
+        const response = await page.goto(
+          `http://localhost:${gatsbyServerPort}/`,
+          {
+            timeout: 3000,
+          },
+        );
+
+        if (response.status() < 400) {
+          return resolve();
+        }
+
+        retry();
+      } catch (e) {
+        retry();
+      }
+    };
+
+    main();
+  });
 }
 
 async function startDevServer() {
@@ -29,8 +52,8 @@ async function startDevServer() {
     `${gatsbyBinaryPath} develop -p ${gatsbyServerPort}`,
     gatsbyExecArgs,
   );
-  gatsbyProcess.stdout.pipe(process.stdout);
-  gatsbyProcess.stderr.pipe(process.stdout);
+  // gatsbyProcess.stdout.pipe(process.stdout);
+  // gatsbyProcess.stderr.pipe(process.stdout);
   await navigateToServerWhenReady();
 }
 
@@ -40,8 +63,8 @@ async function startProdServer() {
     `${gatsbyBinaryPath} serve -p ${gatsbyServerPort}`,
     gatsbyExecArgs,
   );
-  gatsbyProcess.stdout.pipe(process.stdout);
-  gatsbyProcess.stderr.pipe(process.stdout);
+  // gatsbyProcess.stdout.pipe(process.stdout);
+  // gatsbyProcess.stderr.pipe(process.stdout);
   await navigateToServerWhenReady();
 }
 

@@ -27,6 +27,7 @@
     "copy-webpack-plugin": "^5.0.3",
     "fast-glob": "^2.2.7",
     "file-loader": "^3.0.1",
+    "gh-pages": "^3.1.0",
     "github-slugger": "^1.2.1",
     "gray-matter": "^4.0.2",
     "html-render-webpack-plugin": "^1.1.1",

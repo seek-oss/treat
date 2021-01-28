@@ -19,7 +19,6 @@
   "license": "MIT",
   "devDependencies": {
     "gatsby": "^2.18.11",
-    "treat": "*",
-    "wait-for-localhost": "^3.3.0"
+    "treat": "*"
   }
 }

@@ -52,8 +52,6 @@ async function startDevServer() {
     `${gatsbyBinaryPath} develop -p ${gatsbyServerPort}`,
     gatsbyExecArgs,
   );
-  // gatsbyProcess.stdout.pipe(process.stdout);
-  // gatsbyProcess.stderr.pipe(process.stdout);
   await navigateToServerWhenReady();
 }
 
@@ -63,8 +61,6 @@ async function startProdServer() {
     `${gatsbyBinaryPath} serve -p ${gatsbyServerPort}`,
     gatsbyExecArgs,
   );
-  // gatsbyProcess.stdout.pipe(process.stdout);
-  // gatsbyProcess.stderr.pipe(process.stdout);
   await navigateToServerWhenReady();
 }
 

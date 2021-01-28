@@ -29,8 +29,6 @@ async function startDevServer() {
     `${nextjsBinaryPath} -p ${nextjsServerPort}`,
     nextjsExecArgs,
   );
-  nextjsProcess.stdout.pipe(process.stdout);
-  nextjsProcess.stderr.pipe(process.stdout);
   await navigateToServerWhenReady();
 }
 
@@ -40,8 +38,6 @@ async function startProdServer() {
     `${nextjsBinaryPath} start -p ${nextjsServerPort}`,
     nextjsExecArgs,
   );
-  nextjsProcess.stdout.pipe(process.stdout);
-  nextjsProcess.stderr.pipe(process.stdout);
   await navigateToServerWhenReady();
 }
 

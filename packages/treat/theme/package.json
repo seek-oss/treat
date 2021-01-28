@@ -1,8 +1,0 @@
-{
-  "main": "dist/treat-theme.cjs.js",
-  "module": "dist/treat-theme.esm.js",
-  "browser": {
-    "./dist/treat-theme.cjs.js": "./dist/treat-theme.browser.cjs.js",
-    "./dist/treat-theme.esm.js": "./dist/treat-theme.browser.esm.js"
-  }
-}

@@ -11,7 +11,6 @@
   "preconstruct": {
     "entrypoints": [
       "index.ts",
-      "theme.ts",
       "adapter.ts",
       "webpack-plugin/index.js",
       "webpack-plugin/loader.js"

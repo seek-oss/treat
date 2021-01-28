@@ -1,6 +1,7 @@
 import { fromPairs, isEqual } from 'lodash';
 import dedent from 'dedent';
 import { stringify } from 'javascript-stringify';
+import { ThemeOrAny } from 'treat/theme';
 
 import {
   addLocalCss,
@@ -10,7 +11,6 @@ import {
   getIdentName,
   getNextScope,
 } from './adapter';
-import { ThemeOrAny } from './theme';
 import type {
   ClassRef,
   Style,

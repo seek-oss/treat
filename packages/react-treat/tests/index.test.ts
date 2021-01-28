@@ -1,4 +1,3 @@
-// @ts-expect-error
 import { TreatPlugin } from 'treat/webpack-plugin';
 import startFixture from '../../../test-helpers/startServer';
 import getStyles from '../../../test-helpers/getStyles';

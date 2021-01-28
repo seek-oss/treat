@@ -53,7 +53,6 @@
     "@types/puppeteer": "^1.12.4",
     "babel-jest": "^26.6.3",
     "babel-loader": "^8.2.2",
-    "browserslist-config-seek": "^2.0.1",
     "jest": "^26.6.3",
     "jest-puppeteer": "^4.1.0",
     "prettier": "^2.2.1",

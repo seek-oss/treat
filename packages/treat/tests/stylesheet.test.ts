@@ -1,7 +1,6 @@
 import bent from 'bent';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import startFixture from 'treat-test-helpers/startServer';
-// @ts-expect-error
 import { TreatPlugin } from 'treat/webpack-plugin';
 
 const getString = bent('string');

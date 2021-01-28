@@ -2,7 +2,7 @@ const webpack = require('webpack');
 const { join } = require('path');
 const WebpackDevServer = require('webpack-dev-server');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const TreatPlugin = require('treat/webpack-plugin').default;
+const { TreatPlugin } = require('treat/webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const fixture = process.argv[2];

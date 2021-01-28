@@ -1,7 +1,8 @@
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import startFixture from 'treat-test-helpers/startServer';
 import getStyles from 'treat-test-helpers/getStyles';
-import TreatPlugin from 'treat/webpack-plugin';
+// @ts-expect-error
+import { TreatPlugin } from 'treat/webpack-plugin';
 
 const mainSelector = '#main';
 
@@ -47,7 +48,7 @@ const configVariations = [
 describe('Styling and specificity', () => {
   configVariations.forEach(({ label, config }) => {
     describe(`Simple - ${label} - `, () => {
-      let server;
+      let server: any;
 
       beforeAll(async () => {
         server = await startFixture({
@@ -99,7 +100,7 @@ describe('Styling and specificity', () => {
     });
 
     describe(`Themed - ${label}`, () => {
-      let server;
+      let server: any;
 
       beforeAll(async () => {
         server = await startFixture({
@@ -127,7 +128,7 @@ describe('Styling and specificity', () => {
     });
 
     describe(`Dynamic imports - ${label}`, () => {
-      let server;
+      let server: any;
 
       beforeAll(async () => {
         server = await startFixture({
@@ -161,7 +162,7 @@ describe('Styling and specificity', () => {
     });
 
     describe(`Unused modules - ${label}`, () => {
-      let server;
+      let server: any;
 
       beforeAll(async () => {
         server = await startFixture({

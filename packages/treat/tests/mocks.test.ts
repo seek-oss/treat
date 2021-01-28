@@ -4,12 +4,13 @@ import {
   styleMap,
   resolveClassName,
   resolveStyles,
+  ThemeRef,
 } from 'treat';
 
 describe('Mocks', () => {
   describe('With debug names', () => {
-    let testTheme1;
-    let testTheme2;
+    let testTheme1: ThemeRef;
+    let testTheme2: ThemeRef;
 
     beforeAll(() => {
       testTheme1 = createTheme({ name: 'testTheme1' }, 'testTheme1');
@@ -65,8 +66,8 @@ describe('Mocks', () => {
   });
 
   describe('Without debug names', () => {
-    let testTheme1;
-    let testTheme2;
+    let testTheme1: ThemeRef;
+    let testTheme2: ThemeRef;
 
     beforeAll(() => {
       testTheme1 = createTheme({ name: 'testTheme1' });

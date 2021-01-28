@@ -1,4 +1,4 @@
-const TreatPlugin = require('treat/webpack-plugin').default;
+const { TreatPlugin } = require('treat/webpack-plugin');
 
 exports.onCreateBabelConfig = ({ actions }) => {
   actions.setBabelPlugin({

@@ -1,8 +1,9 @@
 import startFixture from 'treat-test-helpers/startServer';
-import TreatPlugin from 'treat/webpack-plugin';
+// @ts-expect-error
+import { TreatPlugin } from 'treat/webpack-plugin';
 
 describe('Export types', () => {
-  let server;
+  let server: any;
 
   beforeAll(async () => {
     server = await startFixture({

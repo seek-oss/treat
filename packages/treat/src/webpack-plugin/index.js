@@ -28,7 +28,7 @@ const trace = (...params) => {
   console.log(chalk.green('TreatWebpackPlugin:'), ...params);
 };
 
-export default class TreatWebpackPlugin {
+export class TreatPlugin {
   constructor(options = {}) {
     optionValidator(options);
 

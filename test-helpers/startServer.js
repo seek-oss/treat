@@ -1,3 +1,4 @@
+import path from 'path';
 import webpack from 'webpack';
 import MemoryFS from 'memory-fs';
 import express from 'express';
@@ -5,7 +6,7 @@ import mime from 'mime-types';
 import merge from 'webpack-merge';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 
-const build = config =>
+const build = (config) =>
   new Promise((resolve, reject) => {
     const defaultConfig = {
       output: { path: '/' },
@@ -16,6 +17,7 @@ const build = config =>
         rules: [
           {
             test: /\.(js|ts|tsx)$/,
+            include: [path.join(__dirname, '../packages')],
             use: [
               {
                 loader: 'babel-loader',
@@ -63,8 +65,8 @@ const build = config =>
     });
   });
 
-const startServer = fs =>
-  new Promise(resolve => {
+const startServer = (fs) =>
+  new Promise((resolve) => {
     const app = express();
 
     app.get('*', (req, res) => {
@@ -96,7 +98,7 @@ const startServer = fs =>
     });
   });
 
-export default async config => {
+export default async (config) => {
   const fs = await build(config);
 
   return await startServer(fs);

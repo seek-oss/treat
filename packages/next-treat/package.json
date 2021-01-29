@@ -15,5 +15,9 @@
   "license": "MIT",
   "peerDependencies": {
     "treat": "^1.1.7"
+  },
+  "devDependencies": {
+    "treat": "*",
+    "wait-for-localhost": "^3.3.0"
   }
 }

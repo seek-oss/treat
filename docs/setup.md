@@ -116,7 +116,7 @@ import styleRefs from './styles.treat';
 // Inject the theme name somehow:
 const themeName = getThemeName();
 
-import(`../themes/${themeName}.treat`).then(theme => {
+import(`../themes/${themeName}.treat`).then((theme) => {
   const styles = resolveStyles(theme.default, styleRefs);
   // You now have access to themed styles!
 });

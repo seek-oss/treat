@@ -84,7 +84,7 @@ const SubLink = ({
 export default () => {
   const styles = useStyles(styleRefs);
   const [menuOpen, setMenuOpen] = useState(false);
-  const toggleMenu = () => setMenuOpen(open => !open);
+  const toggleMenu = () => setMenuOpen((open) => !open);
   const closeMenu = () => {
     setMenuOpen(false);
   };

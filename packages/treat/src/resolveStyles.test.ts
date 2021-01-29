@@ -77,7 +77,10 @@ describe('resolveStyles', () => {
   });
 
   it('should resolve nested arrays', () => {
-    const styles = [['abc', '$abc'], ['def', '$def']];
+    const styles = [
+      ['abc', '$abc'],
+      ['def', '$def'],
+    ];
     expect(resolveStyles(themeRef, styles)).toMatchInlineSnapshot(`
                                                 Array [
                                                   Array [

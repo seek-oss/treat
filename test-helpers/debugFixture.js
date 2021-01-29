@@ -2,7 +2,7 @@ const webpack = require('webpack');
 const { join } = require('path');
 const WebpackDevServer = require('webpack-dev-server');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const TreatPlugin = require('treat/webpack-plugin');
+const { TreatPlugin } = require('treat/webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const fixture = process.argv[2];
@@ -29,6 +29,7 @@ const config = {
     rules: [
       {
         test: /\.(js|ts|tsx)$/,
+        include: [join(__dirname, '../packages')],
         use: [
           {
             loader: 'babel-loader',

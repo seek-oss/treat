@@ -12,7 +12,6 @@
   <br />
 </div>
 
-
 Write your styles in JavaScript/TypeScript within **treat files** (e.g. `Button.treat.js`) that get executed at build time.
 
 All CSS rules are created ahead of time, so the runtime is _very_ lightweight—only needing to swap out pre-existing classes. In fact, if your application doesn’t use theming, you don’t even need the runtime at all.
@@ -87,7 +86,7 @@ export const Button = ({ text }) => `
 
 ## Themed usage
 
->This themed usage example makes use of [react-treat](https://seek-oss.github.io/treat/react-api) to keep things simple. React is [not required](https://seek-oss.github.io/treat/runtime-api) to use treat.
+> This themed usage example makes use of [react-treat](https://seek-oss.github.io/treat/react-api) to keep things simple. React is [not required](https://seek-oss.github.io/treat/runtime-api) to use treat.
 
 First, install react-treat.
 
@@ -129,7 +128,7 @@ Now that you’ve configured the theming system, define and export [themed style
 // ** THIS CODE WON'T END UP IN YOUR BUNDLE EITHER! **
 import { style } from 'treat';
 
-export const button = style(theme => ({
+export const button = style((theme) => ({
   backgroundColor: theme.brandColor,
   height: theme.grid * 11
 }));
@@ -145,7 +144,7 @@ import React from 'react';
 import { useStyles } from 'react-treat';
 import * as styleRefs from './Button.treat.js';
 
-export const Button = props => {
+export const Button = (props) => {
   const styles = useStyles(styleRefs);
 
   return <button {...props} className={styles.button} />;

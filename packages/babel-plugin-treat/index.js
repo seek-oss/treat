@@ -43,18 +43,18 @@ const isTreatCall = (t, node, namespaceImport, treatIdentifiers) => {
   if (namespaceImport && t.isMemberExpression(node)) {
     return (
       t.isIdentifier(node.object, { name: namespaceImport }) &&
-      treatExports.some(exportName =>
+      treatExports.some((exportName) =>
         t.isIdentifier(node.property, { name: exportName }),
       )
     );
   } else {
-    return treatIdentifiers.some(identifier =>
+    return treatIdentifiers.some((identifier) =>
       t.isIdentifier(node, { name: identifier }),
     );
   }
 };
 
-module.exports = function({ types: t }) {
+module.exports = function ({ types: t }) {
   return {
     pre(state) {
       const { filename } = state.opts;
@@ -73,7 +73,7 @@ module.exports = function({ types: t }) {
         const treatImportIdentifier = opts.alias || 'treat';
 
         if (path.node.source.value === treatImportIdentifier) {
-          path.node.specifiers.forEach(specifier => {
+          path.node.specifiers.forEach((specifier) => {
             if (specifier.type === 'ImportNamespaceSpecifier') {
               this.namespaceImport = specifier.local.name;
             } else {

@@ -29,7 +29,7 @@ const SearchResult = ({
       }}
     >
       <Box>
-        <Text weight="strong">{breadcrumbs.map(crumb => `> ${crumb} `)}</Text>
+        <Text weight="strong">{breadcrumbs.map((crumb) => `> ${crumb} `)}</Text>
         <Text size="small">
           <HighlighWords
             searchWords={matches}
@@ -58,7 +58,7 @@ export default () => {
       <input type="text" value={searchTerm} onChange={handleChange} />
       <Box className={styles.resultsContainer}>
         {results.length
-          ? results.map(result => (
+          ? results.map((result) => (
               <SearchResult key={result.route + result.hash} {...result} />
             ))
           : null}

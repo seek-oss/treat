@@ -1,20 +1,13 @@
 {
   "name": "react-treat",
   "description": "React library for integrating with treat",
+  "main": "dist/react-treat.cjs.js",
+  "module": "dist/react-treat.esm.js",
   "version": "1.6.1",
-  "main": "lib/commonjs",
-  "module": "lib/module",
-  "types": "lib/types",
   "sideEffects": false,
   "author": "SEEK",
   "license": "MIT",
   "repository": "https://github.com/seek-oss/treat/tree/master/packages/react-treat",
-  "scripts": {
-    "build:module": "tsc --module es2015 --outDir lib/module --declaration false",
-    "build:commonjs": "tsc --module commonjs --outDir lib/commonjs --declaration false",
-    "build:types": "tsc --emitDeclarationOnly --declaration true --declarationDir lib/types",
-    "build": "concurrently \"yarn:build:module\" \"yarn:build:commonjs\" \"yarn:build:types\""
-  },
   "keywords": [
     "treat"
   ],
@@ -23,6 +16,7 @@
     "treat": "^1.0.0"
   },
   "devDependencies": {
+    "react": "^16.13.1",
     "treat": "^1.6.1"
   }
 }

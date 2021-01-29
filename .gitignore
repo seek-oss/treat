@@ -2,3 +2,5 @@ node_modules
 dist
 lib
 docs-manifest.json
+yarn-error.log
+tsconfig.tsbuildinfo

@@ -1,8 +1,7 @@
 import bent from 'bent';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
-
-import startFixture from '../../../test-helpers/startServer';
-import TreatPlugin from '../webpack-plugin';
+import startFixture from 'treat-test-helpers/startServer';
+import { TreatPlugin } from 'treat/webpack-plugin';
 
 const getString = bent('string');
 const cssFileName = 'main.css';
@@ -62,7 +61,7 @@ const configVariations = [
         new TreatPlugin({
           browsers: ['chrome > 70'],
           minify: false,
-          themeIdentName: theme => `_${theme.name}_[hash:base64:2]`,
+          themeIdentName: (theme: any) => `_${theme.name}_[hash:base64:2]`,
           outputLoaders: [MiniCssExtractPlugin.loader],
         }),
         new MiniCssExtractPlugin({
@@ -114,7 +113,7 @@ const fixtureEntries = [
 ];
 
 describe('Stylesheet', () => {
-  let server;
+  let server: any;
 
   configVariations.forEach(({ label, config }) => {
     fixtureEntries.forEach(({ fixtureName, entry }) => {

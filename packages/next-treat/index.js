@@ -1,7 +1,7 @@
 const {
   getClientStyleLoader,
 } = require('next/dist/build/webpack/config/blocks/css/loaders/client');
-const TreatPlugin = require('treat/webpack-plugin');
+const { TreatPlugin } = require('treat/webpack-plugin');
 
 module.exports = (pluginOptions = {}) => (nextConfig = {}) => {
   return Object.assign({}, nextConfig, {

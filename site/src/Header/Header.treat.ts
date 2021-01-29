@@ -42,8 +42,9 @@ export const fab__bar = style({
       top: barPosition['1'],
     },
     [`${fab_isOpen} &:nth-child(1)`]: {
-      transform: `translateY(${barPosition['2'] -
-        barPosition['1']}px) rotate(45deg)`,
+      transform: `translateY(${
+        barPosition['2'] - barPosition['1']
+      }px) rotate(45deg)`,
     },
     '&:nth-child(2)': {
       top: barPosition['2'],
@@ -56,8 +57,9 @@ export const fab__bar = style({
       top: barPosition['3'],
     },
     [`${fab_isOpen} &:nth-child(3)`]: {
-      transform: `translateY(${barPosition['2'] -
-        barPosition['3']}px) rotate(-45deg)`,
+      transform: `translateY(${
+        barPosition['2'] - barPosition['3']
+      }px) rotate(-45deg)`,
     },
   },
 });

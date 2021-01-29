@@ -8,7 +8,7 @@ export function createSpacing<Space extends string, Breakpoint extends string>(
   styleFn: StyleFn = style,
 ) {
   const makeSpacingRules = (property: keyof CSSProperties) =>
-    mapValues(tokens.spacing, space =>
+    mapValues(tokens.spacing, (space) =>
       mapValues(tokens.breakpoints, (minWidth, breakpoint) =>
         styleFn(
           responsiveStyles(minWidth, { [property]: space * tokens.grid }),

@@ -24,7 +24,7 @@ const smallTheme = createTheme(
 const themedStyle = style(() => ({}));
 const unthemedClassStyle = style({});
 
-const lotsOfSelectors = breakpoint => ({
+const lotsOfSelectors = (breakpoint: number) => ({
   ':focus': {
     color: 'purple',
   },

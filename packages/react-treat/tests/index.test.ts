@@ -1,9 +1,9 @@
-import TreatPlugin from 'treat/webpack-plugin';
+import { TreatPlugin } from 'treat/webpack-plugin';
 import startFixture from '../../../test-helpers/startServer';
 import getStyles from '../../../test-helpers/getStyles';
 
 describe('React', () => {
-  let server;
+  let server: any;
 
   beforeAll(async () => {
     server = await startFixture({

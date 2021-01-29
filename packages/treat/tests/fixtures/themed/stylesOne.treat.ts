@@ -1,6 +1,6 @@
 import { style } from 'treat';
 
-const themeStyle = style(theme => ({
+const themeStyle = style((theme) => ({
   backgroundColor: theme.primaryColor,
 }));
 

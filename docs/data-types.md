@@ -115,7 +115,7 @@ Type: `function`
 Accepts a [`Theme`](#theme) and returns a [`Styles` object.](#styles)
 
 ```js
-theme => ({
+(theme) => ({
   color: theme.brandColor
 });
 ```

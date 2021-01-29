@@ -18,7 +18,7 @@ export function createProperty<
 ): Record<Value, Record<Breakpoint, ClassRef>> {
   const values = keyBy(propertyValues) as Record<Value, Value>;
 
-  return mapValues(values, value =>
+  return mapValues(values, (value) =>
     mapValues(tokens.breakpoints, (minWidth, breakpoint) =>
       styleFn(
         responsiveStyles(minWidth, { [propertyName]: value }),

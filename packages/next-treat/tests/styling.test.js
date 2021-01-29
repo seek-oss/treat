@@ -1,12 +1,14 @@
 import execa from 'execa';
 import * as path from 'path';
 import waitForLocalhost from 'wait-for-localhost';
-import getStyles from '../../../test-helpers/getStyles';
-import resolveBin from '../../../test-helpers/resolveBin';
+import getStyles from 'treat-test-helpers/getStyles';
+import resolveBin from 'treat-test-helpers/resolveBin';
 
 const nextjsServerPort = 9998;
 const nextjsBinaryPath = resolveBin('next', 'next');
-const nextjsFixturePath = path.resolve(__dirname, '../../next-treat-example');
+const nextjsFixturePath = path.dirname(
+  require.resolve('next-treat-example/package.json'),
+);
 const nextjsExecArgs = {
   shell: '/bin/bash',
   cwd: nextjsFixturePath,
@@ -27,8 +29,6 @@ async function startDevServer() {
     `${nextjsBinaryPath} -p ${nextjsServerPort}`,
     nextjsExecArgs,
   );
-  nextjsProcess.stdout.pipe(process.stdout);
-  nextjsProcess.stderr.pipe(process.stdout);
   await navigateToServerWhenReady();
 }
 
@@ -38,8 +38,6 @@ async function startProdServer() {
     `${nextjsBinaryPath} start -p ${nextjsServerPort}`,
     nextjsExecArgs,
   );
-  nextjsProcess.stdout.pipe(process.stdout);
-  nextjsProcess.stderr.pipe(process.stdout);
   await navigateToServerWhenReady();
 }
 

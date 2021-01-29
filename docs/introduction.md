@@ -112,7 +112,7 @@ Now that you've configured the theming system, define and export [themed styles]
 // ** THIS CODE WON'T END UP IN YOUR BUNDLE EITHER! **
 import { style } from 'treat';
 
-export const button = style(theme => ({
+export const button = style((theme) => ({
   backgroundColor: theme.brandColor,
   height: theme.grid * 11
 }));
@@ -128,7 +128,7 @@ import React from 'react';
 import { useStyles } from 'react-treat';
 import * as styleRefs from './Button.treat.js';
 
-export const Button = props => {
+export const Button = (props) => {
   const styles = useStyles(styleRefs);
 
   return <button {...props} className={styles.button} />;

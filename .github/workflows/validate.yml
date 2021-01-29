@@ -1,0 +1,35 @@
+name: Validate
+
+on:
+  - pull_request
+  - push
+
+jobs:
+  validate:
+    name: Lint & Test
+    runs-on: ubuntu-latest
+    env:
+      CI: true
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@main
+
+      - name: Set up Node.js 14.x
+        uses: actions/setup-node@main
+        with:
+          node-version: 14.x
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Make docs manifest
+        run: yarn make-docs-manifest
+
+      - name: Build
+        run: yarn build
+
+      - name: Lint
+        run: yarn lint
+
+      - name: Test
+        run: yarn test

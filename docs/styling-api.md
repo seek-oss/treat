@@ -54,7 +54,7 @@ The `styleMap` function allows you to easily create multiple namespaces within a
 ```js
 import { styleMap } from 'treat';
 
-export const variants = styleMap(theme => ({
+export const variants = styleMap((theme) => ({
   primary: {
     backgroundColor: theme.colors.brand
   },
@@ -97,8 +97,8 @@ const spacingTokens = {
   large: 16
 };
 
-const spacingStyles = property =>
-  mapValues(spacingTokens, value => ({
+const spacingStyles = (property) =>
+  mapValues(spacingTokens, (value) => ({
     [property]: value
   }));
 
@@ -135,10 +135,10 @@ For example, if you wanted to create a nested atomic CSS structure (e.g. `atoms.
 import { styleTree } from 'treat';
 import { mapValues } from 'lodash';
 
-const responsiveSpacingStyles = property =>
+const responsiveSpacingStyles = (property) =>
   styleTree((theme, styleNode) =>
-    mapValues(theme.spacing, space =>
-      mapValues(theme.breakpoints, minWidth =>
+    mapValues(theme.spacing, (space) =>
+      mapValues(theme.breakpoints, (minWidth) =>
         styleNode({
           '@media': {
             [`screen and (min-width: ${minWidth}px)`]: {

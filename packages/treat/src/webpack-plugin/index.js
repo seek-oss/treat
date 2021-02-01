@@ -2,7 +2,6 @@ import Promise from 'bluebird';
 import partition from 'lodash/partition';
 import chalk from 'chalk';
 
-import virtualModules from './virtualModules';
 import store from './store';
 import reIndexModules from './reIndexModules';
 import TreatError from './TreatError';
@@ -61,10 +60,6 @@ export class TreatPlugin {
   }
 
   apply(compiler) {
-    if (this.loaderOptions.outputCSS) {
-      virtualModules.apply(compiler);
-    }
-
     compiler.hooks.watchRun.tap(TWP, (watchCompiler) => {
       // watchCompiler.watchFileSystem.watcher is undefined in some node environments.
       // Allow fallback to watchCompiler.watchFileSystem.wfs
@@ -72,7 +67,8 @@ export class TreatPlugin {
       const watcher =
         watchCompiler.watchFileSystem.watcher ||
         watchCompiler.watchFileSystem.wfs.watcher;
-      this.treatCompiler.expireCache(Object.keys(watcher.mtimes));
+
+      // this.treatCompiler.expireCache(Object.keys(watcher.mtimes));
     });
 
     compiler.hooks.thisCompilation.tap(TWP, (compilation) => {
@@ -340,8 +336,6 @@ export class TreatPlugin {
             sideEffects: true,
           });
         }
-
-        return result;
       });
     });
 
@@ -349,31 +343,49 @@ export class TreatPlugin {
       isProductionLikeMode(compiler.options),
     );
 
-    compiler.options.module.rules.splice(0, 0, {
-      test: this.test,
-      sideEffects: true,
-      use: [
-        {
-          loader: require.resolve('treat/webpack-plugin/loader'),
-          options: {
-            ...this.loaderOptions,
-            minify: optionDefaulter(this.minify, {
-              dev: false,
-              prod: true,
-            }),
-            localIdentName: optionDefaulter(this.localIdentName, {
-              dev: '[name]-[local]_[hash:base64:5]',
-              prod: '[hash:base64:5]',
-            }),
-            themeIdentName: optionDefaulter(this.themeIdentName, {
-              dev: '_[name]-[local]_[hash:base64:4]',
-              prod: '[hash:base64:4]',
-            }),
-            store: this.store,
-            treatCompiler: this.treatCompiler,
+    compiler.options.module.rules.splice(
+      0,
+      0,
+      {
+        test: this.test,
+        sideEffects: true,
+        use: [
+          {
+            loader: require.resolve('treat/webpack-plugin/loader'),
+            options: {
+              ...this.loaderOptions,
+              minify: optionDefaulter(this.minify, {
+                dev: false,
+                prod: true,
+              }),
+              localIdentName: optionDefaulter(this.localIdentName, {
+                dev: '[name]-[local]_[hash:base64:5]',
+                prod: '[hash:base64:5]',
+              }),
+              themeIdentName: optionDefaulter(this.themeIdentName, {
+                dev: '_[name]-[local]_[hash:base64:4]',
+                prod: '[hash:base64:4]',
+              }),
+              store: this.store,
+              treatCompiler: this.treatCompiler,
+            },
           },
-        },
-      ],
-    });
+        ],
+      },
+      {
+        test: /\.treatcss$/,
+        sideEffects: true,
+        use: [
+          ...this.loaderOptions.outputLoaders,
+          {
+            loader: 'css-loader',
+            options: {
+              modules: false,
+              url: false,
+            },
+          },
+        ],
+      },
+    );
   }
 }

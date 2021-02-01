@@ -9,7 +9,6 @@ import isPlainObject from 'lodash/isPlainObject';
 import dedent from 'dedent';
 import { stringify } from 'javascript-stringify';
 
-import virtualModules from './virtualModules';
 import processCss from './processCss';
 import { THEMED, LOCAL } from './utils';
 import TreatError from './TreatError';
@@ -121,22 +120,31 @@ async function produce(loader) {
     });
 
     if (css) {
-      const virtualCssLocation = path.normalize(
+      const base64 = Buffer.from(css, 'utf-8').toString('base64');
+
+      const unloader = stringifyLoaderRequest({
+        loader: '@vocab/unloader',
+        options: { source: base64 },
+      });
+      const cssFileName = path.normalize(
         loaderUtils.interpolateName(
           loader,
-          '[path][name].[hash:base64:7].css',
+          '[path][name].[hash:base64:7].treatcss',
           {
             content: css,
           },
         ),
       );
 
-      // Create virtual css file for style created in this module
-      virtualModules.writeModule(virtualCssLocation, css);
+      const resource = cssFileName;
+
+      const request = `${resource}!=!${unloader}!${loader.resourcePath}`;
+
+      console.log({ resource, request });
 
       return {
-        request: stringifyCssRequest(virtualCssLocation, outputLoaders),
-        resource: virtualCssLocation,
+        request,
+        resource,
       };
     }
 
@@ -233,24 +241,17 @@ async function produce(loader) {
     cssRequests.forEach((request) => ownedCssRequests.add(request));
   }
 
-  return serializeTreatModule(
+  const r = serializeTreatModule(
     loader,
     Array.from(ownedCssRequests.values()),
     result,
     hmr,
   );
+
+  console.log(r);
+
+  return r;
 }
-
-const stringifyCssRequest = (cssLocation, outputLoaders) => {
-  const cssLoaders = [
-    ...outputLoaders,
-    { loader: 'css-loader', options: { modules: false, url: false } },
-  ]
-    .map(stringifyLoaderRequest)
-    .join('!');
-
-  return `!${cssLoaders}!${cssLocation}`;
-};
 
 const stringifyExports = (value) =>
   stringify(

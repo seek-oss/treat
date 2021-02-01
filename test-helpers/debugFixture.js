@@ -55,7 +55,6 @@ const config = {
       outputLoaders: [
         {
           loader: MiniCssExtractPlugin.loader,
-          options: { hmr: hot, reloadAll: true },
         },
       ],
       verbose: true,

@@ -61,9 +61,8 @@ export class TreatPlugin {
   }
 
   apply(compiler) {
-    const compat = createCompat(
-      Boolean(compiler.webpack && compiler.webpack.version),
-    );
+    const isWebpack5 = Boolean(compiler.webpack && compiler.webpack.version);
+    const compat = createCompat(isWebpack5);
 
     compiler.hooks.watchRun.tap(TWP, (watchCompiler) => {
       const modifiedFiles = compat.getModifiedFiles(watchCompiler);
@@ -161,24 +160,33 @@ export class TreatPlugin {
           );
         }
 
-        // Build css modules Map for sorting after chunk phase
         const cssResources = this.store
           .getAllThemedCssRequests()
           .map(({ resource }) => resource);
 
-        for (const module of compilation._modules.values()) {
-          const resourceToCheck = module.matchResource
-            ? module.matchResource
-            : module.issuer && module.issuer.matchResource;
-
+        const getTreatCssResource = (module) => {
           if (
-            resourceToCheck &&
-            module.identifier().indexOf('hotModule') === -1 &&
-            module.identifier().indexOf('addStyles') === -1 &&
-            cssResources.includes(resourceToCheck)
+            module.matchResource &&
+            cssResources.includes(module.matchResource)
           ) {
+            return module.matchResource;
+          }
+
+          if (module.type === 'css/mini-extract') {
+            const issuer = compat.getModuleIssuer(compilation, module);
+
+            return getTreatCssResource(issuer);
+          }
+
+          return null;
+        };
+
+        for (const module of compilation._modules.values()) {
+          const treatCssResource = getTreatCssResource(module);
+
+          if (treatCssResource) {
             const { owner, type, theme } = this.store.getThemedCssModuleInfo(
-              resourceToCheck,
+              treatCssResource,
             );
             const themeIdentifier = theme
               ? this.store.getTheme(theme).identifier

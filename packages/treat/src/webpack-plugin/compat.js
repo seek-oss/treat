@@ -28,6 +28,7 @@ const webpack4 = {
 
     return Object.keys(watcher.mtimes);
   },
+  getModuleIssuer: (_compilation, module) => module.issuer,
 };
 
 const webpack5 = {
@@ -58,6 +59,8 @@ const webpack5 = {
     compilation.chunkGraph.isModuleInChunk(module, chunk),
   getModifiedFiles: (watchCompiler) =>
     watchCompiler.modifiedFiles ? Array.from(watchCompiler.modifiedFiles) : [],
+  getModuleIssuer: (compilation, module) =>
+    compilation.moduleGraph.getIssuer(module),
 };
 
 export default (isWebpack5) => {

@@ -8,6 +8,7 @@ import TreatError from './TreatError';
 import makeTreatCompiler from './treatCompiler';
 import optionValidator from './optionValidator';
 import { debugIdent } from './utils';
+import { compilationCompat } from './compat';
 
 const isProductionLikeMode = (options) => {
   return options.mode === 'production' || !options.mode;
@@ -72,7 +73,9 @@ export class TreatPlugin {
     });
 
     compiler.hooks.thisCompilation.tap(TWP, (compilation) => {
-      const cssModules = new Map();
+      const compat = compilationCompat(compiler.webpack.version, compilation);
+      let allCssModules = [];
+      let usedCssModules;
 
       const rebuildModule = (module) =>
         new Promise((resolve) => {
@@ -166,50 +169,47 @@ export class TreatPlugin {
           .map(({ resource }) => resource);
 
         for (const module of compilation._modules.values()) {
-          const resourceToCheck = module.resource
-            ? module.resource
-            : module.issuer && module.issuer.resource;
+          const resourceToCheck = module.matchResource
+            ? module.matchResource
+            : module.issuer && module.issuer.matchResource;
 
-          if (resourceToCheck && cssResources.includes(resourceToCheck)) {
+          if (
+            resourceToCheck &&
+            module.identifier().indexOf('hotModule') === -1 &&
+            module.identifier().indexOf('addStyles') === -1 &&
+            cssResources.includes(resourceToCheck)
+          ) {
             const { owner, type, theme } = this.store.getThemedCssModuleInfo(
               resourceToCheck,
             );
+            const themeIdentifier = theme
+              ? this.store.getTheme(theme).identifier
+              : null;
 
-            cssModules.set(module.identifier(), {
-              ownerIdentifier: owner,
+            allCssModules.push({
               type,
-              themeIdentifier: theme
-                ? this.store.getTheme(theme).identifier
+              module: compilation.findModule(module.identifier()),
+              owner: compilation.findModule(owner),
+              themeModule: theme
+                ? compilation.findModule(themeIdentifier)
                 : null,
+              identifier: module.identifier(),
             });
           }
         }
       });
 
-      compilation.hooks.afterChunks.tap(TWP, (chunks) => {
-        try {
-          // afterChunks hook means module/chunk order properties have been set
-          // We can now correct those values by referencing the ordering of the owner treat file
-          const allCssModules = Array.from(cssModules.entries()).map(
-            ([identifier, moduleInfo]) => ({
-              ...moduleInfo,
-              module: compilation.findModule(identifier),
-              owner: compilation.findModule(moduleInfo.ownerIdentifier),
-              themeModule: moduleInfo.themeIdentifier
-                ? compilation.findModule(moduleInfo.themeIdentifier)
-                : null,
-              identifier,
-            }),
-          );
-
+      compilation.hooks.optimizeDependencies.tap(
+        // Running during advanced stage means export usage info has been added to the graph already
+        { name: TWP, stage: 10 },
+        () => {
           // Some modules may not be used and their css can be safely be removed from the chunks
-          const [usedCssModules, modulesToRemove] = partition(
+          const cssModuleGroups = partition(
             allCssModules,
             ({ identifier, owner, themeModule }) => {
-              const used = (m) => (typeof m.used === 'boolean' ? m.used : true);
-
-              const ownerIsUsed = used(owner);
-              const themeIsUsed = !themeModule || used(themeModule);
+              const ownerIsUsed = compat.isModuleUsed(owner);
+              const themeIsUsed =
+                !themeModule || compat.isModuleUsed(themeModule);
 
               const cssModuleIsUsed = ownerIsUsed && themeIsUsed;
 
@@ -225,31 +225,57 @@ export class TreatPlugin {
             },
           );
 
-          if (modulesToRemove.length > 0) {
-            chunks.forEach((chunk) => {
-              modulesToRemove.forEach(({ module, identifier }) => {
-                this.store.getThemeIdentifiers().forEach((themeIdentifier) => {
-                  const themeModule = compilation.findModule(themeIdentifier);
+          usedCssModules = cssModuleGroups[0];
+          const cssModulesToRemove = cssModuleGroups[1];
 
-                  themeModule.dependencies = themeModule.dependencies.filter(
-                    (dependency) => {
-                      if (!dependency.module) {
-                        return true;
-                      }
+          if (cssModulesToRemove.length > 0) {
+            const themeModules = this.store
+              .getThemeIdentifiers()
+              .map((ident) => compilation.findModule(ident));
 
-                      return dependency.module.identifier() !== identifier;
-                    },
+            const cssModulesIdentsToRemove = cssModulesToRemove.map(
+              ({ identifier }) => identifier,
+            );
+
+            for (const themeModule of themeModules) {
+              const depsToRemove = themeModule.dependencies.filter((dep) => {
+                const depModule = compat.getDependencyModule(dep);
+
+                const shouldRemove =
+                  depModule &&
+                  cssModulesIdentsToRemove.includes(depModule.identifier());
+
+                if (shouldRemove) {
+                  this.trace(
+                    `Mark ${debugIdent(
+                      depModule.identifier(),
+                    )} for clean-up in ${debugIdent(themeModule.identifier())}`,
                   );
-                });
+                }
 
-                chunk.removeModule(module);
+                return shouldRemove;
               });
-            });
-          }
 
-          chunks.forEach((chunk) => {
+              for (const dep of depsToRemove) {
+                themeModule.removeDependency(dep);
+              }
+
+              compilation.removeReasonsOfDependencyBlock(themeModule, {
+                dependencies: depsToRemove,
+                blocks: [],
+              });
+            }
+          }
+        },
+      );
+
+      compilation.hooks.afterChunks.tap(TWP, (chunks) => {
+        try {
+          // afterChunks hook means module/chunk order properties have been set
+          // We can now correct those values by referencing the ordering of the owner treat file
+          for (const chunk of chunks) {
             const cssModulesInChunk = usedCssModules.filter(({ module }) =>
-              chunk.containsModule(module),
+              compat.isModuleInChunk(module, chunk),
             );
 
             for (const chunkGroup of chunk.groupsIterable) {
@@ -258,30 +284,40 @@ export class TreatPlugin {
               reIndexModules(
                 cssModulesInChunk,
                 {
-                  getIndex: ({ module }) => chunkGroup.getModuleIndex(module),
-                  getIndex2: ({ module }) => chunkGroup.getModuleIndex2(module),
-                  getOwnerIndex: ({ owner }) => owner.index,
-                  getThemeIndex: ({ themeModule }) => themeModule.index,
-                  setIndex: ({ module }, i) =>
-                    chunkGroup.setModuleIndex(module, i),
-                  setIndex2: ({ module }, i) =>
-                    chunkGroup.setModuleIndex2(module, i),
+                  getPreIndex: ({ module }) =>
+                    compat.getCGModulePreOrderIndex(chunkGroup, module),
+                  getPostIndex: ({ module }) =>
+                    compat.getCGModulePostOrderIndex(chunkGroup, module),
+                  getOwnerIndex: ({ owner }) =>
+                    compat.getModulePreOrderIndex(owner),
+                  getThemeIndex: ({ themeModule }) =>
+                    compat.getModulePreOrderIndex(themeModule),
+                  setPreIndex: ({ module }, i) =>
+                    compat.setCGModulePreOrderIndex(chunkGroup, module, i),
+                  setPostIndex: ({ module }, i) =>
+                    compat.setCGModulePostOrderIndex(chunkGroup, module, i),
                 },
-                { trace: this.trace, target: 'ChunkGroup._moduleIndicies' },
+                { trace: this.trace, target: 'ChunkGroup moduleIndicies' },
               );
             }
-          });
+          }
 
           // Corrects Module.index/index2
           reIndexModules(
             usedCssModules,
             {
-              getIndex: ({ module }) => module.index,
-              getIndex2: ({ module }) => module.index2,
-              getOwnerIndex: ({ owner }) => owner.index,
-              getThemeIndex: ({ themeModule }) => themeModule.index,
-              setIndex: ({ module }, i) => (module.index = i),
-              setIndex2: ({ module }, i) => (module.index2 = i),
+              getPreIndex: ({ module }) =>
+                compat.getModulePreOrderIndex(module),
+              getPostIndex: ({ module }) =>
+                compat.getModulePostOrderIndex(module),
+              getOwnerIndex: ({ owner }) =>
+                compat.getModulePreOrderIndex(owner),
+              getThemeIndex: ({ themeModule }) =>
+                compat.getModulePreOrderIndex(themeModule),
+              setPreIndex: ({ module }, i) =>
+                compat.setModulePreOrderIndex(module, i),
+              setPostIndex: ({ module }, i) =>
+                compat.setModulePostOrderIndex(module, i),
             },
             { trace: this.trace, target: 'Module.index/index2' },
           );
@@ -297,11 +333,13 @@ export class TreatPlugin {
               const relevantDependencies = usedCssModules
                 .map((moduleInfo) => ({
                   ...moduleInfo,
-                  dependency: dependencies.find(
-                    (d) =>
-                      d.module &&
-                      d.module.identifier() === moduleInfo.identifier,
-                  ),
+                  dependency: dependencies.find((d) => {
+                    const module = compat.getDependencyModule(d);
+
+                    return (
+                      module && module.identifier() === moduleInfo.identifier
+                    );
+                  }),
                 }))
                 .filter(({ dependency }) => dependency);
 
@@ -310,15 +348,17 @@ export class TreatPlugin {
               reIndexModules(
                 relevantDependencies,
                 {
-                  getIndex: ({ dependency }) => dependency.sourceOrder,
-                  getOwnerIndex: ({ owner }) => owner.index,
-                  getThemeIndex: ({ themeModule }) => themeModule.index,
-                  setIndex: ({ dependency }, i) => {
+                  getPreIndex: ({ dependency }) => dependency.sourceOrder,
+                  getOwnerIndex: ({ owner }) =>
+                    compat.getModulePreOrderIndex(owner),
+                  getThemeIndex: ({ themeModule }) =>
+                    compat.getModulePreOrderIndex(themeModule),
+                  setPreIndex: ({ dependency }, i) => {
                     dependency.sourceOrder = i;
                   },
-                  // index2 not required for dependencies
-                  getIndex2: () => {},
-                  setIndex2: () => {},
+                  // post index not required for dependencies
+                  getPostIndex: () => {},
+                  setPostIndex: () => {},
                 },
                 { trace: this.trace, target: 'Dependency.sourceOrder' },
               );
@@ -331,7 +371,7 @@ export class TreatPlugin {
 
     compiler.hooks.normalModuleFactory.tap(TWP, (nmf) => {
       nmf.hooks.afterResolve.tap(TWP, (result) => {
-        if (this.store.getCSSResources().has(result.resource)) {
+        if (this.store.getCSSResources().has(result.matchResource)) {
           result.settings = Object.assign({}, result.settings, {
             sideEffects: true,
           });
@@ -348,7 +388,6 @@ export class TreatPlugin {
       0,
       {
         test: this.test,
-        sideEffects: true,
         use: [
           {
             loader: require.resolve('treat/webpack-plugin/loader'),

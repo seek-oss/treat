@@ -1480,10 +1480,6 @@ exports[`Stylesheet Unused modules - Development mode - should create a determin
     top: 100px;
     bottom: 100px
 }
-.usedThemeStyle-usedThemeStyle_2dq_B_unusedTheme-unusedTheme_1oZa {
-    top: 100px;
-    bottom: 100px
-}
 "
 `;
 

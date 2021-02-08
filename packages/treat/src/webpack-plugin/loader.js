@@ -66,7 +66,6 @@ async function produce(loader) {
     outputCSS,
     localIdentName,
     themeIdentName,
-    outputLoaders,
     minify,
     browsers,
     store,
@@ -136,15 +135,9 @@ async function produce(loader) {
         ),
       );
 
-      const resource = cssFileName;
-
-      const request = `${resource}!=!${unloader}!${loader.resourcePath}`;
-
-      console.log({ resource, request });
-
       return {
-        request,
-        resource,
+        request: `${cssFileName}!=!${unloader}!${loader.resourcePath}`,
+        resource: cssFileName,
       };
     }
 
@@ -247,8 +240,6 @@ async function produce(loader) {
     result,
     hmr,
   );
-
-  console.log(r);
 
   return r;
 }

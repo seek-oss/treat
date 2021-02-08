@@ -1,20 +1,15 @@
 import chalk from 'chalk';
 import { THEMED, debugIdent } from './utils';
 
-const formatReindex = (currIndex, newIndex) =>
-  currIndex > newIndex
-    ? `${chalk.green(currIndex)} -> ${chalk.red(newIndex)}`
-    : `${chalk.red(currIndex)} -> ${chalk.green(newIndex)}`;
+const formatReindex = (currIndex, newPreIndex) =>
+  currIndex > newPreIndex
+    ? `${chalk.green(currIndex)} -> ${chalk.red(newPreIndex)}`
+    : `${chalk.red(currIndex)} -> ${chalk.green(newPreIndex)}`;
 
-const handleInvalidIndex = (module, ownerIndex, descriptor) => {
-  if (typeof ownerIndex !== 'number') {
-    throw new Error(
-      `Could not get ${descriptor} index for module ${module.identifier}`,
-    );
-  }
-};
-
-const sortModules = (modules, { getIndex, getOwnerIndex, getThemeIndex }) => {
+const sortModules = (
+  modules,
+  { getPreIndex, getOwnerIndex, getThemeIndex },
+) => {
   return modules.sort((a, b) => {
     if (a.type !== THEMED && b.type === THEMED) {
       return -1;
@@ -28,9 +23,6 @@ const sortModules = (modules, { getIndex, getOwnerIndex, getThemeIndex }) => {
       const themeIndexA = getThemeIndex(a);
       const themeIndexB = getThemeIndex(b);
 
-      handleInvalidIndex(a, themeIndexA, 'theme');
-      handleInvalidIndex(b, themeIndexB, 'theme');
-
       if (themeIndexA !== themeIndexB) {
         return themeIndexA - themeIndexB;
       }
@@ -39,11 +31,8 @@ const sortModules = (modules, { getIndex, getOwnerIndex, getThemeIndex }) => {
     const ownerIndexA = getOwnerIndex(a);
     const ownerIndexB = getOwnerIndex(b);
 
-    handleInvalidIndex(a, ownerIndexA, 'owner');
-    handleInvalidIndex(b, ownerIndexB, 'owner');
-
     if (ownerIndexA === ownerIndexB) {
-      return getIndex(a) - getIndex(b);
+      return getPreIndex(a) - getPreIndex(b);
     }
 
     return ownerIndexA - ownerIndexB;
@@ -52,17 +41,43 @@ const sortModules = (modules, { getIndex, getOwnerIndex, getThemeIndex }) => {
 
 export default (
   modules,
-  { getIndex, getIndex2, getOwnerIndex, getThemeIndex, setIndex, setIndex2 },
+  {
+    getPreIndex,
+    getPostIndex,
+    getOwnerIndex,
+    getThemeIndex,
+    setPreIndex,
+    setPostIndex,
+  },
   { trace, target },
 ) => {
   trace('Sorting', target);
 
-  const originalOrderModules = modules
-    .slice()
-    .sort((a, b) => getIndex(a) - getIndex(b));
+  const modulesToSort = modules.filter((m) => {
+    const hasOwnerIndex = typeof getOwnerIndex(m) === 'number';
+    const shouldSort =
+      hasOwnerIndex &&
+      (m.type !== THEMED || typeof getThemeIndex(m) === 'number');
 
-  const sortedModules = sortModules(modules.slice(), {
-    getIndex,
+    if (!shouldSort) {
+      trace(
+        `Ignoring ${debugIdent(m.identifier)} from sorting. No ${
+          hasOwnerIndex ? 'theme' : 'owner'
+        } index.`,
+        getOwnerIndex(m),
+        m.themeModule,
+      );
+    }
+
+    return shouldSort;
+  });
+
+  const originalOrderModules = modulesToSort
+    .slice()
+    .sort((a, b) => getPreIndex(a) - getPreIndex(b));
+
+  const sortedModules = sortModules(modulesToSort, {
+    getPreIndex,
     getOwnerIndex,
     getThemeIndex,
   });
@@ -80,18 +95,18 @@ export default (
     .map(([moduleInfo, newModuleLocation]) => {
       return {
         moduleInfo,
-        newIndex: getIndex(newModuleLocation),
-        newIndex2: getIndex2(newModuleLocation),
+        newPreIndex: getPreIndex(newModuleLocation),
+        newPostIndex: getPostIndex(newModuleLocation),
       };
     })
-    .forEach(({ moduleInfo, newIndex, newIndex2 }) => {
+    .forEach(({ moduleInfo, newPreIndex, newPostIndex }) => {
       trace(
         'Moving',
-        formatReindex(getIndex(moduleInfo), newIndex),
+        formatReindex(getPreIndex(moduleInfo), newPreIndex),
         debugIdent(moduleInfo.identifier),
       );
 
-      setIndex(moduleInfo, newIndex);
-      setIndex2(moduleInfo, newIndex2);
+      setPreIndex(moduleInfo, newPreIndex);
+      setPostIndex(moduleInfo, newPostIndex);
     });
 };

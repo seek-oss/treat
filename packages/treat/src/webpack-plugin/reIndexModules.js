@@ -64,8 +64,6 @@ export default (
         `Ignoring ${debugIdent(m.identifier)} from sorting. No ${
           hasOwnerIndex ? 'theme' : 'owner'
         } index.`,
-        getOwnerIndex(m),
-        m.themeModule,
       );
     }
 

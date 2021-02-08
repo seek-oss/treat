@@ -1,11 +1,13 @@
-const webpack4 = () => ({
-  isModuleUsed: (module) =>
+const webpack4 = {
+  isModuleUsed: (_compilation, module) =>
     typeof module.used === 'boolean' ? module.used : true,
-  getDependencyModule: (dependency) => dependency.module,
-  getModulePreOrderIndex: (module) => module.index,
-  setModulePreOrderIndex: (module, index) => (module.index = index),
-  getModulePostOrderIndex: (module) => module.index2,
-  setModulePostOrderIndex: (module, index) => (module.index2 = index),
+  getDependencyModule: (_compilation, dependency) => dependency.module,
+  getModulePreOrderIndex: (_compilation, module) => module.index,
+  setModulePreOrderIndex: (_compilation, module, index) =>
+    (module.index = index),
+  getModulePostOrderIndex: (_compilation, module) => module.index2,
+  setModulePostOrderIndex: (_compilation, module, index) =>
+    (module.index2 = index),
   getCGModulePreOrderIndex: (chunkGroup, module) =>
     chunkGroup.getModuleIndex(module),
   setCGModulePreOrderIndex: (chunkGroup, module, index) =>
@@ -14,41 +16,53 @@ const webpack4 = () => ({
     chunkGroup.getModuleIndex2(module),
   setCGModulePostOrderIndex: (chunkGroup, module, index) =>
     chunkGroup.setModuleIndex2(module, index),
-  isModuleInChunk: (module, chunk) => chunk.containsModule(module),
-});
+  isModuleInChunk: (_compilation, module, chunk) =>
+    chunk.containsModule(module),
+  getModifiedFiles: (watchCompiler) => {
+    // watchCompiler.watchFileSystem.watcher is undefined in some node environments.
+    // Allow fallback to watchCompiler.watchFileSystem.wfs
+    // https://github.com/s-panferov/awesome-typescript-loader/commit/c7da9ac82d105cdaf9b124ccc4c130648e59168a
+    const watcher =
+      watchCompiler.watchFileSystem.watcher ||
+      watchCompiler.watchFileSystem.wfs.watcher;
 
-const webpack5 = (compilation) => {
-  const { moduleGraph } = compilation;
-
-  return {
-    isModuleUsed: (module) => {
-      const exportsInfo = moduleGraph.getExportsInfo(module);
-
-      return exportsInfo.isModuleUsed('main');
-    },
-    getDependencyModule: (dependency) => moduleGraph.getModule(dependency),
-    getModulePreOrderIndex: (module) => moduleGraph.getPreOrderIndex(module),
-    setModulePreOrderIndex: (module, index) =>
-      moduleGraph.setPreOrderIndex(module, index),
-    getModulePostOrderIndex: (module) => moduleGraph.getPostOrderIndex(module),
-    setModulePostOrderIndex: (module, index) =>
-      moduleGraph.setPostOrderIndex(module, index),
-    getCGModulePreOrderIndex: (chunkGroup, module) =>
-      chunkGroup.getModulePreOrderIndex(module),
-    setCGModulePreOrderIndex: (chunkGroup, module, index) =>
-      chunkGroup.setModulePreOrderIndex(module, index),
-    getCGModulePostOrderIndex: (chunkGroup, module) =>
-      chunkGroup.getModulePostOrderIndex(module),
-    setCGModulePostOrderIndex: (chunkGroup, module, index) =>
-      chunkGroup.setModulePostOrderIndex(module, index),
-    isModuleInChunk: (module, chunk) =>
-      compilation.chunkGraph.isModuleInChunk(module, chunk),
-  };
+    return Object.keys(watcher.mtimes);
+  },
 };
 
-export const compilationCompat = (version, compilation) => {
-  if (version.startsWith('5')) {
-    return webpack5(compilation);
+const webpack5 = {
+  isModuleUsed: (compilation, module) => {
+    const exportsInfo = compilation.moduleGraph.getExportsInfo(module);
+
+    return exportsInfo.isModuleUsed('main');
+  },
+  getDependencyModule: (compilation, dependency) =>
+    compilation.moduleGraph.getModule(dependency),
+  getModulePreOrderIndex: (compilation, module) =>
+    compilation.moduleGraph.getPreOrderIndex(module),
+  setModulePreOrderIndex: (compilation, module, index) =>
+    compilation.moduleGraph.setPreOrderIndex(module, index),
+  getModulePostOrderIndex: (compilation, module) =>
+    compilation.moduleGraph.getPostOrderIndex(module),
+  setModulePostOrderIndex: (compilation, module, index) =>
+    compilation.moduleGraph.setPostOrderIndex(module, index),
+  getCGModulePreOrderIndex: (chunkGroup, module) =>
+    chunkGroup.getModulePreOrderIndex(module),
+  setCGModulePreOrderIndex: (chunkGroup, module, index) =>
+    chunkGroup.setModulePreOrderIndex(module, index),
+  getCGModulePostOrderIndex: (chunkGroup, module) =>
+    chunkGroup.getModulePostOrderIndex(module),
+  setCGModulePostOrderIndex: (chunkGroup, module, index) =>
+    chunkGroup.setModulePostOrderIndex(module, index),
+  isModuleInChunk: (compilation, module, chunk) =>
+    compilation.chunkGraph.isModuleInChunk(module, chunk),
+  getModifiedFiles: (watchCompiler) =>
+    watchCompiler.modifiedFiles ? Array.from(watchCompiler.modifiedFiles) : [],
+};
+
+export default (isWebpack5) => {
+  if (isWebpack5) {
+    return webpack5;
   }
-  return webpack4(compilation);
+  return webpack4;
 };

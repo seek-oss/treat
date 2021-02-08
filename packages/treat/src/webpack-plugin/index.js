@@ -8,7 +8,7 @@ import TreatError from './TreatError';
 import makeTreatCompiler from './treatCompiler';
 import optionValidator from './optionValidator';
 import { debugIdent } from './utils';
-import { compilationCompat } from './compat';
+import createCompat from './compat';
 
 const isProductionLikeMode = (options) => {
   return options.mode === 'production' || !options.mode;
@@ -61,19 +61,17 @@ export class TreatPlugin {
   }
 
   apply(compiler) {
-    compiler.hooks.watchRun.tap(TWP, (watchCompiler) => {
-      // watchCompiler.watchFileSystem.watcher is undefined in some node environments.
-      // Allow fallback to watchCompiler.watchFileSystem.wfs
-      // https://github.com/s-panferov/awesome-typescript-loader/commit/c7da9ac82d105cdaf9b124ccc4c130648e59168a
-      const watcher =
-        watchCompiler.watchFileSystem.watcher ||
-        watchCompiler.watchFileSystem.wfs.watcher;
+    const compat = createCompat(
+      Boolean(compiler.webpack && compiler.webpack.version),
+    );
 
-      // this.treatCompiler.expireCache(Object.keys(watcher.mtimes));
+    compiler.hooks.watchRun.tap(TWP, (watchCompiler) => {
+      const modifiedFiles = compat.getModifiedFiles(watchCompiler);
+
+      this.treatCompiler.expireCache(modifiedFiles);
     });
 
     compiler.hooks.thisCompilation.tap(TWP, (compilation) => {
-      const compat = compilationCompat(compiler.webpack.version, compilation);
       let allCssModules = [];
       let usedCssModules;
 
@@ -207,9 +205,9 @@ export class TreatPlugin {
           const cssModuleGroups = partition(
             allCssModules,
             ({ identifier, owner, themeModule }) => {
-              const ownerIsUsed = compat.isModuleUsed(owner);
+              const ownerIsUsed = compat.isModuleUsed(compilation, owner);
               const themeIsUsed =
-                !themeModule || compat.isModuleUsed(themeModule);
+                !themeModule || compat.isModuleUsed(compilation, themeModule);
 
               const cssModuleIsUsed = ownerIsUsed && themeIsUsed;
 
@@ -239,7 +237,7 @@ export class TreatPlugin {
 
             for (const themeModule of themeModules) {
               const depsToRemove = themeModule.dependencies.filter((dep) => {
-                const depModule = compat.getDependencyModule(dep);
+                const depModule = compat.getDependencyModule(compilation, dep);
 
                 const shouldRemove =
                   depModule &&
@@ -275,7 +273,7 @@ export class TreatPlugin {
           // We can now correct those values by referencing the ordering of the owner treat file
           for (const chunk of chunks) {
             const cssModulesInChunk = usedCssModules.filter(({ module }) =>
-              compat.isModuleInChunk(module, chunk),
+              compat.isModuleInChunk(compilation, module, chunk),
             );
 
             for (const chunkGroup of chunk.groupsIterable) {
@@ -289,9 +287,9 @@ export class TreatPlugin {
                   getPostIndex: ({ module }) =>
                     compat.getCGModulePostOrderIndex(chunkGroup, module),
                   getOwnerIndex: ({ owner }) =>
-                    compat.getModulePreOrderIndex(owner),
+                    compat.getModulePreOrderIndex(compilation, owner),
                   getThemeIndex: ({ themeModule }) =>
-                    compat.getModulePreOrderIndex(themeModule),
+                    compat.getModulePreOrderIndex(compilation, themeModule),
                   setPreIndex: ({ module }, i) =>
                     compat.setCGModulePreOrderIndex(chunkGroup, module, i),
                   setPostIndex: ({ module }, i) =>
@@ -307,17 +305,17 @@ export class TreatPlugin {
             usedCssModules,
             {
               getPreIndex: ({ module }) =>
-                compat.getModulePreOrderIndex(module),
+                compat.getModulePreOrderIndex(compilation, module),
               getPostIndex: ({ module }) =>
-                compat.getModulePostOrderIndex(module),
+                compat.getModulePostOrderIndex(compilation, module),
               getOwnerIndex: ({ owner }) =>
-                compat.getModulePreOrderIndex(owner),
+                compat.getModulePreOrderIndex(compilation, owner),
               getThemeIndex: ({ themeModule }) =>
-                compat.getModulePreOrderIndex(themeModule),
+                compat.getModulePreOrderIndex(compilation, themeModule),
               setPreIndex: ({ module }, i) =>
-                compat.setModulePreOrderIndex(module, i),
+                compat.setModulePreOrderIndex(compilation, module, i),
               setPostIndex: ({ module }, i) =>
-                compat.setModulePostOrderIndex(module, i),
+                compat.setModulePostOrderIndex(compilation, module, i),
             },
             { trace: this.trace, target: 'Module.index/index2' },
           );
@@ -334,7 +332,7 @@ export class TreatPlugin {
                 .map((moduleInfo) => ({
                   ...moduleInfo,
                   dependency: dependencies.find((d) => {
-                    const module = compat.getDependencyModule(d);
+                    const module = compat.getDependencyModule(compilation, d);
 
                     return (
                       module && module.identifier() === moduleInfo.identifier
@@ -350,9 +348,9 @@ export class TreatPlugin {
                 {
                   getPreIndex: ({ dependency }) => dependency.sourceOrder,
                   getOwnerIndex: ({ owner }) =>
-                    compat.getModulePreOrderIndex(owner),
+                    compat.getModulePreOrderIndex(compilation, owner),
                   getThemeIndex: ({ themeModule }) =>
-                    compat.getModulePreOrderIndex(themeModule),
+                    compat.getModulePreOrderIndex(compilation, themeModule),
                   setPreIndex: ({ dependency }, i) => {
                     dependency.sourceOrder = i;
                   },

@@ -37,7 +37,7 @@
   },
   "resolutions": {
     "@types/react": "^16.8.17",
-    "webpack": "5.18.0"
+    "webpack": "5.21.2"
   },
   "dependencies": {
     "@babel/core": "^7.12.10",

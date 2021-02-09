@@ -58,11 +58,9 @@ const config = {
         },
       ],
       verbose: true,
-      hmr: hot,
     }),
     new MiniCssExtractPlugin(),
     new HtmlWebpackPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
   ],
 };
 

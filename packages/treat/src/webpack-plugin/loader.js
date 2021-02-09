@@ -72,6 +72,8 @@ async function produce(loader) {
     treatCompiler,
     hmr,
   } = loaderUtils.getOptions(loader);
+
+  const isHmr = typeof hmr === 'boolean' ? hmr : loader.hot;
   let hasThemedCss = false;
   let localStyles = null;
   const themedStyles = {};
@@ -238,7 +240,7 @@ async function produce(loader) {
     loader,
     Array.from(ownedCssRequests.values()),
     result,
-    hmr,
+    isHmr,
   );
 
   return r;

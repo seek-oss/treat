@@ -41,7 +41,7 @@ export class TreatPlugin {
       minify,
       browsers,
       verbose = false,
-      hmr = false,
+      hmr,
     } = options;
 
     this.trace = verbose ? trace : () => {};

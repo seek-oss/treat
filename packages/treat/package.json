@@ -24,7 +24,7 @@
     "webpack": "^4.30.0 || ^5.20.2"
   },
   "dependencies": {
-    "@hapi/joi": "^15.0.3",
+    "@hapi/joi": "^17.1.1",
     "@types/object-hash": "^1.2.0",
     "@vocab/unloader": "^0.0.1",
     "autoprefixer": "^10.2.4",
@@ -47,6 +47,7 @@
   },
   "devDependencies": {
     "@types/bent": "^7.3.2",
+    "@types/hapi__joi": "^17.1.6",
     "@types/mini-css-extract-plugin": "^1.2.2",
     "bent": "^7.3.12",
     "classnames": "^2.2.6",

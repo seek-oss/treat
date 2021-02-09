@@ -10,7 +10,6 @@
     "@mdx-js/react": "^1.0.16",
     "@types/classnames": "^2.2.7",
     "@types/dedent": "^0.7.0",
-    "@types/hapi__joi": "^15.0.1",
     "@types/jest": "^26.0.20",
     "@types/jest-environment-puppeteer": "^4.0.0",
     "@types/lodash": "^4.14.134",
@@ -44,7 +43,7 @@
     "react-router-hash-link": "^1.2.1",
     "remove-markdown": "^0.3.0",
     "use-react-router": "^1.0.7",
-    "webpack": "^5.18.0",
+    "webpack": "^5.20.2",
     "webpack-cli": "^3.2.3",
     "webpack-dev-server": "^3.4.1",
     "webpack-node-externals": "^1.7.2"

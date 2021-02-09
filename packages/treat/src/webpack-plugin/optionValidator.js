@@ -27,7 +27,7 @@ class ValidationError extends Error {
 export default (options) => {
   const { error } = schema.validate(options);
 
-  if (error !== null) {
+  if (error) {
     throw new ValidationError(error);
   }
 };

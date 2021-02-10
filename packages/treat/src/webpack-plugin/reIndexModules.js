@@ -1,10 +1,13 @@
 import chalk from 'chalk';
-import { THEMED, debugIdent } from './utils';
 
-const formatReindex = (currIndex, newPreIndex) =>
+import { THEMED, debug } from './utils';
+
+debug.formatters.r = ([currIndex, newPreIndex]) =>
   currIndex > newPreIndex
     ? `${chalk.green(currIndex)} -> ${chalk.red(newPreIndex)}`
     : `${chalk.red(currIndex)} -> ${chalk.green(newPreIndex)}`;
+
+const trace = debug('treat:webpack-plugin:reindex');
 
 const sortModules = (
   modules,
@@ -49,9 +52,9 @@ export default (
     setPreIndex,
     setPostIndex,
   },
-  { trace, target },
+  target,
 ) => {
-  trace('Sorting', target);
+  trace('Sorting %s', target);
 
   const modulesToSort = modules.filter((m) => {
     const hasOwnerIndex = typeof getOwnerIndex(m) === 'number';
@@ -61,9 +64,9 @@ export default (
 
     if (!shouldSort) {
       trace(
-        `Ignoring ${debugIdent(m.identifier)} from sorting. No ${
-          hasOwnerIndex ? 'theme' : 'owner'
-        } index.`,
+        'Ignoring %i from sorting. No %s index.',
+        m.identifier,
+        hasOwnerIndex ? 'theme' : 'owner',
       );
     }
 
@@ -99,9 +102,9 @@ export default (
     })
     .forEach(({ moduleInfo, newPreIndex, newPostIndex }) => {
       trace(
-        'Moving',
-        formatReindex(getPreIndex(moduleInfo), newPreIndex),
-        debugIdent(moduleInfo.identifier),
+        'Moving %r %i',
+        [getPreIndex(moduleInfo), newPreIndex],
+        moduleInfo.identifier,
       );
 
       setPreIndex(moduleInfo, newPreIndex);

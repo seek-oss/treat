@@ -8,7 +8,6 @@ const schema = joi.object({
   themeIdentName: [joi.func(), joi.string()],
   minify: joi.boolean(),
   browsers: [joi.string(), joi.array().items(joi.string())],
-  verbose: joi.boolean(),
   hmr: joi.boolean(),
 });
 

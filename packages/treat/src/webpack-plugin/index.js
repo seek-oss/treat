@@ -7,12 +7,14 @@ import reIndexModules from './reIndexModules';
 import TreatError from './TreatError';
 import makeTreatCompiler from './treatCompiler';
 import optionValidator from './optionValidator';
-import { debugIdent } from './utils';
+import { debug } from './utils';
 import createCompat from './compat';
 
 const isProductionLikeMode = (options) => {
   return options.mode === 'production' || !options.mode;
 };
+
+const trace = debug('treat:webpack-plugin');
 
 const TWP = 'treat-webpack-plugin';
 
@@ -22,10 +24,6 @@ const makeOptionDefaulter = (prodLike) => (option, { dev, prod }) => {
   }
 
   return prodLike ? prod : dev;
-};
-
-const trace = (...params) => {
-  console.log(chalk.green('TreatWebpackPlugin:'), ...params);
 };
 
 export class TreatPlugin {
@@ -40,13 +38,11 @@ export class TreatPlugin {
       themeIdentName,
       minify,
       browsers,
-      verbose = false,
       hmr,
     } = options;
 
-    this.trace = verbose ? trace : () => {};
     this.store = store();
-    this.treatCompiler = makeTreatCompiler(this.trace);
+    this.treatCompiler = makeTreatCompiler();
 
     this.test = test;
     this.minify = minify;
@@ -112,16 +108,15 @@ export class TreatPlugin {
         );
 
         await Promise.map(staleModules, async ({ moduleIdentifier }) => {
-          this.trace('Rebuiling stale module: ', debugIdent(moduleIdentifier));
+          trace('Rebuiling stale module: %i', moduleIdentifier);
           const treatModule = compilation.findModule(moduleIdentifier);
 
           if (!treatModule) {
             // In cases where the build fails, sometimes modules are not present
             // on the compilation object. Skip rebuilding in these cases.
-            this.trace(
-              'Bail on rebuild of stale module: ',
-              debugIdent(moduleIdentifier),
-              `Module doesn't exist on compilation`,
+            trace(
+              "Bail on rebuild of stale module: %i Module doesn't exist on compilation",
+              moduleIdentifier,
             );
             return;
           }
@@ -137,20 +132,16 @@ export class TreatPlugin {
           await Promise.map(
             this.store.getThemeIdentifiers(),
             async (themeModuleIdentifier) => {
-              this.trace(
-                'Rebuiling theme module: ',
-                debugIdent(themeModuleIdentifier),
-              );
+              trace('Rebuiling theme module: %i', themeModuleIdentifier);
 
               const treatModule = compilation.findModule(themeModuleIdentifier);
 
               if (!treatModule) {
                 // In cases where the build fails, sometimes modules are not present
                 // on the compilation object. Skip rebuilding in these cases.
-                this.trace(
-                  'Bail on rebuild of theme module: ',
-                  debugIdent(themeModuleIdentifier),
-                  `Module doesn't exist on compilation`,
+                trace(
+                  "Bail on rebuild of theme module: %i Module doesn't exist on compilation",
+                  themeModuleIdentifier,
                 );
                 return;
               }
@@ -212,7 +203,7 @@ export class TreatPlugin {
           // Some modules may not be used and their css can be safely be removed from the chunks
           const cssModuleGroups = partition(
             allCssModules,
-            ({ identifier, owner, themeModule }) => {
+            ({ module, owner, themeModule }) => {
               const ownerIsUsed = compat.isModuleUsed(compilation, owner);
               const themeIsUsed =
                 !themeModule || compat.isModuleUsed(compilation, themeModule);
@@ -220,10 +211,10 @@ export class TreatPlugin {
               const cssModuleIsUsed = ownerIsUsed && themeIsUsed;
 
               if (!cssModuleIsUsed) {
-                this.trace(
-                  'CSS Module marked for removal due to unused',
+                trace(
+                  'CSS Module marked for removal due to unused %s %m',
                   chalk.yellow(ownerIsUsed ? 'theme' : 'owner'),
-                  debugIdent(identifier),
+                  module,
                 );
               }
 
@@ -252,11 +243,7 @@ export class TreatPlugin {
                   cssModulesIdentsToRemove.includes(depModule.identifier());
 
                 if (shouldRemove) {
-                  this.trace(
-                    `Mark ${debugIdent(
-                      depModule.identifier(),
-                    )} for clean-up in ${debugIdent(themeModule.identifier())}`,
-                  );
+                  trace('Mark %m for clean-up in %m', depModule, themeModule);
                 }
 
                 return shouldRemove;
@@ -303,7 +290,7 @@ export class TreatPlugin {
                   setPostIndex: ({ module }, i) =>
                     compat.setCGModulePostOrderIndex(chunkGroup, module, i),
                 },
-                { trace: this.trace, target: 'ChunkGroup moduleIndicies' },
+                'ChunkGroup moduleIndicies',
               );
             }
           }
@@ -325,7 +312,7 @@ export class TreatPlugin {
               setPostIndex: ({ module }, i) =>
                 compat.setModulePostOrderIndex(compilation, module, i),
             },
-            { trace: this.trace, target: 'Module.index/index2' },
+            'Module.index/index2',
           );
 
           this.store
@@ -366,7 +353,7 @@ export class TreatPlugin {
                   getPostIndex: () => {},
                   setPostIndex: () => {},
                 },
-                { trace: this.trace, target: 'Dependency.sourceOrder' },
+                'Dependency.sourceOrder',
               );
             });
         } catch (e) {

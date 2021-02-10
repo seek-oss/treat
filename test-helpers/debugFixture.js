@@ -23,7 +23,7 @@ const config = {
   resolve: {
     extensions: ['.js', '.json', '.ts', '.tsx'],
   },
-  mode: 'development',
+  mode: 'production',
   devtool: 'source-map',
   module: {
     rules: [
@@ -57,7 +57,6 @@ const config = {
           loader: MiniCssExtractPlugin.loader,
         },
       ],
-      verbose: true,
     }),
     new MiniCssExtractPlugin(),
     new HtmlWebpackPlugin(),

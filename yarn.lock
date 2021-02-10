@@ -5560,6 +5560,11 @@ colors@1.1.2:
   resolved "https://registry.yarnpkg.com/colors/-/colors-1.1.2.tgz#168a4701756b6a7f51a12ce0c97bfa28c084ed63"
   integrity sha1-FopHAXVran9RoSzgyXv6KMCE7WM=
 
+colors@^1.0.3:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/colors/-/colors-1.4.0.tgz#c50491479d4c1bdaed2c9ced32cf7c7dc2360f78"
+  integrity sha512-a+UqTh4kgZg/SlGvfbzDHpgRu7AAQOmmqRHJnxhRZICKFUT91brVhNNt58CMWU9PsBbv3PDCZUHbVxuDiH2mtA==
+
 combined-stream@^1.0.6, combined-stream@^1.0.8, combined-stream@~1.0.6:
   version "1.0.8"
   resolved "https://registry.yarnpkg.com/combined-stream/-/combined-stream-1.0.8.tgz#c3d45a8b34fd730631a110a8a2520682b31d5a7f"
@@ -7540,6 +7545,13 @@ evp_bytestokey@^1.0.0, evp_bytestokey@^1.0.3:
     md5.js "^1.3.4"
     safe-buffer "^5.1.1"
 
+exception-formatter@^2.1.2:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/exception-formatter/-/exception-formatter-2.1.2.tgz#7f91ee49a203b81de5fb3039bf9646cd40338321"
+  integrity sha512-LHBd3npNQZ47GeO5jPTorbCvw2/BxxFNn9JG+FjjhifwI/jC5zi2W+UX//FrlIfTXvW4nRx2jthy1ujTVHhsLw==
+  dependencies:
+    colors "^1.0.3"
+
 exec-sh@^0.3.2:
   version "0.3.4"
   resolved "https://registry.yarnpkg.com/exec-sh/-/exec-sh-0.3.4.tgz#3a018ceb526cc6f6df2bb504b2bfe8e3a4934ec5"
@@ -9489,13 +9501,15 @@ html-minifier-terser@^5.0.1:
     relateurl "^0.2.7"
     terser "^4.6.3"
 
-html-render-webpack-plugin@^1.1.1:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/html-render-webpack-plugin/-/html-render-webpack-plugin-1.2.0.tgz#79fde5d36bc6727e7299ff7dcbe1da76f9e39430"
-  integrity sha512-CzEI2ZxxdatoSl/ue4nhG0lcOaEE5Q7xxo7JVNliRUycyNn8TbU8DCGdKLGCGWmTmFOj92pqlMuxTHSVQf6SRA==
+html-render-webpack-plugin@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/html-render-webpack-plugin/-/html-render-webpack-plugin-3.0.1.tgz#74ab050dbf7af38fe387451ce3471950b4684bb8"
+  integrity sha512-CKA9H5J781k0RRVc0tH3Rjc2aWtdHZTOBqL67u/Ws94KQ03RyHInep6Nk5lWEPHQM8jRiwp8snvZX8mEzKoiLA==
   dependencies:
-    chalk "^2.4.2"
+    chalk "^4.1.0"
     eval "^0.1.4"
+    exception-formatter "^2.1.2"
+    schema-utils "^3.0.0"
 
 html-webpack-plugin@^5.0.0:
   version "5.0.0"

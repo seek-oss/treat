@@ -1,5 +1,5 @@
 const { join } = require('path');
-const HtmlRenderWebpackPlugin = require('html-render-webpack-plugin');
+const { HtmlRenderPlugin } = require('html-render-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const { TreatPlugin } = require('treat/webpack-plugin');
@@ -9,15 +9,18 @@ const targetDirectory = join(__dirname, 'dist');
 
 const isProduction = process.env.NODE_ENV === 'production';
 
-const htmlRenderPlugin = new HtmlRenderWebpackPlugin({
+const htmlRenderPlugin = new HtmlRenderPlugin({
   routes: docs,
   renderConcurrency: 'parallel',
   renderDirectory: targetDirectory,
-  mapStatsToParams: ({ webpackStats }) => ({
-    clientStats: webpackStats
-      .toJson()
-      .children.find(({ name }) => name === 'client'),
-  }),
+  mapStatsToParams: ({ webpackStats }) => {
+    const { publicPath, entrypoints } = webpackStats.toJson();
+
+    return {
+      publicPath,
+      entrypoints,
+    };
+  },
 });
 
 const sharedTreatOptions = isProduction
@@ -87,7 +90,7 @@ module.exports = [
         outputLoaders: [MiniCssExtractPlugin.loader],
       }),
       new MiniCssExtractPlugin(),
-      htmlRenderPlugin,
+      htmlRenderPlugin.statsCollectorPlugin,
       new CopyPlugin([
         {
           from: join(__dirname, 'src/assets'),
@@ -148,7 +151,7 @@ module.exports = [
         outputCSS: false,
       }),
       new MiniCssExtractPlugin(),
-      htmlRenderPlugin.render(),
+      htmlRenderPlugin.rendererPlugin,
     ],
     stats: 'errors-only',
   },

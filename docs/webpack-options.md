@@ -7,7 +7,7 @@ title: Webpack Options
 The following options can be supplied to the included webpack plugin, e.g.
 
 ```js
-const TreatPlugin = require('treat/webpack-plugin');
+const { TreatPlugin } = require('treat/webpack-plugin');
 
 module.exports = {
   plugins: [

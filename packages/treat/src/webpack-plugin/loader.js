@@ -236,14 +236,12 @@ async function produce(loader) {
     cssRequests.forEach((request) => ownedCssRequests.add(request));
   }
 
-  const r = serializeTreatModule(
+  return serializeTreatModule(
     loader,
     Array.from(ownedCssRequests.values()),
     result,
     isHmr,
   );
-
-  return r;
 }
 
 const stringifyExports = (value) =>

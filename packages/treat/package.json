@@ -26,7 +26,6 @@
   "dependencies": {
     "@hapi/joi": "^17.1.1",
     "@types/object-hash": "^1.2.0",
-    "@vocab/unloader": "^0.0.1",
     "autoprefixer": "^10.2.4",
     "bluebird": "^3.5.4",
     "chalk": "^4.1.0",
@@ -44,7 +43,8 @@
     "object-hash": "^2.0.3",
     "postcss": "^8.2.5",
     "postcss-js": "^3.0.3",
-    "style-loader": "^2.0.0"
+    "style-loader": "^2.0.0",
+    "virtual-resource-loader": "^1.0.0"
   },
   "devDependencies": {
     "@types/bent": "^7.3.2",

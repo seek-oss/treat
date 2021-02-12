@@ -2723,13 +2723,6 @@
     semver "^7.3.2"
     tsutils "^3.17.1"
 
-"@vocab/unloader@^0.0.1":
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/@vocab/unloader/-/unloader-0.0.1.tgz#2762fa4bc27903cbbc7ffddff2e205723439b60c"
-  integrity sha512-z5r17VaOh0io1IEN1KI9EnQZRQhfrtjuWSVCpKMLNMHnpcmwaozhjLPDaL8W0N8fuSLOQ6iyZFmg5FrgA6I1GA==
-  dependencies:
-    loader-utils "^2.0.0"
-
 "@webassemblyjs/ast@1.11.0":
   version "1.11.0"
   resolved "https://registry.yarnpkg.com/@webassemblyjs/ast/-/ast-1.11.0.tgz#a5aa679efdc9e51707a4207139da57920555961f"
@@ -17264,6 +17257,13 @@ vfile@^4.0.0:
     is-buffer "^2.0.0"
     unist-util-stringify-position "^2.0.0"
     vfile-message "^2.0.0"
+
+virtual-resource-loader@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/virtual-resource-loader/-/virtual-resource-loader-1.0.0.tgz#905eac5d576325ff6910d8643b0152148f4e02a3"
+  integrity sha512-MalwfaqwMcUmb2MtHb2hK6YYg3It4j7Hxv8I7FEAtm1h477kZ8hWPcqVpxZAInLIkmh0YbnCpvXwzmnyhdAyhw==
+  dependencies:
+    loader-utils "^2.0.0"
 
 vm-browserify@^1.0.1:
   version "1.1.2"

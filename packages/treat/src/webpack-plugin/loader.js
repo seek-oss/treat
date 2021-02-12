@@ -124,7 +124,7 @@ async function produce(loader) {
       const base64 = Buffer.from(css, 'utf-8').toString('base64');
 
       const unloader = stringifyLoaderRequest({
-        loader: '@vocab/unloader',
+        loader: 'virtual-resource-loader',
         options: { source: base64 },
       });
       const cssFileName = path.normalize(

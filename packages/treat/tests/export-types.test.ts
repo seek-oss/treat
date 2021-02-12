@@ -23,14 +23,14 @@ describe('Export types', () => {
     expect(html).toMatchInlineSnapshot(`
       "{
         array: [
-          'tW7jk'
+          '_31E_q'
         ],
         null: null,
         number: 123,
         object: {
-          key: 'tW7jk'
+          key: '_31E_q'
         },
-        string: 'tW7jk',
+        string: '_31E_q',
         undefined: undefined
       }"
     `);

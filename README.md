@@ -47,7 +47,7 @@ $ yarn add treat
 Then, add the [webpack plugin](https://seek-oss.github.io/treat/setup#webpack-setup) to your project. In this case, we’re using [mini-css-extract-plugin](https://github.com/webpack-contrib/mini-css-extract-plugin) to generate a static CSS file.
 
 ```js
-const TreatPlugin = require('treat/webpack-plugin');
+const { TreatPlugin } = require('treat/webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {

@@ -9,7 +9,7 @@ title: Setup
 To get started, add the treat [webpack](https://webpack.js.org/) plugin to [`webpack.config.js`](https://webpack.js.org/concepts/configuration). Since webpack is required to use treat, the webpack plugin is provided via the core `treat` package as `treat/webpack-plugin`.
 
 ```js
-const TreatPlugin = require('treat/webpack-plugin');
+const { TreatPlugin } = require('treat/webpack-plugin');
 
 module.exports = {
   plugins: [new TreatPlugin()]
@@ -21,7 +21,7 @@ By default, this will inject styles into the page via [style-loader](https://git
 For example, if you'd like to **export static CSS files,** you can wire it up to [mini-css-extract-plugin](https://github.com/webpack-contrib/mini-css-extract-plugin).
 
 ```js
-const TreatPlugin = require('treat/webpack-plugin');
+const { TreatPlugin } = require('treat/webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
@@ -79,7 +79,7 @@ export const green = style({ color: 'green' }, 'green');
 Server-rendered apps will likely be running two webpack builds (one for the browser code, and one for the server code). The server config should disable CSS output by setting `outputCSS` to `false`.
 
 ```js
-const TreatPlugin = require('treat/webpack-plugin');
+const { TreatPlugin } = require('treat/webpack-plugin');
 
 module.exports = {
   plugins: [
@@ -126,6 +126,8 @@ If you're using the [React API](react-api), you'll want to provide the theme to 
 
 ## Gatsby Setup
 
+> Warning: `gatsby-plugin-treat` is not yet working with treat v2.
+
 To use `treat` in a [Gatsby](https://www.gatsbyjs.org) project, install `gatsby-plugin-treat` and add it to your `gatsby-config.js` file like this:
 
 ```js
@@ -150,6 +152,8 @@ module.exports = {
 ```
 
 ## Next.js Setup
+
+> Warning: `next-treat` is not yet working with treat v2.
 
 To use `treat` in a [Next.js](https://nextjs.org) project, install `next-treat` and add it to your `next.config.js` file like this:
 

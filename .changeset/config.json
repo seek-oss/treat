@@ -9,5 +9,5 @@
   "access": "public",
   "baseBranch": "master",
   "updateInternalDependencies": "patch",
-  "ignore": ["gatsby-plugin-treat-example", "next-treat-example", "treat-test-helpers", "treat-docs-site"]
+  "ignore": ["gatsby-plugin-treat-example", "next-treat-example", "treat-test-helpers", "treat-docs-site", "next-treat", "gatsby-plugin-treat"]
 }

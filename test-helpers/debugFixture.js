@@ -23,7 +23,7 @@ const config = {
   resolve: {
     extensions: ['.js', '.json', '.ts', '.tsx'],
   },
-  mode: 'development',
+  mode: 'production',
   devtool: 'source-map',
   module: {
     rules: [
@@ -55,15 +55,11 @@ const config = {
       outputLoaders: [
         {
           loader: MiniCssExtractPlugin.loader,
-          options: { hmr: hot, reloadAll: true },
         },
       ],
-      verbose: true,
-      hmr: hot,
     }),
     new MiniCssExtractPlugin(),
     new HtmlWebpackPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
   ],
 };
 

@@ -3,6 +3,7 @@ import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom';
 import { HeadProvider } from 'react-head';
 import App from './App';
+import { StatsCompilation } from 'webpack';
 
 type HeadTags = React.ReactElement<unknown>[];
 
@@ -29,22 +30,28 @@ const getBasePath = (publicPath: string) =>
 
 interface RenderParams {
   route: string;
-  clientStats: any;
+  publicPath: string;
+  entrypoints: NonNullable<StatsCompilation['entrypoints']>;
 }
-export default ({ route, clientStats }: RenderParams) => {
-  const { publicPath, entrypoints } = clientStats;
+export default ({ route, publicPath, entrypoints }: RenderParams) => {
   const basePath = getBasePath(publicPath);
 
   const assetPath = (filename: string) => `${publicPath}${filename}`;
-  const assets = entrypoints.main.assets as Array<string>;
+  const assets = entrypoints.main.assets;
+
+  if (!assets) {
+    throw new Error('No assets!');
+  }
+
   const cssAssets = assets
-    .filter((asset) => asset.endsWith('.css'))
+    .filter((asset) => asset.name.endsWith('.css'))
     .map(
-      (asset) => `<link rel="stylesheet" href="${assetPath(asset)}"></link>`,
+      (asset) =>
+        `<link rel="stylesheet" href="${assetPath(asset.name)}"></link>`,
     );
   const jsAssets = assets
-    .filter((asset) => asset.endsWith('.js'))
-    .map((asset) => `<script src="${assetPath(asset)}"></script>`);
+    .filter((asset) => asset.name.endsWith('.js'))
+    .map((asset) => `<script src="${assetPath(asset.name)}"></script>`);
 
   const headTags: HeadTags = [];
   const html = render(route, headTags, basePath);

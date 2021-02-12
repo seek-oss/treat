@@ -7,7 +7,7 @@ title: Webpack Options
 The following options can be supplied to the included webpack plugin, e.g.
 
 ```js
-const TreatPlugin = require('treat/webpack-plugin');
+const { TreatPlugin } = require('treat/webpack-plugin');
 
 module.exports = {
   plugins: [
@@ -72,29 +72,10 @@ Configures whether to output CSS in the resulting bundle. Useful for server rend
 _Default: `false`_<br />
 _Type: `boolean`_
 
-> Requires at least webpack v4.43.0
+> This option is inferred in webpack 5. HMR requires at least webpack v4.43.0.
 
 Enable hot module reloading for treat modules. 
 
-**Note:** This only enables HMR for the generated JavaScript. As treat forwards CSS to your `outputLoaders` (e.g. MiniCssExtractPlugin) you'll need to refer to their docs for how to set up HMR for your CSS.
-
-```js
-// Example setup for MiniCSSExtractPlugin
-module.exports = {
-  plugins: [
-    new TreatPlugin({
-      hmr: process.env.NODE_ENV === 'development',
-      outputLoaders: [{
-        loader: MiniCssExtractPlugin.loader,
-        options: {
-          hmr: process.env.NODE_ENV === 'development',
-          reloadAll: true, // Required for treat HMR to work
-        },
-      }]
-    }),
-    new MiniCssExtractPlugin()
-  ]
-};
-```
+**Note:** This only enables HMR for the generated JavaScript. As treat forwards CSS to your `outputLoaders` you'll need to refer to their docs for how to set up HMR for your CSS.
 
 <!-- prettier-ignore-end -->

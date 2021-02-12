@@ -2,17 +2,19 @@ import Promise from 'bluebird';
 import partition from 'lodash/partition';
 import chalk from 'chalk';
 
-import virtualModules from './virtualModules';
 import store from './store';
 import reIndexModules from './reIndexModules';
 import TreatError from './TreatError';
 import makeTreatCompiler from './treatCompiler';
 import optionValidator from './optionValidator';
-import { debugIdent } from './utils';
+import { debug } from './utils';
+import createCompat from './compat';
 
 const isProductionLikeMode = (options) => {
   return options.mode === 'production' || !options.mode;
 };
+
+const trace = debug('treat:webpack-plugin');
 
 const TWP = 'treat-webpack-plugin';
 
@@ -22,10 +24,6 @@ const makeOptionDefaulter = (prodLike) => (option, { dev, prod }) => {
   }
 
   return prodLike ? prod : dev;
-};
-
-const trace = (...params) => {
-  console.log(chalk.green('TreatWebpackPlugin:'), ...params);
 };
 
 export class TreatPlugin {
@@ -40,13 +38,11 @@ export class TreatPlugin {
       themeIdentName,
       minify,
       browsers,
-      verbose = false,
-      hmr = false,
+      hmr,
     } = options;
 
-    this.trace = verbose ? trace : () => {};
     this.store = store();
-    this.treatCompiler = makeTreatCompiler(this.trace);
+    this.treatCompiler = makeTreatCompiler();
 
     this.test = test;
     this.minify = minify;
@@ -61,22 +57,18 @@ export class TreatPlugin {
   }
 
   apply(compiler) {
-    if (this.loaderOptions.outputCSS) {
-      virtualModules.apply(compiler);
-    }
+    const isWebpack5 = Boolean(compiler.webpack && compiler.webpack.version);
+    const compat = createCompat(isWebpack5);
 
     compiler.hooks.watchRun.tap(TWP, (watchCompiler) => {
-      // watchCompiler.watchFileSystem.watcher is undefined in some node environments.
-      // Allow fallback to watchCompiler.watchFileSystem.wfs
-      // https://github.com/s-panferov/awesome-typescript-loader/commit/c7da9ac82d105cdaf9b124ccc4c130648e59168a
-      const watcher =
-        watchCompiler.watchFileSystem.watcher ||
-        watchCompiler.watchFileSystem.wfs.watcher;
-      this.treatCompiler.expireCache(Object.keys(watcher.mtimes));
+      const modifiedFiles = compat.getModifiedFiles(watchCompiler);
+
+      this.treatCompiler.expireCache(modifiedFiles);
     });
 
     compiler.hooks.thisCompilation.tap(TWP, (compilation) => {
-      const cssModules = new Map();
+      let allCssModules = [];
+      let usedCssModules;
 
       const rebuildModule = (module) =>
         new Promise((resolve) => {
@@ -116,16 +108,15 @@ export class TreatPlugin {
         );
 
         await Promise.map(staleModules, async ({ moduleIdentifier }) => {
-          this.trace('Rebuiling stale module: ', debugIdent(moduleIdentifier));
+          trace('Rebuiling stale module: %i', moduleIdentifier);
           const treatModule = compilation.findModule(moduleIdentifier);
 
           if (!treatModule) {
             // In cases where the build fails, sometimes modules are not present
             // on the compilation object. Skip rebuilding in these cases.
-            this.trace(
-              'Bail on rebuild of stale module: ',
-              debugIdent(moduleIdentifier),
-              `Module doesn't exist on compilation`,
+            trace(
+              "Bail on rebuild of stale module: %i Module doesn't exist on compilation",
+              moduleIdentifier,
             );
             return;
           }
@@ -141,20 +132,16 @@ export class TreatPlugin {
           await Promise.map(
             this.store.getThemeIdentifiers(),
             async (themeModuleIdentifier) => {
-              this.trace(
-                'Rebuiling theme module: ',
-                debugIdent(themeModuleIdentifier),
-              );
+              trace('Rebuiling theme module: %i', themeModuleIdentifier);
 
               const treatModule = compilation.findModule(themeModuleIdentifier);
 
               if (!treatModule) {
                 // In cases where the build fails, sometimes modules are not present
                 // on the compilation object. Skip rebuilding in these cases.
-                this.trace(
-                  'Bail on rebuild of theme module: ',
-                  debugIdent(themeModuleIdentifier),
-                  `Module doesn't exist on compilation`,
+                trace(
+                  "Bail on rebuild of theme module: %i Module doesn't exist on compilation",
+                  themeModuleIdentifier,
                 );
                 return;
               }
@@ -164,64 +151,70 @@ export class TreatPlugin {
           );
         }
 
-        // Build css modules Map for sorting after chunk phase
         const cssResources = this.store
           .getAllThemedCssRequests()
           .map(({ resource }) => resource);
 
+        const getTreatCssResource = (module) => {
+          if (
+            module.matchResource &&
+            cssResources.includes(module.matchResource)
+          ) {
+            return module.matchResource;
+          }
+
+          if (module.type === 'css/mini-extract') {
+            const issuer = compat.getModuleIssuer(compilation, module);
+
+            return getTreatCssResource(issuer);
+          }
+
+          return null;
+        };
+
         for (const module of compilation._modules.values()) {
-          const resourceToCheck = module.resource
-            ? module.resource
-            : module.issuer && module.issuer.resource;
+          const treatCssResource = getTreatCssResource(module);
 
-          if (resourceToCheck && cssResources.includes(resourceToCheck)) {
+          if (treatCssResource) {
             const { owner, type, theme } = this.store.getThemedCssModuleInfo(
-              resourceToCheck,
+              treatCssResource,
             );
+            const themeIdentifier = theme
+              ? this.store.getTheme(theme).identifier
+              : null;
 
-            cssModules.set(module.identifier(), {
-              ownerIdentifier: owner,
+            allCssModules.push({
               type,
-              themeIdentifier: theme
-                ? this.store.getTheme(theme).identifier
+              module: compilation.findModule(module.identifier()),
+              owner: compilation.findModule(owner),
+              themeModule: theme
+                ? compilation.findModule(themeIdentifier)
                 : null,
+              identifier: module.identifier(),
             });
           }
         }
       });
 
-      compilation.hooks.afterChunks.tap(TWP, (chunks) => {
-        try {
-          // afterChunks hook means module/chunk order properties have been set
-          // We can now correct those values by referencing the ordering of the owner treat file
-          const allCssModules = Array.from(cssModules.entries()).map(
-            ([identifier, moduleInfo]) => ({
-              ...moduleInfo,
-              module: compilation.findModule(identifier),
-              owner: compilation.findModule(moduleInfo.ownerIdentifier),
-              themeModule: moduleInfo.themeIdentifier
-                ? compilation.findModule(moduleInfo.themeIdentifier)
-                : null,
-              identifier,
-            }),
-          );
-
+      compilation.hooks.optimizeDependencies.tap(
+        // Running during advanced stage means export usage info has been added to the graph already
+        { name: TWP, stage: 10 },
+        () => {
           // Some modules may not be used and their css can be safely be removed from the chunks
-          const [usedCssModules, modulesToRemove] = partition(
+          const cssModuleGroups = partition(
             allCssModules,
-            ({ identifier, owner, themeModule }) => {
-              const used = (m) => (typeof m.used === 'boolean' ? m.used : true);
-
-              const ownerIsUsed = used(owner);
-              const themeIsUsed = !themeModule || used(themeModule);
+            ({ module, owner, themeModule }) => {
+              const ownerIsUsed = compat.isModuleUsed(compilation, owner);
+              const themeIsUsed =
+                !themeModule || compat.isModuleUsed(compilation, themeModule);
 
               const cssModuleIsUsed = ownerIsUsed && themeIsUsed;
 
               if (!cssModuleIsUsed) {
-                this.trace(
-                  'CSS Module marked for removal due to unused',
+                trace(
+                  'CSS Module marked for removal due to unused %s %m',
                   chalk.yellow(ownerIsUsed ? 'theme' : 'owner'),
-                  debugIdent(identifier),
+                  module,
                 );
               }
 
@@ -229,31 +222,53 @@ export class TreatPlugin {
             },
           );
 
-          if (modulesToRemove.length > 0) {
-            chunks.forEach((chunk) => {
-              modulesToRemove.forEach(({ module, identifier }) => {
-                this.store.getThemeIdentifiers().forEach((themeIdentifier) => {
-                  const themeModule = compilation.findModule(themeIdentifier);
+          usedCssModules = cssModuleGroups[0];
+          const cssModulesToRemove = cssModuleGroups[1];
 
-                  themeModule.dependencies = themeModule.dependencies.filter(
-                    (dependency) => {
-                      if (!dependency.module) {
-                        return true;
-                      }
+          if (cssModulesToRemove.length > 0) {
+            const themeModules = this.store
+              .getThemeIdentifiers()
+              .map((ident) => compilation.findModule(ident));
 
-                      return dependency.module.identifier() !== identifier;
-                    },
-                  );
-                });
+            const cssModulesIdentsToRemove = cssModulesToRemove.map(
+              ({ identifier }) => identifier,
+            );
 
-                chunk.removeModule(module);
+            for (const themeModule of themeModules) {
+              const depsToRemove = themeModule.dependencies.filter((dep) => {
+                const depModule = compat.getDependencyModule(compilation, dep);
+
+                const shouldRemove =
+                  depModule &&
+                  cssModulesIdentsToRemove.includes(depModule.identifier());
+
+                if (shouldRemove) {
+                  trace('Mark %m for clean-up in %m', depModule, themeModule);
+                }
+
+                return shouldRemove;
               });
-            });
-          }
 
-          chunks.forEach((chunk) => {
+              for (const dep of depsToRemove) {
+                themeModule.removeDependency(dep);
+              }
+
+              compilation.removeReasonsOfDependencyBlock(themeModule, {
+                dependencies: depsToRemove,
+                blocks: [],
+              });
+            }
+          }
+        },
+      );
+
+      compilation.hooks.afterChunks.tap(TWP, (chunks) => {
+        try {
+          // afterChunks hook means module/chunk order properties have been set
+          // We can now correct those values by referencing the ordering of the owner treat file
+          for (const chunk of chunks) {
             const cssModulesInChunk = usedCssModules.filter(({ module }) =>
-              chunk.containsModule(module),
+              compat.isModuleInChunk(compilation, module, chunk),
             );
 
             for (const chunkGroup of chunk.groupsIterable) {
@@ -262,32 +277,42 @@ export class TreatPlugin {
               reIndexModules(
                 cssModulesInChunk,
                 {
-                  getIndex: ({ module }) => chunkGroup.getModuleIndex(module),
-                  getIndex2: ({ module }) => chunkGroup.getModuleIndex2(module),
-                  getOwnerIndex: ({ owner }) => owner.index,
-                  getThemeIndex: ({ themeModule }) => themeModule.index,
-                  setIndex: ({ module }, i) =>
-                    chunkGroup.setModuleIndex(module, i),
-                  setIndex2: ({ module }, i) =>
-                    chunkGroup.setModuleIndex2(module, i),
+                  getPreIndex: ({ module }) =>
+                    compat.getCGModulePreOrderIndex(chunkGroup, module),
+                  getPostIndex: ({ module }) =>
+                    compat.getCGModulePostOrderIndex(chunkGroup, module),
+                  getOwnerIndex: ({ owner }) =>
+                    compat.getModulePreOrderIndex(compilation, owner),
+                  getThemeIndex: ({ themeModule }) =>
+                    compat.getModulePreOrderIndex(compilation, themeModule),
+                  setPreIndex: ({ module }, i) =>
+                    compat.setCGModulePreOrderIndex(chunkGroup, module, i),
+                  setPostIndex: ({ module }, i) =>
+                    compat.setCGModulePostOrderIndex(chunkGroup, module, i),
                 },
-                { trace: this.trace, target: 'ChunkGroup._moduleIndicies' },
+                'ChunkGroup moduleIndicies',
               );
             }
-          });
+          }
 
           // Corrects Module.index/index2
           reIndexModules(
             usedCssModules,
             {
-              getIndex: ({ module }) => module.index,
-              getIndex2: ({ module }) => module.index2,
-              getOwnerIndex: ({ owner }) => owner.index,
-              getThemeIndex: ({ themeModule }) => themeModule.index,
-              setIndex: ({ module }, i) => (module.index = i),
-              setIndex2: ({ module }, i) => (module.index2 = i),
+              getPreIndex: ({ module }) =>
+                compat.getModulePreOrderIndex(compilation, module),
+              getPostIndex: ({ module }) =>
+                compat.getModulePostOrderIndex(compilation, module),
+              getOwnerIndex: ({ owner }) =>
+                compat.getModulePreOrderIndex(compilation, owner),
+              getThemeIndex: ({ themeModule }) =>
+                compat.getModulePreOrderIndex(compilation, themeModule),
+              setPreIndex: ({ module }, i) =>
+                compat.setModulePreOrderIndex(compilation, module, i),
+              setPostIndex: ({ module }, i) =>
+                compat.setModulePostOrderIndex(compilation, module, i),
             },
-            { trace: this.trace, target: 'Module.index/index2' },
+            'Module.index/index2',
           );
 
           this.store
@@ -301,11 +326,13 @@ export class TreatPlugin {
               const relevantDependencies = usedCssModules
                 .map((moduleInfo) => ({
                   ...moduleInfo,
-                  dependency: dependencies.find(
-                    (d) =>
-                      d.module &&
-                      d.module.identifier() === moduleInfo.identifier,
-                  ),
+                  dependency: dependencies.find((d) => {
+                    const module = compat.getDependencyModule(compilation, d);
+
+                    return (
+                      module && module.identifier() === moduleInfo.identifier
+                    );
+                  }),
                 }))
                 .filter(({ dependency }) => dependency);
 
@@ -314,17 +341,19 @@ export class TreatPlugin {
               reIndexModules(
                 relevantDependencies,
                 {
-                  getIndex: ({ dependency }) => dependency.sourceOrder,
-                  getOwnerIndex: ({ owner }) => owner.index,
-                  getThemeIndex: ({ themeModule }) => themeModule.index,
-                  setIndex: ({ dependency }, i) => {
+                  getPreIndex: ({ dependency }) => dependency.sourceOrder,
+                  getOwnerIndex: ({ owner }) =>
+                    compat.getModulePreOrderIndex(compilation, owner),
+                  getThemeIndex: ({ themeModule }) =>
+                    compat.getModulePreOrderIndex(compilation, themeModule),
+                  setPreIndex: ({ dependency }, i) => {
                     dependency.sourceOrder = i;
                   },
-                  // index2 not required for dependencies
-                  getIndex2: () => {},
-                  setIndex2: () => {},
+                  // post index not required for dependencies
+                  getPostIndex: () => {},
+                  setPostIndex: () => {},
                 },
-                { trace: this.trace, target: 'Dependency.sourceOrder' },
+                'Dependency.sourceOrder',
               );
             });
         } catch (e) {
@@ -335,13 +364,11 @@ export class TreatPlugin {
 
     compiler.hooks.normalModuleFactory.tap(TWP, (nmf) => {
       nmf.hooks.afterResolve.tap(TWP, (result) => {
-        if (this.store.getCSSResources().has(result.resource)) {
+        if (this.store.getCSSResources().has(result.matchResource)) {
           result.settings = Object.assign({}, result.settings, {
             sideEffects: true,
           });
         }
-
-        return result;
       });
     });
 
@@ -349,31 +376,48 @@ export class TreatPlugin {
       isProductionLikeMode(compiler.options),
     );
 
-    compiler.options.module.rules.splice(0, 0, {
-      test: this.test,
-      sideEffects: true,
-      use: [
-        {
-          loader: require.resolve('treat/webpack-plugin/loader'),
-          options: {
-            ...this.loaderOptions,
-            minify: optionDefaulter(this.minify, {
-              dev: false,
-              prod: true,
-            }),
-            localIdentName: optionDefaulter(this.localIdentName, {
-              dev: '[name]-[local]_[hash:base64:5]',
-              prod: '[hash:base64:5]',
-            }),
-            themeIdentName: optionDefaulter(this.themeIdentName, {
-              dev: '_[name]-[local]_[hash:base64:4]',
-              prod: '[hash:base64:4]',
-            }),
-            store: this.store,
-            treatCompiler: this.treatCompiler,
+    compiler.options.module.rules.splice(
+      0,
+      0,
+      {
+        test: this.test,
+        use: [
+          {
+            loader: require.resolve('treat/webpack-plugin/loader'),
+            options: {
+              ...this.loaderOptions,
+              minify: optionDefaulter(this.minify, {
+                dev: false,
+                prod: true,
+              }),
+              localIdentName: optionDefaulter(this.localIdentName, {
+                dev: '[name]-[local]_[hash:base64:5]',
+                prod: '[hash:base64:5]',
+              }),
+              themeIdentName: optionDefaulter(this.themeIdentName, {
+                dev: '_[name]-[local]_[hash:base64:4]',
+                prod: '[hash:base64:4]',
+              }),
+              store: this.store,
+              treatCompiler: this.treatCompiler,
+            },
           },
-        },
-      ],
-    });
+        ],
+      },
+      {
+        test: /\.treatcss$/,
+        sideEffects: true,
+        use: [
+          ...this.loaderOptions.outputLoaders,
+          {
+            loader: 'css-loader',
+            options: {
+              modules: false,
+              url: false,
+            },
+          },
+        ],
+      },
+    );
   }
 }

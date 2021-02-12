@@ -9,7 +9,6 @@ import isPlainObject from 'lodash/isPlainObject';
 import dedent from 'dedent';
 import { stringify } from 'javascript-stringify';
 
-import virtualModules from './virtualModules';
 import processCss from './processCss';
 import { THEMED, LOCAL } from './utils';
 import TreatError from './TreatError';
@@ -67,13 +66,14 @@ async function produce(loader) {
     outputCSS,
     localIdentName,
     themeIdentName,
-    outputLoaders,
     minify,
     browsers,
     store,
     treatCompiler,
     hmr,
   } = loaderUtils.getOptions(loader);
+
+  const isHmr = typeof hmr === 'boolean' ? hmr : loader.hot;
   let hasThemedCss = false;
   let localStyles = null;
   const themedStyles = {};
@@ -121,22 +121,25 @@ async function produce(loader) {
     });
 
     if (css) {
-      const virtualCssLocation = path.normalize(
+      const base64 = Buffer.from(css, 'utf-8').toString('base64');
+
+      const unloader = stringifyLoaderRequest({
+        loader: 'virtual-resource-loader',
+        options: { source: base64 },
+      });
+      const cssFileName = path.normalize(
         loaderUtils.interpolateName(
           loader,
-          '[path][name].[hash:base64:7].css',
+          '[path][name].[hash:base64:7].treatcss',
           {
             content: css,
           },
         ),
       );
 
-      // Create virtual css file for style created in this module
-      virtualModules.writeModule(virtualCssLocation, css);
-
       return {
-        request: stringifyCssRequest(virtualCssLocation, outputLoaders),
-        resource: virtualCssLocation,
+        request: `${cssFileName}!=!${unloader}!${loader.resourcePath}`,
+        resource: cssFileName,
       };
     }
 
@@ -237,20 +240,9 @@ async function produce(loader) {
     loader,
     Array.from(ownedCssRequests.values()),
     result,
-    hmr,
+    isHmr,
   );
 }
-
-const stringifyCssRequest = (cssLocation, outputLoaders) => {
-  const cssLoaders = [
-    ...outputLoaders,
-    { loader: 'css-loader', options: { modules: false, url: false } },
-  ]
-    .map(stringifyLoaderRequest)
-    .join('!');
-
-  return `!${cssLoaders}!${cssLocation}`;
-};
 
 const stringifyExports = (value) =>
   stringify(

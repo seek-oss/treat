@@ -1,5 +1,7 @@
 # 🍬 next-treat
 
+> Warning: `next-treat` is not yet working with treat v2.
+
 ## Setup
 
 To use `treat` in a [Next.js](https://nextjs.org) project, install `next-treat` and add it to your `next.config.js` file like this:

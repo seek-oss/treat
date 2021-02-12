@@ -20,7 +20,7 @@ const configVariations = [
           cacheGroups: {
             styles: {
               name: 'styles',
-              test: /\.css$/,
+              type: 'css/mini-extract',
               chunks: 'all',
               enforce: true,
             },

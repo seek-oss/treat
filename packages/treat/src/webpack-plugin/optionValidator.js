@@ -8,7 +8,6 @@ const schema = joi.object({
   themeIdentName: [joi.func(), joi.string()],
   minify: joi.boolean(),
   browsers: [joi.string(), joi.array().items(joi.string())],
-  verbose: joi.boolean(),
   hmr: joi.boolean(),
 });
 
@@ -27,7 +26,7 @@ class ValidationError extends Error {
 export default (options) => {
   const { error } = schema.validate(options);
 
-  if (error !== null) {
+  if (error) {
     throw new ValidationError(error);
   }
 };

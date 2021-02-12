@@ -10,7 +10,9 @@ import Promise from 'bluebird';
 import chalk from 'chalk';
 import dedent from 'dedent';
 
-import { debugIdent } from './utils';
+import { debug } from './utils';
+
+const trace = debug('treat:webpack-plugin:compiler');
 
 const TWL = 'treat-webpack-loader';
 
@@ -27,11 +29,11 @@ const logMultiWebpackError = once(() => {
   );
 });
 
-export default (trace) => {
+export default () => {
   const cache = new Map();
 
   const expireCache = (changedFiles) => {
-    trace('Expire cache for files dependendent on:', changedFiles);
+    trace('Expire cache for files dependendent on: %O', changedFiles);
 
     Array.from(cache.entries()).forEach(
       ([identifier, { fileDependencies }]) => {
@@ -41,7 +43,7 @@ export default (trace) => {
         );
 
         if (expiredDependencies.length > 0) {
-          trace('Expire cache for', identifier);
+          trace('Expire cache for %i', identifier);
 
           cache.delete(identifier);
         }
@@ -51,17 +53,16 @@ export default (trace) => {
 
   const getSource = async (loader, request) => {
     const identifier = loader._module.identifier();
-    const debugIdentifier = debugIdent(identifier);
-    trace('Get compiled source:', debugIdentifier);
+    trace('Get compiled source: %i', identifier);
 
     const cachedValue = cache.get(identifier);
 
     if (cachedValue) {
-      trace('Return cached source:', debugIdentifier);
+      trace('Return cached source: %i', identifier);
       return cachedValue;
     }
 
-    trace('No cached source. Compiling:', debugIdentifier);
+    trace('No cached source. Compiling: %i', identifier);
     const compilationResult = await compileTreatSource(loader, request);
 
     cache.set(identifier, compilationResult);

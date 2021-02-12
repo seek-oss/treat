@@ -1,5 +1,7 @@
 # 🍬 gatsby-plugin-treat
 
+> Warning: `gatsby-plugin-treat` is not yet working with treat v2.
+
 ## Setup
 
 To use `treat` in a [Gatsby](https://www.gatsbyjs.org) project, install `gatsby-plugin-treat` and add it to your `gatsby-config.js` file like this:

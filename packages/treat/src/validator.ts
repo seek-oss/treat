@@ -38,13 +38,13 @@ const makeQuerySchema = (valueSchema: ObjectSchema) =>
 const fullStyleWithMedia = makeQuerySchema(fullStyle).required();
 
 const globalStyleWithMedia = makeQuerySchema(
-  fullStyle.forbiddenKeys('selectors', ...simplePseudos),
+  fullStyle.fork(['selectors', ...simplePseudos], (a) => a.forbidden()),
 ).required();
 
 const validate = (handler: Schema) => (value: any) => {
   const { error } = handler.validate(value);
 
-  if (error !== null) {
+  if (error) {
     throw error;
   }
 };

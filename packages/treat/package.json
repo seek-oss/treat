@@ -1,6 +1,6 @@
 {
   "name": "treat",
-  "version": "1.6.1",
+  "version": "2.0.0",
   "description": "Themeable, statically extracted CSS-in-JS with near-zero runtime",
   "main": "dist/treat.cjs.js",
   "module": "dist/treat.esm.js",

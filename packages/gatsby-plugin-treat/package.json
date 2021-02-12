@@ -11,7 +11,7 @@
   "main": "index.js",
   "peerDependencies": {
     "gatsby": "^2.18.11",
-    "treat": "^1.1.7"
+    "treat": "^2.0.0"
   },
   "dependencies": {
     "babel-plugin-treat": "^1.6.2"

@@ -3,7 +3,7 @@
   "description": "React library for integrating with treat",
   "main": "dist/react-treat.cjs.js",
   "module": "dist/react-treat.esm.js",
-  "version": "1.6.1",
+  "version": "2.0.0",
   "sideEffects": false,
   "author": "SEEK",
   "license": "MIT",
@@ -13,10 +13,10 @@
   ],
   "peerDependencies": {
     "react": ">=16.8.0",
-    "treat": "^1.0.0"
+    "treat": "^2.0.0"
   },
   "devDependencies": {
     "react": "^16.13.1",
-    "treat": "^1.6.1"
+    "treat": "^2.0.0"
   }
 }

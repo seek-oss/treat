@@ -8,7 +8,7 @@
     "next-treat": "^1.3.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "treat": "^1.6.1"
+    "treat": "^2.0.0"
   },
   "scripts": {
     "build": "next build",

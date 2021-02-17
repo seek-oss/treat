@@ -18,5 +18,8 @@
   "devDependencies": {
     "react": "^16.13.1",
     "treat": "^2.0.0"
-  }
+  },
+  "files": [
+    "/dist"
+  ]
 }

@@ -1,4 +1,4 @@
-import run from '@jamesives/github-pages-deploy-action';
+const run = require('@jamesives/github-pages-deploy-action').default;
 
 run({
   branch: 'gh-pages',

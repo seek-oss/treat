@@ -1,4 +1,5 @@
 {
   "name": "treat-test-helpers",
+  "private": true,
   "version": "0.0.1"
 }

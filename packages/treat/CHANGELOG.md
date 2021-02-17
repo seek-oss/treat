@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.0.1
+
+### Patch Changes
+
+- [`84905f3`](https://github.com/seek-oss/treat/commit/84905f3b357422307bed6c2ad5c267e374332b18) [#161](https://github.com/seek-oss/treat/pull/161) Thanks [@mattcompiles](https://github.com/mattcompiles)! - Add types to release
+
 ## 2.0.0
 
 ### Major Changes

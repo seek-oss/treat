@@ -6,4 +6,5 @@ run({
   folder: path.join(__dirname, 'dist'),
   repositoryName: 'seek-oss/treat',
   token: process.env.GITHUB_TOKEN,
+  workspace: path.join(__dirname, '../'),
 });

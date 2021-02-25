@@ -1,4 +1,5 @@
 const webpack4 = {
+  isWebpack5: false,
   isModuleUsed: (_compilation, module) =>
     typeof module.used === 'boolean' ? module.used : true,
   getDependencyModule: (_compilation, dependency) => dependency.module,
@@ -29,9 +30,15 @@ const webpack4 = {
     return Object.keys(watcher.mtimes);
   },
   getModuleIssuer: (_compilation, module) => module.issuer,
+  getNodeTemplatePlugin: () => require('webpack/lib/node/NodeTemplatePlugin'),
+  getNodeTargetPlugin: () => require('webpack/lib/node/NodeTargetPlugin'),
+  getLimitChunkCountPlugin: () =>
+    require('webpack/lib/optimize/LimitChunkCountPlugin'),
+  getExternalsPlugin: () => require('webpack/lib/ExternalsPlugin'),
 };
 
 const webpack5 = {
+  isWebpack5: true,
   isModuleUsed: (compilation, module) => {
     const exportsInfo = compilation.moduleGraph.getExportsInfo(module);
 
@@ -61,6 +68,11 @@ const webpack5 = {
     watchCompiler.modifiedFiles ? Array.from(watchCompiler.modifiedFiles) : [],
   getModuleIssuer: (compilation, module) =>
     compilation.moduleGraph.getIssuer(module),
+  getNodeTemplatePlugin: (compiler) => compiler.webpack.node.NodeTemplatePlugin,
+  getNodeTargetPlugin: (compiler) => compiler.webpack.node.NodeTargetPlugin,
+  getLimitChunkCountPlugin: (compiler) =>
+    compiler.webpack.optimize.LimitChunkCountPlugin,
+  getExternalsPlugin: (compiler) => compiler.webpack.ExternalsPlugin,
 };
 
 export default (isWebpack5) => {

@@ -42,7 +42,6 @@ export class TreatPlugin {
     } = options;
 
     this.store = store();
-    this.treatCompiler = makeTreatCompiler();
 
     this.test = test;
     this.minify = minify;
@@ -59,11 +58,12 @@ export class TreatPlugin {
   apply(compiler) {
     const isWebpack5 = Boolean(compiler.webpack && compiler.webpack.version);
     const compat = createCompat(isWebpack5);
+    const treatCompiler = makeTreatCompiler(compat);
 
     compiler.hooks.watchRun.tap(TWP, (watchCompiler) => {
       const modifiedFiles = compat.getModifiedFiles(watchCompiler);
 
-      this.treatCompiler.expireCache(modifiedFiles);
+      treatCompiler.expireCache(modifiedFiles);
     });
 
     compiler.hooks.thisCompilation.tap(TWP, (compilation) => {
@@ -399,7 +399,7 @@ export class TreatPlugin {
                 prod: '[hash:base64:4]',
               }),
               store: this.store,
-              treatCompiler: this.treatCompiler,
+              treatCompiler,
             },
           },
         ],

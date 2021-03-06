@@ -26,7 +26,7 @@
     "prebuild-docs": "yarn make-docs-manifest",
     "start-docs": "webpack-dev-server --config ./site/webpack.config.js",
     "build-docs": "NODE_ENV=production webpack --config ./site/webpack.config.js",
-    "build": "preconstruct build",
+    "build": "preconstruct build && node ./cleanup-browser-exports",
     "dev": "preconstruct dev",
     "release": "yarn build && yarn build-docs && changeset publish && node ./site/deploy.js",
     "debug-fixture": "node ./test-helpers/debugFixture.js"

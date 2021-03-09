@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.0.2
+
+### Patch Changes
+
+- [`37a44be`](https://github.com/seek-oss/treat/commit/37a44be14d27a0d3edbb2e49920c2bcdcc9d0b57) [#167](https://github.com/seek-oss/treat/pull/167) Thanks [@mattcompiles](https://github.com/mattcompiles)! - Fix style exports not being available when window is defined
+
 ## 2.0.1
 
 ### Patch Changes

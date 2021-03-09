@@ -14,7 +14,7 @@
   },
   "license": "MIT",
   "peerDependencies": {
-    "treat": "^2.0.1"
+    "treat": "^2.0.2"
   },
   "devDependencies": {
     "treat": "*",

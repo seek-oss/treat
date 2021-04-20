@@ -1,11 +1,5 @@
 import intersection from 'lodash/intersection';
 import once from 'lodash/once';
-import NodeTemplatePlugin from 'webpack/lib/node/NodeTemplatePlugin';
-import NodeTargetPlugin from 'webpack/lib/node/NodeTargetPlugin';
-import LibraryTemplatePlugin from 'webpack/lib/LibraryTemplatePlugin';
-import SingleEntryPlugin from 'webpack/lib/SingleEntryPlugin';
-import LimitChunkCountPlugin from 'webpack/lib/optimize/LimitChunkCountPlugin';
-import ExternalsPlugin from 'webpack/lib/ExternalsPlugin';
 import Promise from 'bluebird';
 import chalk from 'chalk';
 import dedent from 'dedent';
@@ -29,7 +23,7 @@ const logMultiWebpackError = once(() => {
   );
 });
 
-export default () => {
+export default (compat) => {
   const cache = new Map();
 
   const expireCache = (changedFiles) => {
@@ -51,7 +45,7 @@ export default () => {
     );
   };
 
-  const getSource = async (loader, request) => {
+  const getSource = async (loader) => {
     const identifier = loader._module.identifier();
     trace('Get compiled source: %i', identifier);
 
@@ -63,17 +57,16 @@ export default () => {
     }
 
     trace('No cached source. Compiling: %i', identifier);
-    const compilationResult = await compileTreatSource(loader, request);
+    const compilationResult = await compileTreatSource(loader, compat);
 
     cache.set(identifier, compilationResult);
 
     return compilationResult;
   };
 
-  const getCompiledSource = async (loader, request) => {
+  const getCompiledSource = async (loader) => {
     const { source, fileDependencies, contextDependencies } = await getSource(
       loader,
-      request,
     );
 
     // Set loader dependencies to dependecies of the child compiler
@@ -106,7 +99,7 @@ function getRootCompilation(loader) {
   return compilation;
 }
 
-function compileTreatSource(loader) {
+function compileTreatSource(loader, compat) {
   return new Promise((resolve, reject) => {
     // Child compiler will compile treat files to be evaled during compilation
     const outputOptions = { filename: loader.resourcePath };
@@ -114,40 +107,78 @@ function compileTreatSource(loader) {
     const childCompiler = getRootCompilation(loader).createChildCompiler(
       TWL,
       outputOptions,
-      [
-        new NodeTemplatePlugin(outputOptions),
-        new LibraryTemplatePlugin(null, 'commonjs2'),
-        new NodeTargetPlugin(),
-        new SingleEntryPlugin(loader.context, loader.resourcePath),
-        new LimitChunkCountPlugin({ maxChunks: 1 }),
-        new ExternalsPlugin('commonjs', 'treat'),
-      ],
     );
 
-    const subCache = 'subcache ' + __dirname + ' ' + loader.resourcePath;
-    childCompiler.hooks.compilation.tap(TWL, (compilation) => {
-      if (compilation.cache) {
-        if (!compilation.cache[subCache]) compilation.cache[subCache] = {};
-        compilation.cache = compilation.cache[subCache];
-      }
-    });
+    const NodeTemplatePlugin = compat.getNodeTemplatePlugin(loader._compiler);
+    const NodeTargetPlugin = compat.getNodeTargetPlugin(loader._compiler);
+    const LimitChunkCountPlugin = compat.getLimitChunkCountPlugin(
+      loader._compiler,
+    );
+    const ExternalsPlugin = compat.getExternalsPlugin(loader._compiler);
+
+    new NodeTemplatePlugin(outputOptions).apply(childCompiler);
+    new NodeTargetPlugin().apply(childCompiler);
+
+    if (compat.isWebpack5) {
+      const {
+        EntryOptionPlugin,
+        library: { EnableLibraryPlugin },
+      } = loader._compiler.webpack;
+
+      new EnableLibraryPlugin('commonjs2').apply(childCompiler);
+
+      EntryOptionPlugin.applyEntryOption(childCompiler, loader.context, {
+        child: {
+          library: {
+            type: 'commonjs2',
+          },
+          import: [loader.resourcePath],
+        },
+      });
+    } else {
+      // Webpack 4 code. Remove once support is removed
+      const { LibraryTemplatePlugin, SingleEntryPlugin } = require('webpack');
+
+      new LibraryTemplatePlugin(null, 'commonjs2').apply(childCompiler);
+      new SingleEntryPlugin(loader.context, loader.resourcePath).apply(
+        childCompiler,
+      );
+    }
+
+    new LimitChunkCountPlugin({ maxChunks: 1 }).apply(childCompiler);
+    new ExternalsPlugin('commonjs', 'treat').apply(childCompiler);
 
     let source;
 
-    childCompiler.hooks.afterCompile.tapAsync(TWL, (compilation, callback) => {
-      source =
-        compilation.assets[loader.resourcePath] &&
-        compilation.assets[loader.resourcePath].source();
+    if (compat.isWebpack5) {
+      childCompiler.hooks.compilation.tap(TWL, (compilation) => {
+        compilation.hooks.processAssets.tap(TWL, () => {
+          source =
+            compilation.assets[loader.resourcePath] &&
+            compilation.assets[loader.resourcePath].source();
 
-      // Remove all chunk assets
-      compilation.chunks.forEach((chunk) => {
-        chunk.files.forEach((file) => {
-          delete compilation.assets[file];
+          // Remove all chunk assets
+          compilation.chunks.forEach((chunk) => {
+            chunk.files.forEach((file) => {
+              compilation.deleteAsset(file);
+            });
+          });
         });
       });
+    } else {
+      childCompiler.hooks.afterCompile.tap(TWL, (compilation) => {
+        source =
+          compilation.assets[loader.resourcePath] &&
+          compilation.assets[loader.resourcePath].source();
 
-      callback();
-    });
+        // Remove all chunk assets
+        compilation.chunks.forEach((chunk) => {
+          chunk.files.forEach((file) => {
+            delete compilation.assets[file];
+          });
+        });
+      });
+    }
 
     try {
       childCompiler.runAsChild((err, entries, compilation) => {

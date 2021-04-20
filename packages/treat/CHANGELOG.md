@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.0.3
+
+### Patch Changes
+
+- [`92e225d`](https://github.com/seek-oss/treat/commit/92e225dc05a3035245f7676cd8e85aefb428e2e5) [#164](https://github.com/seek-oss/treat/pull/164) Thanks [@mattcompiles](https://github.com/mattcompiles)! - Fix webpack 5 deprecation warnings
+
 ## 2.0.2
 
 ### Patch Changes

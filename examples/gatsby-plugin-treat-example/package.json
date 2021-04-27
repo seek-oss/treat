@@ -7,7 +7,7 @@
     "babel-preset-gatsby": "^0.2.26",
     "gatsby": "^2.18.11",
     "gatsby-plugin-treat": "^1.6.2",
-    "treat": "^2.0.3"
+    "treat": "^2.0.4"
   },
   "scripts": {
     "clean": "gatsby clean && rm -rf node_modules/.cache",

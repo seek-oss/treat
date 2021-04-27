@@ -42,7 +42,7 @@ const webpack5 = {
   isModuleUsed: (compilation, module) => {
     const exportsInfo = compilation.moduleGraph.getExportsInfo(module);
 
-    return exportsInfo.isModuleUsed('main');
+    return exportsInfo.isModuleUsed();
   },
   getDependencyModule: (compilation, dependency) =>
     compilation.moduleGraph.getModule(dependency),

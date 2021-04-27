@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.0.4
+
+### Patch Changes
+
+- [`aa82025`](https://github.com/seek-oss/treat/commit/aa82025c951f4cf270a9b9676ece791ba812332d) [#175](https://github.com/seek-oss/treat/pull/175) Thanks [@mattcompiles](https://github.com/mattcompiles)! - Check all runtimes for usage before marking CSS for removals
+
 ## 2.0.3
 
 ### Patch Changes

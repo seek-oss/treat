@@ -31,7 +31,7 @@
     "github-slugger": "^1.2.1",
     "gray-matter": "^4.0.2",
     "html-render-webpack-plugin": "^3.0.1",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.21",
     "lunr": "^2.3.6",
     "mdx-loader": "^2.2.1",
     "mime-types": "^2.1.22",

@@ -41,7 +41,7 @@
     "lodash": "^4.17.11",
     "normalize-path": "^3.0.0",
     "object-hash": "^2.0.3",
-    "postcss": "^8.2.5",
+    "postcss": "^8.2.10",
     "postcss-js": "^3.0.3",
     "style-loader": "^2.0.0",
     "virtual-resource-loader": "^1.0.0"

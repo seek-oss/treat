@@ -94,6 +94,6 @@ After using treat internally for a considerable amount of time, we decided we we
 
 **[Johannes Ewald](https://twitter.com/Jhnnns)** for letting us have the `treat` name on npm.
 
-**[Nathan Nam Tran](https://twitter.com/naistran)** for creating [css-in-js-loader](https://github.com/naistran/css-in-js-loader), which served as the initial starting point for our approach.
+**Nathan Nam Tran** for creating [css-in-js-loader](https://github.com/ntharim/css-in-js-loader), which served as the initial starting point for our approach.
 
 **[SEEK](https://www.seek.com.au)** for giving us the space to do interesting work.

@@ -2,6 +2,10 @@
 title: Introduction
 ---
 
+<br />
+
+> ⚠️ WARNING: This project has been deprecated in favour of [Vanilla Extract.](https://github.com/vanilla-extract-css/vanilla-extract)
+
 # Themeable, statically extracted CSS&#8209;in&#8209;JS with near&#8209;zero runtime.
 
 Write your styles in JavaScript/TypeScript within **_treat files_** (e.g. `Button.treat.js`) that get **_executed at build time_**.

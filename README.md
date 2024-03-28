@@ -1,3 +1,7 @@
+## ⚠️ NOTE: This project has been deprecated in favour of [Vanilla Extract.](https://github.com/vanilla-extract-css/vanilla-extract)
+
+---
+
 <div align="center" >
   <img src="./logo.png" alt="treat" width="160px" />
   <br />

@@ -1,5 +1,4 @@
-## ⚠️ NOTE: This project has been deprecated in favour of [Vanilla Extract.](https://github.com/vanilla-extract-css/vanilla-extract)
-
+## ⚠️ NOTE: This project has been deprecated in favour of [Vanilla Extract.](https://github.com/vanilla-extract-css/vanilla-extract). Please take a look at [the migration guide](https://github.com/vanilla-extract-css/vanilla-extract/blob/master/docs/treat-migration-guide.md).
 ---
 
 <div align="center" >

@@ -4,7 +4,8 @@ title: Introduction
 
 <br />
 
-> ⚠️ WARNING: This project has been deprecated in favour of [Vanilla Extract.](https://github.com/vanilla-extract-css/vanilla-extract)
+> ⚠️ WARNING: This project has been deprecated in favour of [Vanilla Extract.](https://github.com/vanilla-extract-css/vanilla-extract).
+> Please take a look at [the migration guide](https://github.com/vanilla-extract-css/vanilla-extract/blob/master/docs/treat-migration-guide.md).
 
 # Themeable, statically extracted CSS&#8209;in&#8209;JS with near&#8209;zero runtime.
 
